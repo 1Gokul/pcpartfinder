@@ -1,4 +1,4 @@
-import { Button, Flex, Heading } from "@chakra-ui/react"
+import { Button, ButtonGroup, Flex, Heading } from "@chakra-ui/react"
 import Link from "next/link"
 
 
@@ -24,8 +24,8 @@ const NavLink = props => (
 )
 
 const DesktopNavMenu = ({ navLinks }) => (
-  <Flex display={{ base: "none", md:"flex" }}>
+  <ButtonGroup display={{ base:"none", md: "flex" }} spacing={6}>
     {navLinks.map(navLink =>
       <NavLink key={navLink.name} {...navLink} />)}
-  </Flex>
+  </ButtonGroup>
 )

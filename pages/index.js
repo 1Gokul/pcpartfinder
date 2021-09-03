@@ -1,12 +1,12 @@
 
 import Layout, { Container } from "../src/components/Layout"
-import { Flex, Heading } from "@chakra-ui/react"
+import { Heading } from "@chakra-ui/react"
 
 export default function Home() {
   return (
     <Layout>
       <Container>
-        <Heading fontSize="100px">PCPartFinder</Heading>
+        <Heading>Search for any PC components and peripherals in India.</Heading>
       </Container>
     </Layout>
   )
