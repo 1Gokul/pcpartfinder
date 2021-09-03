@@ -10,7 +10,8 @@ const Layout = props => (
 
 export default Layout
 
-const Container = () => {
-
-  
-}
+export const Container = props => (
+  <Flex direction="column" marginX="auto"  marginTop={10} minH="90vh" minW="70vw" maxW={{ base:"95vw", md: "75vw" }} padding={{ base:5, md: 10 }}>
+    {props.children}
+  </Flex>
+)
