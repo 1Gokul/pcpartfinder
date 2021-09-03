@@ -8,7 +8,7 @@ export default function Home() {
     <Layout>
       <Container>
         <Heading>Find PC components and peripherals in India.</Heading>
-        <Flex marginY={10}>
+        <Flex marginY={16}>
           <InputGroup>
             <InputLeftElement
               pointerEvents="none"
