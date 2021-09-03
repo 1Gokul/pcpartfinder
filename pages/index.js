@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <Layout>
       <Container>
-        <Heading>Search for any PC components and peripherals in India.</Heading>
+        <Heading>Get information on available PC components and peripherals in India</Heading>
       </Container>
     </Layout>
   )

@@ -8,7 +8,7 @@ const Header = () => {
     { name: "Set Alert", link: "/set-alert" },
   ]
   return (
-    <Flex justifyContent="space-between" padding={{ base: 5, md: 6 }}>
+    <Flex justifyContent="space-between" padding={{ base: 5, md: 14 }}>
       <Heading fontSize="4xl">PCPartFinder</Heading>
       <DesktopNavMenu navLinks={navLinks}/>
     </Flex>
@@ -19,12 +19,12 @@ export default Header
 
 const NavLink = props => (
   <Link href={props.link} passHref>
-    <Button variant="ghost">{props.name}</Button>
+    <Button variant="ghost" fontSize="lg">{props.name}</Button>
   </Link>
 )
 
 const DesktopNavMenu = ({ navLinks }) => (
-  <ButtonGroup display={{ base:"none", md: "flex" }} spacing={6}>
+  <ButtonGroup display={{ base:"none", md: "flex" }} spacing={10} marginRight={10}>
     {navLinks.map(navLink =>
       <NavLink key={navLink.name} {...navLink} />)}
   </ButtonGroup>
