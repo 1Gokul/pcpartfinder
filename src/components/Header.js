@@ -10,10 +10,7 @@ const Header = () => {
   return (
     <Flex justifyContent="space-between" padding={{ base: 5, md: 6 }}>
       <Heading fontSize="4xl">PCPartFinder</Heading>
-      <Flex>
-        {navLinks.map(navLink =>
-          <NavLink key={navLink.name} {...navLink} />)}
-      </Flex>
+      <DesktopNavMenu navLinks={navLinks}/>
     </Flex>
   )
 }
@@ -24,4 +21,11 @@ const NavLink = props => (
   <Link href={props.link} passHref>
     <Button variant="ghost">{props.name}</Button>
   </Link>
+)
+
+const DesktopNavMenu = ({ navLinks }) => (
+  <Flex display={{ base: "none", md:"flex" }}>
+    {navLinks.map(navLink =>
+      <NavLink key={navLink.name} {...navLink} />)}
+  </Flex>
 )

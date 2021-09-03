@@ -1,4 +1,4 @@
-import { Flex, Heading } from "@chakra-ui/react"
+import { Flex } from "@chakra-ui/react"
 import Header from "./Header"
 
 const Layout = props => (
@@ -9,3 +9,8 @@ const Layout = props => (
 )
 
 export default Layout
+
+const Container = () => {
+
+  
+}
