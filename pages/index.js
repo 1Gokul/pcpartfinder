@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <Layout>
       <Container>
-        <Heading>Get information on available PC components and peripherals in India</Heading>
+        <Heading>Find PC components and peripherals in India.</Heading>
         <Flex marginY={10}>
           <InputGroup>
             <InputLeftElement
@@ -15,7 +15,7 @@ export default function Home() {
               height="100%"
               children={<Search2Icon color="gray.400"/>}  //eslint-disable-line
             />
-            <Input size="lg" placeholder="Search for a component..." variant="flushed"/>
+            <Input size="lg" fontSize="2xl" placeholder="Search for a component..." variant="flushed"/>
           </InputGroup>
         </Flex>
         <Button alignSelf="center" fontSize="xl" paddingX={12} paddingY={8} >Search</Button>
