@@ -21,6 +21,7 @@ export const Container = props => (
     minW="70vw"
     maxW={{ base: "95vw", md: "75vw" }}
     padding={{ base: 5, md: 10 }}
+    {...props}
   >
     {props.children}
   </Flex>
