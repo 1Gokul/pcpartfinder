@@ -19,7 +19,8 @@ const Header = () => {
     <Flex direction="column">
       <Flex
         justifyContent="space-between"
-        padding={{ base: 5, md: 14 }}
+        height="20vh"
+        paddingX={{ base: 6, md: 12 }}
         alignItems="center"
       >
         <Heading fontSize="4xl">PCPartFinder</Heading>
@@ -35,15 +36,14 @@ export default Header
 
 const NavLink = props => (
   <Link href={props.link} passHref>
-    <Box {...props}>{props.name}</Box>
+    <Flex {...props}><Flex>{props.name}</Flex></Flex>
   </Link>
 )
 
 const DesktopNavMenu = ({ navLinks }) => (
   <Flex
     display={{ base: "none", md: "flex" }}
-    justifyContent="space-between"
-    flexGrow={0.1}
+    height="100%"
     marginRight={10}
   >
     {navLinks.map (navLink => (
@@ -51,9 +51,14 @@ const DesktopNavMenu = ({ navLinks }) => (
         key={navLink.name}
         {...navLink}
         as="button"
+        height="100%"
         fontSize="xl"
         color="black"
-        _hover={{ textDecoration: "none" }}
+        justifyContent="center"
+        alignItems="center"
+        width={40}
+        transition="0.1s linear"
+        _hover={{ textDecoration: "none", bgColor: "gray.800", color: "gray.50" }}
       />
     ))}
   </Flex>
@@ -72,7 +77,6 @@ const MobileNavMenu = props => (
   <Flex
     direction="column"
     height="100vh"
-    marginTop={5}
     display={{ base: props.expanded ? "flex" : "none", md: "none" }}
   >
     {props.navLinks.map (navLink => (
