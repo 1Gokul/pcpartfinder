@@ -19,12 +19,12 @@ export default Header
 
 const NavLink = props => (
   <Link href={props.link} passHref>
-    <Button variant="ghost" fontSize="lg">{props.name}</Button>
+    <Button variant="link" fontSize="lg" color="black" _hover={{ textDecoration: "none" }}>{props.name}</Button>
   </Link>
 )
 
 const DesktopNavMenu = ({ navLinks }) => (
-  <ButtonGroup display={{ base:"none", md: "flex" }} spacing={10} marginRight={10}>
+  <ButtonGroup display={{ base:"none", md: "flex" }} spacing={28} marginRight={10}>
     {navLinks.map(navLink =>
       <NavLink key={navLink.name} {...navLink} />)}
   </ButtonGroup>
