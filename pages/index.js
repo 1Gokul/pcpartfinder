@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { Button, Flex, Heading, Icon, Input, Text } from "@chakra-ui/react"
+import { VscArrowRight } from "react-icons/vsc"
 import axios from "axios"
 
 import Layout, { Container } from "../src/components/Layout"
-import { VscArrowRight } from "react-icons/vsc"
 
 const Home = () => {
   const [results, setResults] = useState ([])
@@ -36,7 +36,7 @@ const Home = () => {
   return (
     <Layout>
       <Container>
-        <Heading>What are you looking for today?</Heading>
+        <Heading size="2xl" marginBottom={5}>What are you looking for today?</Heading>
         <form onSubmit={submitQuery}>
 
           <Flex marginTop={5} direction={{ base: "column", md: "row" }}>
