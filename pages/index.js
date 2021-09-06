@@ -47,7 +47,7 @@ const Home = () => {
             onClick={() => setSearchQuery (inputQuery)}
           >
             Search
-            <ArrowForwardIcon marginTop={0.5} marginLeft={2} />
+            <ArrowForwardIcon w={8} h={8} marginTop={0.5} marginLeft={2} />
           </Button>
         </Flex>
         {results.length

@@ -1,5 +1,5 @@
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons"
-import { Button, ButtonGroup, Flex, Heading, IconButton } from "@chakra-ui/react"
+import { Box, Flex, Heading, IconButton } from "@chakra-ui/react"
 import Link from "next/link"
 import { useState } from "react"
 
@@ -35,27 +35,28 @@ export default Header
 
 const NavLink = props => (
   <Link href={props.link} passHref>
-    <Button {...props}>{props.name}</Button>
+    <Box {...props}>{props.name}</Box>
   </Link>
 )
 
 const DesktopNavMenu = ({ navLinks }) => (
-  <ButtonGroup
+  <Flex
     display={{ base: "none", md: "flex" }}
-    spacing={28}
+    justifyContent="space-between"
+    flexGrow={0.1}
     marginRight={10}
   >
     {navLinks.map (navLink => (
       <NavLink
         key={navLink.name}
         {...navLink}
-        variant="link"
-        fontSize="lg"
+        as="button"
+        fontSize="xl"
         color="black"
         _hover={{ textDecoration: "none" }}
       />
     ))}
-  </ButtonGroup>
+  </Flex>
 )
 
 const NavMenuToggler = props => (
@@ -71,17 +72,19 @@ const MobileNavMenu = props => (
   <Flex
     direction="column"
     height="100vh"
-    marginTop={10}
+    marginTop={5}
     display={{ base: props.expanded ? "flex" : "none", md: "none" }}
   >
     {props.navLinks.map (navLink => (
       <NavLink
         key={navLink.name}
         {...navLink}
-        variant="outline"
-        padding={10}
+        marginX={2}
+        padding={7}
         fontSize="2xl"
         textAlign="left"
+        borderBottom="2px"
+        borderColor="gray.700"
       />
     ))}
   </Flex>
