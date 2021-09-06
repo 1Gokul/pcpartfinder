@@ -1,5 +1,5 @@
-import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons"
-import { Box, Flex, Heading, IconButton } from "@chakra-ui/react"
+import { VscMenu, VscClose } from "react-icons/vsc"
+import { Flex, Heading, IconButton } from "@chakra-ui/react"
 import Link from "next/link"
 import { useState } from "react"
 
@@ -66,9 +66,10 @@ const DesktopNavMenu = ({ navLinks }) => (
 
 const NavMenuToggler = props => (
   <IconButton
-    display={{ base: "block", md: "none" }}
+    display={{ base: "flex", md: "none" }}
     variant="ghost"
-    icon={props.expanded ? <CloseIcon /> : <HamburgerIcon w={7} h={7} />}
+    fontSize="40px"
+    icon={props.expanded ? <VscClose /> : <VscMenu />}
     onClick={props.toggleExpanded}
   />
 )

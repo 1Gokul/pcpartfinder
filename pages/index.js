@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
-import { Button, Flex, Heading, Input, Text } from "@chakra-ui/react"
-import { ArrowForwardIcon } from "@chakra-ui/icons"
+import { Button, Flex, Heading, Icon, Input, Text } from "@chakra-ui/react"
 import axios from "axios"
 
 import Layout, { Container } from "../src/components/Layout"
+import { VscArrowRight } from "react-icons/vsc"
 
 const Home = () => {
   const [results, setResults] = useState ([])
@@ -61,7 +61,7 @@ const Home = () => {
               marginTop={{ base: 5, md: 0 }}
             >
             Search
-              <ArrowForwardIcon w={8} h={8} marginTop={0.5} marginLeft={2} />
+              <Icon as={VscArrowRight} marginTop={0.5} marginLeft={2} />
             </Button>
           </Flex>
         </form>
