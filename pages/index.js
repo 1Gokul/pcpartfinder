@@ -9,6 +9,7 @@ const Home = () => {
   const [results, setResults] = useState ([])
   const [searchQuery, setSearchQuery] = useState (null)
   const [inputQuery, setInputQuery] = useState ("")
+  const [formDisabled, setFormDisabled] = useState(false)
 
   useEffect (
     () => {
@@ -16,7 +17,9 @@ const Home = () => {
         const searchResults = await axios.get (
           `${process.env.NEXT_PUBLIC_BASE_URL}/${searchQuery}`
         )
+
         setResults (searchResults.data)
+        setFormDisabled(false)
       }
 
       getResults()
@@ -24,32 +27,45 @@ const Home = () => {
     [searchQuery]
   )
 
+  const submitQuery = (event) => {
+    event.preventDefault()
+    setFormDisabled(true)
+    setSearchQuery(inputQuery)
+  }
+
   return (
     <Layout>
       <Container>
         <Heading>What are you looking for today?</Heading>
-        <Flex marginTop={5} direction={{ base: "column", md: "row" }}>
-          <Input
-            size="xl"
-            variant="filled"
-            placeholder="Search..."
-            border="2px"
-            borderColor="gray.400"
-            value={inputQuery}
-            onChange={({ target }) => setInputQuery (target.value)}
-            isRequired={true}
-          />
-          <Button
-            variant="search"
-            alignSelf="flex-end"
-            marginLeft={5}
-            marginTop={{ base: 5, md: 0 }}
-            onClick={() => setSearchQuery (inputQuery)}
-          >
+        <form onSubmit={submitQuery}>
+
+          <Flex marginTop={5} direction={{ base: "column", md: "row" }}>
+
+            <Input
+              size="xl"
+              variant="filled"
+              placeholder="Search..."
+              border="2px"
+              borderColor="gray.400"
+              value={inputQuery}
+              onChange={({ target }) => setInputQuery (target.value)}
+              isDisabled={formDisabled}
+              isRequired={true}
+            />
+            <Button
+              type="submit"
+              variant="search"
+              alignSelf="flex-end"
+              marginLeft={5}
+              isDisabled={formDisabled}
+              marginTop={{ base: 5, md: 0 }}
+            >
             Search
-            <ArrowForwardIcon w={8} h={8} marginTop={0.5} marginLeft={2} />
-          </Button>
-        </Flex>
+              <ArrowForwardIcon w={8} h={8} marginTop={0.5} marginLeft={2} />
+            </Button>
+          </Flex>
+        </form>
+
         {results.length
           ? <Flex direction="column">
             {results.map (result => (
