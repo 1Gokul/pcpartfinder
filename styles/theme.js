@@ -7,8 +7,22 @@ const components = {
       xl: {
         field:{
           fontSize: "4xl",
-          py: 2
+          py: 2,
+          px: 6,
+          borderRadius: 0
         }
+      }
+    }
+  },
+  Button: {
+    baseStyle: {
+      borderRadius: 0,
+    },
+    variants: {
+      search: {
+        padding: 10,
+        bgColor: "gray.100",
+        fontSize: "2xl",
       }
     }
   }
