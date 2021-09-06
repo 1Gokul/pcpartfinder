@@ -19,7 +19,7 @@ const Header = () => {
     <Flex direction="column">
       <Flex
         justifyContent="space-between"
-        height="20vh"
+        height={{ base: "10vh", md: "20vh" }}
         paddingX={{ base: 6, md: 12 }}
         alignItems="center"
       >
