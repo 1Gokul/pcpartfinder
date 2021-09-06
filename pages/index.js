@@ -31,9 +31,10 @@ const Home = () => {
         <Flex marginTop={5} direction={{ base: "column", md: "row" }}>
           <Input
             size="xl"
+            variant="filled"
             placeholder="Search..."
             border="2px"
-            borderColor="black"
+            borderColor="gray.400"
             value={inputQuery}
             onChange={({ target }) => setInputQuery (target.value)}
             isRequired={true}
