@@ -46,7 +46,7 @@ const Home = () => {
     <Layout title="Search" page="/">
       <Container>
         <Heading size="2xl" marginBottom={5}>
-          What are you looking for today?
+          Looking for components or peripherals?
         </Heading>
         <form onSubmit={submitQuery}>
 
@@ -59,7 +59,7 @@ const Home = () => {
               borderColor="gray.400"
               value={inputQuery}
               onChange={({ target }) => setInputQuery (target.value)}
-              focusBorderColor="cyan.6  00"
+              focusBorderColor="cyan.600"
               isDisabled={formDisabled}
               isRequired={true}
             />
