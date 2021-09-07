@@ -1,4 +1,4 @@
-import { Flex, Link as ChakraLink, useStyleConfig } from "@chakra-ui/react"
+import { Flex, Link, useStyleConfig } from "@chakra-ui/react"
 import Head from "next/head"
 
 import Header from "./Header"
@@ -62,7 +62,7 @@ const Footer = () => (
     direction={{ base: "column", md: "row" }}
     justifyContent="space-evenly"
   >
-    <ChakraLink href="https://gokulv.netlify.app" color="cyan.600">Gokul Viswanath</ChakraLink>
-    <ChakraLink href="https://github.com/1Gokul/pcpartfinder" color="cyan.600">GitHub repo</ChakraLink>
+    <Link href="https://gokulv.netlify.app">Gokul Viswanath</Link>
+    <Link href="https://github.com/1Gokul/pcpartfinder">GitHub repo</Link>
   </Flex>
 )

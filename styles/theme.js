@@ -45,6 +45,14 @@ const components = {
       borderRadius: 0,
     },
   },
+  Link: {
+    baseStyle: {
+      _hover: {
+        color: "cyan.600",
+        textDecoration: "none"
+      }
+    }
+  },
   DesktopNavlink: {
     baseStyle: ({ colorMode }) => ({
       color: colorMode === "dark" ? "gray.100" : "gray.800",
