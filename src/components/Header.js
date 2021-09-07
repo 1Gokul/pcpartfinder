@@ -22,6 +22,7 @@ const Header = () => {
         height={{ base: "10vh", md: "20vh" }}
         paddingX={{ base: 6, md: 12 }}
         alignItems="center"
+        //todo fixed header
       >
         <Heading fontSize="4xl">PCPartFinder</Heading>
         <DesktopNavMenu navLinks={navLinks} />

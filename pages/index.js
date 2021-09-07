@@ -34,7 +34,7 @@ const Home = () => {
   }
 
   return (
-    <Layout>
+    <Layout title="Search" page="/">
       <Container>
         <Heading size="2xl" marginBottom={5}>What are you looking for today?</Heading>
         <form onSubmit={submitQuery}>
