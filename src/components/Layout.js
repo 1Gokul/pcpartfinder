@@ -1,9 +1,10 @@
-import { Flex, Text } from "@chakra-ui/react"
+import { Flex, Link as ChakraLink, Text } from "@chakra-ui/react"
 import Link from "next/link"
 import Head from "next/head"
 import Header from "./Header"
 
-const description = "Search for PC components and peripherals from all major Indian stores!"
+const description =
+  "Search for PC components and peripherals from all major Indian stores!"
 
 const Layout = props => (
   <Flex direction="column" margin="0 auto">
@@ -13,10 +14,18 @@ const Layout = props => (
       <meta name="description" content={description} />
       <meta name="twitter:card" content="summary" key="twcard" />
       <meta name="twitter:creator" content="@1GokulV" key="twhandle" />
-      <meta property="og:url" content={`${process.env.NEXT_PUBLIC_SITE_URL}${props.page}`} key="ogurl" />
+      <meta
+        property="og:url"
+        content={`${process.env.NEXT_PUBLIC_SITE_URL}${props.page}`}
+        key="ogurl"
+      />
       {/* <meta property="og:image" content={previewImage} key="ogimage" /> */}
       <meta property="og:site_name" content="PCPartFinder" key="ogsitename" />
-      <meta property="og:title" content={props.title.split("-").join(" ")} key="ogtitle" />
+      <meta
+        property="og:title"
+        content={props.title.split ("-").join (" ")}
+        key="ogtitle"
+      />
       <meta property="og:description" content={description} key="ogdesc" />
       <title>{props.title} - PCPartFinder</title>
     </Head>
@@ -45,10 +54,21 @@ export const Container = props => (
 )
 
 const Footer = () => (
-  <Flex paddingX={10} paddingY={5} direction={{ base:"column", md:"row" }} justifyContent="space-evenly">
+  <Flex
+    paddingX={10}
+    paddingY={5}
+    direction={{ base: "column", md: "row" }}
+    justifyContent="space-evenly"
+  >
     <Text>
-      {new Date ().getFullYear ()} Gokul Viswanath
+      Built by
+      {" "}
+      <Link href="https://gokulv.netlify.app" passHref>
+        <ChakraLink color="cyan.600">Gokul Viswanath</ChakraLink>
+      </Link>
     </Text>
-    <Link href="https://github.com/1Gokul/pcpartfinder">GitHub repo</Link>
+    <Link href="https://github.com/1Gokul/pcpartfinder" passHref>
+      <ChakraLink color="cyan.600">GitHub repo</ChakraLink>
+    </Link>
   </Flex>
 )
