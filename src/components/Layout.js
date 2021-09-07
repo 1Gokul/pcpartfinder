@@ -2,7 +2,6 @@ import { Flex, Link, useStyleConfig } from "@chakra-ui/react"
 import Head from "next/head"
 
 import Header from "./Header"
-import previewImage from "../../public/og_image.jpg"
 
 const description =
   "Search for PC components and peripherals from all major Indian stores!"
