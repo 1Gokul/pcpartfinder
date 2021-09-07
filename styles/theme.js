@@ -59,6 +59,17 @@ const components = {
       transition:"0.1s linear",
       _hover:{ textDecoration: "none", bgColor: "cyan.600", color: "gray.50" }
     }),
+  },
+  MobileNavlink: {
+    baseStyle: ({ colorMode }) => ({
+      color: colorMode === "dark"? "gray.100" : "gray.700",
+      marginX:2,
+      padding:7,
+      fontSize:"2xl",
+      textAlign:"left",
+      borderBottom:"2px",
+      borderColor: colorMode === "dark"? "gray.600" : "gray.300",
+    })
   }
 }
 

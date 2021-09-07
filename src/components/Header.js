@@ -2,10 +2,12 @@ import { VscMenu, VscClose } from "react-icons/vsc"
 import {
   Flex,
   Heading,
+  Icon,
   IconButton,
   useColorMode,
   useStyleConfig,
 } from "@chakra-ui/react"
+import { IoSunnySharp, IoMoonSharp } from "react-icons/io5"
 import Link from "next/link"
 import { useState } from "react"
 
@@ -34,14 +36,15 @@ const Header = () => {
         //todo fixed header
       >
         <Heading fontSize="4xl">PCPartFinder</Heading>
-        <DesktopNavMenu
-          navLinks={navLinks}
-          colorMode={colorMode}
-          toggleColorMode={toggleColorMode}
-        />
+        <DesktopNavMenu navLinks={navLinks} />
         <NavMenuToggler toggleExpanded={toggleExpanded} expanded={expanded} />
       </Flex>
-      <MobileNavMenu navLinks={navLinks} expanded={expanded} />
+      <MobileNavMenu
+        navLinks={navLinks}
+        expanded={expanded}
+        colorMode={colorMode}
+        toggleColorMode={toggleColorMode}
+      />
     </Flex>
   )
 }
@@ -50,8 +53,8 @@ export default Header
 
 const NavLink = props => (
   <Flex {...props}>
-    <Flex textTransform="capitalize">
-      {props.name}
+    <Flex textTransform="capitalize" alignItems="center">
+      {props.children}
     </Flex>
   </Flex>
 )
@@ -63,16 +66,23 @@ const DesktopNavMenu = props => {
     <Flex display={{ base: "none", md: "flex" }} height="100%" marginRight={10}>
       {props.navLinks.map (navLink => (
         <Link key={navLink.name} href={navLink.link} passHref>
-          <NavLink sx={styles} {...navLink} as="button" />
+          <NavLink sx={styles} {...navLink} as="button">
+            {navLink.name}
+          </NavLink>
         </Link>
       ))}
       <NavLink
         sx={styles}
         as="button"
         borderRight="1px"
-        name={props.colorMode}
         onClick={props.toggleColorMode}
-      />
+      >
+        {props.colorMode}
+        <Icon
+          as={props.colorMode === "dark" ? IoMoonSharp : IoSunnySharp}
+          marginLeft={2}
+        />
+      </NavLink>
     </Flex>
   )
 }
@@ -87,25 +97,33 @@ const NavMenuToggler = props => (
   />
 )
 
-const MobileNavMenu = props => (
-  <Flex
-    direction="column"
-    height="100vh"
-    display={{ base: props.expanded ? "flex" : "none", md: "none" }}
-    borderBottom="1px"
-    borderColor="gray.200"
-  >
-    {props.navLinks.map (navLink => (
+const MobileNavMenu = props => {
+  const styles = useStyleConfig ("MobileNavlink")
+
+  return (
+    <Flex
+      direction="column"
+      height="100vh"
+      display={{ base: props.expanded ? "flex" : "none", md: "none" }}
+      borderBottom="1px"
+      borderColor="gray.200"
+    >
+      {props.navLinks.map (navLink => (
+        <NavLink key={navLink.name} {...navLink} sx={styles}>
+          {navLink.name}
+        </NavLink>
+      ))}
+
       <NavLink
-        key={navLink.name}
-        {...navLink}
-        marginX={2}
-        padding={7}
-        fontSize="2xl"
-        textAlign="left"
-        borderBottom="2px"
-        borderColor="gray.700"
-      />
-    ))}
-  </Flex>
-)
+        sx={styles}
+        onClick={props.toggleColorMode}
+      >
+        {props.colorMode}
+        <Icon
+          as={props.colorMode === "dark" ? IoMoonSharp : IoSunnySharp}
+          marginLeft={2}
+        />
+      </NavLink>
+    </Flex>
+  )
+}
