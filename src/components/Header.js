@@ -22,6 +22,8 @@ const Header = () => {
         height={{ base: "10vh", md: "20vh" }}
         paddingX={{ base: 6, md: 12 }}
         alignItems="center"
+        borderBottom="1px"
+        borderColor="gray.300"
         //todo fixed header
       >
         <Heading fontSize="4xl">PCPartFinder</Heading>
@@ -47,7 +49,7 @@ const DesktopNavMenu = ({ navLinks }) => (
     height="100%"
     marginRight={10}
   >
-    {navLinks.map (navLink => (
+    {navLinks.map ((navLink, index) => (
       <NavLink
         key={navLink.name}
         {...navLink}
@@ -57,6 +59,9 @@ const DesktopNavMenu = ({ navLinks }) => (
         color="black"
         justifyContent="center"
         alignItems="center"
+        borderLeft="1px"
+        borderRight={index+1 === navLinks.length ? "1px":"0"}
+        borderColor="gray.300"
         width={40}
         transition="0.1s linear"
         _hover={{ textDecoration: "none", bgColor: "gray.800", color: "gray.50" }}
@@ -80,6 +85,8 @@ const MobileNavMenu = props => (
     direction="column"
     height="100vh"
     display={{ base: props.expanded ? "flex" : "none", md: "none" }}
+    borderBottom="1px"
+    borderColor="gray.200"
   >
     {props.navLinks.map (navLink => (
       <NavLink
