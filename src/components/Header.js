@@ -46,6 +46,8 @@ const Header = () => {
       <MobileNavMenu
         navLinks={navLinks}
         expanded={expanded}
+        colorMode={colorMode}
+        toggleColorMode={toggleColorMode}
       />
     </Flex>
   )
