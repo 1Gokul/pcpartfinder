@@ -32,7 +32,7 @@ const Header = () => {
         paddingX={{ base: 6, md: 12 }}
         alignItems="center"
         borderBottom="1px"
-        borderColor="gray.300"
+        borderColor={colorMode === "dark" ? "gray.600" : "gray.300"}
         //todo fixed header
       >
         <Heading fontSize="4xl">PCPartFinder</Heading>
