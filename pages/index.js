@@ -64,11 +64,12 @@ const Home = () => {
             />
             <Button
               type="submit"
-              variant="search"
+              marginLeft= {5}
               alignSelf="flex-end"
-              marginLeft={5}
-              isDisabled={formDisabled}
+              fontSize="2xl"
               marginTop={{ base: 5, md: 0 }}
+              padding={10}
+              isDisabled={formDisabled}
             >
               Search
               <Icon as={VscArrowRight} marginTop={0.5} marginLeft={2} />

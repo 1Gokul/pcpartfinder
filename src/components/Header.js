@@ -36,14 +36,16 @@ const Header = () => {
         //todo fixed header
       >
         <Heading fontSize="4xl">PCPartFinder</Heading>
-        <DesktopNavMenu navLinks={navLinks} />
+        <DesktopNavMenu
+          navLinks={navLinks}
+          colorMode={colorMode}
+          toggleColorMode={toggleColorMode}
+        />
         <NavMenuToggler toggleExpanded={toggleExpanded} expanded={expanded} />
       </Flex>
       <MobileNavMenu
         navLinks={navLinks}
         expanded={expanded}
-        colorMode={colorMode}
-        toggleColorMode={toggleColorMode}
       />
     </Flex>
   )
@@ -114,10 +116,7 @@ const MobileNavMenu = props => {
         </NavLink>
       ))}
 
-      <NavLink
-        sx={styles}
-        onClick={props.toggleColorMode}
-      >
+      <NavLink sx={styles} onClick={props.toggleColorMode}>
         {props.colorMode}
         <Icon
           as={props.colorMode === "dark" ? IoMoonSharp : IoSunnySharp}

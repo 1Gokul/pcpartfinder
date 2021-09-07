@@ -38,13 +38,6 @@ const components = {
     baseStyle: {
       borderRadius: 0,
     },
-    variants: {
-      search: {
-        padding: 10,
-        bgColor: "gray.100",
-        fontSize: "2xl",
-      }
-    }
   },
   DesktopNavlink: {
     baseStyle: ({ colorMode }) => ({
@@ -70,7 +63,7 @@ const components = {
       borderBottom:"2px",
       borderColor: colorMode === "dark"? "gray.600" : "gray.300",
     })
-  }
+  },
 }
 
 export default extendTheme({ config, colors, components })
