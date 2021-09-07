@@ -2,6 +2,7 @@ import { Flex, Link, useStyleConfig } from "@chakra-ui/react"
 import Head from "next/head"
 
 import Header from "./Header"
+import previewImage from "../../public/og_image.jpg"
 
 const description =
   "Search for PC components and peripherals from all major Indian stores!"
@@ -14,7 +15,7 @@ const Layout = props => (
       <meta name="description" content={description} />
       <meta name="twitter:card" content="summary" key="twcard" />
       <meta name="twitter:creator" content="@1GokulV" key="twhandle" />
-      {/* <meta property="og:image" content={previewImage} key="ogimage" /> */}
+      <meta property="og:image" content={`${process.env.NEXT_PUBLIC_SITE_URL}/og_image.jpg`} key="ogimage" />
       <meta property="og:site_name" content="PCPartFinder" key="ogsitename" />
 
       <meta property="og:description" content={description} key="ogdesc" />
