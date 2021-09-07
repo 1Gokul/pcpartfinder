@@ -1,7 +1,7 @@
 import { extendTheme } from "@chakra-ui/react"
 
 const config = {
-  initialColorMode: "dark",
+  initialColorMode: "light",
   useSystemColorMode: true
 }
 
@@ -46,6 +46,20 @@ const components = {
       }
     }
   },
+  DesktopNavlink: {
+    baseStyle: ({ colorMode }) => ({
+      color: colorMode === "dark"? "gray.100" : "gray.800",
+      height:"100%",
+      fontSize:"xl",
+      justifyContent:"center",
+      alignItems:"center",
+      borderLeft:"1px",
+      borderColor: colorMode === "dark"? "gray.600" : "gray.300",
+      width:40,
+      transition:"0.1s linear",
+      _hover:{ textDecoration: "none", bgColor: "cyan.600", color: "gray.50" }
+    }),
+  }
 }
 
 export default extendTheme({ config, colors, components })
