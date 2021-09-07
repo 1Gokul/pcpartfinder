@@ -64,7 +64,7 @@ const DesktopNavMenu = ({ navLinks }) => (
         borderColor="gray.300"
         width={40}
         transition="0.1s linear"
-        _hover={{ textDecoration: "none", bgColor: "gray.800", color: "gray.50" }}
+        _hover={{ textDecoration: "none", bgColor: "cyan.600", color: "gray.50" }}
       />
     ))}
   </Flex>
