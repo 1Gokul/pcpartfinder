@@ -59,7 +59,7 @@ const Home = () => {
               borderColor="gray.400"
               value={inputQuery}
               onChange={({ target }) => setInputQuery (target.value)}
-              focusBorderColor="cyan.500"
+              focusBorderColor="cyan.6  00"
               isDisabled={formDisabled}
               isRequired={true}
             />

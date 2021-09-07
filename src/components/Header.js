@@ -1,7 +1,6 @@
 
 import {
   Flex,
-  Heading,
   Icon,
   IconButton,
   useColorMode,
@@ -10,7 +9,10 @@ import {
 import { VscMenu, VscClose } from "react-icons/vsc"
 import { IoSunnySharp, IoMoonSharp } from "react-icons/io5"
 import Link from "next/link"
+import Image from "next/image"
 import { useState } from "react"
+
+import logo from "../../public/logo.svg"
 
 const Header = () => {
   const [expanded, setExpanded] = useState (false)
@@ -29,14 +31,17 @@ const Header = () => {
     <Flex direction="column">
       <Flex
         justifyContent="space-between"
-        height={{ base: "10vh", md: "20vh" }}
-        paddingX={{ base: 6, md: 12 }}
+        paddingRight={5}
+        height={{ base: "13vh", md: "20vh" }}
         alignItems="center"
         borderBottom="1px"
         borderColor={colorMode === "dark" ? "gray.600" : "gray.300"}
         //todo fixed header
       >
-        <Heading fontSize="4xl">PCPartFinder</Heading>
+        <Flex marginX={10} height={{ base: "35px", md:   "75px" }} width={{ base: "200px", md:"300px" }}>
+          <Image src={logo} alt="pcpartfinder logo"/>
+        </Flex>
+
         <DesktopNavMenu
           navLinks={navLinks}
           colorMode={colorMode}
