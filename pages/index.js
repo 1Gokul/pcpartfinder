@@ -1,5 +1,13 @@
 import { useEffect, useState } from "react"
-import { Button, Flex, Heading, Icon, Input, Text } from "@chakra-ui/react"
+import {
+  Button,
+  Flex,
+  Heading,
+  Icon,
+  Input,
+  Text,
+  Progress,
+} from "@chakra-ui/react"
 import { VscArrowRight } from "react-icons/vsc"
 import axios from "axios"
 
@@ -9,7 +17,7 @@ const Home = () => {
   const [results, setResults] = useState ([])
   const [searchQuery, setSearchQuery] = useState (null)
   const [inputQuery, setInputQuery] = useState ("")
-  const [formDisabled, setFormDisabled] = useState(false)
+  const [formDisabled, setFormDisabled] = useState (false)
 
   useEffect (
     () => {
@@ -19,24 +27,26 @@ const Home = () => {
         )
 
         setResults (searchResults.data)
-        setFormDisabled(false)
+        setFormDisabled (false)
       }
 
-      getResults()
+      getResults ()
     },
     [searchQuery]
   )
 
-  const submitQuery = (event) => {
-    event.preventDefault()
-    setFormDisabled(true)
-    setSearchQuery(inputQuery)
+  const submitQuery = event => {
+    event.preventDefault ()
+    setFormDisabled (true)
+    setSearchQuery (inputQuery)
   }
 
   return (
     <Layout title="Search" page="/">
       <Container>
-        <Heading size="2xl" marginBottom={5}>What are you looking for today?</Heading>
+        <Heading size="2xl" marginBottom={5}>
+          What are you looking for today?
+        </Heading>
         <form onSubmit={submitQuery}>
 
           <Flex marginTop={5} direction={{ base: "column", md: "row" }}>
@@ -60,11 +70,20 @@ const Home = () => {
               isDisabled={formDisabled}
               marginTop={{ base: 5, md: 0 }}
             >
-            Search
+              Search
               <Icon as={VscArrowRight} marginTop={0.5} marginLeft={2} />
             </Button>
           </Flex>
         </form>
+
+        {formDisabled ?
+          <Flex marginTop={14} direction="column" justifyContent="center">
+            <Text fontSize="2xl" align="center">Hold on... This will take a while.</Text>
+            <Progress colorScheme="cyan" marginTop={4} size="xs" isIndeterminate={true} />
+          </Flex>
+          : null
+        }
+
 
         {results.length
           ? <Flex direction="column">
@@ -80,5 +99,11 @@ const Home = () => {
     </Layout>
   )
 }
+
+// const ResultTable = props =>(
+//   <Table size="lg" variant="striped" colorScheme="telegram">
+
+//   </Table>
+//   )
 
 export default Home

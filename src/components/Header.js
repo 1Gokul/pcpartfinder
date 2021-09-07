@@ -39,16 +39,16 @@ export default Header
 
 const NavLink = props => (
   <Link href={props.link} passHref>
-    <Flex {...props}><Flex>{props.name}</Flex></Flex>
+    <Flex {...props}>
+      <Flex>
+        {props.name}
+      </Flex>
+    </Flex>
   </Link>
 )
 
 const DesktopNavMenu = ({ navLinks }) => (
-  <Flex
-    display={{ base: "none", md: "flex" }}
-    height="100%"
-    marginRight={10}
-  >
+  <Flex display={{ base: "none", md: "flex" }} height="100%" marginRight={10}>
     {navLinks.map ((navLink, index) => (
       <NavLink
         key={navLink.name}
@@ -60,7 +60,7 @@ const DesktopNavMenu = ({ navLinks }) => (
         justifyContent="center"
         alignItems="center"
         borderLeft="1px"
-        borderRight={index+1 === navLinks.length ? "1px":"0"}
+        borderRight={index + 1 === navLinks.length ? "1px" : "0"}
         borderColor="gray.300"
         width={40}
         transition="0.1s linear"

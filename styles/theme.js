@@ -25,7 +25,7 @@ const components = {
         fontSize: "2xl",
       }
     }
-  }
+  },
 }
 
 export default extendTheme({ components })
