@@ -64,6 +64,25 @@ const components = {
       borderColor: colorMode === "dark"? "gray.600" : "gray.300",
     })
   },
+  SearchButton: {
+    baseStyle: ({ colorMode }) => ({
+      bgColor: colorMode === "dark"?  "gray.800": "gray.300",
+      transition: "0.2s linear",
+      marginLeft: 5,
+      alignSelf:"flex-end",
+      fontSize:"2xl",
+      padding: 10,
+      marginTop: { base: 5, md: 0 },
+      _hover:{ textDecoration: "none", bgColor: "cyan.600", color: "gray.50" }
+    })
+  },
+  ColorModeStyles: {
+    baseStyle: ({ colorMode }) => ({
+      bgColor: colorMode === "dark"?  "#001114": "#F3F4F7",
+      transition: "0.2s linear"
+    })
+  },
+
 }
 
 export default extendTheme({ config, colors, components })

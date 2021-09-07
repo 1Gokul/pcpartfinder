@@ -1,4 +1,4 @@
-import { VscMenu, VscClose } from "react-icons/vsc"
+
 import {
   Flex,
   Heading,
@@ -7,6 +7,7 @@ import {
   useColorMode,
   useStyleConfig,
 } from "@chakra-ui/react"
+import { VscMenu, VscClose } from "react-icons/vsc"
 import { IoSunnySharp, IoMoonSharp } from "react-icons/io5"
 import Link from "next/link"
 import { useState } from "react"

@@ -1,13 +1,14 @@
-import { Flex, Link as ChakraLink, Text } from "@chakra-ui/react"
+import { Flex, Link as ChakraLink, Text, useStyleConfig } from "@chakra-ui/react"
 import Link from "next/link"
 import Head from "next/head"
+
 import Header from "./Header"
 
 const description =
   "Search for PC components and peripherals from all major Indian stores!"
 
 const Layout = props => (
-  <Flex direction="column" margin="0 auto">
+  <Flex sx={useStyleConfig("ColorModeStyles")} direction="column" margin="0 auto">
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charSet="utf-8" />
@@ -43,7 +44,7 @@ export const Container = props => (
     direction="column"
     marginX="auto"
     marginTop={5}
-    minH="70vh"
+    minH="80vh"
     minW="70vw"
     maxW={{ base: "95vw", md: "75vw" }}
     padding={{ base: 5, md: 10 }}

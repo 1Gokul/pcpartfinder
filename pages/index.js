@@ -7,6 +7,7 @@ import {
   Input,
   Text,
   Progress,
+  useStyleConfig
 } from "@chakra-ui/react"
 import { VscArrowRight } from "react-icons/vsc"
 import axios from "axios"
@@ -50,7 +51,6 @@ const Home = () => {
         <form onSubmit={submitQuery}>
 
           <Flex marginTop={5} direction={{ base: "column", md: "row" }}>
-
             <Input
               size="xl"
               variant="filled"
@@ -59,16 +59,13 @@ const Home = () => {
               borderColor="gray.400"
               value={inputQuery}
               onChange={({ target }) => setInputQuery (target.value)}
+              focusBorderColor="cyan.500"
               isDisabled={formDisabled}
               isRequired={true}
             />
             <Button
               type="submit"
-              marginLeft= {5}
-              alignSelf="flex-end"
-              fontSize="2xl"
-              marginTop={{ base: 5, md: 0 }}
-              padding={10}
+              sx={useStyleConfig("SearchButton")}
               isDisabled={formDisabled}
             >
               Search
