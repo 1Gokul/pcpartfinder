@@ -3,12 +3,13 @@ import {
   Flex,
   Icon,
   IconButton,
+  LinkBox,
+  LinkOverlay,
   useColorMode,
   useStyleConfig,
 } from "@chakra-ui/react"
 import { VscMenu, VscClose } from "react-icons/vsc"
 import { IoSunnySharp, IoMoonSharp } from "react-icons/io5"
-import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
 
@@ -36,7 +37,6 @@ const Header = () => {
         alignItems="center"
         borderBottom="1px"
         borderColor={colorMode === "dark" ? "gray.600" : "gray.300"}
-        //todo fixed header
       >
         <Flex marginX={10} height={{ base: "35px", md:   "75px" }} width={{ base: "200px", md:"300px" }}>
           <Image src={logo} alt="pcpartfinder logo"/>
@@ -75,11 +75,13 @@ const DesktopNavMenu = props => {
   return (
     <Flex display={{ base: "none", md: "flex" }} height="100%" marginRight={10}>
       {props.navLinks.map (navLink => (
-        <Link key={navLink.name} href={navLink.link} passHref>
+        <LinkBox key={navLink.name}>
           <NavLink sx={styles} {...navLink} as="button">
-            {navLink.name}
+            <LinkOverlay href={navLink.link}>
+              {navLink.name}
+            </LinkOverlay>
           </NavLink>
-        </Link>
+        </LinkBox>
       ))}
       <NavLink
         sx={styles}

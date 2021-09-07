@@ -1,5 +1,4 @@
-import { Flex, Link as ChakraLink, Text, useStyleConfig } from "@chakra-ui/react"
-import Link from "next/link"
+import { Flex, Link as ChakraLink, useStyleConfig } from "@chakra-ui/react"
 import Head from "next/head"
 
 import Header from "./Header"
@@ -15,19 +14,21 @@ const Layout = props => (
       <meta name="description" content={description} />
       <meta name="twitter:card" content="summary" key="twcard" />
       <meta name="twitter:creator" content="@1GokulV" key="twhandle" />
+      {/* <meta property="og:image" content={previewImage} key="ogimage" /> */}
+      <meta property="og:site_name" content="PCPartFinder" key="ogsitename" />
+
+      <meta property="og:description" content={description} key="ogdesc" />
       <meta
         property="og:url"
         content={`${process.env.NEXT_PUBLIC_SITE_URL}${props.page}`}
         key="ogurl"
       />
-      {/* <meta property="og:image" content={previewImage} key="ogimage" /> */}
-      <meta property="og:site_name" content="PCPartFinder" key="ogsitename" />
       <meta
         property="og:title"
         content={props.title.split ("-").join (" ")}
         key="ogtitle"
       />
-      <meta property="og:description" content={description} key="ogdesc" />
+
       <title>{props.title} - PCPartFinder</title>
     </Head>
 
@@ -61,15 +62,7 @@ const Footer = () => (
     direction={{ base: "column", md: "row" }}
     justifyContent="space-evenly"
   >
-    <Text>
-      Built by
-      {" "}
-      <Link href="https://gokulv.netlify.app" passHref>
-        <ChakraLink color="cyan.600">Gokul Viswanath</ChakraLink>
-      </Link>
-    </Text>
-    <Link href="https://github.com/1Gokul/pcpartfinder" passHref>
-      <ChakraLink color="cyan.600">GitHub repo</ChakraLink>
-    </Link>
+    <ChakraLink href="https://gokulv.netlify.app" color="cyan.600">Gokul Viswanath</ChakraLink>
+    <ChakraLink href="https://github.com/1Gokul/pcpartfinder" color="cyan.600">GitHub repo</ChakraLink>
   </Flex>
 )
