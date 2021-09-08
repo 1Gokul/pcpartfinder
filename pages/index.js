@@ -123,58 +123,55 @@ const ResultTable = ({ result }) => {
 
   return result.content.map (content => {
     return (
-      <>
-        <hr />
-        <Flex
-          key={content.store}
-          direction="column"
-          marginY={16}
-          overflowX="auto"
-        >
-          <Heading size="2xl" marginBottom={6}>{content.store}</Heading>
+      <Flex
+        key={content.store}
+        direction="column"
+        marginY={16}
+        overflowX="auto"
+      >
+        <Heading size="2xl" marginBottom={6}>{content.store}</Heading>
 
-          {content.results.length
-            ? <Table size="lg" variant="striped" colorScheme="cyan">
-              <TableCaption
-                display={{ md: "none" }}
-                textAlign="left"
-                placement="top"
-              >
+        {content.results.length
+          ? <Table size="lg" variant="striped" colorScheme="cyan">
+            <TableCaption
+              display={{ md: "none" }}
+              textAlign="left"
+              placement="top"
+            >
                 ← Swipe left to see other columns
-              </TableCaption>
-              <Thead>
-                <Tr>
-                  <Th>Product</Th>
-                  <Th>Price</Th>
-                  <Th>Link</Th>
+            </TableCaption>
+            <Thead>
+              <Tr>
+                <Th>Product</Th>
+                <Th>Price</Th>
+                <Th>Link</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {content.results.map (result => (
+                <Tr key={result.name}>
+                  <Td>
+                    <Text noOfLines={3}>
+                      {result.name}
+                    </Text>
+                  </Td>
+                  <Td>
+                    <strong>{result.price}</strong>
+                  </Td>
+                  <Td>
+                    <Link variant="storeLink" href={result.link}>
+                      <Icon as={IoCart} fontSize="2xl" />
+                    </Link>
+                  </Td>
                 </Tr>
-              </Thead>
-              <Tbody>
-                {content.results.map (result => (
-                  <Tr key={result.name}>
-                    <Td>
-                      <Text noOfLines={2}>
-                        {result.name}
-                      </Text>
-                    </Td>
-                    <Td>
-                      <strong>{result.price}</strong>
-                    </Td>
-                    <Td>
-                      <Link variant="storeLink" href={result.link}>
-                        <Icon as={IoCart} fontSize="2xl" />
-                      </Link>
-                    </Td>
-                  </Tr>
-                ))}
-              </Tbody>
-            </Table>
-            : <Text size="xl">
+              ))}
+            </Tbody>
+          </Table>
+          : <Text size="xl">
               No matching products found.
-            </Text>}
+          </Text>}
 
-        </Flex>
-      </>
+      </Flex>
     )
   })
 }
