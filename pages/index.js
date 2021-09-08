@@ -4,7 +4,6 @@ import {
   Flex,
   Heading,
   Icon,
-  Input,
   Link,
   Text,
   Table,
@@ -18,17 +17,15 @@ import {
   useStyleConfig,
 } from "@chakra-ui/react"
 import axios from "axios"
-import { VscArrowRight } from "react-icons/vsc"
 import { IoCart } from "react-icons/io5"
 import { GoPrimitiveDot, GoChevronUp, GoChevronDown } from "react-icons/go"
 
 import Layout, { Container } from "../src/components/Layout"
-
+import Form from "../src/components/Form"
 
 const Home = () => {
   const [results, setResults] = useState ({})
   const [searchQuery, setSearchQuery] = useState (null)
-  const [inputQuery, setInputQuery] = useState ("")
   const [formDisabled, setFormDisabled] = useState (false)
 
   useEffect (
@@ -47,10 +44,9 @@ const Home = () => {
     [searchQuery]
   )
 
-  const submitQuery = event => {
-    event.preventDefault ()
+  const handleSubmit = inputValue => {
     setFormDisabled (true)
-    setSearchQuery (inputQuery)
+    setSearchQuery (inputValue)
   }
 
   return (
@@ -59,31 +55,7 @@ const Home = () => {
         <Heading size="2xl" marginBottom={5}>
           Looking for components or peripherals?
         </Heading>
-        <form onSubmit={submitQuery}>
-
-          <Flex marginY={5} direction={{ base: "column", md: "row" }}>
-            <Input
-              size="xl"
-              variant="filled"
-              placeholder="Search..."
-              border="2px"
-              borderColor="gray.400"
-              value={inputQuery}
-              onChange={({ target }) => setInputQuery (target.value)}
-              focusBorderColor="cyan.600"
-              isDisabled={formDisabled}
-              isRequired={true}
-            />
-            <Button
-              type="submit"
-              sx={useStyleConfig ("SearchButton")}
-              isDisabled={formDisabled}
-            >
-              Search
-              <Icon as={VscArrowRight} marginTop={0.5} marginLeft={2} />
-            </Button>
-          </Flex>
-        </form>
+        <Form getFormValue={handleSubmit} isDisabled={formDisabled} />
 
         {formDisabled
           ? <Flex marginTop={14} direction="column" justifyContent="center">
@@ -142,9 +114,8 @@ const ResultViewer = ({ search_results }) => {
           : <ResultTable
             items={search_results.content
               .map (item => item.results)
-              .flat()
-              .sort((a, b) => (sort === 1 ? 1 : -1) * (a.price - b.price))
-            }
+              .flat ()
+              .sort ((a, b) => (sort === 1 ? 1 : -1) * (a.price - b.price))}
           />}
       </Flex>
     </Flex>
@@ -152,7 +123,7 @@ const ResultViewer = ({ search_results }) => {
 }
 
 const StoreTable = ({ item }) => (
-  <Flex direction="column" marginBottom={16} >
+  <Flex direction="column" marginBottom={16}>
     <Heading size="2xl" marginBottom={4}>{item.store}</Heading>
 
     {item.results.length
@@ -173,7 +144,7 @@ const ResultTable = ({ items }) => (
       borderColor="cyan.600"
     >
       <TableCaption display={{ md: "none" }} textAlign="left" placement="top">
-      ← Swipe left to see other columns
+        ← Swipe left to see other columns
       </TableCaption>
       <Thead>
         <Tr>
@@ -203,7 +174,6 @@ const ResultTable = ({ items }) => (
       </Tbody>
     </Table>
   </Flex>
-
 )
 
 export default Home
