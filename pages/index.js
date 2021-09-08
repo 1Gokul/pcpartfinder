@@ -16,7 +16,7 @@ import Form from "../src/components/Form"
 import { ResultTable, StoreTable } from "../src/components/Tables"
 
 const Home = () => {
-  const [results, setResults] = useState ({})
+  const [results, setResults] = useState ({ n_results: -1 })
   const [searchQuery, setSearchQuery] = useState (null)
   const [formDisabled, setFormDisabled] = useState (false)
 
@@ -61,11 +61,12 @@ const Home = () => {
           </Flex>
           : null}
 
-        {results.n_results !== -1
-          ? <Flex direction="column" marginTop={14}>
+        {results.n_results !== -1 ?
+          <Flex direction="column" marginTop={14}>
             <ResultViewer search_results={results} />
           </Flex>
-          : null}
+          : null
+        }
 
       </Container>
     </Layout>
