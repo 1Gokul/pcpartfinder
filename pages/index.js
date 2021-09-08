@@ -120,54 +120,56 @@ const ResultTable = ({ result }) => {
 
   return result.content.map (content => {
     return (
-      <Flex
-        key={content.store}
-        direction="column"
-        marginY={16}
-        overflowX="auto"
-      >
+      <>
+        <hr />
+        <Flex
+          key={content.store}
+          direction="column"
+          marginY={16}
+          overflowX="auto"
+        >
+          <Heading size="2xl" marginBottom={6}>{content.store}</Heading>
 
-        <Heading size="2xl" marginBottom={6}>{content.store}</Heading>
-
-        {content.results.length
-          ? <Table size="lg" variant="striped" colorScheme="cyan">
-            <TableCaption
-              display={{ md: "none" }}
-              textAlign="left"
-              placement="top"
-            >
+          {content.results.length
+            ? <Table size="lg" variant="striped" colorScheme="cyan">
+              <TableCaption
+                display={{ md: "none" }}
+                textAlign="left"
+                placement="top"
+              >
                 ← Swipe left to see other columns
-            </TableCaption>
-            <Thead>
-              <Tr>
-                <Th>Product</Th>
-                <Th>Price</Th>
-                <Th>Link</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {content.results.map (result => (
-                <Tr key={result.name}>
-                  <Td>
-                    <Text noOfLines={2}>
-                      {result.name}
-                    </Text>
-                  </Td>
-                  <Td>
-                    <strong>{result.price}</strong>
-                  </Td>
-                  <Td>
-                    <Link href={result.link}>Link</Link>
-                  </Td>
+              </TableCaption>
+              <Thead>
+                <Tr>
+                  <Th>Product</Th>
+                  <Th>Price</Th>
+                  <Th>Link</Th>
                 </Tr>
-              ))}
-            </Tbody>
-          </Table>
-          : <Text size="xl">
+              </Thead>
+              <Tbody>
+                {content.results.map (result => (
+                  <Tr key={result.name}>
+                    <Td>
+                      <Text noOfLines={2}>
+                        {result.name}
+                      </Text>
+                    </Td>
+                    <Td>
+                      <strong>{result.price}</strong>
+                    </Td>
+                    <Td>
+                      <Link href={result.link}>Link</Link>
+                    </Td>
+                  </Tr>
+                ))}
+              </Tbody>
+            </Table>
+            : <Text size="xl">
               No matching products found.
-          </Text>}
+            </Text>}
 
-      </Flex>
+        </Flex>
+      </>
     )
   })
 }
