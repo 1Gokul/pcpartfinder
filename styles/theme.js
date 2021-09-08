@@ -53,6 +53,11 @@ const components = {
       }
     }
   },
+  Table: {
+    defaultProps: {
+      size: { base: "sm", md:"lg" }
+    }
+  },
   DesktopNavlink: {
     baseStyle: ({ colorMode }) => ({
       color: colorMode === "dark" ? "gray.100" : "gray.800",

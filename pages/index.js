@@ -5,9 +5,17 @@ import {
   Heading,
   Icon,
   Input,
+  Link,
   Text,
+  Table,
+  Thead,
+  Tbody,
+  TableCaption,
+  Tr,
+  Th,
+  Td,
   Progress,
-  useStyleConfig
+  useStyleConfig,
 } from "@chakra-ui/react"
 import { VscArrowRight } from "react-icons/vsc"
 import axios from "axios"
@@ -15,7 +23,7 @@ import axios from "axios"
 import Layout, { Container } from "../src/components/Layout"
 
 const Home = () => {
-  const [results, setResults] = useState ([])
+  const [results, setResults] = useState ({})
   const [searchQuery, setSearchQuery] = useState (null)
   const [inputQuery, setInputQuery] = useState ("")
   const [formDisabled, setFormDisabled] = useState (false)
@@ -27,7 +35,7 @@ const Home = () => {
           `${process.env.NEXT_PUBLIC_BASE_URL}/${searchQuery}`
         )
 
-        setResults (searchResults.data)
+        setResults(searchResults.data)
         setFormDisabled (false)
       }
 
@@ -50,7 +58,7 @@ const Home = () => {
         </Heading>
         <form onSubmit={submitQuery}>
 
-          <Flex marginTop={5} direction={{ base: "column", md: "row" }}>
+          <Flex marginY={5} direction={{ base: "column", md: "row" }}>
             <Input
               size="xl"
               variant="filled"
@@ -65,7 +73,7 @@ const Home = () => {
             />
             <Button
               type="submit"
-              sx={useStyleConfig("SearchButton")}
+              sx={useStyleConfig ("SearchButton")}
               isDisabled={formDisabled}
             >
               Search
@@ -74,22 +82,24 @@ const Home = () => {
           </Flex>
         </form>
 
-        {formDisabled ?
-          <Flex marginTop={14} direction="column" justifyContent="center">
-            <Text fontSize="2xl" align="center">Hold on... This will take a while.</Text>
-            <Progress colorScheme="cyan" marginTop={4} size="xs" isIndeterminate={true} />
+        {formDisabled
+          ? <Flex marginTop={14} direction="column" justifyContent="center">
+            <Text fontSize="2xl" align="center">
+                Hold on... This will take a while.
+            </Text>
+            <Progress
+              colorScheme="cyan"
+              marginTop={4}
+              size="xs"
+              isIndeterminate={true}
+            />
           </Flex>
-          : null
-        }
+          : null}
 
-
-        {results.length
-          ? <Flex direction="column">
-            {results.map (result => (
-              <Text key={result.name}>
-                {result.store} {result.name} {result.price} {result.link}
-              </Text>
-            ))}
+        {results.n_results !== -1
+          ?
+          <Flex direction="column" marginTop={14}>
+            <ResultTable result={results} />
           </Flex>
           : null}
 
@@ -98,10 +108,68 @@ const Home = () => {
   )
 }
 
-// const ResultTable = props =>(
-//   <Table size="lg" variant="striped" colorScheme="telegram">
 
-//   </Table>
-//   )
+const ResultTable = ({ result }) => {
+  if (!result.n_results) {
+    return (
+      <Text fontSize="xl">
+        Sorry, no results were returned from the server. Try another search string.
+      </Text>
+    )
+  }
+
+  return result.content.map (content => {
+    return (
+      <Flex
+        key={content.store}
+        direction="column"
+        marginY={16}
+        overflowX="auto"
+      >
+
+        <Heading size="2xl" marginBottom={6}>{content.store}</Heading>
+
+        {content.results.length
+          ? <Table size="lg" variant="striped" colorScheme="cyan">
+            <TableCaption
+              display={{ md: "none" }}
+              textAlign="left"
+              placement="top"
+            >
+                ← Swipe left to see other columns
+            </TableCaption>
+            <Thead>
+              <Tr>
+                <Th>Product</Th>
+                <Th>Price</Th>
+                <Th>Link</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {content.results.map (result => (
+                <Tr key={result.name}>
+                  <Td>
+                    <Text noOfLines={2}>
+                      {result.name}
+                    </Text>
+                  </Td>
+                  <Td>
+                    <strong>{result.price}</strong>
+                  </Td>
+                  <Td>
+                    <Link href={result.link}>Link</Link>
+                  </Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+          : <Text size="xl">
+              No matching products found.
+          </Text>}
+
+      </Flex>
+    )
+  })
+}
 
 export default Home
