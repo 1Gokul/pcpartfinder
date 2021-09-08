@@ -162,7 +162,7 @@ const ResultTable = ({ items }) => (
               </Text>
             </Td>
             <Td>
-              <strong>₹{result.price}</strong>
+              <strong>{result.price === 0 ? "Call Store": `₹${result.price}`}</strong>
             </Td>
             <Td>
               <Link variant="storeLink" target="_blank" href={result.link}>
