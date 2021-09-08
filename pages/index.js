@@ -159,7 +159,7 @@ const ResultTable = ({ result }) => {
                     <strong>{result.price}</strong>
                   </Td>
                   <Td>
-                    <Link variant="storeLink" href={result.link}>
+                    <Link variant="storeLink" target="_blank" href={result.link}>
                       <Icon as={IoCart} fontSize="2xl" />
                     </Link>
                   </Td>
