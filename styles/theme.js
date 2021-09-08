@@ -92,14 +92,14 @@ const components = {
   },
   SearchButton: {
     baseStyle: ({ colorMode }) => ({
-      bgColor: colorMode === "dark" ? "gray.800" : "gray.300",
-      transition: "0.2s linear",
+      color: colorMode === "dark" ? "gray.200": "gray.800",
+      bgColor: colorMode === "dark" ? "cyan.800" : "cyan.500",
       marginLeft: 5,
       alignSelf: "flex-end",
       fontSize: "2xl",
       padding: 10,
       marginTop: { base: 5, md: 0 },
-      _hover: { textDecoration: "none", bgColor: "cyan.600", color: "gray.50" },
+      _hover: { bgColor: "cyan.600", color: "gray.50" },
     }),
   },
   ColorModeStyles: {
@@ -108,13 +108,13 @@ const components = {
       transition: "0.2s linear",
     }),
   },
-  FilterBox: {
+  FilterButton: {
     baseStyle: ({ colorMode }) => ({
-      color: colorMode === "dark" ? "gray.400": "gray.800",
-      bgColor: colorMode === "dark" ? "cyan.800" : "cyan.200",
-      padding: 5,
-      border: "2px",
-      borderColor: colorMode === "dark" ? "gray.400": "gray.800",
+      color: colorMode === "dark" ? "gray.200": "gray.800",
+      bgColor: colorMode === "dark" ? "cyan.800" : "cyan.500",
+      paddingX: 10,
+      paddingY: 8,
+      _hover: { bgColor: "cyan.600", color: "gray.50" },
     }),
   },
 }
