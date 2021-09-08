@@ -23,7 +23,6 @@ import axios from "axios"
 
 import Layout, { Container } from "../src/components/Layout"
 
-
 const Home = () => {
   const [results, setResults] = useState ({})
   const [searchQuery, setSearchQuery] = useState (null)
@@ -37,7 +36,7 @@ const Home = () => {
           `${process.env.NEXT_PUBLIC_BASE_URL}/${searchQuery}`
         )
 
-        setResults(searchResults.data)
+        setResults (searchResults.data)
         setFormDisabled (false)
       }
 
@@ -99,8 +98,7 @@ const Home = () => {
           : null}
 
         {results.n_results !== -1
-          ?
-          <Flex direction="column" marginTop={14}>
+          ? <Flex direction="column" marginTop={14}>
             <ResultTable result={results} />
           </Flex>
           : null}
@@ -109,8 +107,6 @@ const Home = () => {
     </Layout>
   )
 }
-
-
 
 const ResultTable = ({ result }) => {
   if (!result.n_results) {
@@ -132,7 +128,13 @@ const ResultTable = ({ result }) => {
         <Heading size="2xl" marginBottom={6}>{content.store}</Heading>
 
         {content.results.length
-          ? <Table size="lg" variant="striped" colorScheme="cyan">
+          ? <Table
+            size="lg"
+            variant="striped"
+            colorScheme="cyan"
+            border="2px"
+            borderColor="cyan.600"
+          >
             <TableCaption
               display={{ md: "none" }}
               textAlign="left"
@@ -159,7 +161,11 @@ const ResultTable = ({ result }) => {
                     <strong>{result.price}</strong>
                   </Td>
                   <Td>
-                    <Link variant="storeLink" target="_blank" href={result.link}>
+                    <Link
+                      variant="storeLink"
+                      target="_blank"
+                      href={result.link}
+                    >
                       <Icon as={IoCart} fontSize="2xl" />
                     </Link>
                   </Td>
