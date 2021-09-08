@@ -17,9 +17,10 @@ import {
   Progress,
   useStyleConfig,
 } from "@chakra-ui/react"
+import axios from "axios"
 import { VscArrowRight } from "react-icons/vsc"
 import { IoCart } from "react-icons/io5"
-import axios from "axios"
+import { GoPrimitiveDot, GoChevronUp, GoChevronDown } from "react-icons/go"
 
 import Layout, { Container } from "../src/components/Layout"
 
@@ -113,6 +114,8 @@ const ResultViewer = ({ search_results }) => {
   const [sort, setSort] = useState (0)
   const filterButtonStyles = useStyleConfig ("FilterButton")
 
+  const sortSymbols = [GoPrimitiveDot, GoChevronUp, GoChevronDown]
+
   if (!search_results.n_results) {
     return (
       <Text fontSize="xl">
@@ -128,7 +131,7 @@ const ResultViewer = ({ search_results }) => {
         sx={filterButtonStyles}
         onClick={() => setSort ((sort + 1) % 3)}
       >
-        Sort {sort}
+        Sort <Icon as={sortSymbols[sort]} />
       </Button>
 
       <Flex direction="column">

@@ -112,6 +112,7 @@ const components = {
     baseStyle: ({ colorMode }) => ({
       color: colorMode === "dark" ? "gray.200": "gray.800",
       bgColor: colorMode === "dark" ? "cyan.800" : "cyan.500",
+      fontSize: "xl",
       marginBottom: 10,
       paddingX: 10,
       paddingY: 8,
