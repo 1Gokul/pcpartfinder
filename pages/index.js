@@ -18,9 +18,11 @@ import {
   useStyleConfig,
 } from "@chakra-ui/react"
 import { VscArrowRight } from "react-icons/vsc"
+import { IoCart } from "react-icons/io5"
 import axios from "axios"
 
 import Layout, { Container } from "../src/components/Layout"
+
 
 const Home = () => {
   const [results, setResults] = useState ({})
@@ -109,6 +111,7 @@ const Home = () => {
 }
 
 
+
 const ResultTable = ({ result }) => {
   if (!result.n_results) {
     return (
@@ -158,7 +161,9 @@ const ResultTable = ({ result }) => {
                       <strong>{result.price}</strong>
                     </Td>
                     <Td>
-                      <Link href={result.link}>Link</Link>
+                      <Link variant="storeLink" href={result.link}>
+                        <Icon as={IoCart} fontSize="2xl" />
+                      </Link>
                     </Td>
                   </Tr>
                 ))}

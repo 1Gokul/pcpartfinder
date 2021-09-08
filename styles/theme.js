@@ -51,11 +51,18 @@ const components = {
         color: "cyan.600",
         textDecoration: "none"
       }
-    }
-  },
-  Table: {
-    defaultProps: {
-      size: { base: "sm", md:"lg" }
+    },
+    variants: {
+      storeLink: {
+        paddingY: 3,
+        paddingX: 5,
+        bgColor: "cyan.600",
+        color: "gray.100",
+        _hover: {
+          bgColor: "cyan.800",
+          textDecoration: "none"
+        }
+      }
     }
   },
   DesktopNavlink: {
