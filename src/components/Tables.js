@@ -12,7 +12,7 @@ import {
   Th,
   Td,
 } from "@chakra-ui/react"
-import { IoCart } from "react-icons/io5"
+import { RiExternalLinkLine } from "react-icons/ri"
 
 export const StoreTable = ({ item }) => (
   <Flex direction="column" marginBottom={16}>
@@ -59,8 +59,8 @@ export const ResultTable = ({ items }) => (
               </strong>
             </Td>
             <Td>
-              <Link variant="storeLink" target="_blank" href={result.link}>
-                <Icon as={IoCart} fontSize="2xl" />
+              <Link target="_blank" href={result.link}>
+                <Icon as={RiExternalLinkLine} fontSize="2xl" />
               </Link>
             </Td>
           </Tr>

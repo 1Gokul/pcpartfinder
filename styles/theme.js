@@ -47,21 +47,10 @@ const components = {
   },
   Link: {
     baseStyle: {
+      color: "gray.100",
       _hover: {
-        color: "cyan.600",
+        color: "cyan.500",
         textDecoration: "none"
-      }
-    },
-    variants: {
-      storeLink: {
-        paddingY: 3,
-        paddingX: 5,
-        bgColor: "cyan.600",
-        color: "gray.100",
-        _hover: {
-          bgColor: "cyan.800",
-          textDecoration: "none"
-        }
       }
     }
   },
