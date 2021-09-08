@@ -108,6 +108,15 @@ const components = {
       transition: "0.2s linear",
     }),
   },
+  FilterBox: {
+    baseStyle: ({ colorMode }) => ({
+      color: colorMode === "dark" ? "gray.400": "gray.800",
+      bgColor: colorMode === "dark" ? "cyan.800" : "cyan.200",
+      padding: 5,
+      border: "2px",
+      borderColor: colorMode === "dark" ? "gray.400": "gray.800",
+    }),
+  },
 }
 
 export default extendTheme ({ config, colors, components, fonts })
