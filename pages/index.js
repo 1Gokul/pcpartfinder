@@ -16,7 +16,7 @@ import Form from "../src/components/Form"
 import { ResultTable, StoreTable } from "../src/components/Tables"
 
 const Home = () => {
-  const [results, setResults] = useState ({ n_results: -1 })
+  const [results, setResults] = useState({ n_results: -1 })
   const [searchQuery, setSearchQuery] = useState (null)
   const [formDisabled, setFormDisabled] = useState (false)
 
@@ -47,7 +47,7 @@ const Home = () => {
         </Heading>
         <Form getFormValue={handleSubmit} isDisabled={formDisabled} />
 
-        {formDisabled
+        {formDisabled && results.n_results === -1
           ? <Flex marginTop={14} direction="column" justifyContent="center">
             <Text fontSize="2xl" align="center">
                 Hold on... This will take a while.

@@ -4,6 +4,7 @@ import { VscArrowRight } from "react-icons/vsc"
 
 const Form = props => {
   const [inputQuery, setInputQuery] = useState ("")
+
   const submitQuery = event => {
     event.preventDefault ()
     props.getFormValue (inputQuery)
@@ -22,7 +23,7 @@ const Form = props => {
           onChange={({ target }) => setInputQuery (target.value)}
           focusBorderColor="cyan.600"
           isRequired={true}
-          {...props}
+          isDisabled={props.isDisabled}
         />
         <Button type="submit" sx={useStyleConfig ("SearchButton")} {...props}>
           Search
