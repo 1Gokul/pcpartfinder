@@ -25,7 +25,11 @@ const Form = props => {
           isRequired={true}
           isDisabled={props.isDisabled}
         />
-        <Button type="submit" sx={useStyleConfig ("SearchButton")} {...props}>
+        <Button
+          type="submit"
+          sx={useStyleConfig ("SearchButton")}
+          isDisabled={props.isDisabled}
+        >
           Search
           <Icon as={VscArrowRight} marginTop={0.5} marginLeft={2} />
         </Button>

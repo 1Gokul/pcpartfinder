@@ -33,7 +33,7 @@ const Header = () => {
       <Flex
         justifyContent="space-between"
         paddingRight={5}
-        height={{ base: "13vh", md: "20vh" }}
+        height={{ base: "12vh", md: "20vh" }}
         alignItems="center"
         borderBottom="1px"
         borderColor={colorMode === "dark" ? "gray.600" : "gray.300"}
