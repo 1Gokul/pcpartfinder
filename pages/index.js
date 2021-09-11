@@ -10,10 +10,14 @@ import {
 } from "@chakra-ui/react"
 import axios from "axios"
 import { GoPrimitiveDot, GoChevronUp, GoChevronDown } from "react-icons/go"
+import { scroller, Element } from "react-scroll"
 
 import Layout, { Container } from "../src/components/Layout"
 import Form from "../src/components/Form"
 import { ResultTable, StoreTable } from "../src/components/Tables"
+
+
+
 
 const Home = () => {
   const [results, setResults] = useState({ n_results: -1 })
@@ -28,6 +32,14 @@ const Home = () => {
         )
         setResults (searchResults.data)
         setFormDisabled (false)
+        if(searchResults.data.n_results > 0){
+          scroller.scrollTo("result", {
+            duration: 1000,
+            smooth: true,
+            offset: 100,
+          })
+        }
+
       }
       getResults ()
     },
@@ -61,13 +73,14 @@ const Home = () => {
           </Flex>
           : null}
 
-        {results.n_results !== -1 ?
-          <Flex direction="column" marginTop={14}>
-            <ResultViewer search_results={results} />
-          </Flex>
-          : null
-        }
-
+        <Element name="result">
+          {results.n_results !== -1 ?
+            <Flex direction="column" marginTop={14} id="results">
+              <ResultViewer search_results={results} />
+            </Flex>
+            : null
+          }
+        </Element>
       </Container>
     </Layout>
   )
