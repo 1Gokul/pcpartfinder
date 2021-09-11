@@ -88,6 +88,18 @@ const ResultViewer = props => {
 
   const sortSymbols = [GoPrimitiveDot, GoChevronUp, GoChevronDown]
 
+
+  useEffect(() => {
+    if (!props.resultVisible) {
+      scroller.scrollTo ("result", {
+        duration: 1000,
+        smooth: true,
+        offset: 100,
+      })
+      props.setResultsVisible (true)
+    }
+  }, [props])
+
   if (!props.search_results.n_results) {
     return (
       <Text fontSize="xl">
@@ -96,14 +108,7 @@ const ResultViewer = props => {
     )
   }
 
-  if (!props.resultVisible) {
-    scroller.scrollTo ("result", {
-      duration: 1000,
-      smooth: true,
-      offset: 100,
-    })
-    props.setResultsVisible (true)
-  }
+
 
   return (
     <Flex direction="column" marginY={12}>
