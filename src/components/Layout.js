@@ -11,7 +11,7 @@ const description =
 
 const Layout = props => {
   const [backToTopVisible, setBackToTopVisible] = useState (false)
-  
+
   const scrollListener = useCallback (
     () => {
       const scrollAmount =

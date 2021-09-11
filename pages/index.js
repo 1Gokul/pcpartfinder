@@ -16,13 +16,11 @@ import Layout, { Container } from "../src/components/Layout"
 import Form from "../src/components/Form"
 import { ResultTable, StoreTable } from "../src/components/Tables"
 
-
-
-
 const Home = () => {
-  const [results, setResults] = useState({ n_results: -1 })
+  const [results, setResults] = useState ({ n_results: -1 })
   const [searchQuery, setSearchQuery] = useState (null)
   const [formDisabled, setFormDisabled] = useState (false)
+  const [resultVisible, setResultsVisible] = useState (false)
 
   useEffect (
     () => {
@@ -30,16 +28,8 @@ const Home = () => {
         const searchResults = await axios.get (
           `${process.env.NEXT_PUBLIC_BASE_URL}/${searchQuery}`
         )
-        if(searchResults.data.n_results > 0){
-          scroller.scrollTo("result", {
-            duration: 1000,
-            smooth: true,
-            offset: 100,
-          })
-          setResults (searchResults.data)
-          setFormDisabled (false)
-        }
-
+        setResults (searchResults.data)
+        setFormDisabled (false)
       }
       getResults ()
     },
@@ -48,6 +38,7 @@ const Home = () => {
 
   const handleSubmit = inputValue => {
     setFormDisabled (true)
+    setResultsVisible (false)
     setSearchQuery (inputValue)
   }
 
@@ -59,8 +50,9 @@ const Home = () => {
         </Heading>
         <Form getFormValue={handleSubmit} isDisabled={formDisabled} />
 
-        {formDisabled && results.n_results === -1
-          ? <Flex marginTop={14} direction="column" justifyContent="center">
+        {formDisabled && !resultVisible
+          ?
+          <Flex marginTop={14} direction="column" justifyContent="center">
             <Text fontSize="2xl" align="center">
                 Hold on... This will take a while.
             </Text>
@@ -74,9 +66,13 @@ const Home = () => {
           : null}
 
         <Element name="result">
-          {results.n_results !== -1 ?
-            <Flex direction="column" marginTop={14} id="results">
-              <ResultViewer search_results={results} />
+          {results.n_results !== -1 && !formDisabled
+            ? <Flex direction="column" marginTop={14} id="results">
+              <ResultViewer
+                resultVisible={resultVisible}
+                setResultsVisible={setResultsVisible}
+                search_results={results}
+              />
             </Flex>
             : null
           }
@@ -86,18 +82,27 @@ const Home = () => {
   )
 }
 
-const ResultViewer = ({ search_results }) => {
+const ResultViewer = props => {
   const [sort, setSort] = useState (0)
   const filterButtonStyles = useStyleConfig ("FilterButton")
 
   const sortSymbols = [GoPrimitiveDot, GoChevronUp, GoChevronDown]
 
-  if (!search_results.n_results) {
+  if (!props.search_results.n_results) {
     return (
       <Text fontSize="xl">
         Sorry, no results were returned from the server. Try another search string.
       </Text>
     )
+  }
+
+  if (!props.resultVisible) {
+    scroller.scrollTo ("result", {
+      duration: 1000,
+      smooth: true,
+      offset: 100,
+    })
+    props.setResultsVisible (true)
   }
 
   return (
@@ -112,11 +117,11 @@ const ResultViewer = ({ search_results }) => {
 
       <Flex direction="column">
         {sort === 0
-          ? search_results.content.map (table => (
+          ? props.search_results.content.map (table => (
             <StoreTable key={table.store} item={table} />
           ))
           : <ResultTable
-            items={search_results.content
+            items={props.search_results.content
               .map (item => item.results)
               .flat ()
               .sort ((a, b) => (sort === 1 ? 1 : -1) * (a.price - b.price))}
