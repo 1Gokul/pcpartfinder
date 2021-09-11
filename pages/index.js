@@ -30,14 +30,14 @@ const Home = () => {
         const searchResults = await axios.get (
           `${process.env.NEXT_PUBLIC_BASE_URL}/${searchQuery}`
         )
-        setResults (searchResults.data)
-        setFormDisabled (false)
         if(searchResults.data.n_results > 0){
           scroller.scrollTo("result", {
             duration: 1000,
             smooth: true,
             offset: 100,
           })
+          setResults (searchResults.data)
+          setFormDisabled (false)
         }
 
       }
@@ -112,8 +112,8 @@ const ResultViewer = ({ search_results }) => {
 
       <Flex direction="column">
         {sort === 0
-          ? search_results.content.map (item => (
-            <StoreTable key={item.store} item={item} />
+          ? search_results.content.map (table => (
+            <StoreTable key={table.store} item={table} />
           ))
           : <ResultTable
             items={search_results.content

@@ -43,7 +43,7 @@ const components = {
   Button: {
     baseStyle: {
       borderRadius: 0,
-    },
+    }
   },
   Link: {
     baseStyle: {

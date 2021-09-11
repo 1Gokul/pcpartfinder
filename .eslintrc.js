@@ -43,7 +43,7 @@ module.exports = {
       { before: true, after: true
       }
     ],
-    "no-console": 1,
+    "no-console": "error",
     "react/prop-types": 0,
   },
 }

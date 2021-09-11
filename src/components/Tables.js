@@ -50,7 +50,7 @@ export const ResultTable = ({ items }) => {
         </Thead>
         <Tbody>
           {items.map (result => (
-            <Tr key={result.name}>
+            <Tr key={`${result.name}:${result.link}`}>
               <Td>
                 <Text noOfLines={4}>
                   {result.name}
