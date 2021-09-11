@@ -89,8 +89,8 @@ const BackToTop = ({ visible }) => (
     colorScheme="cyan"
     icon={<VscArrowUp />}
     position="fixed"
-    right="70px"
-    bottom="100px"
+    right={{ base: "50px", md:"70px" }}
+    bottom={{ base: "50px", md:"100px" }}
     display={visible ? "flex" : "none"}
     onClick={() => animateScroll.scrollToTop ()}
     _hover={{ bgColor: "cyan.600", color: "gray.100" }}
