@@ -89,6 +89,9 @@ const components = {
       padding: 10,
       marginTop: { base: 5, md: 0 },
       _hover: { bgColor: "cyan.600", color: "gray.50" },
+      _active: {
+        bgColor: "cyan.700", color: "gray.100"
+      }
     }),
   },
   ColorModeStyles: {
@@ -106,6 +109,9 @@ const components = {
       paddingX: 10,
       paddingY: 8,
       _hover: { bgColor: "cyan.600", color: "gray.50" },
+      _active: {
+        bgColor: "cyan.700", color: "gray.100"
+      }
     }),
   },
 }
