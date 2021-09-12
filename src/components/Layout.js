@@ -23,7 +23,7 @@ const Layout = props => {
 
       const scrolled = scrollAmount / height
 
-      if (scrolled > 0.08) {
+      if (scrolled > 0.1) {
         if (!backToTopVisible) setBackToTopVisible (true)
       } else if (scrolled < 0.001) {
         if (backToTopVisible) setBackToTopVisible (false)
