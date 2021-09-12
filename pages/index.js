@@ -28,8 +28,10 @@ const Home = () => {
         const searchResults = await axios.get (
           `${process.env.NEXT_PUBLIC_BASE_URL}/${searchQuery}`
         )
-        setResults (searchResults.data)
-        setFormDisabled (false)
+        if(searchResults.data.n_results > -1){
+          setResults (searchResults.data)
+          setFormDisabled (false)
+        }
       }
       getResults ()
     },
