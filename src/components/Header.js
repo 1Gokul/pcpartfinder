@@ -1,4 +1,3 @@
-
 import {
   Flex,
   Icon,
@@ -38,8 +37,12 @@ const Header = () => {
         borderBottom="1px"
         borderColor={colorMode === "dark" ? "gray.600" : "gray.300"}
       >
-        <Flex marginX={10} height={{ base: "35px", md:   "75px" }} width={{ base: "200px", md:"300px" }}>
-          <Image src={logo} alt="pcpartfinder logo"/>
+        <Flex
+          marginX={10}
+          height={{ base: "35px", md: "75px" }}
+          width={{ base: "200px", md: "300px" }}
+        >
+          <Image src={logo} alt="pcpartfinder logo" placeholder="blur" blurDataURL={logo} />
         </Flex>
 
         <DesktopNavMenu
