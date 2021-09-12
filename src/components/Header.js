@@ -39,10 +39,15 @@ const Header = () => {
       >
         <Flex
           marginX={10}
-          height={{ base: "35px", md: "75px" }}
           width={{ base: "200px", md: "300px" }}
         >
-          <Image src={logo} alt="pcpartfinder logo" placeholder="blur" blurDataURL={logo} />
+          <Image
+            src={logo}
+            alt="pcpartfinder logo"
+            placeholder="blur"
+            blurDataURL={logo}
+            priority={true}
+          />
         </Flex>
 
         <DesktopNavMenu
