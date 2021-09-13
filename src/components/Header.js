@@ -10,6 +10,7 @@ import {
 import { VscMenu, VscClose } from "react-icons/vsc"
 import { IoSunnySharp, IoMoonSharp } from "react-icons/io5"
 import Image from "next/image"
+import Link from "next/link"
 import { useState } from "react"
 
 import logo from "../../public/logo.svg"
@@ -41,13 +42,18 @@ const Header = () => {
           marginX={10}
           width={{ base: "200px", md: "300px" }}
         >
-          <Image
-            src={logo}
-            alt="pcpartfinder logo"
-            placeholder="blur"
-            blurDataURL={logo}
-            priority={true}
-          />
+          <Link href="/" passHref>
+            <a>
+              <Image
+                src={logo}
+                alt="pcpartfinder logo"
+                placeholder="blur"
+                blurDataURL={logo}
+                priority={true}
+              />
+            </a>
+          </Link>
+
         </Flex>
 
         <DesktopNavMenu

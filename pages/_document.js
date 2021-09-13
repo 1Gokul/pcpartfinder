@@ -8,7 +8,7 @@ class MyDocument extends Document {
         <Head>
           <link rel="preconnect"
             href="https://fonts.gstatic.com"
-            crossOrigin />
+            crossOrigin="true" />
 
           <link rel="preload"
             as="style"
