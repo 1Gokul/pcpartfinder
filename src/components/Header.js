@@ -38,12 +38,9 @@ const Header = () => {
         borderBottom="1px"
         borderColor={colorMode === "dark" ? "gray.600" : "gray.300"}
       >
-        <Flex
-          marginX={10}
-          width={{ base: "200px", md: "300px" }}
-        >
-          <Link href="/" passHref>
-            <a>
+        <Link href="/" passHref>
+          <a>
+            <Flex marginX={10} width={{ base: "200px", md: "300px" }}>
               <Image
                 src={logo}
                 alt="pcpartfinder logo"
@@ -51,10 +48,10 @@ const Header = () => {
                 blurDataURL={logo}
                 priority={true}
               />
-            </a>
-          </Link>
 
-        </Flex>
+            </Flex>
+          </a>
+        </Link>
 
         <DesktopNavMenu
           navLinks={navLinks}
