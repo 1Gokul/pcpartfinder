@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Flex,
   Icon,
@@ -6,28 +7,32 @@ import {
   LinkOverlay,
   useColorMode,
   useStyleConfig,
-} from "@chakra-ui/react"
-import { VscMenu, VscClose } from "react-icons/vsc"
-import { IoSunnySharp, IoMoonSharp } from "react-icons/io5"
-import Image from "next/image"
-import Link from "next/link"
-import { useState } from "react"
+} from "@chakra-ui/react";
+import { VscMenu, VscClose } from "react-icons/vsc";
+import { IoSunnySharp, IoMoonSharp } from "react-icons/io5";
+import Image from "next/image";
+import Link from "next/link";
 
-import logo from "../../public/logo.svg"
+import logo from "../../public/logo.svg";
 
 const Header = () => {
-  const [expanded, setExpanded] = useState (false)
-  const { colorMode, toggleColorMode } = useColorMode ()
+
+  const { colorMode, toggleColorMode } = useColorMode ();
+
+  // For opening and closing the hamburger menu
+  const [expanded, setExpanded] = useState (false);
 
   const toggleExpanded = () => {
-    document.body.style.overflow = !expanded ? "hidden" : "visible"
-    setExpanded (!expanded)
-  }
+    document.body.style.overflow = !expanded ? "hidden" : "visible";
+    setExpanded (!expanded);
+  };
 
   const navLinks = [
     { name: "search", link: "/" },
     { name: "set alert", link: "/set-alert" },
-  ]
+  ];
+
+
   return (
     <Flex direction="column">
       <Flex
@@ -38,6 +43,7 @@ const Header = () => {
         borderBottom="1px"
         borderColor={colorMode === "dark" ? "gray.600" : "gray.300"}
       >
+        {/* Logo */}
         <Link href="/" passHref>
           <a>
             <Flex marginX={10} width={{ base: "200px", md: "300px" }}>
@@ -58,8 +64,9 @@ const Header = () => {
           colorMode={colorMode}
           toggleColorMode={toggleColorMode}
         />
-        <NavMenuToggler toggleExpanded={toggleExpanded} expanded={expanded} />
+        <HamburgerMenuToggler toggleExpanded={toggleExpanded} expanded={expanded} />
       </Flex>
+
       <MobileNavMenu
         navLinks={navLinks}
         expanded={expanded}
@@ -67,10 +74,12 @@ const Header = () => {
         toggleColorMode={toggleColorMode}
       />
     </Flex>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
+
+
 
 const NavLink = props => (
   <Flex {...props}>
@@ -78,10 +87,10 @@ const NavLink = props => (
       {props.children}
     </Flex>
   </Flex>
-)
+);
 
 const DesktopNavMenu = props => {
-  const styles = useStyleConfig ("DesktopNavlink")
+  const styles = useStyleConfig ("DesktopNavlink");
 
   return (
     <Flex display={{ base: "none", md: "flex" }} height="100%" marginRight={10}>
@@ -107,21 +116,11 @@ const DesktopNavMenu = props => {
         />
       </NavLink>
     </Flex>
-  )
-}
-
-const NavMenuToggler = props => (
-  <IconButton
-    display={{ base: "flex", md: "none" }}
-    variant="ghost"
-    fontSize="40px"
-    icon={props.expanded ? <VscClose /> : <VscMenu />}
-    onClick={props.toggleExpanded}
-  />
-)
+  );
+};
 
 const MobileNavMenu = props => {
-  const styles = useStyleConfig ("MobileNavlink")
+  const styles = useStyleConfig ("MobileNavlink");
 
   return (
     <Flex
@@ -145,5 +144,16 @@ const MobileNavMenu = props => {
         />
       </NavLink>
     </Flex>
-  )
-}
+  );
+};
+
+const HamburgerMenuToggler = props => (
+  <IconButton
+    display={{ base: "flex", md: "none" }}
+    variant="ghost"
+    fontSize="40px"
+    icon={props.expanded ? <VscClose /> : <VscMenu />}
+    onClick={props.toggleExpanded}
+  />
+);
+

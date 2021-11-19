@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import {
   Button,
   Flex,
@@ -7,41 +7,43 @@ import {
   Text,
   Progress,
   useStyleConfig,
-} from "@chakra-ui/react"
-import axios from "axios"
-import { GoPrimitiveDot, GoChevronUp, GoChevronDown } from "react-icons/go"
-import { scroller, Element } from "react-scroll"
+} from "@chakra-ui/react";
+import axios from "axios";
+import { GoPrimitiveDot, GoChevronUp, GoChevronDown } from "react-icons/go";
+import { scroller, Element } from "react-scroll";
 
-import Layout, { Container } from "../src/components/Layout"
-import Form from "../src/components/Form"
-import { ResultTable, StoreResultTable } from "../src/components/Tables"
+import Layout, { Container } from "../src/components/Layout";
+import Form from "../src/components/Form";
+import { ResultTable, StoreResultTable } from "../src/components/Tables";
 
 const Home = () => {
-  const [results, setResults] = useState (null)
-  const [searchQuery, setSearchQuery] = useState ()
-  const [resultLoading, setResultLoading] = useState (false)
+  const [results, setResults] = useState (null);
+  const [searchQuery, setSearchQuery] = useState ();
+  const [resultLoading, setResultLoading] = useState (false);
 
+  /* Gets run when the search query is changed.
+    Sends a request to the API and gets the results. */
   useEffect (
     () => {
       const getResults = async () => {
         if (searchQuery) {
           const searchResults = await axios.get (
             `${process.env.NEXT_PUBLIC_BASE_URL}/${searchQuery}`
-          )
-          setResults (searchResults.data)
-          setResultLoading (false)
+          );
+          setResults (searchResults.data);
+          setResultLoading (false);
         }
-      }
-      getResults ()
+      };
+      getResults ();
     },
     [searchQuery]
-  )
+  );
 
   const handleSubmit = inputValue => {
-    setResultLoading (true)
-    setResults (null)
-    setSearchQuery (inputValue)
-  }
+    setResultLoading (true);
+    setResults (null);
+    setSearchQuery (inputValue);
+  };
 
   return (
     <Layout title="Search" page="/">
@@ -52,7 +54,7 @@ const Home = () => {
         <Form getFormValue={handleSubmit} isDisabled={resultLoading} />
 
         <Flex direction="column" marginTop={14} id="results">
-          <ResultViewer
+          <ResultContainer
             resultLoading={resultLoading}
             searchResults={results}
           />
@@ -60,22 +62,26 @@ const Home = () => {
 
       </Container>
     </Layout>
-  )
-}
+  );
+};
 
-const ResultViewer = ({ resultLoading, searchResults }) => {
-  const [sort, setSort] = useState (0)
-  const filterButtonStyles = useStyleConfig ("FilterButton")
 
-  const sortSymbols = [GoPrimitiveDot, GoChevronUp, GoChevronDown]
+const ResultContainer = ({ resultLoading, searchResults }) => {
+  /* The value of "sort" determines the format in which the results are shown
+    Results by store (sort=0), ascending order(sort=1), descending order(sort=2)*/
+  const [sort, setSort] = useState (0);
+  const filterButtonStyles = useStyleConfig ("FilterButton");
 
+  const sortSymbols = [GoPrimitiveDot, GoChevronUp, GoChevronDown];
+
+  // Scroll to the results once they load
   useEffect(() => {
     scroller.scrollTo ("result", {
       duration: 1000,
       smooth: true,
       offset: 100,
-    })
-  }, [searchResults])
+    });
+  }, [searchResults]);
 
   if (resultLoading) {
     return (
@@ -90,20 +96,21 @@ const ResultViewer = ({ resultLoading, searchResults }) => {
           isIndeterminate={true}
         />
       </Flex>
-    )
+    );
   } else if (searchResults) {
     if (!searchResults.n_results) {
       return (
         <Text fontSize="xl">
           Sorry, no results were returned from the server. Try another search string.
         </Text>
-      )
+      );
     } else {
 
       return (
-
         <Element name="result">
           <Flex direction="column" marginY={12}>
+
+            {/*  Button to cycle through values of "sort" */}
             <Button
               alignSelf="flex-end"
               sx={filterButtonStyles}
@@ -114,14 +121,16 @@ const ResultViewer = ({ resultLoading, searchResults }) => {
 
             <Flex direction="column">
               {sort === 0
-                ? searchResults.content.map (store => (
+                ?
+                searchResults.content.map (store => (
                   <StoreResultTable
                     key={store.store_name}
                     storeName={store.store_name}
                     storeResults={store.store_results}
                   />
                 ))
-                : <ResultTable
+                :
+                <ResultTable
                   items={searchResults.content
                     .map(item => item.store_results)
                     .flat()
@@ -130,9 +139,9 @@ const ResultViewer = ({ resultLoading, searchResults }) => {
             </Flex>
           </Flex>
         </Element>
-      )
+      );
     }
-  } else return null
-}
+  } else return null;
+};
 
-export default Home
+export default Home;

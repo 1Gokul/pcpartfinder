@@ -1,44 +1,48 @@
-import { useCallback, useEffect, useState } from "react"
-import { Flex, IconButton, Link, useStyleConfig } from "@chakra-ui/react"
-import Head from "next/head"
-import { VscArrowUp } from "react-icons/vsc"
-import { animateScroll } from "react-scroll"
+import { useCallback, useEffect, useState } from "react";
+import Head from "next/head";
+import { Flex, IconButton, Link, useStyleConfig } from "@chakra-ui/react";
+import { VscArrowUp } from "react-icons/vsc";
+import { animateScroll } from "react-scroll";
 
-import Header from "./Header"
+import Header from "./Header";
 
 const description =
-  "Search for PC components and peripherals from all major Indian stores!"
+  "Search for PC components and peripherals from major Indian stores!";
 
 const Layout = props => {
-  const [backToTopVisible, setBackToTopVisible] = useState (false)
+
+  /* For the "Back To Top" button. It appears after scrolling down
+  a bit and disappears when we scroll to the top. */
+  const [backToTopVisible, setBackToTopVisible] = useState (false);
 
   const scrollListener = useCallback (
     () => {
       const scrollAmount =
-        document.body.scrollTop || document.documentElement.scrollTop
+        document.body.scrollTop || document.documentElement.scrollTop;
 
       const height =
         document.documentElement.scrollHeight -
-        document.documentElement.clientHeight
+        document.documentElement.clientHeight;
 
-      const scrolled = scrollAmount / height
+      const scrolled = scrollAmount / height;
 
       if (scrolled > 0.1) {
-        if (!backToTopVisible) setBackToTopVisible (true)
+        if (!backToTopVisible) setBackToTopVisible (true);
       } else if (scrolled < 0.001) {
-        if (backToTopVisible) setBackToTopVisible (false)
+        if (backToTopVisible) setBackToTopVisible (false);
       }
     },
     [backToTopVisible]
-  )
+  );
 
   useEffect (
     () => {
-      window.addEventListener ("scroll", scrollListener)
-      return () => window.removeEventListener ("scroll", scrollListener)
+      window.addEventListener ("scroll", scrollListener);
+      return () => window.removeEventListener ("scroll", scrollListener);
     },
     [scrollListener]
-  )
+  );
+
 
   return (
     <Flex
@@ -46,6 +50,7 @@ const Layout = props => {
       direction="column"
       margin="0 auto"
     >
+      {/* For SEO */}
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
@@ -73,16 +78,19 @@ const Layout = props => {
         <title>{props.title} - PCPartFinder</title>
       </Head>
 
+      {/* Navbar */}
       <Header />
+
       {props.children}
       <BackToTop visible={backToTopVisible} />
+
       <Footer />
 
     </Flex>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
 
 const BackToTop = ({ visible }) => (
   <IconButton
@@ -99,7 +107,7 @@ const BackToTop = ({ visible }) => (
       color: "gray.100",
     }}
   />
-)
+);
 
 export const Container = props => (
   <Flex
@@ -114,7 +122,7 @@ export const Container = props => (
   >
     {props.children}
   </Flex>
-)
+);
 
 const Footer = () => (
   <Flex
@@ -126,4 +134,4 @@ const Footer = () => (
     <Link href="https://gokulv.netlify.app">Gokul Viswanath</Link>
     <Link href="https://github.com/1Gokul/pcpartfinder">GitHub repo</Link>
   </Flex>
-)
+);

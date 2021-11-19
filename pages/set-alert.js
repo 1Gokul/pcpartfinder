@@ -1,6 +1,6 @@
-import { Heading } from "@chakra-ui/layout"
+import { Heading } from "@chakra-ui/layout";
 
-import Layout, { Container } from "../src/components/Layout"
+import Layout, { Container } from "../src/components/Layout";
 
 const SetAlert = () => {
   return (
@@ -9,7 +9,7 @@ const SetAlert = () => {
         <Heading size="2xl">Set Alert (WIP)</Heading>
       </Container>
     </Layout>
-  )
-}
+  );
+};
 
-export default SetAlert
+export default SetAlert;

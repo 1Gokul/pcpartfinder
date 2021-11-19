@@ -12,8 +12,8 @@ import {
   Th,
   Td,
   useMediaQuery
-} from "@chakra-ui/react"
-import { RiExternalLinkLine } from "react-icons/ri"
+} from "@chakra-ui/react";
+import { RiExternalLinkLine } from "react-icons/ri";
 
 export const StoreResultTable = ({ storeName, storeResults }) => (
   <Flex direction="column" marginBottom={16}>
@@ -22,14 +22,14 @@ export const StoreResultTable = ({ storeName, storeResults }) => (
     {storeResults.length
       ? <ResultTable items={storeResults} />
       : <Text size="xl">
-          No matching products found.
+        No matching products found.
       </Text>}
   </Flex>
 )
 
 export const ResultTable = ({ items }) => {
   const [largerThanMD] = useMediaQuery("(min-width: 784px)")
-  return(
+  return (
     <Flex overflowX="auto">
       <Table
         size={largerThanMD ? "lg" : "sm"}
@@ -39,7 +39,7 @@ export const ResultTable = ({ items }) => {
         borderColor="cyan.600"
       >
         <TableCaption display={{ md: "none" }} textAlign="left" placement="top">
-        ← Swipe left to see other columns
+          ← Swipe left to see other columns
         </TableCaption>
         <Thead>
           <Tr>
@@ -49,7 +49,7 @@ export const ResultTable = ({ items }) => {
           </Tr>
         </Thead>
         <Tbody>
-          {items.map (result => (
+          {items.map(result => (
             <Tr key={`${result.name}:${result.link}`}>
               <Td>
                 <Text noOfLines={4}>
