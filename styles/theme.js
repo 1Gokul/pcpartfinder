@@ -46,13 +46,13 @@ const components = {
     }
   },
   Link: {
-    baseStyle: {
-      color: "gray.100",
+    baseStyle: ({ colorMode }) => ( {
+      color: colorMode === "dark" ? "gray.100" : "gray.800",
       _hover: {
         color: "cyan.500",
         textDecoration: "none"
       }
-    }
+    })
   },
   DesktopNavlink: {
     baseStyle: ({ colorMode }) => ({
