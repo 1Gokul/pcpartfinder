@@ -14,23 +14,22 @@ import { scroller, Element } from "react-scroll"
 
 import Layout, { Container } from "../src/components/Layout"
 import Form from "../src/components/Form"
-import { ResultTable, StoreTable } from "../src/components/Tables"
+import { ResultTable, StoreResultTable } from "../src/components/Tables"
 
 const Home = () => {
-  const [results, setResults] = useState ({ n_results: -1 })
-  const [searchQuery, setSearchQuery] = useState (null)
-  const [formDisabled, setFormDisabled] = useState (false)
-  const [resultVisible, setResultsVisible] = useState (false)
+  const [results, setResults] = useState (null)
+  const [searchQuery, setSearchQuery] = useState ()
+  const [resultLoading, setResultLoading] = useState (false)
 
   useEffect (
     () => {
       const getResults = async () => {
-        const searchResults = await axios.get (
-          `${process.env.NEXT_PUBLIC_BASE_URL}/${searchQuery}`
-        )
-        if(searchResults.data.n_results > -1){
+        if (searchQuery) {
+          const searchResults = await axios.get (
+            `${process.env.NEXT_PUBLIC_BASE_URL}/${searchQuery}`
+          )
           setResults (searchResults.data)
-          setFormDisabled (false)
+          setResultLoading (false)
         }
       }
       getResults ()
@@ -39,8 +38,8 @@ const Home = () => {
   )
 
   const handleSubmit = inputValue => {
-    setFormDisabled (true)
-    setResultsVisible (false)
+    setResultLoading (true)
+    setResults (null)
     setSearchQuery (inputValue)
   }
 
@@ -50,92 +49,90 @@ const Home = () => {
         <Heading size="2xl" marginBottom={5}>
           Looking for components or peripherals?
         </Heading>
-        <Form getFormValue={handleSubmit} isDisabled={formDisabled} />
+        <Form getFormValue={handleSubmit} isDisabled={resultLoading} />
 
-        {formDisabled && !resultVisible
-          ?
-          <Flex marginTop={14} direction="column" justifyContent="center">
-            <Text fontSize="2xl" align="center">
-                Hold on... This will take a while.
-            </Text>
-            <Progress
-              colorScheme="cyan"
-              marginTop={4}
-              size="xs"
-              isIndeterminate={true}
-            />
-          </Flex>
-          : null}
+        <Flex direction="column" marginTop={14} id="results">
+          <ResultViewer
+            resultLoading={resultLoading}
+            searchResults={results}
+          />
+        </Flex>
 
-        <Element name="result">
-          {results.n_results !== -1 && !formDisabled
-            ? <Flex direction="column" marginTop={14} id="results">
-              <ResultViewer
-                resultVisible={resultVisible}
-                setResultsVisible={setResultsVisible}
-                search_results={results}
-              />
-            </Flex>
-            : null
-          }
-        </Element>
       </Container>
     </Layout>
   )
 }
 
-const ResultViewer = props => {
+const ResultViewer = ({ resultLoading, searchResults }) => {
   const [sort, setSort] = useState (0)
   const filterButtonStyles = useStyleConfig ("FilterButton")
 
   const sortSymbols = [GoPrimitiveDot, GoChevronUp, GoChevronDown]
 
-
   useEffect(() => {
-    if (!props.resultVisible) {
-      scroller.scrollTo ("result", {
-        duration: 1000,
-        smooth: true,
-        offset: 100,
-      })
-      props.setResultsVisible (true)
-    }
-  }, [props])
+    scroller.scrollTo ("result", {
+      duration: 1000,
+      smooth: true,
+      offset: 100,
+    })
+  }, [searchResults])
 
-  if (!props.search_results.n_results) {
+  if (resultLoading) {
     return (
-      <Text fontSize="xl">
-        Sorry, no results were returned from the server. Try another search string.
-      </Text>
-    )
-  }
-
-
-
-  return (
-    <Flex direction="column" marginY={12}>
-      <Button
-        alignSelf="flex-end"
-        sx={filterButtonStyles}
-        onClick={() => setSort ((sort + 1) % 3)}
-      >
-        Sort <Icon as={sortSymbols[sort]} />
-      </Button>
-
-      <Flex direction="column">
-        {sort === 0
-          ? props.search_results.content.map (table => (
-            <StoreTable key={table.store} item={table} />
-          ))
-          : <ResultTable
-            items={props.search_results.content
-              .map (item => item.results)
-              .flat ()
-              .sort ((a, b) => (sort === 1 ? 1 : -1) * (a.price - b.price))}
-          />}
+      <Flex marginTop={14} direction="column" justifyContent="center">
+        <Text fontSize="2xl" align="center">
+          Hold on... This will take a while.
+        </Text>
+        <Progress
+          colorScheme="cyan"
+          marginTop={4}
+          size="xs"
+          isIndeterminate={true}
+        />
       </Flex>
-    </Flex>
-  )
+    )
+  } else if (searchResults) {
+    if (!searchResults.n_results) {
+      return (
+        <Text fontSize="xl">
+          Sorry, no results were returned from the server. Try another search string.
+        </Text>
+      )
+    } else {
+
+      return (
+
+        <Element name="result">
+          <Flex direction="column" marginY={12}>
+            <Button
+              alignSelf="flex-end"
+              sx={filterButtonStyles}
+              onClick={() => setSort ((sort + 1) % 3)}
+            >
+            Sort <Icon as={sortSymbols[sort]} />
+            </Button>
+
+            <Flex direction="column">
+              {sort === 0
+                ? searchResults.content.map (store => (
+                  <StoreResultTable
+                    key={store.store_name}
+                    storeName={store.store_name}
+                    storeResults={store.store_results}
+                  />
+                ))
+                : <ResultTable
+                  items={searchResults.content
+                    .map(item => item.store_results)
+                    .flat()
+                    .sort ((a, b) => (sort === 1 ? 1 : -1) * (a.price - b.price))}
+                />}
+            </Flex>
+          </Flex>
+        </Element>
+      )
+    }
+  } else return null
 }
 
 export default Home

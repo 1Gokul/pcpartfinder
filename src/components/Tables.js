@@ -15,12 +15,12 @@ import {
 } from "@chakra-ui/react"
 import { RiExternalLinkLine } from "react-icons/ri"
 
-export const StoreTable = ({ item }) => (
+export const StoreResultTable = ({ storeName, storeResults }) => (
   <Flex direction="column" marginBottom={16}>
-    <Heading size="2xl" marginBottom={4}>{item.store}</Heading>
+    <Heading size="2xl" marginBottom={4}>{storeName.replace("_", " ")}</Heading>
 
-    {item.results.length
-      ? <ResultTable items={item.results} />
+    {storeResults.length
+      ? <ResultTable items={storeResults} />
       : <Text size="xl">
           No matching products found.
       </Text>}
@@ -62,7 +62,7 @@ export const ResultTable = ({ items }) => {
                 </strong>
               </Td>
               <Td>
-                <Link target="_blank" href={result.link}>
+                <Link target="_blank" href={result.url}>
                   <Icon as={RiExternalLinkLine} fontSize="2xl" />
                 </Link>
               </Td>
