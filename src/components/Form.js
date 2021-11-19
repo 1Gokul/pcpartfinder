@@ -19,6 +19,7 @@ const Form = props => {
           isRequired={true}
           isDisabled={props.isDisabled}
           size="xl"
+          marginRight={5}
           variant="filled"
           placeholder="Search..."
           border="2px"
@@ -27,7 +28,9 @@ const Form = props => {
         />
         <Button
           type="submit"
-          sx={useStyleConfig ("SearchButton")}
+          fontSize="2xl"
+          marginTop={{ base: 5, md: 0 }}
+          sx={useStyleConfig ("LargeButton")}
           isDisabled={props.isDisabled}
         >
           Search

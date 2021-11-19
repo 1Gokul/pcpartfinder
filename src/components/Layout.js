@@ -46,7 +46,6 @@ const Layout = props => {
 
   return (
     <Flex
-      sx={useStyleConfig ("ColorModeStyles")}
       direction="column"
       margin="0 auto"
     >

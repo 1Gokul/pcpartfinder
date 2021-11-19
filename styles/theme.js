@@ -1,4 +1,5 @@
 import { extendTheme } from "@chakra-ui/react"
+import { mode } from '@chakra-ui/theme-tools';
 
 const config = {
   initialColorMode: "dark",
@@ -27,6 +28,16 @@ const colors = {
   },
 }
 
+const styles = {
+  global: props => ({
+    body: {
+      color: mode("gray.800", "gray.100")(props),
+      bg: mode("#F3F4F7", "#001114")(props),
+      transition: "all 0.2s linear",
+    }
+  })
+}
+
 const components = {
   Input: {
     sizes: {
@@ -46,8 +57,8 @@ const components = {
     }
   },
   Link: {
-    baseStyle: ({ colorMode }) => ( {
-      color: colorMode === "dark" ? "gray.100" : "gray.800",
+    baseStyle: props => ( {
+      color: props.colorMode=="dark"? "gray.100" : "gray.800",
       _hover: {
         color: "cyan.500",
         textDecoration: "none"
@@ -79,13 +90,11 @@ const components = {
       borderColor: colorMode === "dark" ? "gray.600" : "gray.300",
     }),
   },
-  SearchButton: {
+  LargeButton: {
     baseStyle: ({ colorMode }) => ({
       color: colorMode === "dark" ? "gray.200": "gray.800",
       bgColor: colorMode === "dark" ? "cyan.800" : "cyan.500",
-      marginLeft: 5,
       alignSelf: "flex-end",
-      fontSize: "2xl",
       padding: 10,
       marginTop: { base: 5, md: 0 },
       _hover: { bgColor: "cyan.600", color: "gray.50" },
@@ -94,26 +103,6 @@ const components = {
       }
     }),
   },
-  ColorModeStyles: {
-    baseStyle: ({ colorMode }) => ({
-      bgColor: colorMode === "dark" ? "#001114" : "#F3F4F7",
-      transition: "0.2s linear",
-    }),
-  },
-  FilterButton: {
-    baseStyle: ({ colorMode }) => ({
-      color: colorMode === "dark" ? "gray.200": "gray.800",
-      bgColor: colorMode === "dark" ? "cyan.800" : "cyan.500",
-      fontSize: "xl",
-      marginBottom: 10,
-      paddingX: 10,
-      paddingY: 8,
-      _hover: { bgColor: "cyan.600", color: "gray.50" },
-      _active: {
-        bgColor: "cyan.700", color: "gray.100"
-      }
-    }),
-  },
 }
 
-export default extendTheme ({ config, colors, components, fonts })
+export default extendTheme ({ colors, config, components, fonts, styles })

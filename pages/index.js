@@ -70,18 +70,9 @@ const ResultContainer = ({ resultLoading, searchResults }) => {
   /* The value of "sort" determines the format in which the results are shown
     Results by store (sort=0), ascending order(sort=1), descending order(sort=2)*/
   const [sort, setSort] = useState (0);
-  const filterButtonStyles = useStyleConfig ("FilterButton");
+  const filterButtonStyles = useStyleConfig ("LargeButton");
 
   const sortSymbols = [GoPrimitiveDot, GoChevronUp, GoChevronDown];
-
-  // Scroll to the results once they load
-  useEffect(() => {
-    scroller.scrollTo ("result", {
-      duration: 1000,
-      smooth: true,
-      offset: 100,
-    });
-  }, [searchResults]);
 
   if (resultLoading) {
     return (
@@ -108,12 +99,14 @@ const ResultContainer = ({ resultLoading, searchResults }) => {
 
       return (
         <Element name="result">
-          <Flex direction="column" marginY={12}>
+          <Flex direction="column">
 
             {/*  Button to cycle through values of "sort" */}
             <Button
               alignSelf="flex-end"
               sx={filterButtonStyles}
+              fontSize="xl"
+              marginBottom={5}
               onClick={() => setSort ((sort + 1) % 3)}
             >
             Sort <Icon as={sortSymbols[sort]} />
