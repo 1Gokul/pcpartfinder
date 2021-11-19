@@ -22,7 +22,7 @@ export const StoreResultTable = ({ storeName, storeResults }) => (
     {storeResults.length
       ? <ResultTable items={storeResults} />
       : <Text size="xl">
-        No matching products found.
+        Sorry, no matching products were found.
       </Text>}
   </Flex>
 )
@@ -39,7 +39,7 @@ export const ResultTable = ({ items }) => {
         borderColor="cyan.600"
       >
         <TableCaption display={{ md: "none" }} textAlign="left" placement="top">
-          ← Swipe left to see other columns
+          ← Swipe left if some columns are not visible
         </TableCaption>
         <Thead>
           <Tr>

@@ -49,7 +49,7 @@ const Home = () => {
     <Layout title="Search" page="/">
       <Container>
         <Heading size="2xl" marginBottom={5}>
-          Looking for components or peripherals?
+        Find PC parts available in major Indian stores!
         </Heading>
         <Form getFormValue={handleSubmit} isDisabled={resultLoading} />
 
