@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { GoPrimitiveDot, GoChevronUp, GoChevronDown } from "react-icons/go";
-import { scroller, Element } from "react-scroll";
+import { Element } from "react-scroll";
 
 import Layout, { Container } from "../src/components/Layout";
 import Form from "../src/components/Form";
@@ -51,6 +51,7 @@ const Home = () => {
         <Heading size="2xl" marginBottom={5}>
         Find PC parts available in major Indian stores!
         </Heading>
+        <Text color="gray.500">Sorry, only data on Graphics Cards are available now. More data will be added soon!</Text>
         <Form getFormValue={handleSubmit} isDisabled={resultLoading} />
 
         <Flex direction="column" marginTop={14} id="results">
@@ -100,7 +101,10 @@ const ResultContainer = ({ resultLoading, searchResults }) => {
       return (
         <Element name="result">
           <Flex direction="column">
-
+<Flex direction="row" justifyContent="space-between" alignItems="center" marginBottom={5}>
+  <Text color="gray.500" fontWeight="bold" >
+       {searchResults.n_results} RESULTS 
+  </Text>
             {/*  Button to cycle through values of "sort" */}
             <Button
               alignSelf="flex-end"
@@ -111,7 +115,7 @@ const ResultContainer = ({ resultLoading, searchResults }) => {
             >
             Sort <Icon as={sortSymbols[sort]} />
             </Button>
-
+</Flex>
             <Flex direction="column">
               {sort === 0
                 ?

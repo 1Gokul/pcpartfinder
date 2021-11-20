@@ -17,7 +17,11 @@ import { RiExternalLinkLine } from "react-icons/ri";
 
 export const StoreResultTable = ({ storeName, storeResults }) => (
   <Flex direction="column" marginBottom={16}>
-    <Heading size="2xl" marginBottom={4}>{storeName.replace("_", " ")}</Heading>
+    <Flex direction="row" justifyContent="space-between" alignItems="center">
+       <Heading size="2xl" marginBottom={4}>{storeName.replace("_", " ")}</Heading>
+       <Text fontSize="sm" color="gray.500">{storeResults.length} {storeResults.length !== 1 ? "MATCHES" : "MATCH"}</Text>
+    </Flex>
+   
 
     {storeResults.length
       ? <ResultTable items={storeResults} />
@@ -50,7 +54,7 @@ export const ResultTable = ({ items }) => {
         </Thead>
         <Tbody>
           {items.map(result => (
-            <Tr key={`${result.name}:${result.link}`}>
+            <Tr key={`${result.name}:${result.url}`}>
               <Td>
                 <Text noOfLines={4}>
                   {result.name}
