@@ -19,7 +19,7 @@ export const StoreResultTable = ({ storeName, storeResults }) => (
   <Flex direction="column" marginBottom={16}>
     <Flex direction="row" justifyContent="space-between" alignItems="center">
        <Heading size="2xl" marginBottom={4}>{storeName.replace("_", " ")}</Heading>
-       <Text fontSize="sm" color="gray.500">{storeResults.length} {storeResults.length !== 1 ? "MATCHES" : "MATCH"}</Text>
+       <Text fontSize="sm" fontWeight="bold" color="gray.500">{storeResults.length} {storeResults.length !== 1 ? "MATCHES" : "MATCH"}</Text>
     </Flex>
    
 
