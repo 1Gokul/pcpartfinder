@@ -57,8 +57,8 @@ const components = {
     }
   },
   Link: {
-    baseStyle: props => ( {
-      color: props.colorMode=="dark"? "gray.100" : "gray.800",
+    baseStyle: props => ({
+      color: props.colorMode == "dark" ? "gray.100" : "gray.800",
       _hover: {
         color: "cyan.500",
         textDecoration: "none"
@@ -90,13 +90,10 @@ const components = {
       borderColor: colorMode === "dark" ? "gray.600" : "gray.300",
     }),
   },
-  LargeButton: {
+  CustomButton: {
     baseStyle: ({ colorMode }) => ({
-      color: colorMode === "dark" ? "gray.200": "gray.800",
+      color: colorMode === "dark" ? "gray.200" : "gray.800",
       bgColor: colorMode === "dark" ? "cyan.800" : "cyan.500",
-      alignSelf: "flex-end",
-      padding: 10,
-      marginTop: { base: 5, md: 0 },
       _hover: { bgColor: "cyan.600", color: "gray.50" },
       _active: {
         bgColor: "cyan.700", color: "gray.100"
@@ -105,4 +102,4 @@ const components = {
   },
 }
 
-export default extendTheme ({ colors, config, components, fonts, styles })
+export default extendTheme({ colors, config, components, fonts, styles })

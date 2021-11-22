@@ -3,19 +3,19 @@ import { useState } from "react";
 import { VscArrowRight } from "react-icons/vsc";
 
 const Form = props => {
-  const [inputQuery, setInputQuery] = useState ("");
+  const [inputQuery, setInputQuery] = useState("");
 
   const submitQuery = event => {
-    event.preventDefault ();
-    props.getFormValue (inputQuery);
+    event.preventDefault();
+    props.getFormValue(inputQuery);
   };
 
   return (
     <form onSubmit={submitQuery}>
-      <Flex marginY={5} direction={{ base: "column", md: "row" }}>
+      <Flex marginY={5} direction={{ base: "column", md: "row" }} width="100%">
         <Input
           value={inputQuery}
-          onChange={({ target }) => setInputQuery (target.value)}
+          onChange={({ target }) => setInputQuery(target.value)}
           isRequired={true}
           isDisabled={props.isDisabled}
           size="xl"
@@ -28,9 +28,11 @@ const Form = props => {
         />
         <Button
           type="submit"
-          fontSize="2xl"
+          padding={10}
+          fontSize="xl"
           marginTop={{ base: 5, md: 0 }}
-          sx={useStyleConfig ("LargeButton")}
+          alignSelf="center"
+          sx={useStyleConfig("CustomButton")}
           isDisabled={props.isDisabled}
         >
           Search

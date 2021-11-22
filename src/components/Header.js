@@ -17,14 +17,14 @@ import logo from "../../public/logo.svg";
 
 const Header = () => {
 
-  const { colorMode, toggleColorMode } = useColorMode ();
+  const { colorMode, toggleColorMode } = useColorMode();
 
   // For opening and closing the hamburger menu
-  const [expanded, setExpanded] = useState (false);
+  const [expanded, setExpanded] = useState(false);
 
   const toggleExpanded = () => {
     document.body.style.overflow = !expanded ? "hidden" : "visible";
-    setExpanded (!expanded);
+    setExpanded(!expanded);
   };
 
   const navLinks = [
@@ -90,11 +90,11 @@ const NavLink = props => (
 );
 
 const DesktopNavMenu = props => {
-  const styles = useStyleConfig ("DesktopNavlink");
+  const styles = useStyleConfig("DesktopNavlink");
 
   return (
     <Flex display={{ base: "none", md: "flex" }} height="100%" marginRight={10}>
-      {props.navLinks.map (navLink => (
+      {props.navLinks.map(navLink => (
         <LinkBox key={navLink.name}>
           <NavLink sx={styles} {...navLink} as="button">
             <LinkOverlay href={navLink.link}>
@@ -120,7 +120,7 @@ const DesktopNavMenu = props => {
 };
 
 const MobileNavMenu = props => {
-  const styles = useStyleConfig ("MobileNavlink");
+  const styles = useStyleConfig("MobileNavlink");
 
   return (
     <Flex
@@ -130,7 +130,7 @@ const MobileNavMenu = props => {
       borderBottom="1px"
       borderColor="gray.200"
     >
-      {props.navLinks.map (navLink => (
+      {props.navLinks.map(navLink => (
         <NavLink key={navLink.name} {...navLink} sx={styles}>
           {navLink.name}
         </NavLink>

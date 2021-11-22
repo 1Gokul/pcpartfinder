@@ -16,7 +16,7 @@ const GlobalStyles = css`
 `;
 
 function App({ Component, pageProps }) {
-  return(
+  return (
     <ChakraProvider theme={customTheme}>
       <Global styles={GlobalStyles} />
       <Component {...pageProps} />

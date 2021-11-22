@@ -13,9 +13,9 @@ const Layout = props => {
 
   /* For the "Back To Top" button. It appears after scrolling down
   a bit and disappears when we scroll to the top. */
-  const [backToTopVisible, setBackToTopVisible] = useState (false);
+  const [backToTopVisible, setBackToTopVisible] = useState(false);
 
-  const scrollListener = useCallback (
+  const scrollListener = useCallback(
     () => {
       const scrollAmount =
         document.body.scrollTop || document.documentElement.scrollTop;
@@ -27,18 +27,18 @@ const Layout = props => {
       const scrolled = scrollAmount / height;
 
       if (scrolled > 0.1) {
-        if (!backToTopVisible) setBackToTopVisible (true);
+        if (!backToTopVisible) setBackToTopVisible(true);
       } else if (scrolled < 0.001) {
-        if (backToTopVisible) setBackToTopVisible (false);
+        if (backToTopVisible) setBackToTopVisible(false);
       }
     },
     [backToTopVisible]
   );
 
-  useEffect (
+  useEffect(
     () => {
-      window.addEventListener ("scroll", scrollListener);
-      return () => window.removeEventListener ("scroll", scrollListener);
+      window.addEventListener("scroll", scrollListener);
+      return () => window.removeEventListener("scroll", scrollListener);
     },
     [scrollListener]
   );
@@ -70,7 +70,7 @@ const Layout = props => {
         />
         <meta
           property="og:title"
-          content={props.title.split ("-").join (" ")}
+          content={props.title.split("-").join(" ")}
           key="ogtitle"
         />
 
@@ -96,10 +96,10 @@ const BackToTop = ({ visible }) => (
     colorScheme="cyan"
     icon={<VscArrowUp />}
     position="fixed"
-    right={{ base: "50px", md:"70px" }}
-    bottom={{ base: "50px", md:"100px" }}
+    right={{ base: "50px", md: "70px" }}
+    bottom={{ base: "50px", md: "100px" }}
     display={visible ? "flex" : "none"}
-    onClick={() => animateScroll.scrollToTop ()}
+    onClick={() => animateScroll.scrollToTop()}
     _hover={{ bgColor: "cyan.600", color: "gray.100" }}
     _active={{
       bgColor: "cyan.700",
@@ -114,7 +114,7 @@ export const Container = props => (
     marginX="auto"
     marginTop={5}
     minH="80vh"
-    minW="70vw"
+    minW="75vw"
     maxW={{ base: "95vw", md: "75vw" }}
     padding={{ base: 5, md: 10 }}
     {...props}
