@@ -68,7 +68,7 @@ export const ResultTable = ({ items, ...props }) => (
             </Td>
             <Td>
               <strong>
-                {result.price === 0 ? "Call Store" : `₹${result.price}`}
+                {result.price === 0 ? "Call Store" : `₹${result.price.toLocaleString("en-IN")}`}
               </strong>
             </Td>
             <Td>
