@@ -2,14 +2,14 @@ import { Heading } from "@chakra-ui/layout";
 
 import Layout, { Container } from "../src/components/Layout";
 
-const SetAlert = () => {
+const Products = () => {
   return (
-    <Layout title="Set Alert" page="/set-alert">
+    <Layout title="Products" page="/products">
       <Container>
-        <Heading size="2xl">Set Alert (WIP)</Heading>
+        <Heading size="2xl">Products (WIP)</Heading>
       </Container>
     </Layout>
   );
 };
 
-export default SetAlert;
+export default Products;

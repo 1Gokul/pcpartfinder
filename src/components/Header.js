@@ -15,6 +15,14 @@ import Link from "next/link";
 
 import logo from "../../public/logo.svg";
 
+
+// Links on the navbar
+const navLinks = [
+  { name: "search", link: "/" },
+  { name: "products", link: "/products" },
+];
+
+
 const Header = () => {
 
   const { colorMode, toggleColorMode } = useColorMode();
@@ -26,12 +34,6 @@ const Header = () => {
     document.body.style.overflow = !expanded ? "hidden" : "visible";
     setExpanded(!expanded);
   };
-
-  const navLinks = [
-    { name: "search", link: "/" },
-    { name: "set alert", link: "/set-alert" },
-  ];
-
 
   return (
     <Flex direction="column">
