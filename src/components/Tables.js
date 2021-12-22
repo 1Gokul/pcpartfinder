@@ -11,7 +11,6 @@ import {
   Tr,
   Th,
   Td,
-  useMediaQuery
 } from "@chakra-ui/react";
 import { RiExternalLinkLine } from "react-icons/ri";
 

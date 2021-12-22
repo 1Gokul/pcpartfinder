@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import Head from "next/head";
-import { Flex, IconButton, Link, useStyleConfig } from "@chakra-ui/react";
+import { Flex, IconButton, Link } from "@chakra-ui/react";
 import { VscArrowUp } from "react-icons/vsc";
 import { animateScroll } from "react-scroll";
 

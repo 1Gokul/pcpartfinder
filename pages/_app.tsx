@@ -1,3 +1,4 @@
+import { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
 import "focus-visible/dist/focus-visible";
 import { Global, css } from "@emotion/react";
@@ -15,7 +16,7 @@ const GlobalStyles = css`
    }
 `;
 
-function App({ Component, pageProps }) {
+function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={customTheme}>
       <Global styles={GlobalStyles} />
