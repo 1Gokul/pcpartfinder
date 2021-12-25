@@ -1,9 +1,11 @@
 import { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
-import "focus-visible/dist/focus-visible";
 import { Global, css } from "@emotion/react";
+import "focus-visible/dist/focus-visible";
 
+import "@fontsource/inter/variable-full.css";
 import customTheme from "../styles/theme";
+
 
 // https://medium.com/@keeganfamouss/accessibility-on-demand-with-chakra-ui-and-focus-visible-19413b1bc6f9
 const GlobalStyles = css`
@@ -15,6 +17,7 @@ const GlobalStyles = css`
      box-shadow: none;
    }
 `;
+
 
 function App({ Component, pageProps }: AppProps) {
   return (

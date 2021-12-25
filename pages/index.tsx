@@ -49,10 +49,10 @@ const Home = () => {
     <Layout title="Search" page="/">
       <Container>
         <Flex direction="column" width="100%">
-          <Heading size="2xl" marginBottom={5}>
-            Find PC parts available in major Indian stores!
+          <Heading size="2xl" fontWeight="extrabold" marginBottom={5}>
+            Find graphics cards available in major Indian stores.
           </Heading>
-          <Text color="gray.500">Sorry, only data on Graphics Cards are available now. More data will be added soon!</Text>
+          <Text color="gray.500">We're working on providing more PC components soon!</Text>
           <Form getFormValue={handleSubmit} isDisabled={resultLoading} />
         </Flex>
         <ResultContainer
@@ -91,7 +91,7 @@ const ResultContainer = ({ resultLoading, searchResults }) => {
     if (!searchResults.n_results) {
       return (
         <Text fontSize="xl">
-          Sorry, no results were returned from the server. Try another search string.
+          Sorry, no results were found. Try another search string.
         </Text>
       );
     } else {

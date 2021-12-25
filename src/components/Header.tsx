@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  CSSObject,
   Flex,
   Icon,
   IconButton,
@@ -17,18 +18,18 @@ import logo from "../../public/logo.svg";
 
 
 // Links on the navbar
-const navLinks = [
-  { name: "search", link: "/" },
-  { name: "products", link: "/products" },
+const navLinks: Array<{ text: string, link: string }> = [
+  { text: "search", link: "/" },
+  { text: "products", link: "/products" },
 ];
 
 
-const Header = () => {
+const Header: React.FC = () => {
 
   const { colorMode, toggleColorMode } = useColorMode();
 
   // For opening and closing the hamburger menu
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState<boolean>(false);
 
   const toggleExpanded = () => {
     document.body.style.overflow = !expanded ? "hidden" : "visible";
@@ -62,7 +63,6 @@ const Header = () => {
         </Link>
 
         <DesktopNavMenu
-          navLinks={navLinks}
           colorMode={colorMode}
           toggleColorMode={toggleColorMode}
         />
@@ -70,7 +70,6 @@ const Header = () => {
       </Flex>
 
       <MobileNavMenu
-        navLinks={navLinks}
         expanded={expanded}
         colorMode={colorMode}
         toggleColorMode={toggleColorMode}
@@ -82,32 +81,55 @@ const Header = () => {
 export default Header;
 
 
+// Navlink
+interface NavLinkProps {
+  
+  // Theme styles for the link
+  sx: CSSObject;
 
-const NavLink = props => (
-  <Flex {...props}>
-    <Flex textTransform="capitalize" alignItems="center">
-      {props.children}
+  // Click handler
+  onClick?: () => void;  
+
+  // extra styles (if any)
+  [otherProps: string]: unknown;
+}
+
+const NavLink: React.FC<NavLinkProps> = props => {
+
+  const {children, ...otherProps} = props;
+
+  return(
+    <Flex textTransform="capitalize" alignItems="center" {...otherProps}>  
+      {children}
     </Flex>
-  </Flex>
-);
+  );
+};
 
-const DesktopNavMenu = props => {
-  const styles = useStyleConfig("DesktopNavlink");
+
+interface NavbarProps {
+  colorMode: "light"|"dark";
+  toggleColorMode: () => void;
+}
+
+// Desktop Navbar Menu
+
+const DesktopNavMenu: React.FC<NavbarProps> = props => {
+  const styles: CSSObject = useStyleConfig("DesktopNavlink");
 
   return (
     <Flex display={{ base: "none", md: "flex" }} height="100%" marginRight={10}>
-      {props.navLinks.map(navLink => (
-        <LinkBox key={navLink.name}>
-          <NavLink sx={styles} {...navLink} as="button">
+
+      {navLinks.map(navLink => (       
+        <LinkBox key={navLink.text}>
+          <NavLink sx={styles} {...navLink}>       
             <LinkOverlay href={navLink.link}>
-              {navLink.name}
+              {navLink.text}
             </LinkOverlay>
           </NavLink>
         </LinkBox>
       ))}
       <NavLink
         sx={styles}
-        as="button"
         borderRight="1px"
         onClick={props.toggleColorMode}
       >
@@ -121,8 +143,15 @@ const DesktopNavMenu = props => {
   );
 };
 
-const MobileNavMenu = props => {
-  const styles = useStyleConfig("MobileNavlink");
+
+
+// Mobile Navbar
+interface MobileNavProps extends NavbarProps {
+  expanded: boolean
+}
+
+const MobileNavMenu: React.FC<MobileNavProps> = props => {
+  const styles: CSSObject = useStyleConfig("MobileNavlink");
 
   return (
     <Flex
@@ -132,9 +161,9 @@ const MobileNavMenu = props => {
       borderBottom="1px"
       borderColor="gray.200"
     >
-      {props.navLinks.map(navLink => (
-        <NavLink key={navLink.name} {...navLink} sx={styles}>
-          {navLink.name}
+      {navLinks.map(navLink => (
+        <NavLink key={navLink.text} {...navLink} sx={styles}>
+          {navLink.text}
         </NavLink>
       ))}
 
@@ -149,8 +178,16 @@ const MobileNavMenu = props => {
   );
 };
 
-const HamburgerMenuToggler = props => (
+
+// Mobile menu toggler
+interface HamburgerProps{
+  expanded: boolean;
+  toggleExpanded: () => void;
+}
+
+const HamburgerMenuToggler: React.FC<HamburgerProps> = props => (
   <IconButton
+    aria-label="Click this button to toggle the menu."
     display={{ base: "flex", md: "none" }}
     variant="ghost"
     fontSize="40px"

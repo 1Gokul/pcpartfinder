@@ -3,7 +3,7 @@ import {
   Heading,
   Icon,
   Link,
-  Text,
+  Text as CText,
   Table,
   Thead,
   Tbody,
@@ -16,9 +16,9 @@ import { RiExternalLinkLine } from "react-icons/ri";
 
 export const StoreResultTable = ({ storeName, storeResults }) => (
   <Flex direction="column" marginBottom={16}>
-    <Flex direction="row" justifyContent="space-between" alignItems="center">
-      <Heading size="2xl" marginBottom={4}>{storeName.replace("_", " ")}</Heading>
-      <Text fontSize="sm" fontWeight="bold" color="gray.500">{storeResults.length} {storeResults.length !== 1 ? "MATCHES" : "MATCH"}</Text>
+    <Flex direction="row" alignItems="center">
+      <Heading size="xl" fontWeight="black" marginBottom={4}>{storeName.replace("_", " ")}</Heading>
+      <CText fontSize="sm" marginLeft={8} fontWeight="bold" color="gray.500">{storeResults.length} {storeResults.length !== 1 ? "MATCHES" : "ITEM"}</CText>
     </Flex>
 
 
@@ -31,12 +31,12 @@ export const StoreResultTable = ({ storeName, storeResults }) => (
         <ResultTable items={storeResults} size="sm" display={{ base: "table", md: "none" }} />
       </>
       :
-      <Text size="xl">
+      <CText size="xl">
         Sorry, no matching products were found.
-      </Text>
+      </CText>
     }
   </Flex>
-)
+);
 
 export const ResultTable = ({ items, ...props }) => (
   <Flex overflowX="auto">
@@ -61,9 +61,9 @@ export const ResultTable = ({ items, ...props }) => (
         {items.map(result => (
           <Tr key={`${result.name}:${result.url}`}>
             <Td>
-              <Text noOfLines={4}>
+              <CText noOfLines={4}>
                 {result.name}
-              </Text>
+              </CText>
             </Td>
             <Td>
               <strong>
@@ -80,4 +80,4 @@ export const ResultTable = ({ items, ...props }) => (
       </Tbody>
     </Table>
   </Flex>
-)
+);
