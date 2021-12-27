@@ -1,17 +1,22 @@
+import React, { useState } from "react";
 import { Button, Flex, Icon, Input, useStyleConfig } from "@chakra-ui/react";
-import { useState } from "react";
 import { VscArrowRight } from "react-icons/vsc";
 
-const Form = props => {
-  const [inputQuery, setInputQuery] = useState("");
+interface FormProps {
+  submitQuery: (inputQuery: string) => void;
+  isDisabled: boolean;
+}
 
-  const submitQuery = event => {
+const ProductSearchForm: React.FC<FormProps> = (props) => {
+  const [inputQuery, setInputQuery] = useState<string>("");
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-    props.getFormValue(inputQuery);
+    props.submitQuery(inputQuery);
   };
 
   return (
-    <form onSubmit={submitQuery}>
+    <form onSubmit={handleSubmit}>
       <Flex marginY={5} direction={{ base: "column", md: "row" }} width="100%">
         <Input
           value={inputQuery}
@@ -43,4 +48,4 @@ const Form = props => {
   );
 };
 
-export default Form;
+export default ProductSearchForm;

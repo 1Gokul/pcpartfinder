@@ -2,11 +2,13 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": [
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "prettier"
   ],
   "env": {
     "node": true
@@ -17,6 +19,7 @@
     "project": "./tsconfig.json"
   },
   "rules": {
+    "prettier/prettier": 2,
     "no-console": "warn",
     "@typescript-eslint/indent": [
       "error",

@@ -7,7 +7,7 @@ import {
   LinkBox,
   LinkOverlay,
   useColorMode,
-  useStyleConfig,
+  useStyleConfig
 } from "@chakra-ui/react";
 import { VscMenu, VscClose } from "react-icons/vsc";
 import { IoSunnySharp, IoMoonSharp } from "react-icons/io5";
@@ -16,16 +16,13 @@ import Link from "next/link";
 
 import logo from "../../public/logo.svg";
 
-
 // Links on the navbar
-const navLinks: Array<{ text: string, link: string }> = [
+const navLinks: Array<{ text: string; link: string }> = [
   { text: "search", link: "/" },
-  { text: "products", link: "/products" },
+  { text: "products", link: "/products" }
 ];
 
-
 const Header: React.FC = () => {
-
   const { colorMode, toggleColorMode } = useColorMode();
 
   // For opening and closing the hamburger menu
@@ -57,7 +54,6 @@ const Header: React.FC = () => {
                 blurDataURL={logo}
                 priority={true}
               />
-
             </Flex>
           </a>
         </Link>
@@ -66,7 +62,10 @@ const Header: React.FC = () => {
           colorMode={colorMode}
           toggleColorMode={toggleColorMode}
         />
-        <HamburgerMenuToggler toggleExpanded={toggleExpanded} expanded={expanded} />
+        <HamburgerMenuToggler
+          toggleExpanded={toggleExpanded}
+          expanded={expanded}
+        />
       </Flex>
 
       <MobileNavMenu
@@ -80,59 +79,48 @@ const Header: React.FC = () => {
 
 export default Header;
 
-
 // Navlink
 interface NavLinkProps {
-  
   // Theme styles for the link
   sx: CSSObject;
 
   // Click handler
-  onClick?: () => void;  
+  onClick?: () => void;
 
   // extra styles (if any)
   [otherProps: string]: unknown;
 }
 
-const NavLink: React.FC<NavLinkProps> = props => {
+const NavLink: React.FC<NavLinkProps> = (props) => {
+  const { children, ...otherProps } = props;
 
-  const {children, ...otherProps} = props;
-
-  return(
-    <Flex textTransform="capitalize" alignItems="center" {...otherProps}>  
+  return (
+    <Flex textTransform="capitalize" alignItems="center" {...otherProps}>
       {children}
     </Flex>
   );
 };
 
-
 interface NavbarProps {
-  colorMode: "light"|"dark";
+  colorMode: "light" | "dark";
   toggleColorMode: () => void;
 }
 
 // Desktop Navbar Menu
 
-const DesktopNavMenu: React.FC<NavbarProps> = props => {
+const DesktopNavMenu: React.FC<NavbarProps> = (props) => {
   const styles: CSSObject = useStyleConfig("DesktopNavlink");
 
   return (
     <Flex display={{ base: "none", md: "flex" }} height="100%" marginRight={10}>
-
-      {navLinks.map(navLink => (       
+      {navLinks.map((navLink) => (
         <LinkBox key={navLink.text}>
-          <NavLink sx={styles} {...navLink}>       
-            <LinkOverlay href={navLink.link}>
-              {navLink.text}
-            </LinkOverlay>
+          <NavLink sx={styles} {...navLink}>
+            <LinkOverlay href={navLink.link}>{navLink.text}</LinkOverlay>
           </NavLink>
         </LinkBox>
       ))}
-      <NavLink
-        sx={styles}
-        borderRight="1px"
-        onClick={props.toggleColorMode}
-      >
+      <NavLink sx={styles} borderRight="1px" onClick={props.toggleColorMode}>
         {props.colorMode}
         <Icon
           as={props.colorMode === "dark" ? IoMoonSharp : IoSunnySharp}
@@ -143,14 +131,12 @@ const DesktopNavMenu: React.FC<NavbarProps> = props => {
   );
 };
 
-
-
 // Mobile Navbar
 interface MobileNavProps extends NavbarProps {
-  expanded: boolean
+  expanded: boolean;
 }
 
-const MobileNavMenu: React.FC<MobileNavProps> = props => {
+const MobileNavMenu: React.FC<MobileNavProps> = (props) => {
   const styles: CSSObject = useStyleConfig("MobileNavlink");
 
   return (
@@ -161,7 +147,7 @@ const MobileNavMenu: React.FC<MobileNavProps> = props => {
       borderBottom="1px"
       borderColor="gray.200"
     >
-      {navLinks.map(navLink => (
+      {navLinks.map((navLink) => (
         <NavLink key={navLink.text} {...navLink} sx={styles}>
           {navLink.text}
         </NavLink>
@@ -178,14 +164,13 @@ const MobileNavMenu: React.FC<MobileNavProps> = props => {
   );
 };
 
-
 // Mobile menu toggler
-interface HamburgerProps{
+interface HamburgerProps {
   expanded: boolean;
   toggleExpanded: () => void;
 }
 
-const HamburgerMenuToggler: React.FC<HamburgerProps> = props => (
+const HamburgerMenuToggler: React.FC<HamburgerProps> = (props) => (
   <IconButton
     aria-label="Click this button to toggle the menu."
     display={{ base: "flex", md: "none" }}
@@ -195,4 +180,3 @@ const HamburgerMenuToggler: React.FC<HamburgerProps> = props => (
     onClick={props.toggleExpanded}
   />
 );
-

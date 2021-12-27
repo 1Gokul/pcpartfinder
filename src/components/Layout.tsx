@@ -9,50 +9,38 @@ import Header from "./Header";
 const description =
   "Search for PC components and peripherals from major Indian stores!";
 
-
 interface LayoutProps {
   title: string;
   page: string;
 }
 
-const Layout: React.FC<LayoutProps> = props => {
-
-  const {title, page, children} = props;
+const Layout: React.FC<LayoutProps> = (props) => {
+  const { title, page, children } = props;
 
   /* For the "Back To Top" button. It appears after scrolling down
   a bit and disappears when we scroll to the top. */
   const [backToTopVisible, setBackToTopVisible] = useState<boolean>(false);
 
-  const scrollListener = useCallback(
-    () => {
-      const scrollAmount =
-        document.body.scrollTop || document.documentElement.scrollTop;
+  const scrollListener = useCallback(() => {
+    const scrollAmount =
+      document.body.scrollTop || document.documentElement.scrollTop;
 
-      if (scrollAmount > 100) {
-        if (!backToTopVisible) setBackToTopVisible(true);
-      } else if (scrollAmount < 100) {
-        if (backToTopVisible) setBackToTopVisible(false);
-      }
-    },
-    [backToTopVisible]
-  );
+    if (scrollAmount > 100) {
+      if (!backToTopVisible) setBackToTopVisible(true);
+    } else if (scrollAmount < 100) {
+      if (backToTopVisible) setBackToTopVisible(false);
+    }
+  }, [backToTopVisible]);
 
-  useEffect(
-    () => {
-      window.addEventListener("scroll", scrollListener);
-      return () => window.removeEventListener("scroll", scrollListener);
-    },
-    [scrollListener]
-  );
-
+  useEffect(() => {
+    window.addEventListener("scroll", scrollListener);
+    return () => window.removeEventListener("scroll", scrollListener);
+  }, [scrollListener]);
 
   return (
-    <Flex
-      direction="column"
-      margin="0 auto"
-    >
+    <Flex direction="column" margin="0 auto">
       {/* For SEO */}
-      <SEO page={page} title={title}  />
+      <SEO page={page} title={title} />
 
       {/* Navbar */}
       <Header />
@@ -62,21 +50,18 @@ const Layout: React.FC<LayoutProps> = props => {
       <BackToTop visible={backToTopVisible} />
 
       <Footer />
-
     </Flex>
   );
 };
 
 export default Layout;
 
-
 interface SEOProps {
   page: string;
   title: string;
 }
 
-const SEO: React.FC<SEOProps> = props => (
-  
+const SEO: React.FC<SEOProps> = (props) => (
   <Head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charSet="utf-8" />
@@ -121,7 +106,7 @@ const BackToTop: React.FC<BackToTopProps> = ({ visible }) => (
     _hover={{ bgColor: "cyan.600", color: "gray.100" }}
     _active={{
       bgColor: "cyan.700",
-      color: "gray.100",
+      color: "gray.100"
     }}
     aria-label="Click on this button to scroll to the top of the page."
     onClick={() => animateScroll.scrollToTop()}
@@ -129,10 +114,11 @@ const BackToTop: React.FC<BackToTopProps> = ({ visible }) => (
 );
 
 interface ContainerProps {
-  [OtherProps: string]: unknown
+  // Other style props
+  [OtherProps: string]: unknown;
 }
-export const Container: React.FC<ContainerProps> = props => {
-  return(
+export const Container: React.FC<ContainerProps> = (props) => {
+  return (
     <Flex
       direction="column"
       marginX="auto"

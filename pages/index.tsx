@@ -6,43 +6,53 @@ import {
   Icon,
   Text,
   Progress,
-  useStyleConfig,
+  useStyleConfig
 } from "@chakra-ui/react";
 import axios from "axios";
 import { GoPrimitiveDot, GoChevronUp, GoChevronDown } from "react-icons/go";
 import { Element } from "react-scroll";
 
 import Layout, { Container } from "../src/components/Layout";
-import Form from "../src/components/Form";
+import ProductSearchForm from "../src/components/ProductSearchForm";
 import { ResultTable, StoreResultTable } from "../src/components/Tables";
 
-const Home = () => {
-  const [results, setResults] = useState(null);
-  const [searchQuery, setSearchQuery] = useState();
-  const [resultLoading, setResultLoading] = useState(false);
+// Structure of the JSON returned from the server after a search request.
+interface resultType {
+  n_results: number;
+  content: [
+    {
+      store_name: string;
+      store_results: [
+        { name: string; url: string; price: number; store: string }
+      ];
+    }
+  ];
+}
+
+const Home: React.FC = () => {
+  const [results, setResults] = useState<resultType>(null);
+  const [searchString, setSearchString] = useState<string>();
+  const [resultLoading, setResultLoading] = useState<boolean>(false);
 
   /* Gets run when the search query is changed.
     Sends a request to the API and gets the results. */
-  useEffect(
-    () => {
-      const getResults = async () => {
-        if (searchQuery) {
-          const searchResults = await axios.get(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/${searchQuery}`
-          );
-          setResults(searchResults.data);
-          setResultLoading(false);
-        }
-      };
-      getResults();
-    },
-    [searchQuery]
-  );
+  useEffect(() => {
+    const getResults = async () => {
+      if (searchString) {
+        const searchResults = await axios.get(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/${searchString}`
+        );
+        setResults(searchResults.data);
+        setResultLoading(false);
+      }
+    };
+    getResults();
+  }, [searchString]);
 
-  const handleSubmit = inputValue => {
+  const submitQuery = (inputValue: string) => {
     setResultLoading(true);
     setResults(null);
-    setSearchQuery(inputValue);
+    setSearchString(inputValue);
   };
 
   return (
@@ -52,8 +62,13 @@ const Home = () => {
           <Heading size="2xl" fontWeight="extrabold" marginBottom={5}>
             Find graphics cards available in major Indian stores.
           </Heading>
-          <Text color="gray.500">We're working on providing more PC components soon!</Text>
-          <Form getFormValue={handleSubmit} isDisabled={resultLoading} />
+          <Text color="gray.500">
+            We're working on providing more PC components soon!
+          </Text>
+          <ProductSearchForm
+            submitQuery={submitQuery}
+            isDisabled={resultLoading}
+          />
         </Flex>
         <ResultContainer
           resultLoading={resultLoading}
@@ -63,7 +78,6 @@ const Home = () => {
     </Layout>
   );
 };
-
 
 const ResultContainer = ({ resultLoading, searchResults }) => {
   /* The value of "sort" determines the format in which the results are shown
@@ -95,12 +109,16 @@ const ResultContainer = ({ resultLoading, searchResults }) => {
         </Text>
       );
     } else {
-
       return (
         <Element name="result">
           <Flex direction="column" marginTop={14}>
-            <Flex direction="row" justifyContent="space-between" alignItems="center" marginBottom={5}>
-              <Text color="gray.500" fontWeight="bold" >
+            <Flex
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+              marginBottom={5}
+            >
+              <Text color="gray.500" fontWeight="bold">
                 {searchResults.n_results} RESULTS
               </Text>
               {/*  Button to cycle through values of "sort" */}
@@ -116,22 +134,24 @@ const ResultContainer = ({ resultLoading, searchResults }) => {
               </Button>
             </Flex>
             <Flex direction="column">
-              {sort === 0
-                ?
-                searchResults.content.map(store => (
+              {sort === 0 ? (
+                searchResults.content.map((store) => (
                   <StoreResultTable
                     key={store.store_name}
                     storeName={store.store_name}
                     storeResults={store.store_results}
                   />
                 ))
-                :
+              ) : (
                 <ResultTable
                   items={searchResults.content
-                    .map(item => item.store_results)
+                    .map((item) => item.store_results)
                     .flat()
-                    .sort((a, b) => (sort === 1 ? 1 : -1) * (a.price - b.price))}
-                />}
+                    .sort(
+                      (a, b) => (sort === 1 ? 1 : -1) * (a.price - b.price)
+                    )}
+                />
+              )}
             </Flex>
           </Flex>
         </Element>
