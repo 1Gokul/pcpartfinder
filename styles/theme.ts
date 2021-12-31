@@ -29,7 +29,7 @@ const colors = {
 };
 
 const styles = {
-  global: props => ({
+  global: (props) => ({
     body: {
       color: mode("gray.800", "#FCF7F8")(props),
       bg: mode("#F3F4F7", "#001114")(props),
@@ -57,7 +57,7 @@ const components = {
     }
   },
   Link: {
-    baseStyle: props => ({
+    baseStyle: (props) => ({
       color: props.colorMode == "dark" ? "gray.100" : "gray.800",
       _hover: {
         color: "cyan.500",
@@ -71,10 +71,12 @@ const components = {
       height: "100%",
       fontSize: "xl",
       justifyContent: "center",
+      textTransform: "capitalize",
       alignItems: "center",
       borderLeft: "1px",
       borderColor: colorMode === "dark" ? "gray.600" : "gray.300",
       width: 40,
+      cursor: "pointer",
       transition: "0.1s linear",
       _hover: { textDecoration: "none", bgColor: "cyan.600", color: "gray.50" }
     })
@@ -87,6 +89,8 @@ const components = {
       fontSize: "2xl",
       textAlign: "left",
       borderBottom: "2px",
+      textTransform: "capitalize",
+      alignItems: "center",
       borderColor: colorMode === "dark" ? "gray.600" : "gray.300"
     })
   },

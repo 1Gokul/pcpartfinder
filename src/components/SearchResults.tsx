@@ -66,7 +66,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
                 <TableWithHeading
                   key={store.store_name}
                   title={store.store_name.replace("_", " ")}
-                  content={store.store_results}
+                  items={store.store_results}
                 />
               ))
             ) : (

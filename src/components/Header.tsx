@@ -4,8 +4,6 @@ import {
   Flex,
   Icon,
   IconButton,
-  LinkBox,
-  LinkOverlay,
   useColorMode,
   useStyleConfig
 } from "@chakra-ui/react";
@@ -17,9 +15,9 @@ import Link from "next/link";
 import logo from "../../public/logo.svg";
 
 // Links on the navbar
-const navLinks: Array<{ text: string; link: string }> = [
-  { text: "search", link: "/" },
-  { text: "products", link: "/products" }
+const navLinks: Array<{ text: string; url: string }> = [
+  { text: "search", url: "/" },
+  { text: "browse", url: "/products" }
 ];
 
 const Header: React.FC = () => {
@@ -82,22 +80,28 @@ export default Header;
 // Navlink
 interface NavLinkProps {
   // Theme styles for the link
-  sx: CSSObject;
-
-  // Click handler
-  onClick?: () => void;
+  styles: CSSObject;
 
   // extra styles (if any)
   [otherProps: string]: unknown;
 }
 
 const NavLink: React.FC<NavLinkProps> = (props) => {
-  const { children, ...otherProps } = props;
+  const { children, url, styles, ...otherProps } = props;
 
   return (
-    <Flex textTransform="capitalize" alignItems="center" {...otherProps}>
-      {children}
-    </Flex>
+    <Link href={url} passHref>
+      <a>
+        <Flex
+          sx={styles}
+          textTransform="capitalize"
+          alignItems="center"
+          {...otherProps}
+        >
+          {children}
+        </Flex>
+      </a>
+    </Link>
   );
 };
 
@@ -114,19 +118,17 @@ const DesktopNavMenu: React.FC<NavbarProps> = (props) => {
   return (
     <Flex display={{ base: "none", md: "flex" }} height="100%" marginRight={10}>
       {navLinks.map((navLink) => (
-        <LinkBox key={navLink.text}>
-          <NavLink sx={styles} {...navLink}>
-            <LinkOverlay href={navLink.link}>{navLink.text}</LinkOverlay>
-          </NavLink>
-        </LinkBox>
+        <NavLink key={navLink.text} styles={styles} url={navLink.url}>
+          {navLink.text}
+        </NavLink>
       ))}
-      <NavLink sx={styles} borderRight="1px" onClick={props.toggleColorMode}>
+      <Flex sx={styles} borderRight="1px" onClick={props.toggleColorMode}>
         {props.colorMode}
         <Icon
           as={props.colorMode === "dark" ? IoMoonSharp : IoSunnySharp}
           marginLeft={2}
         />
-      </NavLink>
+      </Flex>
     </Flex>
   );
 };
@@ -148,18 +150,18 @@ const MobileNavMenu: React.FC<MobileNavProps> = (props) => {
       borderColor="gray.200"
     >
       {navLinks.map((navLink) => (
-        <NavLink key={navLink.text} {...navLink} sx={styles}>
+        <NavLink key={navLink.text} url={navLink.url} styles={styles}>
           {navLink.text}
         </NavLink>
       ))}
 
-      <NavLink sx={styles} onClick={props.toggleColorMode}>
+      <Flex sx={styles} onClick={props.toggleColorMode}>
         {props.colorMode}
         <Icon
           as={props.colorMode === "dark" ? IoMoonSharp : IoSunnySharp}
           marginLeft={2}
         />
-      </NavLink>
+      </Flex>
     </Flex>
   );
 };
