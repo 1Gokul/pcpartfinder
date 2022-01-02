@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 import Head from "next/head";
-import { Flex, IconButton, Link } from "@chakra-ui/react";
-import { VscArrowUp } from "react-icons/vsc";
-import { animateScroll } from "react-scroll";
+// import { VscArrowUp } from "react-icons/vsc";
+// import { animateScroll } from "react-scroll";
 
-import Header from "./Header";
+// import Header from "./Header";
+import { Flex } from "./LayoutComponents";
+import { css } from "@emotion/react";
+import { mq } from "../../styles/styleConfig";
 
 const description =
   "Search for PC components and peripherals from major Indian stores!";
@@ -38,18 +40,18 @@ const Layout: React.FC<LayoutProps> = (props) => {
   }, [scrollListener]);
 
   return (
-    <Flex direction="column" margin="0 auto">
+    <Flex flexDirection="column" margin="auto">
       {/* For SEO */}
       <SEO page={page} title={title} />
 
       {/* Navbar */}
-      <Header />
+      {/* <Header /> */}
 
       {children}
-
+      {/* 
       <BackToTop visible={backToTopVisible} />
 
-      <Footer />
+      <Footer /> */}
     </Flex>
   );
 };
@@ -90,58 +92,64 @@ const SEO: React.FC<SEOProps> = (props) => (
   </Head>
 );
 
-// Back to top button
-interface BackToTopProps {
-  visible: boolean;
-}
+// // Back to top button
+// interface BackToTopProps {
+//   visible: boolean;
+// }
 
-const BackToTop: React.FC<BackToTopProps> = ({ visible }) => (
-  <IconButton
-    display={visible ? "flex" : "none"}
-    colorScheme="cyan"
-    icon={<VscArrowUp />}
-    position="fixed"
-    right={{ base: "50px", md: "70px" }}
-    bottom={{ base: "50px", md: "100px" }}
-    _hover={{ bgColor: "cyan.600", color: "gray.100" }}
-    _active={{
-      bgColor: "cyan.700",
-      color: "gray.100"
-    }}
-    aria-label="Click on this button to scroll to the top of the page."
-    onClick={() => animateScroll.scrollToTop()}
-  />
-);
+// const BackToTop: React.FC<BackToTopProps> = ({ visible }) => (
+//   <IconButton
+//     display={visible ? "flex" : "none"}
+//     colorScheme="cyan"
+//     icon={<VscArrowUp />}
+//     position="fixed"
+//     right={{ base: "50px", md: "70px" }}
+//     bottom={{ base: "50px", md: "100px" }}
+//     _hover={{ bgColor: "cyan.600", color: "gray.100" }}
+//     _active={{
+//       bgColor: "cyan.700",
+//       color: "gray.100"
+//     }}
+//     aria-label="Click on this button to scroll to the top of the page."
+//     onClick={() => animateScroll.scrollToTop()}
+//   />
+// );
 
 interface ContainerProps {
   // Other style props
   [OtherProps: string]: unknown;
 }
 export const Container: React.FC<ContainerProps> = (props) => {
+  const { children, otherProps } = props;
   return (
     <Flex
-      direction="column"
-      marginX="auto"
-      marginTop={5}
-      minH="80vh"
-      minW="75vw"
-      maxW={{ base: "95vw", md: "75vw" }}
-      padding={{ base: 5, md: 10 }}
-      {...props}
+      flexDirection="column"
+      margin="50px auto 0"
+      padding="50px"
+      css={css`
+        min-height: 80vh;
+        min-width: 75vw;
+        max-width: 75vw;
+        ${mq["sm"]} {
+          max-width: 95vw;
+          padding: 20px;
+        }
+      `}
+      {...otherProps}
     >
-      {props.children}
+      {children}
     </Flex>
   );
 };
 
-const Footer: React.FC = () => (
-  <Flex
-    paddingX={10}
-    paddingY={5}
-    direction="row"
-    justifyContent={{ base: "space-between", md: "space-evenly" }}
-  >
-    <Link href="https://gokulv.netlify.app">Gokul Viswanath</Link>
-    <Link href="https://github.com/1Gokul/pcpartfinder">GitHub repo</Link>
-  </Flex>
-);
+// const Footer: React.FC = () => (
+//   <Flex
+//     paddingX={10}
+//     paddingY={5}
+//     direction="row"
+//     justifyContent={{ base: "space-between", md: "space-evenly" }}
+//   >
+//     <Link href="https://gokulv.netlify.app">Gokul Viswanath</Link>
+//     <Link href="https://github.com/1Gokul/pcpartfinder">GitHub repo</Link>
+//   </Flex>
+// );
