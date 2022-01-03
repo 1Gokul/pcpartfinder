@@ -41,8 +41,8 @@ const Layout: React.FC<LayoutProps> = (props) => {
 
   return (
     <Flex
+      flexDirection="column"
       css={css`
-        flex-direction: column;
         margin: 0 auto;
       `}
     >
@@ -128,15 +128,13 @@ export const Container: React.FC<ContainerProps> = (props) => {
   const { children, otherProps } = props;
   return (
     <Flex
+      margin="50px auto 0"
+      padding="20px"
       css={css`
-        flex-direction: row;
-        margin: 50px auto 0;
         min-height: 80vh;
         min-width: 75vw;
-        ${mq["sm"]} {
-          max-width: 95vw;
-          padding: 20px;
-        }
+        max-width: 95vw;
+
         ${mq["md"]} {
           padding: 30px;
           max-width: 75vw;

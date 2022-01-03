@@ -1,7 +1,7 @@
 import { IoSunnySharp, IoMoonSharp } from "react-icons/io5";
 import React, { useEffect, useState } from "react";
 import { css, SerializedStyles } from "@emotion/react";
-import { Flex } from "./LayoutComponents";
+import { Flex, Icon } from "./LayoutComponents";
 
 interface themeTogglerProps {
   styles: SerializedStyles;
@@ -21,12 +21,14 @@ const ThemeToggler: React.FC<themeTogglerProps> = ({ styles }) => {
       css={css`
         align-items: center;
         text-transform: capitalize;
-        border-right: 1px solid var(--color-border-gray);
         ${styles}
       `}
       onClick={toggleTheme}
     >
-      {theme === "light" ? <IoSunnySharp /> : <IoMoonSharp />}
+      {theme}
+      <Icon margin="0 10px">
+        {theme === "light" ? <IoSunnySharp /> : <IoMoonSharp />}
+      </Icon>
     </Flex>
   );
 };
