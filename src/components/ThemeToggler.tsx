@@ -8,10 +8,12 @@ interface themeTogglerProps {
 }
 
 const ThemeToggler: React.FC<themeTogglerProps> = ({ styles }) => {
-  const [theme, setTheme] = useState<string>("dark");
+  const [theme, setTheme] = useState<string>(document.body.dataset.theme);
 
   useEffect(() => {
     document.body.dataset.theme = theme;
+    // Set the theme in local storage to prevent a flash.
+    window.localStorage.setItem("theme", theme);
   }, [theme]);
 
   const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");

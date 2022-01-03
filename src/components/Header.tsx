@@ -1,13 +1,19 @@
 import { useState } from "react";
+import { css, SerializedStyles } from "@emotion/react";
 import { VscMenu, VscClose } from "react-icons/vsc";
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 
 import logo from "../../public/logo.svg";
 import { Button, Flex } from "./LayoutComponents";
 import { mq } from "../../styles/styleConfig";
-import { css, SerializedStyles } from "@emotion/react";
-import ThemeToggler from "./ThemeToggler";
+
+// Import the theme toggler without SSR
+// https://electricanimals.com/articles/next-js-dark-mode-toggle
+const ThemeToggler = dynamic(() => import("./ThemeToggler"), {
+  ssr: false
+});
 
 // Links on the navbar
 const navLinks: Array<{ text: string; url: string }> = [
