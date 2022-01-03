@@ -3,7 +3,7 @@ import Head from "next/head";
 // import { VscArrowUp } from "react-icons/vsc";
 // import { animateScroll } from "react-scroll";
 
-// import Header from "./Header";
+import Header from "./Header";
 import { Flex } from "./LayoutComponents";
 import { css } from "@emotion/react";
 import { mq } from "../../styles/styleConfig";
@@ -40,12 +40,17 @@ const Layout: React.FC<LayoutProps> = (props) => {
   }, [scrollListener]);
 
   return (
-    <Flex flexDirection="column" margin="auto">
+    <Flex
+      css={css`
+        flex-direction: column;
+        margin: 0 auto;
+      `}
+    >
       {/* For SEO */}
       <SEO page={page} title={title} />
 
       {/* Navbar */}
-      {/* <Header /> */}
+      <Header />
 
       {children}
       {/* 
@@ -123,16 +128,18 @@ export const Container: React.FC<ContainerProps> = (props) => {
   const { children, otherProps } = props;
   return (
     <Flex
-      flexDirection="column"
-      margin="50px auto 0"
-      padding="50px"
       css={css`
+        flex-direction: row;
+        margin: 50px auto 0;
         min-height: 80vh;
         min-width: 75vw;
-        max-width: 75vw;
         ${mq["sm"]} {
           max-width: 95vw;
           padding: 20px;
+        }
+        ${mq["md"]} {
+          padding: 30px;
+          max-width: 75vw;
         }
       `}
       {...otherProps}
