@@ -3,8 +3,8 @@ import Head from "next/head";
 // import { VscArrowUp } from "react-icons/vsc";
 // import { animateScroll } from "react-scroll";
 
-import Header from "./Header";
-import { Flex } from "./LayoutComponents";
+import Header from "./Header/Header";
+import { Flex } from "./StyledComponents";
 import { css } from "@emotion/react";
 import { mq } from "../../styles/styleConfig";
 
