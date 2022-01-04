@@ -12,47 +12,45 @@ const ThemeToggler = dynamic(() => import("../ThemeToggler"), {
   ssr: false
 });
 
+const mobileNavMenuStyles = css`
+  margin: 0 10px;
+  padding: 50px;
+  text-align: left;
+  font-size: larger;
+  align-items: center;
+`;
+
 // Mobile Navbar
 interface MobileNavProps {
   expanded: boolean;
   pageLinks: Array<{ text: string; url: string }>;
 }
 
-const MobileNavMenu: React.FC<MobileNavProps> = (props) => {
-  const mobileNavMenuStyles = css`
-    margin: 0 10px;
-    padding: 50px;
-    text-align: left;
-    font-size: larger;
-    align-items: center;
-  `;
+const MobileNavMenu: React.FC<MobileNavProps> = (props) => (
+  <Flex
+    display={props.expanded ? "flex" : "none"}
+    flexDirection="column"
+    css={css`
+      height: 100vh;
 
-  return (
-    <Flex
-      display={props.expanded ? "flex" : "none"}
-      flexDirection="column"
-      css={css`
-        height: 100vh;
+      ${mq["md"]} {
+        display: none;
+      }
+    `}
+  >
+    {props.pageLinks.map((pageLink) => (
+      <NavLink
+        key={pageLink.text}
+        url={pageLink.url}
+        styles={mobileNavMenuStyles}
+      >
+        {pageLink.text}
+      </NavLink>
+    ))}
 
-        ${mq["md"]} {
-          display: none;
-        }
-      `}
-    >
-      {props.pageLinks.map((pageLink) => (
-        <NavLink
-          key={pageLink.text}
-          url={pageLink.url}
-          styles={mobileNavMenuStyles}
-        >
-          {pageLink.text}
-        </NavLink>
-      ))}
-
-      <ThemeToggler styles={mobileNavMenuStyles} />
-    </Flex>
-  );
-};
+    <ThemeToggler styles={mobileNavMenuStyles} />
+  </Flex>
+);
 
 export default MobileNavMenu;
 
