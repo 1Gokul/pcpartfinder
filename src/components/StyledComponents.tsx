@@ -10,13 +10,11 @@ interface boxOptions {
 }
 
 export const Box = styled("div")<boxOptions>`
-  display: ${(props) => (props.display ? props.display : "inline")};
-  background-color: ${(props) =>
-    props.bgColor ? props.bgColor : "var(--color-bg-primary)"};
-  color: ${(props) =>
-    props.color ? props.color : "var(--color-text-primary)"};
-  margin: ${(props) => (props.margin ? props.margin : 0)};
-  padding: ${(props) => (props.padding ? props.padding : 0)};
+  display: ${(props) => props.display || "inline"};
+  background-color: ${(props) => props.bgColor || "var(--color-bg-primary)"};
+  color: ${(props) => props.color || "var(--color-text-primary)"};
+  margin: ${(props) => props.margin || 0};
+  padding: ${(props) => props.padding || 0};
 
   transition: background-color 0.2s linear;
 `;
@@ -29,12 +27,10 @@ interface flexOptions extends boxOptions {
 }
 
 export const Flex = styled(Box)<flexOptions>`
-  display: ${(props) => (props.display ? props.display : "flex")};
-  flex-direction: ${(props) =>
-    props.flexDirection ? props.flexDirection : "row"};
-  align-items: ${(props) => (props.alignItems ? props.alignItems : "normal")};
-  justify-content: ${(props) =>
-    props.justifyContent ? props.justifyContent : "normal"};
+  display: ${(props) => props.display || "flex"};
+  flex-direction: ${(props) => props.flexDirection || "row"};
+  align-items: ${(props) => props.alignItems || "normal"};
+  justify-content: ${(props) => props.justifyContent || "normal"};
   ${Box}
 `;
 
