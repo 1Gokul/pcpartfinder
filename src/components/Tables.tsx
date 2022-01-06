@@ -14,10 +14,10 @@ import {
 } from "@chakra-ui/react";
 import { RiExternalLinkLine } from "react-icons/ri";
 
-interface tableProps {
+type tableProps = {
   items: { name: string; url: string; price: number; store: string }[];
   [otherProps: string]: unknown;
-}
+};
 
 const Table: React.FC<tableProps> = (props) => {
   const { items, ...otherProps } = props;
@@ -79,9 +79,9 @@ const Table: React.FC<tableProps> = (props) => {
 
 export default Table;
 
-interface tableWithHeadingProps extends tableProps {
+type tableWithHeadingProps = tableProps & {
   title: string;
-}
+};
 
 export const TableWithHeading: React.FC<tableWithHeadingProps> = (props) => {
   const { title, items, ...otherProps } = props;

@@ -5,7 +5,7 @@ import Layout, { Container } from "../src/components/Layout";
 // import ProductSearchForm from "../src/components/ProductSearchForm";
 // import { resultType, SearchResults } from "../src/components/SearchResults";
 
-const Home: React.FC = () => {
+const Home = () => {
   // const [results, setResults] = useState<resultType>(null);
   // const [searchString, setSearchString] = useState<string>();
   // const [resultLoading, setResultLoading] = useState<boolean>(false);

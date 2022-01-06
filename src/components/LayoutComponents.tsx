@@ -3,16 +3,14 @@ import Link from "next/link";
 import { Flex } from "./StyledComponents";
 
 // Navlink
-interface NavLinkProps {
+type NavLinkProps = {
   // Styles for the link
   styles: SerializedStyles;
-
+  children: React.ReactNode;
   url: string;
-}
+};
 
-export const NavLink: React.FC<NavLinkProps> = (props) => {
-  const { children, url, styles } = props;
-
+export const NavLink = ({ children, url, styles }: NavLinkProps) => {
   return (
     <Link href={url} passHref>
       <Flex

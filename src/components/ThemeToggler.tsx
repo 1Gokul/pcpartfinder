@@ -4,11 +4,11 @@ import { css, SerializedStyles } from "@emotion/react";
 
 import { Flex, Icon } from "./StyledComponents";
 
-interface themeTogglerProps {
+type themeTogglerProps = {
   styles: SerializedStyles;
-}
+};
 
-const ThemeToggler: React.FC<themeTogglerProps> = ({ styles }) => {
+const ThemeToggler = ({ styles }: themeTogglerProps) => {
   const [theme, setTheme] = useState<string | undefined>(
     document.body.dataset.theme
   );

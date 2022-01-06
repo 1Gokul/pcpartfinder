@@ -5,7 +5,7 @@ import { GoPrimitiveDot, GoChevronUp, GoChevronDown } from "react-icons/go";
 import Table, { TableWithHeading } from "./Tables";
 
 // Structure of the JSON returned from the server after a search request.
-export interface resultType {
+export type resultType = {
   n_results: number;
   content: [
     {
@@ -15,11 +15,11 @@ export interface resultType {
       ];
     }
   ];
-}
+};
 
-interface SearchResultsProps {
+type SearchResultsProps = {
   results: resultType;
-}
+};
 
 export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
   /* The value of "sort" determines the format in which the results are shown

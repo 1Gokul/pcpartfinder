@@ -26,12 +26,12 @@ const desktopNavlinkStyles = css`
   }
 `;
 
-interface desktopMenuProps {
+type desktopMenuProps = {
   pageLinks: Array<{ text: string; url: string }>;
-}
+};
 
 // Desktop Navbar Menu
-const DesktopNavMenu: React.FC<desktopMenuProps> = ({ pageLinks }) => (
+const DesktopNavMenu = ({ pageLinks }: desktopMenuProps) => (
   <Flex
     margin="0 50px 0 0"
     display="none"

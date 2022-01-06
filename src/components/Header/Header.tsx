@@ -7,7 +7,7 @@ import DesktopNavMenu from "./DesktopNavMenu";
 import MobileNavMenu, { HamburgerMenuToggler } from "./MobileNavMenu";
 import { Logo } from "./Logo";
 
-const Header: React.FC = () => {
+const Header = () => {
   // Links on the navbar
   const pageLinks: Array<{ text: string; url: string }> = [
     { text: "search", url: "/" },

@@ -14,21 +14,21 @@ const ThemeToggler = dynamic(() => import("../ThemeToggler"), {
 
 const mobileNavMenuStyles = css`
   margin: 0 10px;
-  padding: 50px;
+  padding: 35px 50px;
   text-align: left;
   font-size: larger;
   align-items: center;
 `;
 
 // Mobile Navbar
-interface MobileNavProps {
+type MobileNavProps = {
   expanded: boolean;
   pageLinks: Array<{ text: string; url: string }>;
-}
+};
 
-const MobileNavMenu: React.FC<MobileNavProps> = (props) => (
+const MobileNavMenu = ({ expanded, pageLinks }: MobileNavProps) => (
   <Flex
-    display={props.expanded ? "flex" : "none"}
+    display={expanded ? "flex" : "none"}
     flexDirection="column"
     css={css`
       height: 100vh;
@@ -38,7 +38,7 @@ const MobileNavMenu: React.FC<MobileNavProps> = (props) => (
       }
     `}
   >
-    {props.pageLinks.map((pageLink) => (
+    {pageLinks.map((pageLink) => (
       <NavLink
         key={pageLink.text}
         url={pageLink.url}
@@ -55,12 +55,15 @@ const MobileNavMenu: React.FC<MobileNavProps> = (props) => (
 export default MobileNavMenu;
 
 // Mobile menu toggler
-interface HamburgerProps {
+type HamburgerProps = {
   expanded: boolean;
   toggleExpanded: () => void;
-}
+};
 
-export const HamburgerMenuToggler: React.FC<HamburgerProps> = (props) => (
+export const HamburgerMenuToggler = ({
+  expanded,
+  toggleExpanded
+}: HamburgerProps) => (
   <Button
     aria-label="Click this button to toggle the menu."
     css={css`
@@ -68,8 +71,8 @@ export const HamburgerMenuToggler: React.FC<HamburgerProps> = (props) => (
         display: none;
       }
     `}
-    onClick={props.toggleExpanded}
+    onClick={toggleExpanded}
   >
-    {props.expanded ? <VscClose size={40} /> : <VscMenu size={40} />}
+    {expanded ? <VscClose size={40} /> : <VscMenu size={40} />}
   </Button>
 );

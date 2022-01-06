@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Button, Flex, Icon, Input, useStyleConfig } from "@chakra-ui/react";
 import { VscArrowRight } from "react-icons/vsc";
 
-interface FormProps {
+type FormProps = {
   submitQuery: (inputQuery: string) => void;
   isDisabled: boolean;
-}
+};
 
 const ProductSearchForm: React.FC<FormProps> = (props) => {
   const [inputQuery, setInputQuery] = useState<string>("");

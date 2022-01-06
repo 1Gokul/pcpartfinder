@@ -8,7 +8,7 @@ import { Flex } from "../StyledComponents";
 const placeholderURL =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkWLO2HgAD5wHaLz4gtgAAAABJRU5ErkJggg==";
 
-export const Logo: React.FC = () => {
+export const Logo = () => {
   return (
     <Flex padding="0 40px">
       <Link href="/" passHref>

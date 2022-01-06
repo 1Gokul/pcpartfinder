@@ -11,14 +11,13 @@ import { mq } from "../../styles/styleConfig";
 const description =
   "Search for PC components and peripherals from major Indian stores!";
 
-interface LayoutProps {
+type LayoutProps = {
   title: string;
   page: string;
-}
+  children: React.ReactNode;
+};
 
-const Layout: React.FC<LayoutProps> = (props) => {
-  const { title, page, children } = props;
-
+const Layout = ({ title, page, children }: LayoutProps) => {
   /* For the "Back To Top" button. It appears after scrolling down
   a bit and disappears when we scroll to the top. */
   const [backToTopVisible, setBackToTopVisible] = useState<boolean>(false);
@@ -63,12 +62,12 @@ const Layout: React.FC<LayoutProps> = (props) => {
 
 export default Layout;
 
-interface SEOProps {
+type SEOProps = {
   page: string;
   title: string;
-}
+};
 
-const SEO: React.FC<SEOProps> = (props) => (
+const SEO = ({ page, title }: SEOProps) => (
   <Head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charSet="utf-8" />
@@ -84,21 +83,21 @@ const SEO: React.FC<SEOProps> = (props) => (
     <meta property="og:description" content={description} key="ogdesc" />
     <meta
       property="og:url"
-      content={`${process.env.NEXT_PUBLIC_SITE_URL}${props.page}`}
+      content={`${process.env.NEXT_PUBLIC_SITE_URL}${page}`}
       key="ogurl"
     />
     <meta
       property="og:title"
-      content={props.title.split("-").join(" ")}
+      content={title.split("-").join(" ")}
       key="ogtitle"
     />
 
-    <title>{props.title} - PCPartFinder</title>
+    <title>{title} - PCPartFinder</title>
   </Head>
 );
 
 // // Back to top button
-// interface BackToTopProps {
+// type BackToTopProps {
 //   visible: boolean;
 // }
 
@@ -120,12 +119,10 @@ const SEO: React.FC<SEOProps> = (props) => (
 //   />
 // );
 
-interface ContainerProps {
-  // Other style props
-  [OtherProps: string]: unknown;
-}
-export const Container: React.FC<ContainerProps> = (props) => {
-  const { children, otherProps } = props;
+type ContainerProps = {
+  children: React.ReactNode;
+};
+export const Container = ({ children, ...otherProps }: ContainerProps) => {
   return (
     <Flex
       margin="50px auto 0"
