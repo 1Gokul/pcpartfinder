@@ -10,7 +10,12 @@ const placeholderURL =
 
 export const Logo = () => {
   return (
-    <Flex padding="0 40px">
+    <Flex
+      padding="0 40px"
+      css={css`
+        z-index: 2;
+      `}
+    >
       <Link href="/" passHref>
         <a>
           <Flex

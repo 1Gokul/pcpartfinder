@@ -14,10 +14,12 @@ const ThemeToggler = dynamic(() => import("../ThemeToggler"), {
 
 const mobileNavMenuStyles = css`
   margin: 0 10px;
-  padding: 35px 50px;
+  padding: 25px 15px;
   text-align: left;
   font-size: larger;
   align-items: center;
+  font-weight: 500;
+  background-color: transparent;
 `;
 
 // Mobile Navbar
@@ -31,7 +33,14 @@ const MobileNavMenu = ({ expanded, pageLinks }: MobileNavProps) => (
     display={expanded ? "flex" : "none"}
     flexDirection="column"
     css={css`
-      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      margin-top: 7rem;
+      z-index: 1;
+      background-color: var(--color-bg-primary-translucent);
 
       ${mq["md"]} {
         display: none;
@@ -67,6 +76,7 @@ export const HamburgerMenuToggler = ({
   <Button
     aria-label="Click this button to toggle the menu."
     css={css`
+      z-index: 2;
       ${mq["md"]} {
         display: none;
       }
