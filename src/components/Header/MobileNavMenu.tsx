@@ -13,7 +13,6 @@ const ThemeToggler = dynamic(() => import("../ThemeToggler"), {
 });
 
 const mobileNavMenuStyles = css`
-  margin: 0 10px;
   padding: 25px 15px;
   text-align: left;
   font-size: larger;
