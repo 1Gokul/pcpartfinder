@@ -29,11 +29,11 @@ const Header = () => {
         alignItems="center"
         css={css`
           border-bottom: 1px solid var(--color-border-gray);
-          padding-right: 20px;
+          padding-right: 1.25rem;
           height: 12vh;
 
           ${mq["md"]} {
-            padding-right: 10px;
+            padding-right: 0.625rem;
             height: 20vh;
           }
         `}

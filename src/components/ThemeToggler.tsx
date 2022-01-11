@@ -31,7 +31,7 @@ const ThemeToggler = ({ styles }: themeTogglerProps) => {
       onClick={toggleTheme}
     >
       {theme}
-      <Icon margin="0 10px">
+      <Icon margin="0 0.625rem">
         {theme === "light" ? <IoSunnySharp /> : <IoMoonSharp />}
       </Icon>
     </Flex>

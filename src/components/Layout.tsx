@@ -1,11 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import Head from "next/head";
-// import { VscArrowUp } from "react-icons/vsc";
-// import { animateScroll } from "react-scroll";
+import { css } from "@emotion/react";
 
 import Header from "./Header/Header";
 import { Flex } from "./StyledComponents";
-import { css } from "@emotion/react";
 import { mq } from "../../styles/styleConfig";
 
 const description =
@@ -39,12 +37,7 @@ const Layout = ({ title, page, children }: LayoutProps) => {
   }, [scrollListener]);
 
   return (
-    <Flex
-      flexDirection="column"
-      css={css`
-        margin: 0 auto;
-      `}
-    >
+    <Flex flexDirection="column" margin="0 auto">
       {/* For SEO */}
       <SEO page={page} title={title} />
 
@@ -125,15 +118,16 @@ type ContainerProps = {
 export const Container = ({ children, ...otherProps }: ContainerProps) => {
   return (
     <Flex
-      margin="50px auto 0"
-      padding="20px"
+      flexDirection="column"
+      margin="1.25rem auto 0"
+      padding="1.25rem"
       css={css`
         min-height: 80vh;
         min-width: 75vw;
         max-width: 95vw;
 
         ${mq["md"]} {
-          padding: 30px;
+          padding: 2.5rem;
           max-width: 75vw;
         }
       `}

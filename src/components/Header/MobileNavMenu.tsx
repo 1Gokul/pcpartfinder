@@ -13,7 +13,7 @@ const ThemeToggler = dynamic(() => import("../ThemeToggler"), {
 });
 
 const mobileNavMenuStyles = css`
-  padding: 25px;
+  padding: 1.56rem;
   text-align: left;
   font-size: larger;
   align-items: center;
@@ -76,6 +76,7 @@ export const HamburgerMenuToggler = ({
     aria-label="Click this button to toggle the menu."
     css={css`
       z-index: 2;
+      background: transparent;
       ${mq["md"]} {
         display: none;
       }

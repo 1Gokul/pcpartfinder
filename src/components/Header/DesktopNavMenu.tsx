@@ -17,7 +17,7 @@ const desktopNavlinkStyles = css`
   justify-content: center;
   align-items: center;
   border-left: 1px solid var(--color-border-gray);
-  width: 160px;
+  width: 10rem;
   cursor: pointer;
   &:hover {
     text-decoration: none;
@@ -33,7 +33,7 @@ type desktopMenuProps = {
 // Desktop Navbar Menu
 const DesktopNavMenu = ({ pageLinks }: desktopMenuProps) => (
   <Flex
-    margin="0 50px 0 0"
+    margin="0 3.125rem 0 0"
     display="none"
     css={css`
       height: 100%;

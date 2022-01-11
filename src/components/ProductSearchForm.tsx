@@ -1,6 +1,9 @@
+import { css } from "@emotion/react";
 import React, { useState } from "react";
-import { Button, Flex, Icon, Input, useStyleConfig } from "@chakra-ui/react";
 import { VscArrowRight } from "react-icons/vsc";
+
+import { mq } from "../../styles/styleConfig";
+import { Button, Flex, Icon, Input } from "./StyledComponents";
 
 type FormProps = {
   submitQuery: (inputQuery: string) => void;
@@ -10,38 +13,61 @@ type FormProps = {
 const ProductSearchForm: React.FC<FormProps> = (props) => {
   const [inputQuery, setInputQuery] = useState<string>("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     props.submitQuery(inputQuery);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <Flex marginY={5} direction={{ base: "column", md: "row" }} width="100%">
+      <Flex
+        margin="1.25rem 0"
+        flexDirection="column"
+        css={css`
+          width: 100%;
+          ${mq["md"]} {
+            flex-direction: row;
+          }
+        `}
+      >
         <Input
           value={inputQuery}
-          onChange={({ target }) => setInputQuery(target.value)}
-          isRequired={true}
-          isDisabled={props.isDisabled}
-          size="xl"
-          marginRight={5}
-          variant="filled"
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setInputQuery(event.target.value)
+          }
+          required={true}
           placeholder="Search..."
-          border="2px"
-          borderColor="gray.400"
-          focusBorderColor="cyan.600"
+          spellCheck="false"
+          disabled={props.isDisabled}
+          css={css`
+            height: 4rem;
+            margin-right: 1.25rem;
+            font-size: 2.5rem;
+            width: 100%;
+            ${mq["md"]} {
+              height: 5rem;
+              width: 100%;
+            }
+          `}
         />
         <Button
           type="submit"
-          padding={10}
-          fontSize="xl"
-          marginTop={{ base: 5, md: 0 }}
-          alignSelf="center"
-          sx={useStyleConfig("CustomButton")}
-          isDisabled={props.isDisabled}
+          css={css`
+            margin-top: 1rem;
+            padding: 1.5rem;
+            font-size: 1.25rem;
+            align-self: center;
+            ${mq["md"]} {
+              margin-top: 0;
+              padding: 1.8rem 2.5rem;
+            }
+          `}
+          disabled={props.isDisabled}
         >
           Search
-          <Icon as={VscArrowRight} marginTop={0.5} marginLeft={2} />
+          <Icon margin="0.125rem 0 0 0.5rem">
+            <VscArrowRight />
+          </Icon>
         </Button>
       </Flex>
     </form>

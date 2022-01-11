@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+
 import { mq } from "../../../styles/styleConfig";
 import { Flex } from "../StyledComponents";
 
@@ -11,7 +11,7 @@ const placeholderURL =
 export const Logo = () => {
   return (
     <Flex
-      padding="0 40px"
+      padding="0 2.5rem"
       css={css`
         z-index: 2;
       `}
@@ -20,10 +20,10 @@ export const Logo = () => {
         <a>
           <Flex
             css={css`
-              width: 200px;
+              width: 12.5rem;
 
               ${mq["md"]} {
-                width: 300px;
+                width: 18.75rem;
               }
             `}
           >
