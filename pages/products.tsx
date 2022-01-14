@@ -1,12 +1,13 @@
-import { Heading } from "@chakra-ui/layout";
-
 import Layout, { Container } from "../src/components/Layout";
+import { Heading } from "../src/components/StyledComponents";
 
 const Products = () => {
   return (
     <Layout title="Products" page="/products">
       <Container>
-        <Heading size="2xl">Products (WIP)</Heading>
+        <Heading size="x2l" weight="extrabold">
+          Products (WIP)
+        </Heading>
       </Container>
     </Layout>
   );
