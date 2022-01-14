@@ -1,18 +1,17 @@
+import { css } from "@emotion/react";
+import { BiLinkExternal } from "react-icons/bi";
 import {
   Flex,
   Heading,
   Icon,
-  Link,
-  Text as ChakraText,
-  Table as ChakraTable,
+  StyledTable,
+  TextBox,
   Thead,
   Tbody,
-  TableCaption,
   Tr,
   Th,
   Td
-} from "@chakra-ui/react";
-import { RiExternalLinkLine } from "react-icons/ri";
+} from "./StyledComponents";
 
 type tableProps = {
   items: { name: string; url: string; price: number; store: string }[];
@@ -23,22 +22,13 @@ const Table: React.FC<tableProps> = (props) => {
   const { items, ...otherProps } = props;
 
   return (
-    <Flex overflowX="auto">
+    <Flex
+      css={css`
+        overflow-x: "auto";
+      `}
+    >
       {items.length ? (
-        <ChakraTable
-          variant="striped"
-          colorScheme="cyan"
-          border="2px"
-          borderColor="cyan.600"
-          {...otherProps}
-        >
-          <TableCaption
-            display={{ md: "none" }}
-            textAlign="left"
-            placement="top"
-          >
-            ← Swipe left if some columns are not visible
-          </TableCaption>
+        <StyledTable {...otherProps}>
           <Thead>
             <Tr>
               <Th>Product</Th>
@@ -50,7 +40,9 @@ const Table: React.FC<tableProps> = (props) => {
             {items.map((result) => (
               <Tr key={`${result.name}:${result.url}`}>
                 <Td>
-                  <ChakraText noOfLines={4}>{result.name}</ChakraText>
+                  <a href={result.url} target="_blank" rel="noreferrer">
+                    {result.name}
+                  </a>
                 </Td>
                 <Td>
                   <strong>
@@ -60,18 +52,18 @@ const Table: React.FC<tableProps> = (props) => {
                   </strong>
                 </Td>
                 <Td>
-                  <Link target="_blank" href={result.url}>
-                    <Icon as={RiExternalLinkLine} fontSize="2xl" />
-                  </Link>
+                  <a href={result.url} target="_blank" rel="noreferrer">
+                    <Icon margin="0.25rem 0">
+                      <BiLinkExternal size={20} />
+                    </Icon>
+                  </a>
                 </Td>
               </Tr>
             ))}
           </Tbody>
-        </ChakraTable>
+        </StyledTable>
       ) : (
-        <ChakraText size="xl">
-          Sorry, no matching products were found.
-        </ChakraText>
+        <TextBox size="xl">Sorry, no matching products were found.</TextBox>
       )}
     </Flex>
   );
@@ -88,19 +80,32 @@ export const TableWithHeading: React.FC<tableWithHeadingProps> = (props) => {
 
   if (items) {
     return (
-      <Flex direction="column" marginBottom={16}>
-        <Flex direction="row" alignItems="center">
-          <Heading size="xl" fontWeight="black" marginBottom={4}>
+      <Flex
+        flexDirection="column"
+        css={css`
+          margin-bottom: 4rem;
+        `}
+      >
+        <Flex flexDirection="row" alignItems="center">
+          <Heading
+            size="xl"
+            weight="800"
+            css={css`
+              margin-bottom: 1rem;
+            `}
+          >
             {title}
           </Heading>
-          <ChakraText
-            fontSize="sm"
-            marginLeft={8}
-            fontWeight="bold"
-            color="gray.500"
+          <TextBox
+            size="sm"
+            weight="bold"
+            color="var(--color-text-gray)"
+            css={css`
+              margin-left: 2rem;
+            `}
           >
             {items.length} {items.length !== 1 ? "MATCHES" : "ITEM"}
-          </ChakraText>
+          </TextBox>
         </Flex>
         {/* Have to render two separate tables, one for large screens and one for small screens
       as useMediaQuery does not work with SSR. */}

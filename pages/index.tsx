@@ -5,7 +5,7 @@ import { css } from "@emotion/react";
 import Layout, { Container } from "../src/components/Layout";
 import { Flex, Heading, TextBox } from "../src/components/StyledComponents";
 import ProductSearchForm from "../src/components/ProductSearchForm";
-import { resultType } from "../src/components/SearchResults";
+import { resultType, SearchResults } from "../src/components/SearchResults";
 
 const Home = () => {
   const [results, setResults] = useState<resultType | null>(null);
@@ -48,7 +48,7 @@ const Home = () => {
           >
             Find graphics cards available in major Indian stores.
           </Heading>
-          <TextBox color="#718096">
+          <TextBox color="var(--color-text-gray)">
             We're working on providing more PC components soon!
           </TextBox>
           <ProductSearchForm
@@ -75,7 +75,7 @@ const Home = () => {
             /> */}
           </Flex>
         ) : (
-          ""
+          <SearchResults results={results} />
         )}
       </Container>
     </Layout>

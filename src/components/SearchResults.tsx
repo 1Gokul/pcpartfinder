@@ -19,16 +19,15 @@ export interface resultType {
 }
 
 type searchResultsProps = {
-  results: resultType;
+  results: resultType | null;
 };
 
 export const SearchResults = ({ results }: searchResultsProps) => {
   /* The value of "sort" determines the format in which the results are shown
     Results by store (sort=0), ascending order(sort=1), descending order(sort=2)*/
   const [sort, setSort] = useState<number>(0);
-  // const filterButtonStyles = useStyleConfig("CustomButton");
 
-  const sortSymbols = [GoPrimitiveDot, GoChevronUp, GoChevronDown];
+  const sortSymbols = [<GoPrimitiveDot />, <GoChevronUp />, <GoChevronDown />];
 
   if (results) {
     if (!results.n_results) {
@@ -52,15 +51,16 @@ export const SearchResults = ({ results }: searchResultsProps) => {
               margin-bottom: 1.25rem;
             `}
           >
-            <TextBox color="gray.500" weight="bold">
-              {results.n_results} RESULTS
+            <TextBox color="var(--color-text-gray)" weight="bold">
+              {results.n_results} RESULTS FOUND
             </TextBox>
             {/*  Button to cycle through values of "sort" */}
             <Button
+              aria-label="Click this button to change the sort type."
               css={css`
                 align-self: flex-end;
-                font-size: x-large;
-                padding: 1.5rem;
+                font-size: larger;
+                padding: 1rem 1.75rem;
                 margin-bottom: 1.25rem;
               `}
               onClick={() => setSort((sort + 1) % 3)}

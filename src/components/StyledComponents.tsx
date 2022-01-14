@@ -50,7 +50,7 @@ export const Button = styled("button")`
   font-family: inherit;
   transition: all 0.2s linear;
   position: relative;
-  background-color: var(--color-button-primary);
+  background-color: var(--color-theme-primary);
   color: var(--color-text-secondary);
   &:hover {
     filter: brightness(85%);
@@ -59,7 +59,7 @@ export const Button = styled("button")`
 
 export const Icon = styled(Flex)`
   background-color: transparent;
-  color: inherit;
+  color: ${(props) => props.color || "inherit"};
 `;
 
 interface textOptions {
@@ -78,6 +78,7 @@ export const Heading = styled("h1")<textOptions>`
   font-size: ${(props) =>
     props.size ? fontSizes[headingSizes[props.size].mobile] : "lg"};
   line-height: 1;
+  font-weight: ${(props) => props.weight || "normal"};
 
   ${mq["md"]} {
     font-size: ${(props) =>
@@ -103,5 +104,41 @@ export const Input = styled("input")`
   &:focus {
     outline: none;
     border-color: #009fb8;
+  }
+`;
+
+export const StyledTable = styled("table")`
+  border: 2px solid #00cec3;
+  width: 100%;
+  border-collapse: collapse;
+`;
+export const Thead = styled("thead")`
+  text-align: left;
+`;
+export const Tbody = styled("tbody")`
+  tr:nth-of-type(odd) {
+    background-color: var(--color-theme-primary);
+  }
+`;
+export const Tr = styled("tr")`
+  display: table-row;
+`;
+export const Th = styled("th")`
+  text-transform: uppercase;
+  color: var(--color-text-gray);
+  padding: 0.5rem 1rem;
+  font-size: ${fontSizes["sm"]};
+  ${mq["md"]} {
+    padding: 1rem 2.5rem;
+  }
+`;
+export const Td = styled("td")`
+  padding: 0.5rem 1rem;
+  font-size: ${fontSizes["sm"]};
+  align-self: center;
+  align-items: center;
+  ${mq["md"]} {
+    font-size: ${fontSizes["md"]};
+    padding: 1.5rem 2.5rem;
   }
 `;
