@@ -149,10 +149,14 @@ const Footer = () => (
       }
     `}
   >
-    <a target="_blank" href="https://gokulv.netlify.app">
+    <a target="_blank" href="https://gokulv.netlify.app" rel="noreferrer">
       Gokul Viswanath
     </a>
-    <a target="_blank" href="https://github.com/1Gokul/pcpartfinder">
+    <a
+      target="_blank"
+      href="https://github.com/1Gokul/pcpartfinder"
+      rel="noreferrer"
+    >
       GitHub repo
     </a>
   </Flex>

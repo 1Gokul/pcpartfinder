@@ -17,7 +17,7 @@ class MyDocument extends Document {
   `;
 
     return (
-      <Html>
+      <Html lang="en">
         <Head />
         <body>
           <script dangerouslySetInnerHTML={{ __html: setInitialTheme }} />
