@@ -45,10 +45,9 @@ const Layout = ({ title, page, children }: LayoutProps) => {
       <Header />
 
       {children}
-      {/* 
-      <BackToTop visible={backToTopVisible} />
+      {/* <BackToTop visible={backToTopVisible} /> */}
 
-      <Footer /> */}
+      <Footer />
     </Flex>
   );
 };
@@ -138,14 +137,23 @@ export const Container = ({ children, ...otherProps }: ContainerProps) => {
   );
 };
 
-// const Footer: React.FC = () => (
-//   <Flex
-//     paddingX={10}
-//     paddingY={5}
-//     direction="row"
-//     justifyContent={{ base: "space-between", md: "space-evenly" }}
-//   >
-//     <Link href="https://gokulv.netlify.app">Gokul Viswanath</Link>
-//     <Link href="https://github.com/1Gokul/pcpartfinder">GitHub repo</Link>
-//   </Flex>
-// );
+const Footer = () => (
+  <Flex
+    padding="2.5rem 4rem"
+    flexDirection="row"
+    justifyContent="space-between"
+    css={css`
+      ${mq["md"]} {
+        justify-content: space-evenly;
+        padding: 2rem 1.25rem;
+      }
+    `}
+  >
+    <a target="_blank" href="https://gokulv.netlify.app">
+      Gokul Viswanath
+    </a>
+    <a target="_blank" href="https://github.com/1Gokul/pcpartfinder">
+      GitHub repo
+    </a>
+  </Flex>
+);
