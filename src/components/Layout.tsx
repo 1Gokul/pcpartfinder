@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import Head from "next/head";
 import { css } from "@emotion/react";
+import { FiArrowUp } from "react-icons/fi";
+import { animateScroll } from "react-scroll";
 
 import Header from "./Header/Header";
-import { Flex } from "./StyledComponents";
+import { Button, Flex } from "./StyledComponents";
 import { mq } from "../../styles/styleConfig";
 
 const description =
@@ -24,7 +26,7 @@ const Layout = ({ title, page, children }: LayoutProps) => {
     const scrollAmount =
       document.body.scrollTop || document.documentElement.scrollTop;
 
-    if (scrollAmount > 100) {
+    if (scrollAmount > 200) {
       if (!backToTopVisible) setBackToTopVisible(true);
     } else if (scrollAmount < 100) {
       if (backToTopVisible) setBackToTopVisible(false);
@@ -45,7 +47,7 @@ const Layout = ({ title, page, children }: LayoutProps) => {
       <Header />
 
       {children}
-      {/* <BackToTop visible={backToTopVisible} /> */}
+      <BackToTop visible={backToTopVisible} />
 
       <Footer />
     </Flex>
@@ -88,28 +90,33 @@ const SEO = ({ page, title }: SEOProps) => (
   </Head>
 );
 
-// // Back to top button
-// type BackToTopProps {
-//   visible: boolean;
-// }
+// Back to top button
+type backToTopProps = {
+  visible: boolean;
+};
 
-// const BackToTop: React.FC<BackToTopProps> = ({ visible }) => (
-//   <IconButton
-//     display={visible ? "flex" : "none"}
-//     colorScheme="cyan"
-//     icon={<VscArrowUp />}
-//     position="fixed"
-//     right={{ base: "50px", md: "70px" }}
-//     bottom={{ base: "50px", md: "100px" }}
-//     _hover={{ bgColor: "cyan.600", color: "gray.100" }}
-//     _active={{
-//       bgColor: "cyan.700",
-//       color: "gray.100"
-//     }}
-//     aria-label="Click on this button to scroll to the top of the page."
-//     onClick={() => animateScroll.scrollToTop()}
-//   />
-// );
+const BackToTop = ({ visible }: backToTopProps) => (
+  <Button
+    css={css`
+      display: ${visible ? "flex" : "none"};
+      position: fixed;
+      right: 3.125rem;
+      bottom: 3.125rem;
+      padding: 0.75rem;
+      background-color: var(--color-text-primary);
+      color: var(--color-bg-primary);
+
+      ${mq["md"]} {
+        right: 4.375rem;
+        bottom: 6.25rem;
+      }
+    `}
+    aria-label="Click on this button to scroll to the top of the page."
+    onClick={() => animateScroll.scrollToTop()}
+  >
+    <FiArrowUp size={20} />
+  </Button>
+);
 
 type ContainerProps = {
   children: React.ReactNode;
