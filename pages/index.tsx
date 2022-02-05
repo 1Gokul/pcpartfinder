@@ -11,6 +11,7 @@ const Home = () => {
   const [results, setResults] = useState<resultType | null>(null);
   const [searchString, setSearchString] = useState<string>();
   const [resultLoading, setResultLoading] = useState<boolean>(false);
+
   /* Gets run when the search query is changed.
     Sends a request to the API and gets the results. */
   useEffect(() => {
@@ -26,9 +27,11 @@ const Home = () => {
     getResults();
   }, [searchString]);
   const submitQuery = (inputValue: string) => {
-    setResultLoading(true);
-    setResults(null);
-    setSearchString(inputValue);
+    if (searchString !== inputValue) {
+      setResultLoading(true);
+      setResults(null);
+      setSearchString(inputValue);
+    }
   };
   return (
     <Layout title="Search" page="/">
@@ -64,7 +67,7 @@ const Home = () => {
               margin-top: 3.5rem;
             `}
           >
-            <TextBox size="x2l" align="center">
+            <TextBox size="x4l" align="center">
               Hold on... This will take a while.
             </TextBox>
             {/* <Progress

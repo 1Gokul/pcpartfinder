@@ -23,9 +23,9 @@ type searchResultsProps = {
 };
 
 export const SearchResults = ({ results }: searchResultsProps) => {
-  /* The value of "sort" determines the format in which the results are shown
-    Results by store (sort=0), ascending order(sort=1), descending order(sort=2)*/
-  const [sort, setSort] = useState<number>(0);
+  /* The value of "globalSortDirection" determines the format in which the results are shown
+    Results by store (globalSortDirection=0), ascending order(globalSortDirection=1), descending order(globalSortDirection=2)*/
+  const [globalSortDirection, setGlobalSortDirection] = useState<number>(0);
 
   const sortSymbols = [<GoPrimitiveDot />, <GoChevronUp />, <GoChevronDown />];
 
@@ -54,22 +54,24 @@ export const SearchResults = ({ results }: searchResultsProps) => {
             <TextBox color="var(--color-text-gray)" weight="bold">
               {results.n_results} RESULTS FOUND
             </TextBox>
-            {/*  Button to cycle through values of "sort" */}
+            {/*  Button to cycle through values of "globalSortDirection" */}
             <Button
-              aria-label="Click this button to change the sort type."
+              aria-label="Click this button to change the globalSortDirection type."
               css={css`
                 align-self: flex-end;
                 font-size: larger;
                 padding: 1rem 1.75rem;
                 margin-bottom: 1.25rem;
               `}
-              onClick={() => setSort((sort + 1) % 3)}
+              onClick={() =>
+                setGlobalSortDirection((globalSortDirection + 1) % 3)
+              }
             >
-              Sort <Icon>{sortSymbols[sort]}</Icon>
+              Sort <Icon>{sortSymbols[globalSortDirection]}</Icon>
             </Button>
           </Flex>
           <Flex flexDirection="column">
-            {sort === 0 ? (
+            {globalSortDirection === 0 ? (
               results.content.map((store) => (
                 <TableWithHeading
                   key={store.store_name}
@@ -82,7 +84,10 @@ export const SearchResults = ({ results }: searchResultsProps) => {
                 items={results.content
                   .map((item) => item.store_results)
                   .flat()
-                  .sort((a, b) => (sort === 1 ? 1 : -1) * (a.price - b.price))}
+                  .sort(
+                    (a, b) =>
+                      (globalSortDirection === 1 ? 1 : -1) * (a.price - b.price)
+                  )}
               />
             )}
           </Flex>

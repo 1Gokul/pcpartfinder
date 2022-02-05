@@ -17,6 +17,8 @@ type tableProps = {
   items: { name: string; url: string; price: number; store: string }[];
 };
 
+// Add a sort direction like searchresults component for a tablewithheading
+
 const Table = ({ items, ...otherProps }: tableProps) => (
   <Flex
     css={css`
