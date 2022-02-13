@@ -1,5 +1,7 @@
 import { css } from "@emotion/react";
+import { useState } from "react";
 import { BiLinkExternal } from "react-icons/bi";
+import { GoChevronDown, GoChevronUp, GoPrimitiveDot } from "react-icons/go";
 import {
   Flex,
   Heading,
@@ -10,61 +12,97 @@ import {
   Tbody,
   Tr,
   Th,
-  Td
+  Td,
+  Button
 } from "./StyledComponents";
 
+type item = { name: string; url: string; price: number; store: string };
+
 type tableProps = {
-  items: { name: string; url: string; price: number; store: string }[];
+  items: item[];
+
+  /** If the results are sorted, we will not show the sort button inside the table. */
+  areResultsSorted: boolean;
 };
 
 // Add a sort direction like searchresults component for a tablewithheading
 
-const Table = ({ items, ...otherProps }: tableProps) => (
-  <Flex
-    css={css`
-      overflow-x: "auto";
-    `}
-  >
-    {items.length ? (
-      <StyledTable {...otherProps}>
-        <Thead>
-          <Tr>
-            <Th>Product</Th>
-            <Th>Price</Th>
-            <Th>Link</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {items.map((result) => (
-            <Tr key={`${result.name}:${result.url}`}>
-              <Td>
-                <a href={result.url} target="_blank" rel="noreferrer">
-                  {result.name}
-                </a>
-              </Td>
-              <Td>
-                <strong>
-                  {result.price === 0
-                    ? "Call Store"
-                    : `₹${result.price.toLocaleString("en-IN")}`}
-                </strong>
-              </Td>
-              <Td>
-                <a href={result.url} target="_blank" rel="noreferrer">
-                  <Icon margin="0.25rem 0">
-                    <BiLinkExternal size={20} />
-                  </Icon>
-                </a>
-              </Td>
+const Table = ({ items, areResultsSorted, ...otherProps }: tableProps) => {
+  const [sortType, setSortType] = useState<number>(0);
+
+  const sortSymbols = [<GoPrimitiveDot />, <GoChevronUp />, <GoChevronDown />];
+
+  let itemsToDisplay: item[] = Array.from(items);
+
+  if (sortType > 0) {
+    itemsToDisplay = itemsToDisplay.sort(
+      (a, b) => (sortType === 1 ? 1 : -1) * (a.price - b.price)
+    );
+  }
+
+  return (
+    <Flex
+      css={css`
+        overflow-x: "auto";
+      `}
+    >
+      {itemsToDisplay.length ? (
+        <StyledTable {...otherProps}>
+          <Thead>
+            <Tr>
+              <Th>Product</Th>
+              <Th>
+                {areResultsSorted ? (
+                  "Price"
+                ) : (
+                  <Button
+                    aria-label="Click this button to sort the table from normal order to ascending or descending order."
+                    css={css`
+                      background-color: transparent;
+                      text-transform: uppercase;
+                      color: inherit;
+                    `}
+                    onClick={() => setSortType((sortType + 1) % 3)}
+                  >
+                    Price {sortSymbols[sortType]}
+                  </Button>
+                )}
+              </Th>
+              <Th>Link</Th>
             </Tr>
-          ))}
-        </Tbody>
-      </StyledTable>
-    ) : (
-      <TextBox size="xl">Sorry, no matching products were found.</TextBox>
-    )}
-  </Flex>
-);
+          </Thead>
+          <Tbody>
+            {itemsToDisplay.map((result) => (
+              <Tr key={`${result.name}:${result.url}`}>
+                <Td>
+                  <a href={result.url} target="_blank" rel="noreferrer">
+                    {result.name}
+                  </a>
+                </Td>
+                <Td>
+                  <strong>
+                    {result.price === 0
+                      ? "Call Store"
+                      : `₹${result.price.toLocaleString("en-IN")}`}
+                  </strong>
+                </Td>
+                <Td>
+                  <a href={result.url} target="_blank" rel="noreferrer">
+                    <Icon margin="0.25rem 0">
+                      <BiLinkExternal size={20} />
+                    </Icon>
+                  </a>
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </StyledTable>
+      ) : (
+        <TextBox size="xl">Sorry, no matching products were found.</TextBox>
+      )}
+    </Flex>
+  );
+};
 
 export default Table;
 

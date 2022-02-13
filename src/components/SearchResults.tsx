@@ -56,7 +56,7 @@ export const SearchResults = ({ results }: searchResultsProps) => {
             </TextBox>
             {/*  Button to cycle through values of "globalSortDirection" */}
             <Button
-              aria-label="Click this button to change the globalSortDirection type."
+              aria-label="Click this button to sort the results from normal order to ascending or descending order."
               css={css`
                 align-self: flex-end;
                 font-size: larger;
@@ -77,6 +77,7 @@ export const SearchResults = ({ results }: searchResultsProps) => {
                   key={store.store_name}
                   title={store.store_name.replace("_", " ")}
                   items={store.store_results}
+                  areResultsSorted={globalSortDirection !== 0}
                 />
               ))
             ) : (
@@ -88,6 +89,7 @@ export const SearchResults = ({ results }: searchResultsProps) => {
                     (a, b) =>
                       (globalSortDirection === 1 ? 1 : -1) * (a.price - b.price)
                   )}
+                areResultsSorted={globalSortDirection !== 0}
               />
             )}
           </Flex>
