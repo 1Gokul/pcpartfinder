@@ -43,17 +43,15 @@ const Header: React.FC = () => {
       >
         {/* Logo */}
         <Link href="/" passHref>
-          <a>
-            <Flex marginX={10} width={{ base: "200px", md: "300px" }}>
-              <Image
-                src={logo}
-                alt="pcpartfinder logo"
-                placeholder="blur"
-                blurDataURL={logo}
-                priority={true}
-              />
-            </Flex>
-          </a>
+          <Flex marginX={10} width={{ base: "200px", md: "300px" }}>
+            <Image
+              src={logo}
+              alt="pcpartfinder logo"
+              placeholder="blur"
+              blurDataURL={logo}
+              priority={true}
+            />
+          </Flex>
         </Link>
 
         <DesktopNavMenu
@@ -91,16 +89,14 @@ const NavLink: React.FC<NavLinkProps> = (props) => {
 
   return (
     <Link href={url} passHref>
-      <a>
-        <Flex
-          sx={styles}
-          textTransform="capitalize"
-          alignItems="center"
-          {...otherProps}
-        >
-          {children}
-        </Flex>
-      </a>
+      <Flex
+        sx={styles}
+        textTransform="capitalize"
+        alignItems="center"
+        {...otherProps}
+      >
+        {children}
+      </Flex>
     </Link>
   );
 };
