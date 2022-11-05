@@ -12,7 +12,7 @@ import { IoSunnySharp, IoMoonSharp } from "react-icons/io5";
 import Image from "next/image";
 import Link from "next/link";
 
-import logo from "../../public/logo.svg";
+import logo from "../../../public/logo.svg";
 
 // Links on the navbar
 const navLinks: Array<{ text: string; url: string }> = [

@@ -1,6 +1,7 @@
 import { Heading } from "@chakra-ui/layout";
 
-import Layout, { Container } from "../src/components/Layout";
+import Layout from "../src/components/Layout/Layout";
+import Container from "../src/components/Layout/Container";
 
 const Products: React.FC = () => {
   return (

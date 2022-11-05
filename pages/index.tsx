@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { Flex, Heading, Text, Progress } from "@chakra-ui/react";
 import axios from "axios";
 
-import Layout, { Container } from "../src/components/Layout";
 import ProductSearchForm from "../src/components/ProductSearchForm";
 import { resultType, SearchResults } from "../src/components/SearchResults";
+import Container from "../src/components/Layout/Container";
+import Layout from "../src/components/Layout/Layout";
 
 const Home: React.FC = () => {
   const [results, setResults] = useState<resultType>(null);
