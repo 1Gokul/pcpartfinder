@@ -85,7 +85,7 @@ const SEO: React.FC<SEOProps> = (props) => (
       content={props.title.split("-").join(" ")}
       key="ogtitle"
     />
-
+    {console.log(props.title)}
     <title>{props.title} - PCPartFinder</title>
   </Head>
 );
