@@ -6,14 +6,15 @@ import BackToTop from "./BackToTop";
 import Footer from "./Footer";
 import SEO from "./SEO";
 
-interface LayoutProps {
+const Layout = ({
+  children,
+  title,
+  page
+}: {
+  children: React.ReactNode;
   title: string;
   page: string;
-}
-
-const Layout: React.FC<LayoutProps> = (props) => {
-  const { title, page, children } = props;
-
+}) => {
   /* For the "Back To Top" button. It appears after scrolling down
     a bit and disappears when we scroll to the top. */
   const [backToTopVisible, setBackToTopVisible] = useState<boolean>(false);

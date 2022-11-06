@@ -2,10 +2,11 @@ import { Button, Flex, Icon, Text, useStyleConfig } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { GoPrimitiveDot, GoChevronUp, GoChevronDown } from "react-icons/go";
 
-import Table, { TableWithHeading } from "./Tables";
+import Table from "./Table/Table";
+import { TableWithHeading } from "./Table/TableWithHeading";
 
 // Structure of the JSON returned from the server after a search request.
-export interface resultType {
+export interface ResultType {
   n_results: number;
   content: [
     {
@@ -17,11 +18,7 @@ export interface resultType {
   ];
 }
 
-interface SearchResultsProps {
-  results: resultType;
-}
-
-export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
+export const SearchResults = ({ results }: { results: ResultType }) => {
   /* The value of "sort" determines the format in which the results are shown
     Results by store (sort=0), ascending order(sort=1), descending order(sort=2)*/
   const [sort, setSort] = useState<number>(0);
@@ -65,7 +62,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
               results.content.map((store) => (
                 <TableWithHeading
                   key={store.store_name}
-                  title={store.store_name.replace("_", " ")}
+                  heading={store.store_name.replace("_", " ")}
                   items={store.store_results}
                 />
               ))

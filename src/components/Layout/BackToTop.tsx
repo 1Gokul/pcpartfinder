@@ -2,11 +2,7 @@ import { IconButton } from "@chakra-ui/react";
 import { VscArrowUp } from "react-icons/vsc";
 import { animateScroll } from "react-scroll";
 
-interface BackToTopProps {
-  visible: boolean;
-}
-
-const BackToTop: React.FC<BackToTopProps> = ({ visible }) => (
+const BackToTop = ({ visible }: { visible: boolean }) => (
   <IconButton
     display={visible ? "flex" : "none"}
     colorScheme="cyan"

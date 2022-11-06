@@ -1,9 +1,9 @@
 import { useState } from "react";
 import {
-  CSSObject,
   Flex,
   Icon,
   IconButton,
+  SystemStyleObject,
   useColorMode,
   useStyleConfig
 } from "@chakra-ui/react";
@@ -20,7 +20,7 @@ const navLinks: Array<{ text: string; url: string }> = [
   { text: "browse", url: "/products" }
 ];
 
-const Header: React.FC = () => {
+const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   // For opening and closing the hamburger menu
@@ -69,18 +69,17 @@ const Header: React.FC = () => {
 
 export default Header;
 
-// Navlink
-interface NavLinkProps {
+const NavLink = ({
+  children,
+  url,
+  styles,
+  ...otherProps
+}: {
   // Theme styles for the link
-  styles: CSSObject;
-
+  styles: SystemStyleObject;
   // extra styles (if any)
   [otherProps: string]: unknown;
-}
-
-const NavLink: React.FC<NavLinkProps> = (props) => {
-  const { children, url, styles, ...otherProps } = props;
-
+}) => {
   return (
     <Link href={url} passHref>
       <Flex
@@ -102,8 +101,8 @@ interface NavbarProps {
 
 // Desktop Navbar Menu
 
-const DesktopNavMenu: React.FC<NavbarProps> = (props) => {
-  const styles: CSSObject = useStyleConfig("DesktopNavlink");
+const DesktopNavMenu = ({ colorMode, toggleColorMode }: NavbarProps) => {
+  const styles: SystemStyleObject = useStyleConfig("DesktopNavlink");
 
   return (
     <Flex display={{ base: "none", md: "flex" }} height="100%" marginRight={10}>
@@ -112,10 +111,10 @@ const DesktopNavMenu: React.FC<NavbarProps> = (props) => {
           {navLink.text}
         </NavLink>
       ))}
-      <Flex sx={styles} borderRight="1px" onClick={props.toggleColorMode}>
-        {props.colorMode}
+      <Flex sx={styles} borderRight="1px" onClick={toggleColorMode}>
+        {colorMode}
         <Icon
-          as={props.colorMode === "dark" ? IoMoonSharp : IoSunnySharp}
+          as={colorMode === "dark" ? IoMoonSharp : IoSunnySharp}
           marginLeft={2}
         />
       </Flex>
@@ -128,14 +127,18 @@ interface MobileNavProps extends NavbarProps {
   expanded: boolean;
 }
 
-const MobileNavMenu: React.FC<MobileNavProps> = (props) => {
-  const styles: CSSObject = useStyleConfig("MobileNavlink");
+const MobileNavMenu = ({
+  toggleColorMode,
+  colorMode,
+  expanded
+}: MobileNavProps) => {
+  const styles: SystemStyleObject = useStyleConfig("MobileNavlink");
 
   return (
     <Flex
       direction="column"
       height="100vh"
-      display={{ base: props.expanded ? "flex" : "none", md: "none" }}
+      display={{ base: expanded ? "flex" : "none", md: "none" }}
       borderBottom="1px"
       borderColor="gray.200"
     >
@@ -145,10 +148,10 @@ const MobileNavMenu: React.FC<MobileNavProps> = (props) => {
         </NavLink>
       ))}
 
-      <Flex sx={styles} onClick={props.toggleColorMode}>
-        {props.colorMode}
+      <Flex sx={styles} onClick={toggleColorMode}>
+        {colorMode}
         <Icon
-          as={props.colorMode === "dark" ? IoMoonSharp : IoSunnySharp}
+          as={colorMode === "dark" ? IoMoonSharp : IoSunnySharp}
           marginLeft={2}
         />
       </Flex>
@@ -157,18 +160,19 @@ const MobileNavMenu: React.FC<MobileNavProps> = (props) => {
 };
 
 // Mobile menu toggler
-interface HamburgerProps {
+const HamburgerMenuToggler = ({
+  expanded,
+  toggleExpanded
+}: {
   expanded: boolean;
   toggleExpanded: () => void;
-}
-
-const HamburgerMenuToggler: React.FC<HamburgerProps> = (props) => (
+}) => (
   <IconButton
     aria-label="Click this button to toggle the menu."
     display={{ base: "flex", md: "none" }}
     variant="ghost"
     fontSize="40px"
-    icon={props.expanded ? <VscClose /> : <VscMenu />}
-    onClick={props.toggleExpanded}
+    icon={expanded ? <VscClose /> : <VscMenu />}
+    onClick={toggleExpanded}
   />
 );

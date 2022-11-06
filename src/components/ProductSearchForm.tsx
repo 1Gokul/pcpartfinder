@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import { Button, Flex, Icon, Input, useStyleConfig } from "@chakra-ui/react";
 import { VscArrowRight } from "react-icons/vsc";
 
-interface FormProps {
+
+const ProductSearchForm = ({
+  submitQuery,
+  isDisabled
+}: {
   submitQuery: (inputQuery: string) => void;
   isDisabled: boolean;
-}
-
-const ProductSearchForm: React.FC<FormProps> = (props) => {
+}) => {
   const [inputQuery, setInputQuery] = useState<string>("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.submitQuery(inputQuery);
+    submitQuery(inputQuery);
   };
 
   return (
@@ -22,7 +24,7 @@ const ProductSearchForm: React.FC<FormProps> = (props) => {
           value={inputQuery}
           onChange={({ target }) => setInputQuery(target.value)}
           isRequired={true}
-          isDisabled={props.isDisabled}
+          isDisabled={isDisabled}
           size="xl"
           marginRight={5}
           variant="filled"
@@ -38,7 +40,7 @@ const ProductSearchForm: React.FC<FormProps> = (props) => {
           marginTop={{ base: 5, md: 0 }}
           alignSelf="center"
           sx={useStyleConfig("CustomButton")}
-          isDisabled={props.isDisabled}
+          isDisabled={isDisabled}
         >
           Search
           <Icon as={VscArrowRight} marginTop={0.5} marginLeft={2} />

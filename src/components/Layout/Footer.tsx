@@ -1,6 +1,6 @@
 import { Flex, Link } from "@chakra-ui/react";
 
-const Footer: React.FC = () => (
+const Footer = () => (
   <Flex
     paddingX={10}
     paddingY={5}

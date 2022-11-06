@@ -1,10 +1,13 @@
 import { Flex } from "@chakra-ui/react";
 
-interface ContainerProps {
+export const Container = ({
+  children,
+  ...otherProps
+}: {
+  children: React.ReactNode;
   // Other style props
   [OtherProps: string]: unknown;
-}
-export const Container: React.FC<ContainerProps> = (props) => {
+}) => {
   return (
     <Flex
       direction="column"
@@ -14,9 +17,9 @@ export const Container: React.FC<ContainerProps> = (props) => {
       minW="75vw"
       maxW={{ base: "95vw", md: "75vw" }}
       padding={{ base: 5, md: 10 }}
-      {...props}
+      {...otherProps}
     >
-      {props.children}
+      {children}
     </Flex>
   );
 };

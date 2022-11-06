@@ -3,7 +3,7 @@ import { Heading } from "@chakra-ui/layout";
 import Layout from "../src/components/Layout/Layout";
 import Container from "../src/components/Layout/Container";
 
-const Products: React.FC = () => {
+const Products = () => {
   return (
     <Layout title="Products" page="/products">
       <Container>

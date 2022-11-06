@@ -3,13 +3,8 @@ import Head from "next/head";
 const description =
   "Search for PC components and peripherals from major Indian stores!";
 
-interface SEOProps {
-  page: string;
-  title: string;
-}
-
-const SEO: React.FC<SEOProps> = (props) => {
-  const title = props.title + "- PCPartFinder";
+const SEO = ({ page, title }: { page: string; title: string }) => {
+  const pageTitle = title + "- PCPartFinder";
   return (
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,16 +21,16 @@ const SEO: React.FC<SEOProps> = (props) => {
       <meta property="og:description" content={description} key="ogdesc" />
       <meta
         property="og:url"
-        content={`${process.env.NEXT_PUBLIC_SITE_URL}${props.page}`}
+        content={`${process.env.NEXT_PUBLIC_SITE_URL}${page}`}
         key="ogurl"
       />
       <meta
         property="og:title"
-        content={props.title.split("-").join(" ")}
+        content={title.split("-").join(" ")}
         key="ogtitle"
       />
 
-      <title>{title}</title>
+      <title>{pageTitle}</title>
     </Head>
   );
 };

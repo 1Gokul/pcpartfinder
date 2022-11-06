@@ -1,6 +1,5 @@
 import {
   Flex,
-  Heading,
   Icon,
   Link,
   Text as ChakraText,
@@ -14,14 +13,12 @@ import {
 } from "@chakra-ui/react";
 import { RiExternalLinkLine } from "react-icons/ri";
 
-interface tableProps {
+export interface TableProps {
   items: { name: string; url: string; price: number; store: string }[];
   [otherProps: string]: unknown;
 }
 
-const Table: React.FC<tableProps> = (props) => {
-  const { items, ...otherProps } = props;
-
+const Table = ({ items, ...otherProps }: TableProps) => {
   return (
     <Flex overflowX="auto">
       {items.length ? (
@@ -78,45 +75,3 @@ const Table: React.FC<tableProps> = (props) => {
 };
 
 export default Table;
-
-interface tableWithHeadingProps extends tableProps {
-  title: string;
-}
-
-export const TableWithHeading: React.FC<tableWithHeadingProps> = (props) => {
-  const { title, items, ...otherProps } = props;
-
-  if (items) {
-    return (
-      <Flex direction="column" marginBottom={16}>
-        <Flex direction="row" alignItems="center">
-          <Heading size="xl" fontWeight="black" marginBottom={4}>
-            {title}
-          </Heading>
-          <ChakraText
-            fontSize="sm"
-            marginLeft={8}
-            fontWeight="bold"
-            color="gray.500"
-          >
-            {items.length} {items.length !== 1 ? "MATCHES" : "ITEM"}
-          </ChakraText>
-        </Flex>
-        {/* Have to render two separate tables, one for large screens and one for small screens
-      as useMediaQuery does not work with SSR. */}
-        <Table
-          items={items}
-          size="lg"
-          display={{ base: "none", md: "table" }}
-          otherProps={otherProps}
-        />
-        <Table
-          items={items}
-          size="sm"
-          display={{ base: "table", md: "none" }}
-          otherProps={otherProps}
-        />
-      </Flex>
-    );
-  } else return null;
-};

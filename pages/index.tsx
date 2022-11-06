@@ -3,12 +3,12 @@ import { Flex, Heading, Text, Progress } from "@chakra-ui/react";
 import axios from "axios";
 
 import ProductSearchForm from "../src/components/ProductSearchForm";
-import { resultType, SearchResults } from "../src/components/SearchResults";
+import { ResultType, SearchResults } from "../src/components/SearchResults";
 import Container from "../src/components/Layout/Container";
 import Layout from "../src/components/Layout/Layout";
 
-const Home: React.FC = () => {
-  const [results, setResults] = useState<resultType>(null);
+const Home = () => {
+  const [results, setResults] = useState<ResultType>(null);
   const [searchString, setSearchString] = useState<string>();
   const [resultLoading, setResultLoading] = useState<boolean>(false);
 
