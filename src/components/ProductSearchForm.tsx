@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, Flex, Icon, Input, useStyleConfig } from "@chakra-ui/react";
 import { VscArrowRight } from "react-icons/vsc";
 
-
 const ProductSearchForm = ({
   submitQuery,
   isDisabled

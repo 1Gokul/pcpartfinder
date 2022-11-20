@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import { useState, useCallback, useEffect } from "react";
 
-import Header from "./Header";
+import Header from "./Header/Header";
 import BackToTop from "./BackToTop";
 import Footer from "./Footer";
 import SEO from "./SEO";

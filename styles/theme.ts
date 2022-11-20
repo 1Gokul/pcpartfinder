@@ -1,7 +1,7 @@
-import { extendTheme } from "@chakra-ui/react";
+import { extendTheme, ThemeConfig } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
 
-const config = {
+const config: ThemeConfig = {
   initialColorMode: "dark",
   useSystemColorMode: true
 };
@@ -33,7 +33,8 @@ const styles = {
     body: {
       color: mode("gray.800", "#FCF7F8")(props),
       bg: mode("#F3F4F7", "#001114")(props),
-      transition: "all 0.2s linear"
+      transitionProperty: "all",
+      transitionDuration: "normal"
     }
   })
 };
