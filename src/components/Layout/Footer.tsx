@@ -7,8 +7,16 @@ const Footer = () => (
     direction="row"
     justifyContent={{ base: "space-between", md: "space-evenly" }}
   >
-    <Link href="https://gokulv.netlify.app">Gokul Viswanath</Link>
-    <Link href="https://github.com/1Gokul/pcpartfinder">GitHub repo</Link>
+    <a target="_blank" href="https://gokulv.netlify.app" rel="noreferrer">
+      Gokul Viswanath
+    </a>
+    <a
+      target="_blank"
+      href="https://github.com/1Gokul/pcpartfinder"
+      rel="noreferrer"
+    >
+      GitHub repo
+    </a>
   </Flex>
 );
 
