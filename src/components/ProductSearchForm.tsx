@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { Button, Flex, Icon, Input, useStyleConfig } from "@chakra-ui/react";
 import { VscArrowRight } from "react-icons/vsc";
+import { useRouter } from "next/router";
 
-const ProductSearchForm = ({
-  submitQuery,
-  isDisabled
-}: {
-  submitQuery: (inputQuery: string) => void;
-  isDisabled: boolean;
-}) => {
+const ProductSearchForm = ({ isDisabled }: { isDisabled: boolean }) => {
   const [inputQuery, setInputQuery] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const handleSubmit = (event) => {
+  const router = useRouter();
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    submitQuery(inputQuery);
+    setLoading(true);
+    router.push({ pathname: "search", query: { query: inputQuery } });
+    setLoading(false);
   };
 
   return (
@@ -25,6 +25,7 @@ const ProductSearchForm = ({
           isRequired={true}
           isDisabled={isDisabled}
           size="xl"
+          name="query"
           marginRight={5}
           variant="filled"
           placeholder="Search..."
@@ -33,13 +34,13 @@ const ProductSearchForm = ({
           focusBorderColor="cyan.600"
         />
         <Button
-          type="submit"
           padding={10}
           fontSize="xl"
           marginTop={{ base: 5, md: 0 }}
           alignSelf="center"
           sx={useStyleConfig("CustomButton")}
-          isDisabled={isDisabled}
+          type="submit"
+          isDisabled={loading}
         >
           Search
           <Icon as={VscArrowRight} marginTop={0.5} marginLeft={2} />

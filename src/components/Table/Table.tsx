@@ -27,6 +27,7 @@ const Table = ({ items, ...otherProps }: TableProps) => {
           colorScheme="cyan"
           border="2px"
           borderColor="cyan.600"
+          size={{ base: "sm", md: "lg" }}
           {...otherProps}
         >
           <TableCaption

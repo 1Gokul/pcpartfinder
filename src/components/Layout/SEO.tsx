@@ -14,14 +14,14 @@ const SEO = ({ page, title }: { page: string; title: string }) => {
       <meta name="twitter:creator" content="@1GokulV" key="twhandle" />
       <meta
         property="og:image"
-        content={`${process.env.NEXT_PUBLIC_SITE_URL}/og_image.jpg`}
+        content={`${process.env.NEXT_PUBLIC_API_SITE_URL}/og_image.jpg`}
         key="ogimage"
       />
       <meta property="og:site_name" content="PCPartFinder" key="ogsitename" />
       <meta property="og:description" content={description} key="ogdesc" />
       <meta
         property="og:url"
-        content={`${process.env.NEXT_PUBLIC_SITE_URL}${page}`}
+        content={`${process.env.NEXT_PUBLIC_API_SITE_URL}${page}`}
         key="ogurl"
       />
       <meta

@@ -21,10 +21,7 @@
   "rules": {
     "prettier/prettier": 2,
     "no-console": "warn",
-    "@typescript-eslint/indent": [
-      "error",
-      2
-    ],
+    "@typescript-eslint/indent": "off",
     "quotes": [
       "error",
       "double"

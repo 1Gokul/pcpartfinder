@@ -30,16 +30,15 @@ export const TableWithHeading = ({
         as useMediaQuery does not work with SSR. */}
         <Table
           items={items}
-          size="lg"
-          display={{ base: "none", md: "table" }}
+          // display={{ base: "none", md: "table" }}
           otherProps={otherProps}
         />
-        <Table
+        {/* <Table
           items={items}
           size="sm"
           display={{ base: "table", md: "none" }}
           otherProps={otherProps}
-        />
+        /> */}
       </Flex>
     );
   } else return null;

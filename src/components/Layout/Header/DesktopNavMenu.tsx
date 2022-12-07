@@ -8,7 +8,7 @@ import {
   useColorMode
 } from "@chakra-ui/react";
 import { IoMoonSharp, IoSunnySharp } from "react-icons/io5";
-import { navLinks } from "../../../constants";
+import { navLinks } from "../../../shared/constants/NavLinks";
 import { NavLink } from "./NavLink";
 
 const DesktopNavMenu = () => {
