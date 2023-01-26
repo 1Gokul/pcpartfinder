@@ -30,7 +30,7 @@ const Header = () => {
         borderColor={colorMode === "dark" ? "gray.600" : "gray.300"}
       >
         {/* Logo */}
-        <Link href="/" passHref>
+        <Link href="/search" passHref>
           <Flex marginX={10} width={{ base: "200px", md: "300px" }}>
             <Image src={logo} alt="pcpartfinder logo" priority={true} />
           </Flex>
