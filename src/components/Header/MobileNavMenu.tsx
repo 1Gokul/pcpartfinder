@@ -1,5 +1,3 @@
-// Desktop Navbar Menu
-
 import {
   SystemStyleObject,
   useStyleConfig,
@@ -8,22 +6,29 @@ import {
   useColorMode
 } from "@chakra-ui/react";
 import { IoMoonSharp, IoSunnySharp } from "react-icons/io5";
-import { navLinks } from "../../../shared/constants/NavLinks";
+import { navLinks } from "../../shared/constants/NavLinks";
 import { NavLink } from "./NavLink";
 
-const DesktopNavMenu = () => {
-  const styles: SystemStyleObject = useStyleConfig("DesktopNavlink");
+const MobileNavMenu = ({ expanded }: { expanded: boolean }) => {
+  const styles: SystemStyleObject = useStyleConfig("MobileNavlink");
 
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Flex display={{ base: "none", md: "flex" }} height="100%" marginRight={10}>
+    <Flex
+      direction="column"
+      height="100vh"
+      display={{ base: expanded ? "flex" : "none", md: "none" }}
+      borderBottom="1px"
+      borderColor="gray.200"
+    >
       {navLinks.map((navLink) => (
-        <NavLink key={navLink.text} styles={styles} url={navLink.url}>
+        <NavLink key={navLink.text} url={navLink.url} styles={styles}>
           {navLink.text}
         </NavLink>
       ))}
-      <Flex sx={styles} borderRight="1px" onClick={toggleColorMode}>
+
+      <Flex sx={styles} onClick={toggleColorMode}>
         {colorMode}
         <Icon
           as={colorMode === "dark" ? IoMoonSharp : IoSunnySharp}
@@ -34,4 +39,4 @@ const DesktopNavMenu = () => {
   );
 };
 
-export default DesktopNavMenu;
+export default MobileNavMenu;

@@ -4,7 +4,7 @@ import { VscMenu, VscClose } from "react-icons/vsc";
 import Image from "next/image";
 import Link from "next/link";
 
-import logo from "../../../../public/logo.svg";
+import logo from "../../../public/logo.svg";
 import DesktopNavMenu from "./DesktopNavMenu";
 import MobileNavMenu from "./MobileNavMenu";
 
