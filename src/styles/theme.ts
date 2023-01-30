@@ -76,7 +76,7 @@ const components = {
       alignItems: "center",
       borderLeft: "1px",
       borderColor: colorMode === "dark" ? "gray.600" : "gray.300",
-      width: 40,
+      width: "200px",
       cursor: "pointer",
       transition: "0.1s linear",
       _hover: { textDecoration: "none", bgColor: "cyan.600", color: "gray.50" }

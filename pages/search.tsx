@@ -15,14 +15,15 @@ import { GetServerSideProps } from "next";
 import { getSearchResults } from "../src/utils/hooks/queries/SearchQueries";
 
 type ResultPropType = {
-  dehydratedState: DehydratedState;
-  searchQuery: string;
+  dehydratedState: DehydratedState | null;
+  searchQuery: string | null;
+  page: number | null;
 };
 
-const Home = ({ searchQuery }) => {
+const Home = ({ searchQuery, page }: ResultPropType) => {
   const { data, isSuccess } = useQuery<SearchResultObject>(
     ["productSearch", searchQuery],
-    () => getSearchResults(searchQuery),
+    () => getSearchResults(searchQuery, page),
     { enabled: !!searchQuery }
   );
 
@@ -50,21 +51,32 @@ export default Home;
 export const getServerSideProps: GetServerSideProps<ResultPropType> = async ({
   query
 }) => {
-  const searchQuery = query.query as string;
-
   if (query.query) {
+    const searchQuery = query.query as string;
+
+    const page = Number(query.page);
+
+    if (page < 1 || !page) {
+      return {
+        notFound: true
+      };
+    }
     const queryClient = new QueryClient();
-    await queryClient.prefetchQuery<SearchResultObject>(
+    await queryClient.fetchQuery<SearchResultObject>(
       ["productSearch", searchQuery],
-      () => getSearchResults(searchQuery)
+      () => getSearchResults(searchQuery, page)
     );
 
     return {
-      props: { dehydratedState: dehydrate(queryClient), searchQuery }
+      props: { dehydratedState: dehydrate(queryClient), searchQuery, page }
     };
   } else {
     return {
-      props: { dehydratedState: null, searchQuery: searchQuery ?? null }
+      props: {
+        dehydratedState: null,
+        searchQuery: null,
+        page: null
+      }
     };
   }
 };

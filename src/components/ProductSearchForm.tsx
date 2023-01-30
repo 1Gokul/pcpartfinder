@@ -12,7 +12,7 @@ const ProductSearchForm = ({ isDisabled }: { isDisabled: boolean }) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
-    router.push({ pathname: "search", query: { query: inputQuery } });
+    router.push({ pathname: "search", query: { query: inputQuery, page: 1 } });
     setLoading(false);
   };
 

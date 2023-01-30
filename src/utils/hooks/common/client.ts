@@ -1,6 +1,6 @@
 export async function client(
   endpoint: string,
-  params?: Record<string, string> | string[][],
+  params?: Record<string, string | number> | string[][],
   {
     body,
     headers,
