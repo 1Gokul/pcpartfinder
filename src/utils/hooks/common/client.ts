@@ -15,7 +15,9 @@ export async function client(
       ? process.env.NEXT_PUBLIC_API_BASE_URL + endpoint
       : endpoint) +
       (params ? "?" : "") +
-      new URLSearchParams(params),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      new URLSearchParams(params as any),
+    // https://github.com/microsoft/TypeScript/issues/32951
     {
       method: body ? "POST" : "GET",
       ...otherConfigs,
