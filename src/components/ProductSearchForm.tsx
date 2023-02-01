@@ -3,8 +3,14 @@ import { Button, Flex, Icon, Input, useStyleConfig } from "@chakra-ui/react";
 import { VscArrowRight } from "react-icons/vsc";
 import { useRouter } from "next/router";
 
-const ProductSearchForm = ({ isDisabled }: { isDisabled: boolean }) => {
-  const [inputQuery, setInputQuery] = useState<string>("");
+const ProductSearchForm = ({
+  isDisabled,
+  query
+}: {
+  isDisabled: boolean;
+  query: string;
+}) => {
+  const [inputQuery, setInputQuery] = useState<string>(query);
   const [loading, setLoading] = useState<boolean>(false);
 
   const router = useRouter();

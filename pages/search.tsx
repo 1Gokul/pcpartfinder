@@ -13,18 +13,35 @@ import {
 import { SearchResultObject } from "../src/shared/types/SearchResult";
 import { GetServerSideProps } from "next";
 import { getSearchResults } from "../src/utils/hooks/queries/SearchQueries";
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { useNextQueryParam } from "../src/utils/hooks/common/useNextQueryParam";
 
-type ResultPropType = {
-  dehydratedState: DehydratedState | null;
-  searchQuery: string | null;
-  page: number | null;
-};
+const Home = () => {
+  const router = useRouter();
+  const searchQuery = useNextQueryParam("query");
 
-const Home = ({ searchQuery, page }: ResultPropType) => {
+  const page = parseInt(useNextQueryParam("page") as string) || 1;
+
+  if (page < 1) {
+    router.push({
+      pathname: "search",
+      ...(searchQuery && { query: { query: searchQuery, page: 1 } })
+    });
+  }
+
+  /* The value of "sort" determines the format in which the results are shown
+    Normal results as received (sort=0), ascending order(sort=1), descending order(sort=2)*/
+  const [sort, setSort] = useState<number>(0);
+
+  const handleChangeSort = () => {
+    setSort((sort + 1) % 3);
+  };
+
   const { data, isSuccess } = useQuery<SearchResultObject>(
-    ["productSearch", searchQuery],
-    () => getSearchResults(searchQuery, page),
-    { enabled: !!searchQuery }
+    ["productSearch", searchQuery, page, sort],
+    () => getSearchResults(searchQuery, page, sort),
+    { enabled: !!searchQuery && page >= 1 }
   );
 
   return (
@@ -37,10 +54,16 @@ const Home = ({ searchQuery, page }: ResultPropType) => {
           <Text color="gray.500">
             We're working on providing more PC components soon!
           </Text>
-          <ProductSearchForm isDisabled={false} />
+          <ProductSearchForm isDisabled={false} query={searchQuery} />
         </Flex>
 
-        {isSuccess && <SearchResults results={data} />}
+        {isSuccess && (
+          <SearchResults
+            results={data}
+            sort={sort}
+            changeSort={handleChangeSort}
+          />
+        )}
       </Container>
     </Layout>
   );
@@ -48,35 +71,35 @@ const Home = ({ searchQuery, page }: ResultPropType) => {
 
 export default Home;
 
-export const getServerSideProps: GetServerSideProps<ResultPropType> = async ({
-  query
-}) => {
-  if (query.query) {
-    const searchQuery = query.query as string;
+// export const getServerSideProps: GetServerSideProps<ResultPropType> = async ({
+//   query
+// }) => {
+//   if (query.query) {
+//     const searchQuery = query.query as string;
 
-    const page = Number(query.page);
+//     const page = Number(query.page);
 
-    if (page < 1 || !page) {
-      return {
-        notFound: true
-      };
-    }
-    const queryClient = new QueryClient();
-    await queryClient.fetchQuery<SearchResultObject>(
-      ["productSearch", searchQuery],
-      () => getSearchResults(searchQuery, page)
-    );
+//     if (page < 1 || !page) {
+//       return {
+//         notFound: true
+//       };
+//     }
+//     const queryClient = new QueryClient();
+//     await queryClient.fetchQuery<SearchResultObject>(
+//       ["productSearch", searchQuery],
+//       () => getSearchResults(searchQuery, page)
+//     );
 
-    return {
-      props: { dehydratedState: dehydrate(queryClient), searchQuery, page }
-    };
-  } else {
-    return {
-      props: {
-        dehydratedState: null,
-        searchQuery: null,
-        page: null
-      }
-    };
-  }
-};
+//     return {
+//       props: { dehydratedState: dehydrate(queryClient), searchQuery, page }
+//     };
+//   } else {
+//     return {
+//       props: {
+//         dehydratedState: null,
+//         searchQuery: null,
+//         page: null
+//       }
+//     };
+//   }
+// };

@@ -4,22 +4,20 @@ import { GoPrimitiveDot, GoChevronUp, GoChevronDown } from "react-icons/go";
 import { SearchResultObject } from "../shared/types/SearchResult";
 
 import Table from "./Table/Table";
-import { TableWithHeading } from "./Table/TableWithHeading";
 
 // Structure of the JSON returned from the server after a search request.
 const sortSymbols = [GoPrimitiveDot, GoChevronUp, GoChevronDown];
 
 export const SearchResults = ({
-  results: { n_results, content }
+  results: { n_results, content },
+  sort,
+  changeSort
 }: {
   results: SearchResultObject;
+  sort: number;
+  changeSort: () => void;
 }) => {
-  /* The value of "sort" determines the format in which the results are shown
-    Results by store (sort=0), ascending order(sort=1), descending order(sort=2)*/
-  const [sort, setSort] = useState<number>(0);
   const filterButtonStyles = useStyleConfig("CustomButton");
-
-  const stores = [...new Set(content.map((item) => item.store))];
 
   if (!n_results) {
     return (
@@ -46,28 +44,12 @@ export const SearchResults = ({
             fontSize="xl"
             padding={6}
             marginBottom={5}
-            onClick={() => setSort((sort + 1) % 3)}
+            onClick={changeSort}
           >
             Sort <Icon as={sortSymbols[sort]} />
           </Button>
         </Flex>
-        <Flex direction="column">
-          {sort === 0 ? (
-            stores.map((store: string) => (
-              <TableWithHeading
-                key={store}
-                heading={store.replace("_", " ")}
-                items={content.filter((item) => item.store === store)}
-              />
-            ))
-          ) : (
-            <Table
-              items={content.sort(
-                (a, b) => (sort === 1 ? 1 : -1) * (a.price - b.price)
-              )}
-            />
-          )}
-        </Flex>
+        <Table items={content} />
       </Flex>
     );
   }
