@@ -18,31 +18,7 @@ import { useRouter } from "next/router";
 import { useNextQueryParam } from "../src/utils/hooks/common/useNextQueryParam";
 
 const Home = () => {
-  const router = useRouter();
   const searchQuery = useNextQueryParam("query");
-
-  const page = parseInt(useNextQueryParam("page") as string) || 1;
-
-  if (page < 1) {
-    router.push({
-      pathname: "search",
-      ...(searchQuery && { query: { query: searchQuery, page: 1 } })
-    });
-  }
-
-  /* The value of "sort" determines the format in which the results are shown
-    Normal results as received (sort=0), ascending order(sort=1), descending order(sort=2)*/
-  const [sort, setSort] = useState<number>(0);
-
-  const handleChangeSort = () => {
-    setSort((sort + 1) % 3);
-  };
-
-  const { data, isSuccess } = useQuery<SearchResultObject>(
-    ["productSearch", searchQuery, page, sort],
-    () => getSearchResults(searchQuery, page, sort),
-    { enabled: !!searchQuery && page >= 1 }
-  );
 
   return (
     <Layout title="Search" page="/">
@@ -57,13 +33,7 @@ const Home = () => {
           <ProductSearchForm isDisabled={false} query={searchQuery} />
         </Flex>
 
-        {isSuccess && (
-          <SearchResults
-            results={data}
-            sort={sort}
-            changeSort={handleChangeSort}
-          />
-        )}
+        <SearchResults />
       </Container>
     </Layout>
   );
