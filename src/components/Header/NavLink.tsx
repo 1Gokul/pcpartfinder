@@ -11,6 +11,7 @@ export const NavLink = ({
   styles: SystemStyleObject;
   // extra styles (if any)
   [otherProps: string]: unknown;
+  children: React.ReactNode;
 }) => {
   return (
     <Link href={url} passHref>

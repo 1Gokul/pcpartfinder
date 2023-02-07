@@ -35,3 +35,6 @@ yarn-error.log*
 
 # next.js
 .next
+
+# typescript error watcher
+tsconfig.tsbuildinfo
