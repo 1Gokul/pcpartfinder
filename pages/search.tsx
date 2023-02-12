@@ -4,17 +4,6 @@ import ProductSearchForm from "../src/components/ProductSearchForm";
 import { SearchResults } from "../src/components/SearchResults";
 import Container from "../src/components/Layout/Container";
 import Layout from "../src/components/Layout/Layout";
-import {
-  dehydrate,
-  DehydratedState,
-  QueryClient,
-  useQuery
-} from "@tanstack/react-query";
-import { SearchResultObject } from "../src/shared/types/SearchResult";
-import { GetServerSideProps } from "next";
-import { getSearchResults } from "../src/utils/hooks/queries/SearchQueries";
-import { useState } from "react";
-import { useRouter } from "next/router";
 import { useNextQueryParam } from "../src/utils/hooks/common/useNextQueryParam";
 
 const Home = () => {

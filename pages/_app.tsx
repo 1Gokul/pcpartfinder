@@ -14,10 +14,7 @@ import {
 import "@fontsource/inter/variable-full.css";
 import customTheme from "../src/styles/theme";
 import { handleQueryError } from "../src/utils/hooks/common/handleQueryError";
-import dynamic from "next/dynamic";
-import "../src/styles/nprogress.css";
 
-const ProgressBar = dynamic(() => import("../src/components/ProgressBar"), {});
 
 // https://medium.com/@keeganfamouss/accessibility-on-demand-with-chakra-ui-and-focus-visible-19413b1bc6f9
 const GlobalStyles = css`
@@ -49,8 +46,7 @@ function App({ Component, pageProps }: AppProps) {
         <ChakraProvider theme={customTheme}>
           <Toaster position="top-right" gutter={8} />
           <Global styles={GlobalStyles} />
-          <ProgressBar />
-          <Component {...pageProps} isLoading={true} />
+          <Component {...pageProps} />
         </ChakraProvider>
       </Hydrate>
     </QueryClientProvider>

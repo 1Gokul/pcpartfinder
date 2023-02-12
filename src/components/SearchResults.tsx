@@ -1,4 +1,11 @@
-import { Button, Flex, Icon, Progress, Text, useStyleConfig } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  Icon,
+  Progress,
+  Text,
+  useStyleConfig
+} from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -37,7 +44,7 @@ export const SearchResults = () => {
 
   const isQueryValid = !!searchQuery && page >= 1;
 
-  const { data, isSuccess } = useQuery<SearchResultObject>(
+  const { data, isSuccess, isLoading, isFetching } = useQuery<SearchResultObject>(
     ["productSearch", searchQuery, page, sort],
     () => getSearchResults(searchQuery, page, sort),
     { enabled: isQueryValid }
@@ -80,7 +87,7 @@ export const SearchResults = () => {
         </Flex>
       );
     }
-  } else {
+  } else if (isFetching) {
     return (
       <Flex marginTop={14} direction="column" justifyContent="center">
         <Text fontSize="2xl" align="center">
