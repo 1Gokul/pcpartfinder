@@ -15,7 +15,7 @@ export const useNextQueryParam = (key: string): string | undefined => {
   const value = useMemo(() => {
     const match = asPath.match(new RegExp(`[&?]${key}=(.*?)(&|$)`));
     if (!match) return undefined;
-    return decodeURIComponent(match[1]);
+    return decodeURIComponent(match[1].replace(/\+/g, " "));
   }, [asPath, key]);
 
   return value;
