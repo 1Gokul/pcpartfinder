@@ -19,7 +19,7 @@ import Table from "./Table/Table";
 // Structure of the JSON returned from the server after a search request.
 const sortSymbols = [GoPrimitiveDot, GoChevronUp, GoChevronDown];
 
-export const SearchResults = () => {
+const SearchResults = () => {
   const router = useRouter();
   const searchQuery = useNextQueryParam("query");
 
@@ -44,11 +44,12 @@ export const SearchResults = () => {
 
   const isQueryValid = !!searchQuery && page >= 1;
 
-  const { data, isSuccess, isLoading, isFetching } = useQuery<SearchResultObject>(
-    ["productSearch", searchQuery, page, sort],
-    () => getSearchResults(searchQuery, page, sort),
-    { enabled: isQueryValid }
-  );
+  const { data, isSuccess, isLoading, isFetching } =
+    useQuery<SearchResultObject>(
+      ["productSearch", searchQuery, page, sort],
+      () => getSearchResults(searchQuery, page, sort),
+      { enabled: isQueryValid }
+    );
 
   const filterButtonStyles = useStyleConfig("CustomButton");
 
@@ -103,3 +104,5 @@ export const SearchResults = () => {
     );
   }
 };
+
+export default SearchResults;
