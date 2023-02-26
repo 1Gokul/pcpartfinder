@@ -24,17 +24,17 @@ const SearchResults = () => {
   const searchQuery = useNextQueryParam("query");
 
   const pageFromQuery = parseInt(useNextQueryParam("page") as string) || 1;
-
+  const sortType = parseInt(useNextQueryParam("sort") as string) || 0;
   if (pageFromQuery < 1) {
     router.push({
       pathname: "search",
-      ...(searchQuery && { query: { query: searchQuery, page: pageFromQuery } })
+      ...(searchQuery && { query: { query: searchQuery, page: 1 } })
     });
   }
 
   /* The value of "sort" determines the format in which the results are shown
     Normal results as received (sort=0), ascending order(sort=1), descending order(sort=2)*/
-  const [sort, setSort] = useState<number>(0);
+  const [sort, setSort] = useState<number>(sortType);
 
   const [page, setPage] = useState<number>(pageFromQuery);
 
@@ -56,13 +56,13 @@ const SearchResults = () => {
   if (isQueryValid && isSuccess) {
     if (!data.n_results) {
       return (
-        <Text fontSize="xl">
+        <Text key={router.asPath} fontSize="xl">
           Sorry, no results were found. Try another search string.
         </Text>
       );
     } else {
       return (
-        <Flex direction="column" marginTop={14}>
+        <Flex key={router.asPath} direction="column" marginTop={14}>
           <Flex
             direction="row"
             justifyContent="space-between"
@@ -90,7 +90,12 @@ const SearchResults = () => {
     }
   } else if (isFetching) {
     return (
-      <Flex marginTop={14} direction="column" justifyContent="center">
+      <Flex
+        key={router.asPath}
+        marginTop={14}
+        direction="column"
+        justifyContent="center"
+      >
         <Text fontSize="2xl" align="center">
           Hold on... taking a look at our database.
         </Text>
