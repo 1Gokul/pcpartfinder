@@ -1,26 +1,13 @@
-import {
-  Button,
-  Flex,
-  Icon,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItemOption,
-  MenuList,
-  MenuOptionGroup,
-  Progress,
-  Text,
-  useStyleConfig
-} from "@chakra-ui/react";
+import { Flex, Progress, Text, useStyleConfig } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { GoChevronDown } from "react-icons/go";
-import { SearchResultObject, SortType } from "../shared/types/SearchResult";
-import { useNextQueryParam } from "../utils/hooks/common/useNextQueryParam";
-import { getSearchResults } from "../utils/hooks/queries/SearchQueries";
+import { SearchResultObject, SortType } from "../../shared/types/SearchResult";
+import { useNextQueryParam } from "../../utils/hooks/common/useNextQueryParam";
+import { getSearchResults } from "../../utils/hooks/queries/SearchQueries";
 
-import Table from "./Table/Table";
+import Table from "../Table/Table";
+import SortMenu from "./SortMenu";
 
 const SearchResults = () => {
   const router = useRouter();
@@ -55,8 +42,6 @@ const SearchResults = () => {
       { enabled: isQueryValid }
     );
 
-  const customButtonStyle = useStyleConfig("CustomButton");
-
   if (isQueryValid && isSuccess) {
     if (!data.n_results) {
       return (
@@ -76,29 +61,7 @@ const SearchResults = () => {
             <Text color="gray.500" fontWeight="bold">
               {data.n_results} RESULTS
             </Text>
-            <Menu>
-              <MenuButton
-                as={Button}
-                sx={customButtonStyle}
-                rightIcon={<GoChevronDown />}
-              >
-                {sort === "rel"
-                  ? "Relevance"
-                  : (sort === "asc" ? "Ascending" : "Descending") + " price"}
-              </MenuButton>
-              <MenuList>
-                <MenuOptionGroup
-                  defaultValue="rel"
-                  value={sort}
-                  onChange={(value) => handleChangeSort(value as SortType)}
-                  type="radio"
-                >
-                  <MenuItemOption value="rel">Relevance</MenuItemOption>
-                  <MenuItemOption value="asc">Ascending price</MenuItemOption>
-                  <MenuItemOption value="dsc">Descending price</MenuItemOption>
-                </MenuOptionGroup>
-              </MenuList>
-            </Menu>
+            <SortMenu sort={sort} handleChangeSort={handleChangeSort} />
           </Flex>
           <Table items={data.content} />
         </Flex>
