@@ -2,6 +2,12 @@ import {
   Button,
   Flex,
   Icon,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItemOption,
+  MenuList,
+  MenuOptionGroup,
   Progress,
   Text,
   useStyleConfig
@@ -9,22 +15,19 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { GoPrimitiveDot, GoChevronUp, GoChevronDown } from "react-icons/go";
-import { SearchResultObject } from "../shared/types/SearchResult";
+import { GoChevronDown } from "react-icons/go";
+import { SearchResultObject, SortType } from "../shared/types/SearchResult";
 import { useNextQueryParam } from "../utils/hooks/common/useNextQueryParam";
 import { getSearchResults } from "../utils/hooks/queries/SearchQueries";
 
 import Table from "./Table/Table";
-
-// Structure of the JSON returned from the server after a search request.
-const sortSymbols = [GoPrimitiveDot, GoChevronUp, GoChevronDown];
 
 const SearchResults = () => {
   const router = useRouter();
   const searchQuery = useNextQueryParam("query");
 
   const pageFromQuery = parseInt(useNextQueryParam("page") as string) || 1;
-  const sort = parseInt(useNextQueryParam("sort") as string) || 0;
+  const sort = useNextQueryParam("sort") as SortType;
   if (pageFromQuery < 1) {
     router.push({
       pathname: "search",
@@ -34,13 +37,11 @@ const SearchResults = () => {
 
   const [page, setPage] = useState<number>(pageFromQuery);
 
-  /* The value of "sort" determines the format in which the results are shown
-    Normal results as received (sort=0), ascending order(sort=1), descending order(sort=2)*/
-  const handleChangeSort = () => {
+  const handleChangeSort = (newSortType: SortType) => {
     router.push({
       pathname: "search",
       ...(searchQuery && {
-        query: { query: searchQuery, page, sort: (sort + 1) % 3 }
+        query: { query: searchQuery, page, sort: newSortType }
       })
     });
   };
@@ -54,7 +55,7 @@ const SearchResults = () => {
       { enabled: isQueryValid }
     );
 
-  const filterButtonStyles = useStyleConfig("CustomButton");
+  const customButtonStyle = useStyleConfig("CustomButton");
 
   if (isQueryValid && isSuccess) {
     if (!data.n_results) {
@@ -75,17 +76,29 @@ const SearchResults = () => {
             <Text color="gray.500" fontWeight="bold">
               {data.n_results} RESULTS
             </Text>
-            {/*  Button to cycle through values of "sort" */}
-            <Button
-              alignSelf="flex-end"
-              sx={filterButtonStyles}
-              fontSize="xl"
-              padding={6}
-              marginBottom={5}
-              onClick={handleChangeSort}
-            >
-              Sort <Icon as={sortSymbols[sort]} />
-            </Button>
+            <Menu>
+              <MenuButton
+                as={Button}
+                sx={customButtonStyle}
+                rightIcon={<GoChevronDown />}
+              >
+                {sort === "rel"
+                  ? "Relevance"
+                  : (sort === "asc" ? "Ascending" : "Descending") + " price"}
+              </MenuButton>
+              <MenuList>
+                <MenuOptionGroup
+                  defaultValue="rel"
+                  value={sort}
+                  onChange={(value) => handleChangeSort(value as SortType)}
+                  type="radio"
+                >
+                  <MenuItemOption value="rel">Relevance</MenuItemOption>
+                  <MenuItemOption value="asc">Ascending price</MenuItemOption>
+                  <MenuItemOption value="dsc">Descending price</MenuItemOption>
+                </MenuOptionGroup>
+              </MenuList>
+            </Menu>
           </Flex>
           <Table items={data.content} />
         </Flex>

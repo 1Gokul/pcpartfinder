@@ -10,3 +10,5 @@ export type SearchResultObject = {
   n_results: number;
   content: SearchResultItem[];
 };
+
+export type SortType = "rel" | "asc" | "dsc";
