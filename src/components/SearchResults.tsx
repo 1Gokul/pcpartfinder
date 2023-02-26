@@ -24,7 +24,7 @@ const SearchResults = () => {
   const searchQuery = useNextQueryParam("query");
 
   const pageFromQuery = parseInt(useNextQueryParam("page") as string) || 1;
-  const sortType = parseInt(useNextQueryParam("sort") as string) || 0;
+  const sort = parseInt(useNextQueryParam("sort") as string) || 0;
   if (pageFromQuery < 1) {
     router.push({
       pathname: "search",
@@ -32,14 +32,17 @@ const SearchResults = () => {
     });
   }
 
-  /* The value of "sort" determines the format in which the results are shown
-    Normal results as received (sort=0), ascending order(sort=1), descending order(sort=2)*/
-  const [sort, setSort] = useState<number>(sortType);
-
   const [page, setPage] = useState<number>(pageFromQuery);
 
+  /* The value of "sort" determines the format in which the results are shown
+    Normal results as received (sort=0), ascending order(sort=1), descending order(sort=2)*/
   const handleChangeSort = () => {
-    setSort((sort + 1) % 3);
+    router.push({
+      pathname: "search",
+      ...(searchQuery && {
+        query: { query: searchQuery, page, sort: (sort + 1) % 3 }
+      })
+    });
   };
 
   const isQueryValid = !!searchQuery && page >= 1;
