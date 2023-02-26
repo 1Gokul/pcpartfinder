@@ -1,5 +1,6 @@
 import { extendTheme, ThemeConfig } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
+import { menuTheme } from "./menuTheme";
 
 const config: ThemeConfig = {
   initialColorMode: "dark",
@@ -105,7 +106,8 @@ const components = {
         color: "gray.100"
       }
     })
-  }
+  },
+  Menu: menuTheme
 };
 
 export default extendTheme({ colors, config, components, fonts, styles });
