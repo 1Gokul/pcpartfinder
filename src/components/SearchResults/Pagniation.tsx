@@ -5,22 +5,24 @@ import {
   SimpleGrid,
   useStyleConfig
 } from "@chakra-ui/react";
-import { pageSize } from "../../shared/constants/SearchResults";
 import { HiArrowLongLeft, HiArrowLongRight } from "react-icons/hi2";
 import { useMemo } from "react";
+import { NRowsType } from "../../shared/types/SearchResult";
 
 const Pagination = ({
+  nRows,
   currentPage,
   totalResults,
   handleChangePage
 }: {
+  nRows:NRowsType;
   currentPage: number;
   totalResults: number;
   handleChangePage: (newPage: number) => void;
 }) => {
   const pagniationButtonStyle = useStyleConfig("PaginationButton");
 
-  const totalPages = Math.ceil(totalResults / pageSize);
+  const totalPages = Math.ceil(totalResults / nRows);
 
   let pages = [-2, -1, 0, 1, 2]
     .map((v) => currentPage + v)
