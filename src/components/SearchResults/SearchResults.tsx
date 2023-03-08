@@ -9,6 +9,7 @@ import RowsPerPage from "./RowsPerPage";
 import SortMenu from "./SortMenu";
 import {
   NRowsType,
+  SearchParams,
   SearchResultObject,
   SortType
 } from "../../shared/types/SearchResult";
@@ -23,9 +24,11 @@ const SearchResults = () => {
   const sortFromQuery = (useNextQueryParam("sort") || "rel") as SortType;
   const rowsFromQuery = (useNextQueryParam("nRows") || 10) as NRowsType;
 
-  const [page, setPage] = useState<number>(pageFromQuery);
-  const [sort, setSort] = useState<SortType>(sortFromQuery);
-  const [nRows, setNRows] = useState<NRowsType>(rowsFromQuery);
+  const [params, setParams] = useState<SearchParams>({
+    page: pageFromQuery,
+    sort: sortFromQuery,
+    nRows: rowsFromQuery
+  });
 
   if (pageFromQuery < 1) {
     router.push({
@@ -34,48 +37,23 @@ const SearchResults = () => {
     });
   }
 
-  const handleChangeSort = (newSortType: SortType) => {
+  const handleParamChange = (newParams: Partial<SearchParams>) => {
     router.push(
       {
         pathname: "search",
-        query: { query: searchQuery, page, sort: newSortType, nRows }
+        query: { query: searchQuery, ...params, ...newParams }
       },
       undefined,
       { shallow: true }
     );
-    setSort(newSortType);
+    setParams({ ...params, ...newParams });
   };
 
-  const handleChangePage = (newPage: number = 1) => {
-    router.push(
-      {
-        pathname: "search",
-        query: { query: searchQuery, page: newPage, sort, nRows }
-      },
-      undefined,
-      { shallow: true }
-    );
-    setPage(newPage);
-  };
-
-  const handleChangeNRows = (newRow: NRowsType = 10) => {
-    router.push(
-      {
-        pathname: "search",
-        query: { query: searchQuery, page: 1, sort, nRows: newRow }
-      },
-      undefined,
-      { shallow: true }
-    );
-    setPage(1);
-    setNRows(newRow);
-  };
-
-  const isQueryValid = !!searchQuery && page >= 1;
+  const isQueryValid = !!searchQuery && params.page >= 1;
 
   const { data, isSuccess, isFetching } = useQuery<SearchResultObject>(
-    ["productSearch", searchQuery, page, sort, nRows],
-    () => getSearchResults(searchQuery, page, sort, nRows),
+    ["productSearch", searchQuery, params],
+    () => getSearchResults(searchQuery, params),
     { enabled: isQueryValid }
   );
 
@@ -98,8 +76,8 @@ const SearchResults = () => {
           <>
             <Text fontSize="md" color="gray.400" fontWeight="600">
               {data?.n_results
-                ? `${(page - 1) * nRows}-${Math.min(
-                    page * nRows,
+                ? `${(params.page - 1) * params.nRows}-${Math.min(
+                    params.page * params.nRows,
                     data.n_results
                   )} of ${data.n_results} results`
                 : "Sorry, no results were found. Try another search string."}
@@ -110,17 +88,21 @@ const SearchResults = () => {
               marginY={5}
             >
               <Pagination
-                nRows={nRows}
+                nRows={params.nRows}
                 totalResults={data.n_results}
-                currentPage={page}
-                handleChangePage={handleChangePage}
+                currentPage={params.page}
+                handleParamChange={handleParamChange}
               />
               <Flex gap={6}>
                 <RowsPerPage
-                  nRows={nRows}
-                  handleChangeNRows={handleChangeNRows}
+                  n_results={data.n_results}
+                  nRows={params.nRows}
+                  handleParamChange={handleParamChange}
                 />
-                <SortMenu sort={sort} handleChangeSort={handleChangeSort} />
+                <SortMenu
+                  sort={params.sort}
+                  handleParamChange={handleParamChange}
+                />
               </Flex>
             </Flex>
 

@@ -9,14 +9,20 @@ import {
 } from "@chakra-ui/react";
 import { GoChevronDown } from "react-icons/go";
 
-import { NRowsOptions, NRowsType } from "../../shared/types/SearchResult";
+import {
+  NRowsOptions,
+  NRowsType,
+  SearchParams
+} from "../../shared/types/SearchResult";
 
 const RowsPerPage = ({
+  n_results,
   nRows,
-  handleChangeNRows
+  handleParamChange
 }: {
+  n_results: number;
   nRows: NRowsType;
-  handleChangeNRows: (newNRowsType: NRowsType) => void;
+  handleParamChange: (newParams: Partial<SearchParams>) => void;
 }) => {
   const customButtonStyle = useStyleConfig("CustomButton");
   return (
@@ -32,7 +38,15 @@ const RowsPerPage = ({
         <MenuOptionGroup
           defaultValue="10"
           value={String(nRows)}
-          onChange={(value) => handleChangeNRows(parseInt(value as string) as NRowsType)}
+          onChange={(value) =>
+            handleParamChange({
+              nRows: parseInt(value as string) as NRowsType,
+              page: Math.min(
+                Math.ceil(n_results / parseInt(value as string)),
+                Math.ceil(n_results / nRows)
+              )
+            })
+          }
           type="radio"
         >
           {NRowsOptions.map((option) => (

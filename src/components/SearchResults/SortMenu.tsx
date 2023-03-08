@@ -9,14 +9,14 @@ import {
 } from "@chakra-ui/react";
 import { GoChevronDown } from "react-icons/go";
 
-import { SortType } from "../../shared/types/SearchResult";
+import { SearchParams, SortType } from "../../shared/types/SearchResult";
 
 const SortMenu = ({
   sort,
-  handleChangeSort
+  handleParamChange
 }: {
   sort: SortType;
-  handleChangeSort: (newSortType: SortType) => void;
+  handleParamChange: (newParams: Partial<SearchParams>) => void;
 }) => {
   const customButtonStyle = useStyleConfig("CustomButton");
   return (
@@ -34,7 +34,7 @@ const SortMenu = ({
         <MenuOptionGroup
           defaultValue="rel"
           value={sort}
-          onChange={(value) => handleChangeSort(value as SortType)}
+          onChange={(value) => handleParamChange({ sort: value as SortType })}
           type="radio"
         >
           <MenuItemOption value="rel">Relevance</MenuItemOption>

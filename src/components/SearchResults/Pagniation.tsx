@@ -7,18 +7,18 @@ import {
 } from "@chakra-ui/react";
 import { HiArrowLongLeft, HiArrowLongRight } from "react-icons/hi2";
 import { useMemo } from "react";
-import { NRowsType } from "../../shared/types/SearchResult";
+import { NRowsType, SearchParams } from "../../shared/types/SearchResult";
 
 const Pagination = ({
   nRows,
   currentPage,
   totalResults,
-  handleChangePage
+  handleParamChange
 }: {
-  nRows:NRowsType;
+  nRows: NRowsType;
   currentPage: number;
   totalResults: number;
-  handleChangePage: (newPage: number) => void;
+  handleParamChange: (newParams: Partial<SearchParams>) => void;
 }) => {
   const pagniationButtonStyle = useStyleConfig("PaginationButton");
 
@@ -46,7 +46,7 @@ const Pagination = ({
             bg: "transparent",
             visibility: currentPage <= 1 ? "hidden" : "visible"
           }}
-          onClick={() => handleChangePage(currentPage - 1)}
+          onClick={() => handleParamChange({ page: currentPage - 1 })}
         />
         {pages.map((page) => (
           <Button
@@ -55,7 +55,7 @@ const Pagination = ({
               ...pagniationButtonStyle,
               ...(page === currentPage && { backgroundColor: "cyan.700" })
             }}
-            onClick={() => handleChangePage(page)}
+            onClick={() => handleParamChange({ page })}
           >
             {page}
           </Button>
@@ -68,7 +68,7 @@ const Pagination = ({
             bg: "transparent",
             visibility: currentPage === totalPages ? "hidden" : "visible"
           }}
-          onClick={() => handleChangePage(currentPage + 1)}
+          onClick={() => handleParamChange({ page: currentPage + 1 })}
         />
       </SimpleGrid>
     </Flex>
