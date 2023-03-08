@@ -100,6 +100,7 @@ const components = {
     baseStyle: ({ colorMode }) => ({
       color: colorMode === "dark" ? "gray.200" : "gray.800",
       bgColor: colorMode === "dark" ? "cyan.800" : "cyan.500",
+      fontWeight: 600,
       _hover: { bgColor: "cyan.600", color: "gray.50" },
       _active: {
         bgColor: "cyan.700",
@@ -107,7 +108,22 @@ const components = {
       }
     })
   },
-  Menu: menuTheme
+  Menu: menuTheme,
+  PaginationButton: {
+    baseStyle: {
+      color: "gray.100",
+      bgColor: "transparent",
+      borderRadius: "50%",
+      fontWeight: 400,
+      fontSize: "md",
+      width: "25%",
+      _hover: { bgColor: "cyan.600", color: "gray.50" },
+      _active: {
+        bgColor: "cyan.700",
+        color: "gray.100"
+      }
+    }
+  }
 };
 
 export default extendTheme({ colors, config, components, fonts, styles });
