@@ -8,5 +8,6 @@ import { client } from "../common/client";
 // Search for products in search page
 export const getSearchResults = async (
   searchQuery: string,
-  params: SearchParams
-) => await client("/search", { query: searchQuery, ...params });
+  params: SearchParams,
+  signal: AbortSignal
+) => await client("/search", { query: searchQuery, ...params }, { signal });

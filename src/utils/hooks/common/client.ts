@@ -3,12 +3,13 @@ export async function client(
   params?: Record<string, string | number> | string[][],
   {
     body,
+    signal,
     headers,
     ...otherConfigs
-  }: { body?: Record<string, string> | string[][] } & Omit<
-    RequestInit,
-    "body"
-  > = {}
+  }: {
+    body?: Record<string, string> | string[][];
+    signal?: AbortSignal;
+  } & Omit<RequestInit, "body"> = {}
 ) {
   return fetch(
     (endpoint.startsWith("/")
@@ -21,7 +22,8 @@ export async function client(
     {
       method: body ? "POST" : "GET",
       ...otherConfigs,
-      headers: { "Content-Type": "application/json", ...headers }
+      headers: { "Content-Type": "application/json", ...headers },
+      signal
     }
   ).then(async (response) => {
     if (response.ok) {

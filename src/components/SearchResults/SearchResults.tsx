@@ -53,7 +53,7 @@ const SearchResults = () => {
 
   const { data, isSuccess, isFetching } = useQuery<SearchResultObject>(
     ["productSearch", searchQuery, params],
-    () => getSearchResults(searchQuery, params),
+    ({ signal }) => getSearchResults(searchQuery, params, signal),
     { enabled: isQueryValid }
   );
 
