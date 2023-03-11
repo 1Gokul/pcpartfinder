@@ -5,13 +5,17 @@ import Container from "../src/components/Layout/Container";
 import Layout from "../src/components/Layout/Layout";
 import { useNextQueryParam } from "../src/utils/hooks/common/useNextQueryParam";
 import dynamic from "next/dynamic";
+import { Router, useRouter } from "next/router";
 
-const SearchResults = dynamic(() => import("../src/components/SearchResults/SearchResults"), {
-  ssr: false
-});
+const SearchResults = dynamic(
+  () => import("../src/components/SearchResults/SearchResults"),
+  {
+    ssr: false
+  }
+);
 
 const Home = () => {
-  const searchQuery = useNextQueryParam("query");
+  const router = useRouter();
 
   return (
     <Layout title="Search" page="/">
@@ -23,10 +27,10 @@ const Home = () => {
           <Text color="gray.500">
             We're working on providing more PC components soon!
           </Text>
-          <ProductSearchForm isDisabled={false} query={searchQuery} />
+          <ProductSearchForm/>
         </Flex>
 
-        <SearchResults />
+        <SearchResults key={router.asPath} />
       </Container>
     </Layout>
   );

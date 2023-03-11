@@ -1,7 +1,7 @@
 import { Flex, Progress, Text } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 
 import Table from "../Table/Table";
 import Pagination from "./Pagniation";
@@ -24,18 +24,18 @@ const SearchResults = () => {
   const sortFromQuery = (useNextQueryParam("sort") || "rel") as SortType;
   const rowsFromQuery = (useNextQueryParam("nRows") || 10) as NRowsType;
 
+  if (pageFromQuery < 1) {
+    router.push({
+      pathname: "search",
+      query: { query: searchQuery, page: 1 }
+    });
+  }
+
   const [params, setParams] = useState<SearchParams>({
     page: pageFromQuery,
     sort: sortFromQuery,
     nRows: rowsFromQuery
   });
-
-  if (pageFromQuery < 1) {
-    router.push({
-      pathname: "search",
-      ...(searchQuery && { query: { query: searchQuery, page: 1 } })
-    });
-  }
 
   const handleParamChange = (newParams: Partial<SearchParams>) => {
     router.push(
@@ -60,7 +60,7 @@ const SearchResults = () => {
   return (
     <Flex key={router.asPath} direction="column">
       {isFetching ? (
-        <>
+        <Fragment key={router.asPath}>
           <Text fontSize="2xl" align="center" marginTop={5}>
             Looking at our database...
           </Text>
@@ -70,17 +70,14 @@ const SearchResults = () => {
             size="xs"
             isIndeterminate
           />
-        </>
-      ) : (
-        isSuccess && (
-          <>
+        </Fragment>
+      ) : searchQuery ? (
+        isSuccess && data?.n_results ? (
+          <Fragment key={router.asPath}>
             <Text fontSize="md" color="gray.400" fontWeight="600">
-              {data?.n_results
-                ? `${(params.page - 1) * params.nRows}-${Math.min(
-                    params.page * params.nRows,
-                    data.n_results
-                  )} of ${data.n_results} results`
-                : "Sorry, no results were found. Try another search string."}
+              {(params.page - 1) * params.nRows}-
+              {Math.min(params.page * params.nRows, data.n_results)} of{" "}
+              {data.n_results} results
             </Text>
             <Flex
               justifyContent="space-between"
@@ -105,11 +102,14 @@ const SearchResults = () => {
                 />
               </Flex>
             </Flex>
-
             <Table items={data.content} />
-          </>
+          </Fragment>
+        ) : (
+          <Text fontSize="md" color="gray.400" fontWeight="600">
+            Sorry, no results were found. Try another search string.
+          </Text>
         )
-      )}
+      ) : null}
     </Flex>
   );
 };
