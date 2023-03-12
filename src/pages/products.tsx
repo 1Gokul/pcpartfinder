@@ -1,7 +1,7 @@
 import { Heading } from "@chakra-ui/layout";
 
-import Layout from "../src/components/Layout/Layout";
-import Container from "../src/components/Layout/Container";
+import Layout from "../components/Layout/Layout";
+import Container from "../components/Layout/Container";
 
 const Products = () => {
   return (

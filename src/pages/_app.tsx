@@ -1,8 +1,9 @@
 import { AppProps } from "next/app";
+import localFont from 'next/font/local'
 import { ChakraProvider } from "@chakra-ui/react";
 import { Global, css } from "@emotion/react";
 import "focus-visible/dist/focus-visible";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useState } from "react";
 import {
   Hydrate,
@@ -11,10 +12,10 @@ import {
   QueryClientProvider
 } from "@tanstack/react-query";
 
-import "@fontsource/inter/variable-full.css";
-import customTheme from "../src/styles/theme";
-import { handleQueryError } from "../src/utils/hooks/common/handleQueryError";
+import customTheme from "../styles/theme";
+import { handleQueryError } from "../utils/hooks/common/handleQueryError";
 
+const monaFont = localFont({ src: "../assets/fonts/Mona-Sans.woff2" });
 
 // https://medium.com/@keeganfamouss/accessibility-on-demand-with-chakra-ui-and-focus-visible-19413b1bc6f9
 const GlobalStyles = css`
@@ -41,15 +42,22 @@ function App({ Component, pageProps }: AppProps) {
       })
   );
   return (
-    <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydratedState}>
-        <ChakraProvider theme={customTheme}>
-          <Toaster position="top-right" gutter={8} />
-          <Global styles={GlobalStyles} />
-          <Component {...pageProps} />
-        </ChakraProvider>
-      </Hydrate>
-    </QueryClientProvider>
+    <>
+      <style jsx global>{`
+        :root {
+          --font-base: ${monaFont.style.fontFamily};
+        }
+      `}</style>
+      <QueryClientProvider client={queryClient}>
+        <Hydrate state={pageProps.dehydratedState}>
+          <ChakraProvider theme={customTheme}>
+            <Toaster position="top-right" gutter={8} />
+            <Global styles={GlobalStyles} />
+            <Component {...pageProps} />
+          </ChakraProvider>
+        </Hydrate>
+      </QueryClientProvider>
+    </>
   );
 }
 
