@@ -65,7 +65,7 @@ const SearchResults = () => {
             Looking at our database...
           </Text>
           <Progress
-            colorScheme="cyan"
+            colorScheme="aqua"
             marginTop={4}
             size="xs"
             isIndeterminate
@@ -74,7 +74,7 @@ const SearchResults = () => {
       ) : searchQuery ? (
         isSuccess && data?.n_results ? (
           <Fragment key={router.asPath}>
-            <Text fontSize="md" color="gray.400" fontWeight="600">
+            <Text fontSize="md" color="aqua.1200" fontWeight="500">
               {(params.page - 1) * params.nRows}-
               {Math.min(params.page * params.nRows, data.n_results)} of{" "}
               {data.n_results} results

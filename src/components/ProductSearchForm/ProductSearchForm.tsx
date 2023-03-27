@@ -28,8 +28,18 @@ const ProductSearchForm = () => {
           variant="filled"
           placeholder="Search..."
           border="2px"
-          borderColor="gray.400"
-          focusBorderColor="cyan.600"
+          bgColor="aqua.50"
+          borderColor="aqua.1100"
+          focusBorderColor="aqua.800"
+          _placeholder={{
+            color: "gray.500"
+          }}
+          _focus={{
+            bgColor: "aqua.50"
+          }}
+          _hover={{
+            bgColor: "aqua.100"
+          }}
         />
         <Button
           padding={10}

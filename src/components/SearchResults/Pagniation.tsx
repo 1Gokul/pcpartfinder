@@ -53,7 +53,10 @@ const Pagination = ({
             key={"pagination-" + page}
             sx={{
               ...pagniationButtonStyle,
-              ...(page === currentPage && { backgroundColor: "cyan.700" })
+              ...(page === currentPage && {
+                backgroundColor: "aqua.500",
+                fontWeight: "500"
+              })
             }}
             onClick={() => handleParamChange({ page })}
           >

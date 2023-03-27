@@ -36,7 +36,7 @@ const Layout = ({
   }, [scrollListener]);
 
   return (
-    <Flex direction="column" margin="0 auto">
+    <Flex direction="column" margin="0 auto" position="relative">
       {/* For SEO */}
       <SEO page={page} title={title} />
 

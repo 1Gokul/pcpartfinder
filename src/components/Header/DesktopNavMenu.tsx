@@ -17,19 +17,12 @@ const DesktopNavMenu = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Flex display={{ base: "none", md: "flex" }} height="100%" marginRight={10}>
+    <Flex display={{ base: "none", md: "flex" }} height="100%">
       {navLinks.map((navLink) => (
         <NavLink key={navLink.text} styles={styles} url={navLink.url}>
           {navLink.text}
         </NavLink>
       ))}
-      <Flex sx={styles} borderRight="1px" onClick={toggleColorMode}>
-        {colorMode}
-        <Icon
-          as={colorMode === "dark" ? IoMoonSharp : IoSunnySharp}
-          marginLeft={2}
-        />
-      </Flex>
     </Flex>
   );
 };

@@ -27,14 +27,6 @@ const MobileNavMenu = ({ expanded }: { expanded: boolean }) => {
           {navLink.text}
         </NavLink>
       ))}
-
-      <Flex sx={styles} onClick={toggleColorMode}>
-        {colorMode}
-        <Icon
-          as={colorMode === "dark" ? IoMoonSharp : IoSunnySharp}
-          marginLeft={2}
-        />
-      </Flex>
     </Flex>
   );
 };

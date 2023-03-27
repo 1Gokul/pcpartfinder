@@ -10,29 +10,30 @@ const baseStyle = definePartsStyle({
   button: {
     p: "3",
     fontWeight: "medium",
-    bg: "cyan.500",
-    color: "gray.200",
+    bg: "aqua.600",
+    color: "gray.900",
     _hover: {
-      bg: "cyan.600",
+      bg: "aqua.600",
       color: "white"
     }
   },
   list: {
     // this will style the MenuList component
-    p: 0,
+    p: '0',
     borderRadius: "none",
-    bg: "gray.900",
-    border: "2px solid cyan.500"
+    border: "2px solid #70FFFF",
   },
   item: {
     // this will style the MenuItem and MenuItemOption components
     p: "3",
-    color: "gray.200",
+    fontWeight: 500,
+    color: "gray.800",
+    bg: "aqua.50",
     _hover: {
-      bg: "cyan.700"
+      bg: "aqua.500"
     },
     _focus: {
-      bg: "cyan.800"
+      bg: "aqua.600"
     }
   },
   groupTitle: {

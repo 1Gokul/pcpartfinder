@@ -9,8 +9,6 @@ import DesktopNavMenu from "./DesktopNavMenu";
 import MobileNavMenu from "./MobileNavMenu";
 
 const Header = () => {
-  const { colorMode } = useColorMode();
-
   // For opening and closing the hamburger menu
   const [expanded, setExpanded] = useState<boolean>(false);
 
@@ -20,18 +18,24 @@ const Header = () => {
   };
 
   return (
-    <Flex direction="column">
+    <>
       <Flex
         justifyContent="space-between"
-        paddingRight={5}
-        height={{ base: "12vh", md: "20vh" }}
+        height={{ base: "10vh", md: "12vh", lg: "10vh" }}
+        marginX={{ base: "initial", md: "auto" }}
+        width={{ base: "100%", md: "75vw" }}
+        position={{ base: "initial", md: "sticky" }}
+        mt={{ base: "0", md: "2rem" }}
+        top="0"
+        zIndex="9999"
         alignItems="center"
-        borderBottom="1px"
-        borderColor={colorMode === "dark" ? "gray.600" : "gray.300"}
+        borderWidth={{ base: "0 0 1px 0", md: "2px" }}
+        bgColor="aqua.200"
+        borderColor="aqua.1200"
       >
         {/* Logo */}
         <Link href="/search" passHref>
-          <Flex marginX={10} width={{ base: "200px", md: "300px" }}>
+          <Flex marginX={10} width={{ base: "200px", md: "250px" }}>
             <Image src={logo} alt="pcpartfinder logo" priority={true} />
           </Flex>
         </Link>
@@ -44,7 +48,7 @@ const Header = () => {
       </Flex>
 
       <MobileNavMenu expanded={expanded} />
-    </Flex>
+    </>
   );
 };
 

@@ -21,13 +21,11 @@ const Home = () => {
     <Layout title="Search" page="/">
       <Container>
         <Flex direction="column" width="100%">
-          <Heading size="2xl" fontWeight="800" marginBottom={5}>
-            Find graphics cards available in major Indian stores.
+          <Heading size="2xl" fontWeight="800">
+            Find computer components and peripherals available in major Indian
+            stores.
           </Heading>
-          <Text color="gray.500">
-            We're working on providing more PC components soon!
-          </Text>
-          <ProductSearchForm/>
+          <ProductSearchForm />
         </Flex>
 
         <SearchResults key={router.asPath} />
