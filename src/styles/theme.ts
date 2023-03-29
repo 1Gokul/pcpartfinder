@@ -134,10 +134,9 @@ const components = {
       fontWeight: 400,
       fontSize: "md",
       width: "25%",
-      _hover: { bgColor: "aqua.500", color: "gray.800" },
+      _hover: { bgColor: "aqua.400" },
       _active: {
-        bgColor: "aqua.400",
-        color: "gray.100"
+        bgColor: "aqua.600",
       }
     }
   },

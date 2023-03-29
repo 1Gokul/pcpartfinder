@@ -43,6 +43,7 @@ const Pagination = ({
           icon={<HiArrowLongLeft size="36" />}
           isRound
           sx={{
+            ...pagniationButtonStyle,
             bg: "transparent",
             visibility: currentPage <= 1 ? "hidden" : "visible"
           }}
@@ -68,6 +69,7 @@ const Pagination = ({
           icon={<HiArrowLongRight size="36" />}
           isRound
           sx={{
+            ...pagniationButtonStyle,
             bg: "transparent",
             visibility: currentPage === totalPages ? "hidden" : "visible"
           }}
