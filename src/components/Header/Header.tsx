@@ -35,7 +35,7 @@ const Header = () => {
       >
         {/* Logo */}
         <Link href="/search" passHref>
-          <Flex marginX={10} width={{ base: "200px", md: "250px" }}>
+          <Flex marginX={10} width={{ base: "250px", md: "300px" }}>
             <Image src={logo} alt="pcpartfinder logo" priority={true} />
           </Flex>
         </Link>

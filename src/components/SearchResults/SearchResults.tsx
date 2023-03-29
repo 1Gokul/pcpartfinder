@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import React, { Fragment, useState } from "react";
 
-import Table from "../Table/Table";
+import Table from "./Table/Table";
 import Pagination from "./Pagniation";
 import RowsPerPage from "./RowsPerPage";
 import SortMenu from "./SortMenu";

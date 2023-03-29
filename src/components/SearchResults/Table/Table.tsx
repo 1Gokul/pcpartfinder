@@ -13,7 +13,7 @@ import {
   useToken
 } from "@chakra-ui/react";
 import { RiExternalLinkLine } from "react-icons/ri";
-import theme from "../../styles/theme";
+import theme from "../../../styles/theme";
 
 export interface TableProps {
   items: { name: string; url: string; price: number; store: string }[];
