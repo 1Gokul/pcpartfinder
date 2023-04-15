@@ -13,10 +13,11 @@ import {
   useToken
 } from "@chakra-ui/react";
 import { RiExternalLinkLine } from "react-icons/ri";
+import { SearchResultItem } from "../../../shared/types/SearchResult";
 import theme from "../../../styles/theme";
 
 export interface TableProps {
-  items: { name: string; url: string; price: number; store: string }[];
+  items: SearchResultItem[];
   [otherProps: string]: unknown;
 }
 

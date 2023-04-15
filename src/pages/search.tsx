@@ -3,7 +3,6 @@ import { Flex, Heading, Text } from "@chakra-ui/react";
 import ProductSearchForm from "../components/ProductSearchForm/ProductSearchForm";
 import Container from "../components/Layout/Container";
 import Layout from "../components/Layout/Layout";
-import { useNextQueryParam } from "../utils/hooks/common/useNextQueryParam";
 import dynamic from "next/dynamic";
 import { Router, useRouter } from "next/router";
 

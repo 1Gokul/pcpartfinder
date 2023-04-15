@@ -3,7 +3,7 @@ export type SearchResultItem = {
   price: number;
   url: string;
   store: string;
-  price_history: { [historyDate: string]: number };
+  id: string;
 };
 
 export type SearchResultObject = {

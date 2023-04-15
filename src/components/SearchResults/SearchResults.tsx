@@ -13,8 +13,8 @@ import {
   SearchResultObject,
   SortType
 } from "../../shared/types/SearchResult";
-import { useNextQueryParam } from "../../utils/hooks/common/useNextQueryParam";
-import { getSearchResults } from "../../utils/hooks/queries/SearchQueries";
+import { useNextQueryParam } from "../../shared/utils/hooks/useNextQueryParam";
+import { useGetSearchResults } from "../../shared/utils/hooks/queries/UseSearchQuery";
 
 const SearchResults = () => {
   const router = useRouter();
@@ -51,10 +51,10 @@ const SearchResults = () => {
 
   const isQueryValid = !!searchQuery && params.page >= 1;
 
-  const { data, isSuccess, isFetching } = useQuery<SearchResultObject>(
-    ["productSearch", searchQuery, params],
-    ({ signal }) => getSearchResults(searchQuery, params, signal),
-    { enabled: isQueryValid }
+  const { data, isSuccess, isFetching } = useGetSearchResults(
+    searchQuery,
+    params,
+    isQueryValid
   );
 
   return (
