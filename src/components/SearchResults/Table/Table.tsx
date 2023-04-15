@@ -10,7 +10,8 @@ import {
   Tr,
   Th,
   Td,
-  useToken
+  useToken,
+  LinkOverlay
 } from "@chakra-ui/react";
 import { RiExternalLinkLine } from "react-icons/ri";
 import { SearchResultItem } from "../../../shared/types/SearchResult";
@@ -22,7 +23,6 @@ export interface TableProps {
 }
 
 const Table = ({ items, ...otherProps }: TableProps) => {
-  const [aqua1k] = useToken("colors", ["aqua.1200"]);
   return (
     <Flex overflowX="auto">
       <ChakraTable
@@ -45,8 +45,13 @@ const Table = ({ items, ...otherProps }: TableProps) => {
         <Tbody>
           {items.map((result, index) => (
             <Tr
-              key={`${result.name}:${result.url}`}
+              key={result.id}
               backgroundColor={index % 2 ? "aqua.400" : "initial"}
+              cursor="pointer"
+              transition="background-color 0.1s linear"
+              _hover={{
+                backgroundColor: "aqua.300"
+              }}
               // border={`1px solid ${index % 2 ? "aqua.300" : "initial"}`}
             >
               <Td border="none">
