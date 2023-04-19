@@ -10,10 +10,10 @@ const baseStyle = definePartsStyle({
   button: {
     p: "3",
     fontWeight: "medium",
-    bg: "aqua.600",
+    bg: "green.600",
     color: "gray.900",
     _hover: {
-      bg: "aqua.600",
+      bg: "green.600",
       color: "white"
     }
   },
@@ -21,19 +21,19 @@ const baseStyle = definePartsStyle({
     // this will style the MenuList component
     p: '0',
     borderRadius: "none",
-    border: "2px solid #70FFFF",
+    border: "2px solid #126932",
   },
   item: {
     // this will style the MenuItem and MenuItemOption components
     p: "3",
     fontWeight: 500,
     color: "gray.800",
-    bg: "aqua.50",
+    bg: "green.50",
     _hover: {
-      bg: "aqua.500"
+      bg: "green.400"
     },
     _focus: {
-      bg: "aqua.600"
+      bg: "green.600"
     }
   },
   groupTitle: {

@@ -26,10 +26,10 @@ const Table = ({ items, ...otherProps }: TableProps) => {
   return (
     <Flex overflowX="auto">
       <ChakraTable
-        colorScheme="aqua"
+        colorScheme="green"
         border="2px"
         rules="none"
-        borderColor="aqua.1200"
+        borderColor="green.1200"
         size={{ base: "sm", md: "lg" }}
         fontWeight="500"
         sx={{
@@ -46,13 +46,13 @@ const Table = ({ items, ...otherProps }: TableProps) => {
           {items.map((result, index) => (
             <Tr
               key={result.id}
-              backgroundColor={index % 2 ? "aqua.400" : "initial"}
+              backgroundColor={index % 2 ? "green.400" : "initial"}
               cursor="pointer"
               transition="background-color 0.1s linear"
               _hover={{
-                backgroundColor: "aqua.300"
+                backgroundColor: "green.300"
               }}
-              // border={`1px solid ${index % 2 ? "aqua.300" : "initial"}`}
+              // border={`1px solid ${index % 2 ? "green.300" : "initial"}`}
             >
               <Td border="none">
                 <ChakraText noOfLines={4}>{result.name}</ChakraText>

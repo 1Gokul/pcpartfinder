@@ -28,17 +28,17 @@ const ProductSearchForm = () => {
           variant="filled"
           placeholder="Search..."
           border="2px"
-          bgColor="aqua.50"
-          borderColor="aqua.1100"
-          focusBorderColor="aqua.800"
+          bgColor="green.50"
+          borderColor="green.1100"
+          focusBorderColor="green.800"
           _placeholder={{
             color: "gray.500"
           }}
           _focus={{
-            bgColor: "aqua.50"
+            bgColor: "green.50"
           }}
           _hover={{
-            bgColor: "aqua.100"
+            bgColor: "green.100"
           }}
         />
         <Button

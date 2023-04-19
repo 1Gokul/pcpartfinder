@@ -15,43 +15,28 @@ const fonts = {
 };
 
 const colors = {
-  aqua: {
-    50: "#EBFFFF",
-    100: "#D6FFFF",
-    200: "#C2FFFF",
-    300: "#ADFFFF",
-    400: "#99FFFF",
-    500: "#85FFFF",
-    600: "#70FFFF",
-    700: "#1FFFFF",
-    800: "#00F5F5",
-    900: "#00CCCC",
-    1000: "#00A3A3",
-    1100: "#007A7A",
-    1200: "#005252"
-  },
   green: {
-    50: "#EBFFF5",
-    100: "#D6FFEC",
-    200: "#C2FFE3",
-    300: "#85FFC6",
-    400: "#70FFBC",
-    500: "#6dfdbb",
-    600: "#5CFFB3",
-    700: "#33FFA0",
-    800: "#0AFF8D",
-    900: "#0AFF8D",
-    1000: "#00A357",
-    1100: "#006636",
-    1200: "#006636"
-  }
+    50: "#EEFCF3",
+    100: "#DCF9E6",
+    200: "#CBF6DA",
+    300: "#B9F3CE",
+    400: "#A8F0C2",
+    500: "#85EAAA",
+    600: "#73E79E",
+    700: "#1EAE53",
+    800: "#188C42",
+    900: "#126932",
+    1000: "#0C4621",
+    1100: "#093419",
+    1200: "#031108"
+  },
 };
 
 const styles = {
   global: {
     body: {
       color: "gray.700",
-      bg: "aqua.200",
+      bg: "green.200",
       transitionProperty: "all",
       transitionDuration: "normal"
     }
@@ -80,7 +65,7 @@ const components = {
     baseStyle: {
       color: "gray.800",
       _hover: {
-        color: "aqua.500",
+        color: "green.500",
         textDecoration: "none"
       }
     }
@@ -97,7 +82,7 @@ const components = {
       width: "100px",
       cursor: "pointer",
       transition: "0.1s linear",
-      _hover: { textDecoration: "none", bgColor: "aqua.400" }
+      _hover: { textDecoration: "none", bgColor: "green.400" }
     }
   },
   MobileNavlink: {
@@ -116,11 +101,11 @@ const components = {
   CustomButton: {
     baseStyle: {
       color: "gray.800",
-      bgColor: "aqua.400",
+      bgColor: "green.400",
       fontWeight: 600,
-      _hover: { bgColor: "aqua.600", color: "gray.800" },
+      _hover: { bgColor: "green.600", color: "gray.800" },
       _active: {
-        bgColor: "aqua.700",
+        bgColor: "green.600",
         color: "gray.800"
       }
     }
@@ -134,9 +119,9 @@ const components = {
       fontWeight: 400,
       fontSize: "md",
       width: "25%",
-      _hover: { bgColor: "aqua.400" },
+      _hover: { bgColor: "green.400" },
       _active: {
-        bgColor: "aqua.600",
+        bgColor: "green.600",
       }
     }
   },

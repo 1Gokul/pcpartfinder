@@ -30,8 +30,8 @@ const Header = () => {
         zIndex="9999"
         alignItems="center"
         borderWidth={{ base: "0 0 1px 0", md: "2px" }}
-        bgColor="aqua.200"
-        borderColor="aqua.1200"
+        bgColor="green.200"
+        borderColor="green.1200"
       >
         {/* Logo */}
         <Link href="/search" passHref>
