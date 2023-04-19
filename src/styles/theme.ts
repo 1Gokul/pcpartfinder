@@ -115,7 +115,7 @@ const components = {
     baseStyle: {
       color: "gray.800",
       bgColor: "transparent",
-      borderRadius: "50%",
+      borderRadius: "0",
       fontWeight: 400,
       fontSize: "md",
       width: "25%",

@@ -55,7 +55,8 @@ const Pagination = ({
             sx={{
               ...pagniationButtonStyle,
               ...(page === currentPage && {
-                backgroundColor: "green.500",
+                backgroundColor: "green.400",
+                border: "2px solid #126932",
                 fontWeight: "500"
               })
             }}
