@@ -30,7 +30,7 @@ const ProductSearchForm = () => {
           border="2px"
           bgColor="green.50"
           borderColor="green.1100"
-          focusBorderColor="green.800"
+          focusBorderColor="green.600"
           _placeholder={{
             color: "gray.500"
           }}

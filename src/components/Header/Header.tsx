@@ -26,7 +26,7 @@ const Header = () => {
         width={{ base: "100%", md: "75vw" }}
         position={{ base: "initial", md: "sticky" }}
         mt={{ base: "0", md: "2rem" }}
-        top="0"
+        top="0.25rem"
         zIndex="9999"
         alignItems="center"
         borderWidth={{ base: "0 0 1px 0", md: "2px" }}
