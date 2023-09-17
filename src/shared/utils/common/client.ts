@@ -1,4 +1,4 @@
-export async function client(
+export async function client<T>(
   endpoint: string,
   params?: Record<string, string | number> | string[][],
   {
@@ -10,7 +10,7 @@ export async function client(
     body?: Record<string, string> | string[][];
     signal?: AbortSignal;
   } & Omit<RequestInit, "body"> = {}
-) {
+): Promise<T> {
   return fetch(
     (endpoint.startsWith("/")
       ? process.env.NEXT_PUBLIC_API_BASE_URL + endpoint

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Flex, Icon, Input, useStyleConfig } from "@chakra-ui/react";
 import { VscArrowRight } from "react-icons/vsc";
 import { useRouter } from "next/router";
-import { useNextQueryParam } from "../../shared/utils/hooks/useNextQueryParam";
+import { useNextQueryParam } from "../../shared/utils/common/useNextQueryParam";
 
 const ProductSearchForm = () => {
   const searchQuery = useNextQueryParam("query");

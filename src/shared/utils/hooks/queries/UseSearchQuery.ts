@@ -9,9 +9,13 @@ export const useGetSearchResults = (
   params: SearchParams,
   enabled: boolean
 ) =>
-  useQuery<SearchResultObject>(
+  useQuery(
     ["productSearch", searchQuery, params],
     ({ signal }) =>
-      client("/search", { query: searchQuery, ...params }, { signal }),
+      client<SearchResultObject>(
+        "/search",
+        { query: searchQuery, ...params },
+        { signal }
+      ),
     { enabled }
   );

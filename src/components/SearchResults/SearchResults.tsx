@@ -13,7 +13,7 @@ import {
   SearchResultObject,
   SortType
 } from "../../shared/types/SearchResult";
-import { useNextQueryParam } from "../../shared/utils/hooks/useNextQueryParam";
+import { useNextQueryParam } from "../../shared/utils/common/useNextQueryParam";
 import { useGetSearchResults } from "../../shared/utils/hooks/queries/UseSearchQuery";
 
 const SearchResults = () => {

@@ -21,7 +21,7 @@ const Header = () => {
     <>
       <Flex
         justifyContent="space-between"
-        height={{ base: "10vh", md: "12vh", lg: "10vh" }}
+        height={{ base: "10vh", lg: "12vh", '2xl': "12vh" }}
         marginX={{ base: "initial", md: "auto" }}
         width={{ base: "100%", md: "75vw" }}
         position={{ base: "initial", md: "sticky" }}
