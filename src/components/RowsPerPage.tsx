@@ -8,12 +8,7 @@ import {
   useStyleConfig
 } from "@chakra-ui/react";
 import { GoChevronDown } from "react-icons/go";
-
-import {
-  NRowsOptions,
-  NRowsType,
-  SearchParams
-} from "../../shared/types/SearchResult";
+import { NRowsType, SearchParams, NRowsOptions } from "../types/SearchResult";
 
 const RowsPerPage = ({
   n_results,

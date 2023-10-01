@@ -13,7 +13,7 @@ import {
 } from "@tanstack/react-query";
 
 import customTheme from "../styles/theme";
-import { handleQueryError } from "../shared/utils/common/handleQueryError";
+import { handleQueryError } from "../utils/common/handleQueryError";
 
 const monaFont = localFont({ src: "../assets/fonts/Mona-Sans.woff2" });
 

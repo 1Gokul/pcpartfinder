@@ -1,13 +1,13 @@
 import { Flex, Heading, Text } from "@chakra-ui/react";
 
-import ProductSearchForm from "../components/ProductSearchForm/ProductSearchForm";
+import ProductSearchForm from "../sections/ProductSearchForm/ProductSearchForm";
 import Container from "../components/Layout/Container";
 import Layout from "../components/Layout/Layout";
 import dynamic from "next/dynamic";
 import { Router, useRouter } from "next/router";
 
 const SearchResults = dynamic(
-  () => import("../components/SearchResults/SearchResults"),
+  () => import("../sections/SearchResults/SearchResults"),
   {
     ssr: false
   }
