@@ -7,7 +7,7 @@ import {
   MenuItemOption,
   useStyleConfig
 } from "@chakra-ui/react";
-import { GoChevronDown } from "react-icons/go";
+import { CaretDown } from "@phosphor-icons/react";
 import { NRowsType, SearchParams, NRowsOptions } from "../types/SearchResult";
 
 const RowsPerPage = ({
@@ -22,11 +22,7 @@ const RowsPerPage = ({
   const customButtonStyle = useStyleConfig("CustomButton");
   return (
     <Menu>
-      <MenuButton
-        as={Button}
-        sx={customButtonStyle}
-        rightIcon={<GoChevronDown />}
-      >
+      <MenuButton as={Button} sx={customButtonStyle} rightIcon={<CaretDown />}>
         {nRows} per page
       </MenuButton>
       <MenuList>

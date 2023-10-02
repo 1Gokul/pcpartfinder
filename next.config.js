@@ -8,5 +8,8 @@ module.exports = {
         permanent: true
       }
     ];
+  },
+  experimental: {
+    optimizePackageImports: ["@chakra-ui/react"]
   }
 };

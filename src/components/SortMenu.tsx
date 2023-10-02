@@ -7,9 +7,8 @@ import {
   MenuItemOption,
   useStyleConfig
 } from "@chakra-ui/react";
-import { GoChevronDown } from "react-icons/go";
-
-import { SearchParams, SortType } from "../../shared/types/SearchResult";
+import { CaretDown } from "@phosphor-icons/react";
+import { SortType, SearchParams } from "../types/SearchResult";
 
 const SortMenu = ({
   sort,
@@ -21,11 +20,7 @@ const SortMenu = ({
   const customButtonStyle = useStyleConfig("CustomButton");
   return (
     <Menu>
-      <MenuButton
-        as={Button}
-        sx={customButtonStyle}
-        rightIcon={<GoChevronDown />}
-      >
+      <MenuButton as={Button} sx={customButtonStyle} rightIcon={<CaretDown />}>
         {sort === "rel"
           ? "Relevance"
           : (sort === "asc" ? "Ascending" : "Descending") + " price"}

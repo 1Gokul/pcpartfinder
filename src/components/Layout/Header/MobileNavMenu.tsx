@@ -1,18 +1,10 @@
-import {
-  SystemStyleObject,
-  useStyleConfig,
-  Flex,
-  Icon,
-  useColorMode
-} from "@chakra-ui/react";
-import { IoMoonSharp, IoSunnySharp } from "react-icons/io5";
+import { SystemStyleObject, useStyleConfig, Flex } from "@chakra-ui/react";
+
 import { navLinks } from "../../../constants/NavLinks";
 import { NavLink } from "./NavLink";
 
 const MobileNavMenu = ({ expanded }: { expanded: boolean }) => {
   const styles: SystemStyleObject = useStyleConfig("MobileNavlink");
-
-  const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <Flex

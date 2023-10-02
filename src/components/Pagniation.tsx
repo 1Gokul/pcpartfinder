@@ -5,9 +5,8 @@ import {
   SimpleGrid,
   useStyleConfig
 } from "@chakra-ui/react";
-import { HiArrowLongLeft, HiArrowLongRight } from "react-icons/hi2";
-import { useMemo } from "react";
-import { NRowsType, SearchParams } from "../../shared/types/SearchResult";
+import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
+import { NRowsType, SearchParams } from "../types/SearchResult";
 
 const Pagination = ({
   nRows,
@@ -40,7 +39,7 @@ const Pagination = ({
       <SimpleGrid columns={9}>
         <IconButton
           aria-label="pagination-first"
-          icon={<HiArrowLongLeft size="36" />}
+          icon={<ArrowLeft size="24" />}
           isRound
           sx={{
             ...pagniationButtonStyle,
@@ -67,7 +66,7 @@ const Pagination = ({
         ))}
         <IconButton
           aria-label="pagination-first"
-          icon={<HiArrowLongRight size="36" />}
+          icon={<ArrowRight size="24" />}
           isRound
           sx={{
             ...pagniationButtonStyle,

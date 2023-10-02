@@ -1,12 +1,11 @@
 import { IconButton } from "@chakra-ui/react";
-import { RxArrowUp } from "react-icons/rx";
-import { animateScroll } from "react-scroll";
+import { ArrowUp } from "@phosphor-icons/react";
 
 const BackToTop = ({ visible }: { visible: boolean }) => (
   <IconButton
     display={visible ? "flex" : "none"}
     colorScheme="green"
-    icon={<RxArrowUp />}
+    icon={<ArrowUp />}
     position="fixed"
     color="green.1100"
     right={{ base: "50px", md: "70px" }}
@@ -16,7 +15,7 @@ const BackToTop = ({ visible }: { visible: boolean }) => (
       bgColor: "green.700"
     }}
     aria-label="Click on this button to scroll to the top of the page."
-    onClick={() => animateScroll.scrollToTop()}
+    onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}
   />
 );
 

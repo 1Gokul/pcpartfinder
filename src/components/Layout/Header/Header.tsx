@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Flex, IconButton, useColorMode } from "@chakra-ui/react";
-import { VscMenu, VscClose } from "react-icons/vsc";
+import { Flex, IconButton } from "@chakra-ui/react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@chakra-ui/next-js";
 
 import logo from "../../../../public/logo.svg";
 import DesktopNavMenu from "./DesktopNavMenu";
 import MobileNavMenu from "./MobileNavMenu";
+import { List, X } from "@phosphor-icons/react";
 
 const Header = () => {
   // For opening and closing the hamburger menu
@@ -21,7 +21,7 @@ const Header = () => {
     <>
       <Flex
         justifyContent="space-between"
-        height={{ base: "10vh", lg: "12vh", '2xl': "12vh" }}
+        height={{ base: "10vh", lg: "12vh", "2xl": "12vh" }}
         marginX={{ base: "initial", md: "auto" }}
         width={{ base: "100%", md: "75vw" }}
         position={{ base: "initial", md: "sticky" }}
@@ -34,7 +34,7 @@ const Header = () => {
         borderColor="green.1200"
       >
         {/* Logo */}
-        <Link href="/search" passHref>
+        <Link href="/search">
           <Flex marginX={10} width={{ base: "250px", md: "300px" }}>
             <Image src={logo} alt="pcpartfinder logo" priority={true} />
           </Flex>
@@ -67,7 +67,7 @@ const HamburgerMenuToggler = ({
     display={{ base: "flex", md: "none" }}
     variant="ghost"
     fontSize="40px"
-    icon={expanded ? <VscClose /> : <VscMenu />}
+    icon={expanded ? <X /> : <List />}
     onClick={toggleExpanded}
   />
 );

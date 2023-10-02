@@ -1,5 +1,5 @@
+import { Link } from "@chakra-ui/next-js";
 import { SystemStyleObject, Flex } from "@chakra-ui/react";
-import Link from "next/link";
 
 export const NavLink = ({
   children,
@@ -14,7 +14,7 @@ export const NavLink = ({
   children: React.ReactNode;
 }) => {
   return (
-    <Link href={url} passHref>
+    <Link href={url}>
       <Flex
         sx={styles}
         textTransform="capitalize"

@@ -1,4 +1,5 @@
-import { Flex, Link } from "@chakra-ui/react";
+import { Link } from "@chakra-ui/next-js";
+import { Flex } from "@chakra-ui/react";
 
 const Footer = () => (
   <Flex
@@ -7,16 +8,16 @@ const Footer = () => (
     direction="row"
     justifyContent={{ base: "space-between", md: "space-evenly" }}
   >
-    <a target="_blank" href="https://gokulv.netlify.app" rel="noreferrer">
+    <Link target="_blank" href="https://gokulv.netlify.app" rel="noreferrer">
       Gokul Viswanath
-    </a>
-    <a
+    </Link>
+    <Link
       target="_blank"
       href="https://github.com/1Gokul/pcpartfinder"
       rel="noreferrer"
     >
       GitHub repo
-    </a>
+    </Link>
   </Flex>
 );
 

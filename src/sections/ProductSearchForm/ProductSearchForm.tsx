@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Button, Flex, Icon, Input, useStyleConfig } from "@chakra-ui/react";
-import { VscArrowRight } from "react-icons/vsc";
 import { useRouter } from "next/router";
+
 import { useNextQueryParam } from "../../utils/common/useNextQueryParam";
+import { ArrowRight } from "@phosphor-icons/react";
 
 const ProductSearchForm = () => {
   const searchQuery = useNextQueryParam("query");
@@ -45,12 +46,11 @@ const ProductSearchForm = () => {
           padding={10}
           fontSize="xl"
           marginTop={{ base: 5, md: 0 }}
-          alignSelf="center"
           sx={useStyleConfig("CustomButton")}
           type="submit"
         >
           Search
-          <Icon as={VscArrowRight} marginTop={0.5} marginLeft={2} />
+          <Icon as={ArrowRight} fontSize='24' marginLeft={2} />
         </Button>
       </Flex>
     </form>

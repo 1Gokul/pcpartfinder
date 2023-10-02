@@ -11,25 +11,25 @@
     "ts-lint": "tsc --noEmit --incremental --watch"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.5.1",
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
+    "@chakra-ui/next-js": "^2.1.5",
+    "@chakra-ui/react": "^2.8.1",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@phosphor-icons/react": "^2.0.13",
     "@tanstack/react-query": "^4.18.0",
-    "focus-visible": "^5.2.0",
-    "framer-motion": "^10.3.1",
-    "next": "^13.2.4",
+    "framer-motion": "^10.16.4",
+    "next": "^13.5.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.0",
-    "react-icons": "^4.7.1",
-    "react-scroll": "^1.8.4"
+    "react-icons": "^4.11.0"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.27",
     "@typescript-eslint/eslint-plugin": "^5.49.0",
     "eslint": "^8.33.0",
-    "eslint-config-next": "^13.2.4",
+    "eslint-config-next": "^13.5.3",
     "eslint-config-prettier": "^8.6.0",
     "prettier": "^2.8.3",
     "typescript": "4.9.4"

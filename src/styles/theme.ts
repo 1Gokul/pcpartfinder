@@ -29,7 +29,7 @@ const colors = {
     1000: "#0C4621",
     1100: "#093419",
     1200: "#031108"
-  },
+  }
 };
 
 const styles = {
@@ -65,7 +65,11 @@ const components = {
     baseStyle: {
       color: "gray.800",
       _hover: {
-        color: "green.500",
+        color: "green.700",
+        textDecoration: "none"
+      },
+      _focus: {
+        color: "green.800",
         textDecoration: "none"
       }
     }
@@ -121,10 +125,10 @@ const components = {
       width: "25%",
       _hover: { bgColor: "green.400" },
       _active: {
-        bgColor: "green.600",
+        bgColor: "green.600"
       }
     }
-  },
+  }
 };
 
 export default extendTheme({ colors, config, components, fonts, styles });

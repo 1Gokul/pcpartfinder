@@ -14,7 +14,7 @@ import {
   Button,
   Box
 } from "@chakra-ui/react";
-import { RiExternalLinkLine } from "react-icons/ri";
+import { ArrowSquareOut } from "@phosphor-icons/react";
 import { SearchResultItem } from "../../types/SearchResult";
 
 const TableRow = ({
@@ -49,7 +49,7 @@ const TableRow = ({
           </Td>
           <Td border="none">
             <Link target="_blank" href={result.url}>
-              <Icon as={RiExternalLinkLine} fontSize="2xl" />
+              <Icon as={ArrowSquareOut} fontSize="2xl" />
             </Link>
           </Td>
         </Tr>
