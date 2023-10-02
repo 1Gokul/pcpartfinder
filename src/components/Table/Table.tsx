@@ -1,21 +1,11 @@
 import {
   Flex,
-  Icon,
-  Link,
-  Text as ChakraText,
   Table as ChakraTable,
-  Thead,
-  Tbody,
   TableCaption,
-  Tr,
-  Th,
-  Td,
-  useToken,
-  LinkOverlay
+  Tbody
 } from "@chakra-ui/react";
-import { RiExternalLinkLine } from "react-icons/ri";
-import { SearchResultItem } from "../../../shared/types/SearchResult";
-import theme from "../../../styles/theme";
+import { SearchResultItem } from "../../types/SearchResult";
+import TableRow from "./TableRow";
 
 export interface TableProps {
   items: SearchResultItem[];
@@ -34,7 +24,7 @@ const Table = ({ items, ...otherProps }: TableProps) => {
         fontWeight="500"
         sx={{
           "& td[data-is-numeric=true]": { px: 1 },
-          "& tr td:not(:first-child)": { px: 3 }
+          "& tr td:not(:first-of-type)": { px: 3 }
         }}
         {...otherProps}
       >
@@ -44,33 +34,7 @@ const Table = ({ items, ...otherProps }: TableProps) => {
 
         <Tbody>
           {items.map((result, index) => (
-            <Tr
-              key={result.id}
-              backgroundColor={index % 2 ? "green.400" : "initial"}
-              cursor="pointer"
-              transition="background-color 0.1s linear"
-              _hover={{
-                backgroundColor: "green.300"
-              }}
-              // border={`1px solid ${index % 2 ? "green.300" : "initial"}`}
-            >
-              <Td border="none">
-                <ChakraText noOfLines={4}>{result.name}</ChakraText>
-              </Td>
-              <Td border="none">
-                <ChakraText noOfLines={4}>{result.store}</ChakraText>
-              </Td>
-              <Td border="none" fontWeight="600" isNumeric>
-                {result.price === 0
-                  ? "Call Store"
-                  : `₹${result.price.toLocaleString("en-IN")}`}
-              </Td>
-              <Td border="none">
-                <Link target="_blank" href={result.url}>
-                  <Icon as={RiExternalLinkLine} fontSize="2xl" />
-                </Link>
-              </Td>
-            </Tr>
+            <TableRow key={result.id} stripe={!!(index % 2)} result={result} />
           ))}
         </Tbody>
       </ChakraTable>

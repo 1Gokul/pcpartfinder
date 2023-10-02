@@ -1,5 +1,6 @@
 export type SearchResultItem = {
   name: string;
+  category: string;
   price: number;
   url: string;
   store: string;
