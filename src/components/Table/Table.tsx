@@ -1,44 +1,35 @@
 import {
+  Box,
   Flex,
+  Grid,
   Table as ChakraTable,
   TableCaption,
-  Tbody
+  Tbody,
+  Text
 } from "@chakra-ui/react";
 import { SearchResultItem } from "../../types/SearchResult";
 import TableRow from "./TableRow";
 
-export interface TableProps {
+export type TableProps = {
   items: SearchResultItem[];
-  [otherProps: string]: unknown;
-}
+};
 
-const Table = ({ items, ...otherProps }: TableProps) => {
+const Table = ({ items }: TableProps) => {
   return (
-    <Flex overflowX="auto">
-      <ChakraTable
-        colorScheme="green"
-        border="2px"
-        rules="none"
-        borderColor="green.1200"
-        size={{ base: "sm", md: "lg" }}
-        fontWeight="500"
-        sx={{
-          "& td[data-is-numeric=true]": { px: 1 },
-          "& tr td:not(:first-of-type)": { px: 3 }
-        }}
-        {...otherProps}
-      >
-        <TableCaption display={{ md: "none" }} textAlign="left" placement="top">
-          ← Swipe left if some columns are not visible
-        </TableCaption>
+    <Box
+      overflowX="auto"
+      border="2px"
+      borderColor="green.1200"
+      fontWeight="500"
+    >
+      <Text display={{ md: "none" }} textAlign="left">
+        ← Swipe left if some columns are not visible
+      </Text>
 
-        <Tbody>
-          {items.map((result, index) => (
-            <TableRow key={result.id} stripe={!!(index % 2)} result={result} />
-          ))}
-        </Tbody>
-      </ChakraTable>
-    </Flex>
+      {items.map((result, index) => (
+        <TableRow key={result.id} stripe={!!(index % 2)} result={result} />
+      ))}
+    </Box>
   );
 };
 
