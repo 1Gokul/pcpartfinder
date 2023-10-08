@@ -1,11 +1,11 @@
-import React, { useState } from "react";
 import { Button, Flex, Icon, Input, useStyleConfig } from "@chakra-ui/react";
+import { ArrowRight } from "@phosphor-icons/react";
 import { useRouter } from "next/router";
+import React, { useState } from "react";
 
 import { useNextQueryParam } from "../../utils/common/useNextQueryParam";
-import { ArrowRight } from "@phosphor-icons/react";
 
-const ProductSearchForm = () => {
+export const ProductSearchForm = () => {
   const searchQuery = useNextQueryParam("query");
   const [inputQuery, setInputQuery] = useState<string>(searchQuery);
 
@@ -13,7 +13,10 @@ const ProductSearchForm = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    router.push({ pathname: "search", query: { query: inputQuery, page: 1 } });
+    void router.push({
+      pathname: "search",
+      query: { query: inputQuery, page: 1 }
+    });
   };
 
   return (
@@ -50,11 +53,9 @@ const ProductSearchForm = () => {
           type="submit"
         >
           Search
-          <Icon as={ArrowRight} fontSize='24' marginLeft={2} />
+          <Icon as={ArrowRight} fontSize="24" marginLeft={2} />
         </Button>
       </Flex>
     </form>
   );
 };
-
-export default ProductSearchForm;

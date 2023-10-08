@@ -1,5 +1,6 @@
 import { Flex, Heading, Text as ChakraText } from "@chakra-ui/react";
-import Table, { TableProps } from "./Table";
+
+import { Table, TableProps } from "./Table";
 
 type TableWithHeadingProps = TableProps & {
   heading: string;

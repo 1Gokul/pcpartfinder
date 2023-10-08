@@ -1,20 +1,13 @@
-import {
-  Box,
-  Flex,
-  Grid,
-  Table as ChakraTable,
-  TableCaption,
-  Tbody,
-  Text
-} from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
+
+import { TableRow } from "./TableRow";
 import { SearchResultItem } from "../../types/SearchResult";
-import TableRow from "./TableRow";
 
 export type TableProps = {
   items: SearchResultItem[];
 };
 
-const Table = ({ items }: TableProps) => {
+export const Table = ({ items }: TableProps) => {
   return (
     <Box
       overflowX="auto"
@@ -32,5 +25,3 @@ const Table = ({ items }: TableProps) => {
     </Box>
   );
 };
-
-export default Table;

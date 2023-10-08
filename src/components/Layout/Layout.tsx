@@ -1,12 +1,12 @@
 import { Flex } from "@chakra-ui/react";
 import { useState, useCallback, useEffect } from "react";
 
-import Header from "./Header/Header";
-import BackToTop from "./BackToTop";
-import Footer from "./Footer";
-import SEO from "./SEO";
+import { BackToTop } from "./BackToTop";
+import { Footer } from "./Footer";
+import { Header } from "./Header/Header";
+import { SEO } from "./SEO";
 
-const Layout = ({
+export const Layout = ({
   children,
   title,
   page
@@ -25,8 +25,8 @@ const Layout = ({
 
     if (scrollAmount > 100) {
       if (!backToTopVisible) setBackToTopVisible(true);
-    } else if (scrollAmount < 100) {
-      if (backToTopVisible) setBackToTopVisible(false);
+    } else if (scrollAmount < 100 && backToTopVisible) {
+      setBackToTopVisible(false);
     }
   }, [backToTopVisible]);
 
@@ -51,4 +51,3 @@ const Layout = ({
     </Flex>
   );
 };
-export default Layout;

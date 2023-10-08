@@ -1,6 +1,6 @@
 import { Collapse, Flex } from "@chakra-ui/react";
 
-const ItemHistory = ({ isOpen }: { isOpen: boolean }) => {
+export const ItemDetails = ({ isOpen }: { isOpen: boolean }) => {
   return (
     <Collapse in={isOpen} animateOpacity>
       <Flex py={5} pl={6} backgroundColor="inherit">
@@ -9,5 +9,3 @@ const ItemHistory = ({ isOpen }: { isOpen: boolean }) => {
     </Collapse>
   );
 };
-
-export default ItemHistory;

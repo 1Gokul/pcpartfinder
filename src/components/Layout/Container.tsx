@@ -23,5 +23,3 @@ export const Container = ({
     </Flex>
   );
 };
-
-export default Container;

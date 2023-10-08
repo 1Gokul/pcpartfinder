@@ -12,11 +12,9 @@ import { useMemo } from "react";
 export const useNextQueryParam = (key: string): string | undefined => {
   const { asPath } = useRouter();
 
-  const value = useMemo(() => {
+  return useMemo(() => {
     const match = asPath.match(new RegExp(`[&?]${key}=(.*?)(&|$)`));
     if (!match) return undefined;
     return decodeURIComponent(match[1].replace(/\+/g, " "));
   }, [asPath, key]);
-
-  return value;
 };

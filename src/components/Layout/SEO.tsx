@@ -3,7 +3,7 @@ import Head from "next/head";
 const description =
   "Search for PC components and peripherals from major Indian stores!";
 
-const SEO = ({ page, title }: { page: string; title: string }) => {
+export const SEO = ({ page, title }: { page: string; title: string }) => {
   const pageTitle = title + "- PCPartFinder";
   return (
     <Head>
@@ -34,5 +34,3 @@ const SEO = ({ page, title }: { page: string; title: string }) => {
     </Head>
   );
 };
-
-export default SEO;

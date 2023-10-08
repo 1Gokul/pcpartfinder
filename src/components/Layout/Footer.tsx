@@ -1,7 +1,7 @@
 import { Link } from "@chakra-ui/next-js";
 import { Flex } from "@chakra-ui/react";
 
-const Footer = () => (
+export const Footer = () => (
   <Flex
     paddingX={10}
     paddingY={5}
@@ -20,5 +20,3 @@ const Footer = () => (
     </Link>
   </Flex>
 );
-
-export default Footer;

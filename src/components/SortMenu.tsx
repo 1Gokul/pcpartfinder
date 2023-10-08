@@ -8,9 +8,10 @@ import {
   useStyleConfig
 } from "@chakra-ui/react";
 import { CaretDown } from "@phosphor-icons/react";
+
 import { SortType, SearchParams } from "../types/SearchResult";
 
-const SortMenu = ({
+export const SortMenu = ({
   sort,
   handleParamChange
 }: {
@@ -40,5 +41,3 @@ const SortMenu = ({
     </Menu>
   );
 };
-
-export default SortMenu;

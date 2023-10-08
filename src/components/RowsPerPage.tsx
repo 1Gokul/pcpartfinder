@@ -8,9 +8,10 @@ import {
   useStyleConfig
 } from "@chakra-ui/react";
 import { CaretDown } from "@phosphor-icons/react";
+
 import { NRowsType, SearchParams, NRowsOptions } from "../types/SearchResult";
 
-const RowsPerPage = ({
+export const RowsPerPage = ({
   n_results,
   nRows,
   handleParamChange
@@ -53,5 +54,3 @@ const RowsPerPage = ({
     </Menu>
   );
 };
-
-export default RowsPerPage;

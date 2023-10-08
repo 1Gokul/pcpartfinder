@@ -10,11 +10,13 @@ import {
 } from "@chakra-ui/react";
 import {
   ArrowsInLineVertical,
-  ArrowsOutLineVertical} from "@phosphor-icons/react";
-import { SearchResultItem } from "../../types/SearchResult";
-import ItemDetails from "./ItemDetails";
+  ArrowsOutLineVertical
+} from "@phosphor-icons/react";
 
-const TableRow = ({
+import { ItemDetails } from "./ItemDetails";
+import { SearchResultItem } from "../../types/SearchResult";
+
+export const TableRow = ({
   result,
   stripe
 }: {
@@ -23,8 +25,7 @@ const TableRow = ({
 }) => {
   const { isOpen, onToggle } = useDisclosure();
   return (
-    <Box
-        backgroundColor={stripe ? "green.400" : "initial"}>
+    <Box backgroundColor={stripe ? "green.400" : "initial"}>
       <Grid
         templateColumns="repeat(12, 1fr)"
         columnGap={2}
@@ -71,9 +72,7 @@ const TableRow = ({
           Details
         </GridItem>
       </Grid>
-      <ItemDetails isOpen={isOpen}/>
+      <ItemDetails isOpen={isOpen} />
     </Box>
   );
 };
-
-export default TableRow;

@@ -1,7 +1,7 @@
 import { IconButton } from "@chakra-ui/react";
 import { ArrowUp } from "@phosphor-icons/react";
 
-const BackToTop = ({ visible }: { visible: boolean }) => (
+export const BackToTop = ({ visible }: { visible: boolean }) => (
   <IconButton
     display={visible ? "flex" : "none"}
     colorScheme="green"
@@ -18,5 +18,3 @@ const BackToTop = ({ visible }: { visible: boolean }) => (
     onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}
   />
 );
-
-export default BackToTop;

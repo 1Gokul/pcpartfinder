@@ -1,16 +1,15 @@
-import { AppProps } from "next/app";
-import localFont from "next/font/local";
 import { ChakraProvider } from "@chakra-ui/react";
-import { Toaster } from "react-hot-toast";
-import { useState } from "react";
 import {
-  Hydrate,
   QueryCache,
   QueryClient,
   QueryClientProvider
 } from "@tanstack/react-query";
+import { AppProps } from "next/app";
+import localFont from "next/font/local";
+import { useState } from "react";
+import { Toaster } from "react-hot-toast";
 
-import customTheme from "../styles/theme";
+import { theme } from "../styles/theme";
 import { handleQueryError } from "../utils/common/handleQueryError";
 
 const monaFont = localFont({ src: "../assets/fonts/Mona-Sans.woff2" });
@@ -36,7 +35,7 @@ function App({ Component, pageProps }: AppProps) {
         }
       `}</style>
       <QueryClientProvider client={queryClient}>
-        <ChakraProvider theme={customTheme}>
+        <ChakraProvider theme={theme}>
           <Toaster position="top-right" gutter={8} />
           <Component {...pageProps} />
         </ChakraProvider>

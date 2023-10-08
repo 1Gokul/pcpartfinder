@@ -2,24 +2,24 @@ import { Flex, Progress, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { Fragment, useState } from "react";
 
-import Pagination from "../../components/Pagniation";
-import RowsPerPage from "../../components/RowsPerPage";
-import SortMenu from "../../components/SortMenu";
-import Table from "../../components/Table/Table";
+import { Pagination } from "../../components/Pagniation";
+import { RowsPerPage } from "../../components/RowsPerPage";
+import { SortMenu } from "../../components/SortMenu";
+import { Table } from "../../components/Table/Table";
 import { SortType, NRowsType, SearchParams } from "../../types/SearchResult";
 import { useNextQueryParam } from "../../utils/common/useNextQueryParam";
 import { useGetSearchResults } from "../../utils/hooks/queries/UseSearchQuery";
 
-const SearchResults = () => {
+export const SearchResults = () => {
   const router = useRouter();
   const searchQuery = useNextQueryParam("query");
 
-  const pageFromQuery = parseInt(useNextQueryParam("page") as string) || 1;
+  const pageFromQuery = parseInt(useNextQueryParam("page")) || 1;
   const sortFromQuery = (useNextQueryParam("sort") || "rel") as SortType;
   const rowsFromQuery = (useNextQueryParam("nRows") || 10) as NRowsType;
 
   if (pageFromQuery < 1) {
-    router.push({
+    void router.push({
       pathname: "search",
       query: { query: searchQuery, page: 1 }
     });
@@ -32,7 +32,7 @@ const SearchResults = () => {
   });
 
   const handleParamChange = (newParams: Partial<SearchParams>) => {
-    router.push(
+    void router.push(
       {
         pathname: "search",
         query: { query: searchQuery, ...params, ...newParams }
@@ -107,5 +107,3 @@ const SearchResults = () => {
     </Flex>
   );
 };
-
-export default SearchResults;

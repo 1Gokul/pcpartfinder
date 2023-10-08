@@ -16,9 +16,7 @@ export async function client<T>(
       ? process.env.NEXT_PUBLIC_API_BASE_URL + endpoint
       : endpoint) +
       (params ? "?" : "") +
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      new URLSearchParams(params as any),
-    // https://github.com/microsoft/TypeScript/issues/32951
+      new URLSearchParams(params as Record<string, string>).toString(),
     {
       method: body ? "POST" : "GET",
       ...otherConfigs,
@@ -27,7 +25,7 @@ export async function client<T>(
     }
   ).then(async (response) => {
     if (response.ok) {
-      return await response.json();
+      return (await response.json()) as Promise<T>;
     } else {
       const errorMessage = await response.text();
       return Promise.reject(new Error(errorMessage));

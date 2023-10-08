@@ -1,14 +1,13 @@
-import { useState } from "react";
-import { Flex, IconButton } from "@chakra-ui/react";
-import Image from "next/image";
 import { Link } from "@chakra-ui/next-js";
-
-import logo from "../../../../public/logo.svg";
-import DesktopNavMenu from "./DesktopNavMenu";
-import MobileNavMenu from "./MobileNavMenu";
+import { Flex, IconButton } from "@chakra-ui/react";
 import { List, X } from "@phosphor-icons/react";
+import { useState } from "react";
 
-const Header = () => {
+import { DesktopNavMenu } from "./DesktopNavMenu";
+import { MobileNavMenu } from "./MobileNavMenu";
+import Logo from "../../../../public/images/logo.svg";
+
+export const Header = () => {
   // For opening and closing the hamburger menu
   const [expanded, setExpanded] = useState<boolean>(false);
 
@@ -36,14 +35,18 @@ const Header = () => {
         {/* Logo */}
         <Link href="/search">
           <Flex marginX={10} width={{ base: "250px", md: "300px" }}>
-            <Image src={logo} alt="pcpartfinder logo" priority={true} />
+            <Logo alt="pcpartfinder logo" />
           </Flex>
         </Link>
 
         <DesktopNavMenu />
-        <HamburgerMenuToggler
-          toggleExpanded={toggleExpanded}
-          expanded={expanded}
+        <IconButton
+          aria-label="Click this button to toggle the menu."
+          display={{ base: "flex", md: "none" }}
+          variant="ghost"
+          fontSize="40px"
+          icon={expanded ? <X /> : <List />}
+          onClick={toggleExpanded}
         />
       </Flex>
 
@@ -51,23 +54,3 @@ const Header = () => {
     </>
   );
 };
-
-export default Header;
-
-// Mobile menu toggler
-const HamburgerMenuToggler = ({
-  expanded,
-  toggleExpanded
-}: {
-  expanded: boolean;
-  toggleExpanded: () => void;
-}) => (
-  <IconButton
-    aria-label="Click this button to toggle the menu."
-    display={{ base: "flex", md: "none" }}
-    variant="ghost"
-    fontSize="40px"
-    icon={expanded ? <X /> : <List />}
-    onClick={toggleExpanded}
-  />
-);

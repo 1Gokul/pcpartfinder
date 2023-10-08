@@ -6,9 +6,10 @@ import {
   useStyleConfig
 } from "@chakra-ui/react";
 import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
+
 import { NRowsType, SearchParams } from "../types/SearchResult";
 
-const Pagination = ({
+export const Pagination = ({
   nRows,
   currentPage,
   totalResults,
@@ -79,5 +80,3 @@ const Pagination = ({
     </Flex>
   );
 };
-
-export default Pagination;

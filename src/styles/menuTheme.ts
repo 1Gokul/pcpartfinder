@@ -1,12 +1,4 @@
-import { menuAnatomy } from "@chakra-ui/anatomy";
-import { createMultiStyleConfigHelpers, defineStyle } from "@chakra-ui/react";
-
-const { definePartsStyle, defineMultiStyleConfig } =
-  createMultiStyleConfigHelpers(menuAnatomy.keys);
-
-// define the base component styles
-const baseStyle = definePartsStyle({
-  // define the part you're going to style
+const baseStyle = {
   button: {
     p: "3",
     fontWeight: "medium",
@@ -18,13 +10,11 @@ const baseStyle = definePartsStyle({
     }
   },
   list: {
-    // this will style the MenuList component
-    p: '0',
+    p: "0",
     borderRadius: "none",
-    border: "2px solid #126932",
+    border: "2px solid #126932"
   },
   item: {
-    // this will style the MenuItem and MenuItemOption components
     p: "3",
     fontWeight: 500,
     color: "gray.800",
@@ -55,6 +45,6 @@ const baseStyle = definePartsStyle({
     borderColor: "white",
     borderBottom: "2px dotted"
   }
-});
-// export the base styles in the component theme
-export const menuTheme = defineMultiStyleConfig({ baseStyle });
+};
+
+export const menuTheme = { baseStyle };

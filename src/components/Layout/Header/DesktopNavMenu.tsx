@@ -1,19 +1,12 @@
 // Desktop Navbar Menu
 
-import {
-  SystemStyleObject,
-  useStyleConfig,
-  Flex,
-  Icon,
-  useColorMode
-} from "@chakra-ui/react";
-import { navLinks } from "../../../constants/NavLinks";
+import { SystemStyleObject, useStyleConfig, Flex } from "@chakra-ui/react";
+
 import { NavLink } from "./NavLink";
+import { navLinks } from "../../../constants/NavLinks";
 
-const DesktopNavMenu = () => {
+export const DesktopNavMenu = () => {
   const styles: SystemStyleObject = useStyleConfig("DesktopNavlink");
-
-  const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <Flex display={{ base: "none", md: "flex" }} height="100%">
@@ -25,5 +18,3 @@ const DesktopNavMenu = () => {
     </Flex>
   );
 };
-
-export default DesktopNavMenu;
