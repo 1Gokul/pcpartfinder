@@ -10,7 +10,8 @@ import {
 } from "@chakra-ui/react";
 import {
   ArrowsInLineVertical,
-  ArrowsOutLineVertical
+  ArrowsOutLineVertical,
+  ArrowUpRight
 } from "@phosphor-icons/react";
 
 import { ItemDetails } from "./ItemDetails";
@@ -41,7 +42,9 @@ export const TableRow = ({
               textDecor: "underline",
               textUnderlineOffset: "0.25rem"
             }}
-            display={isOpen ? "initial" : "block"}
+            display={isOpen ? "initial" : "flex"}
+            gap={1}
+            alignItems="center"
             width="100%"
             fontWeight={isOpen ? "bold" : "regular"}
             whiteSpace={isOpen ? "initial" : "nowrap"}
@@ -49,6 +52,7 @@ export const TableRow = ({
             textOverflow="ellipsis"
           >
             {result.name}
+            <ArrowUpRight size={20} />
           </Link>
         </GridItem>
         <GridItem colSpan={2}>
