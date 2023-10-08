@@ -33,7 +33,7 @@ export const TableRow = ({
         alignItems="center"
         sx={{ "& > div": { py: 5 } }}
       >
-        <GridItem pl={6} colSpan={7}>
+        <GridItem pl={6} colSpan={7} display="flex" gap={1} alignItems="center">
           <Link
             target="_blank"
             href={result.url}
@@ -42,21 +42,18 @@ export const TableRow = ({
               textDecor: "underline",
               textUnderlineOffset: "0.25rem"
             }}
-            display={isOpen ? "initial" : "flex"}
-            gap={1}
-            alignItems="center"
-            width="100%"
+            display={isOpen ? "initial" : "block"}
             fontWeight={isOpen ? "bold" : "regular"}
             whiteSpace={isOpen ? "initial" : "nowrap"}
             overflow={isOpen ? "initial" : "hidden"}
             textOverflow="ellipsis"
           >
             {result.name}
-            <ArrowUpRight size={20} />
           </Link>
+          <ArrowUpRight size={20} />
         </GridItem>
-        <GridItem colSpan={2}>
-          <Text noOfLines={4}>{result.store}</Text>
+        <GridItem colSpan={2} textAlign="center">
+          {result.store}
         </GridItem>
         <GridItem colSpan={1} fontWeight="600" textAlign="center">
           {result.price === 0
