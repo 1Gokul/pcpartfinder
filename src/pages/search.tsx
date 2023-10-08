@@ -24,7 +24,7 @@ const Home = () => {
       <Container>
         <Flex direction="column" width="100%">
           <Heading size="2xl" fontWeight="800">
-            Find computer components and peripherals available in major Indian
+            Find computer components available in major Indian
             stores.
           </Heading>
           <ProductSearchForm />
