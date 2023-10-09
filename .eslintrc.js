@@ -1,3 +1,4 @@
+// Thanks to https://www.mariasimo.codes/guide-eslint-part-1-eslint-legacy
 module.exports = {
   root: true,
   extends: [
@@ -121,7 +122,6 @@ module.exports = {
         "src/pages/**/*.tsx",
         "additional.d.ts",
         "**/__mocks__/**",
-        "cypress.config.ts"
       ],
       rules: {
         "import/no-anonymous-default-export": "off",

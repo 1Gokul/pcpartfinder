@@ -3,7 +3,7 @@ import { ArrowRight } from "@phosphor-icons/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
-import { useNextQueryParam } from "../../utils/common/useNextQueryParam";
+import { useNextQueryParam } from "../utils/hooks/useNextQueryParam";
 
 export const ProductSearchForm = () => {
   const searchQuery = useNextQueryParam("query");

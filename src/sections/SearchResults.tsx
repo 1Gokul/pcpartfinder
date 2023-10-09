@@ -2,13 +2,13 @@ import { Flex, Progress, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { Fragment, useState } from "react";
 
-import { Pagination } from "../../components/Pagniation";
-import { RowsPerPage } from "../../components/RowsPerPage";
-import { SortMenu } from "../../components/SortMenu";
-import { Table } from "../../components/Table/Table";
-import { SortType, NRowsType, SearchParams } from "../../types/SearchResult";
-import { useNextQueryParam } from "../../utils/common/useNextQueryParam";
-import { useGetSearchResults } from "../../utils/hooks/queries/UseSearchQuery";
+import { Pagination } from "../components/Pagniation";
+import { RowsPerPage } from "../components/RowsPerPage";
+import { SortMenu } from "../components/SortMenu";
+import { Table } from "../components/Table/Table";
+import { SortType, NRowsType, SearchParams } from "../types/SearchResult";
+import { useGetSearchResults } from "../utils/hooks/queries/UseSearchQuery";
+import { useNextQueryParam } from "../utils/hooks/useNextQueryParam";
 
 export const SearchResults = () => {
   const router = useRouter();

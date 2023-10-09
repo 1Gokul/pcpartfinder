@@ -1,7 +1,6 @@
 import { Link } from "@chakra-ui/next-js";
 import {
   GridItem,
-  Text,
   Button,
   Box,
   useDisclosure,
@@ -14,7 +13,7 @@ import {
   ArrowUpRight
 } from "@phosphor-icons/react";
 
-import { ItemDetails } from "./ItemDetails";
+import { TableRowDetails } from "./TableRowDetails";
 import { SearchResultItem } from "../../types/SearchResult";
 
 export const TableRow = ({
@@ -73,7 +72,7 @@ export const TableRow = ({
           Details
         </GridItem>
       </Grid>
-      <ItemDetails isOpen={isOpen} />
+      <TableRowDetails isOpen={isOpen} />
     </Box>
   );
 };

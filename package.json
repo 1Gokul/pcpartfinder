@@ -19,6 +19,7 @@
     "@next/bundle-analyzer": "^13.5.3",
     "@phosphor-icons/react": "^2.0.13",
     "@tanstack/react-query": "^4.18.0",
+    "@visx/xychart": "^3.3.0",
     "framer-motion": "^10.16.4",
     "next": "^13.5.3",
     "react": "^18.2.0",
@@ -29,7 +30,7 @@
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^18.11.18",
-    "@types/react": "^18.0.27",
+    "@types/react": "^18.2.25",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "@typescript-eslint/parser": "^6.7.4",
     "eslint": "8.51.0",
@@ -43,6 +44,6 @@
     "eslint-plugin-sonarjs": "^0.21.0",
     "eslint-plugin-testing-library": "^6.0.2",
     "prettier": "^2.8.3",
-    "typescript": "4.9.4"
+    "typescript": "^5.2.2"
   }
 }

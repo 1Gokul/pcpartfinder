@@ -4,11 +4,11 @@ import { useRouter } from "next/router";
 
 import { Container } from "../components/Layout/Container";
 import { Layout } from "../components/Layout/Layout";
-import { ProductSearchForm } from "../sections/ProductSearchForm/ProductSearchForm";
+import { ProductSearchForm } from "../sections/ProductSearchForm";
 
 const SearchResults = dynamic(
   () =>
-    import("../sections/SearchResults/SearchResults").then(
+    import("../sections/SearchResults").then(
       (component) => component.SearchResults
     ),
   {
