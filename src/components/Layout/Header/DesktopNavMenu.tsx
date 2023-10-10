@@ -3,7 +3,7 @@
 import { SystemStyleObject, useStyleConfig, Flex } from "@chakra-ui/react";
 
 import { NavLink } from "./NavLink";
-import { navLinks } from "../../../constants/NavLinks";
+import { navLinks } from "../../../constants/navLinks";
 
 export const DesktopNavMenu = () => {
   const styles: SystemStyleObject = useStyleConfig("DesktopNavlink");

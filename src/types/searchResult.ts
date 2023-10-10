@@ -1,4 +1,4 @@
-import { NRowsOptions } from "../constants/SearchResult";
+import { NRowsOptions } from "../constants/searchResult";
 
 export type SearchResultItem = {
   name: string;
@@ -7,15 +7,6 @@ export type SearchResultItem = {
   url: string;
   store: string;
   id: string;
-};
-
-export type PriceRecord = { date: string; price: number };
-
-export type DetailItem = {
-  id: string;
-  lastFound: string;
-  priceHistory: PriceRecord;
-  image: string;
 };
 
 export type SearchResultObject = {

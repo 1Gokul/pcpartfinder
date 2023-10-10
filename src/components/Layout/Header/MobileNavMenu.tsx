@@ -1,7 +1,7 @@
 import { SystemStyleObject, useStyleConfig, Flex } from "@chakra-ui/react";
 
 import { NavLink } from "./NavLink";
-import { navLinks } from "../../../constants/NavLinks";
+import { navLinks } from "../../../constants/navLinks";
 
 export const MobileNavMenu = ({ expanded }: { expanded: boolean }) => {
   const styles: SystemStyleObject = useStyleConfig("MobileNavlink");

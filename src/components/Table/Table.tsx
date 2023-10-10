@@ -1,7 +1,7 @@
 import { Box, Text } from "@chakra-ui/react";
 
 import { TableRow } from "./TableRow";
-import { SearchResultItem } from "../../types/SearchResult";
+import { SearchResultItem } from "../../types/searchResult";
 
 export type TableProps = {
   items: SearchResultItem[];

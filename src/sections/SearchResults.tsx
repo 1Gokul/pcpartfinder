@@ -6,7 +6,7 @@ import { Pagination } from "../components/Pagniation";
 import { RowsPerPage } from "../components/RowsPerPage";
 import { SortMenu } from "../components/SortMenu";
 import { Table } from "../components/Table/Table";
-import { SortType, NRowsType, SearchParams } from "../types/SearchResult";
+import { SortType, NRowsType, SearchParams } from "../types/searchResult";
 import { useGetSearchResults } from "../utils/hooks/queries/UseSearchQuery";
 import { useNextQueryParam } from "../utils/hooks/useNextQueryParam";
 

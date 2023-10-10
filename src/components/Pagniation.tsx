@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/react";
 import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
 
-import { NRowsType, SearchParams } from "../types/SearchResult";
+import { NRowsType, SearchParams } from "../types/searchResult";
 
 export const Pagination = ({
   nRows,

@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { CaretDown } from "@phosphor-icons/react";
 
-import { SortType, SearchParams } from "../types/SearchResult";
+import { SortType, SearchParams } from "../types/searchResult";
 
 export const SortMenu = ({
   sort,

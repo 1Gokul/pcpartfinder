@@ -14,7 +14,7 @@ import {
 } from "@phosphor-icons/react";
 
 import { TableRowDetails } from "./TableRowDetails";
-import { SearchResultItem } from "../../types/SearchResult";
+import { SearchResultItem } from "../../types/searchResult";
 
 export const TableRow = ({
   result,
