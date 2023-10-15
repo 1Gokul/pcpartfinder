@@ -6,7 +6,7 @@ export const chartTheme = buildChartTheme({
   colors: ["black"], // categorical colors, mapped to series via `dataKey`s
   gridColor: "var(--chakra-colors-green-400)",
   gridColorDark: "var(--chakra-colors-green-1000)",
-  tickLength: 5,
+  tickLength: 10,
   htmlLabel: { fontFamily: "var(--font-base)" },
 
   // htmlLabel: { fontFamily: "var(--font-base)" },
@@ -16,7 +16,7 @@ export const chartTheme = buildChartTheme({
   // htmlLabel?: HTMLTextStyles;
 
   // // lines
-  xAxisLineStyles: { color: "pink" }
+  // xAxisLineStyles: { color: "pink" }
   // yAxisLineStyles?: LineStyles;
   // xTickLineStyles?: LineStyles;
   // yTickLineStyles?: LineStyles;
