@@ -39,7 +39,11 @@ export const theme = extendTheme({
         color: "gray.700",
         bg: "green.200",
         transitionProperty: "all",
-        transitionDuration: "normal"
+        transitionDuration: "normal",
+        "g.visx-axis-tick text": {
+          fontFamily: "var(--font-base)",
+          fontWeight: 500
+        }
       }
     }
   },

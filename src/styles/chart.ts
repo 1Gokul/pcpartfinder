@@ -7,7 +7,6 @@ export const chartTheme = buildChartTheme({
   gridColor: "var(--chakra-colors-green-400)",
   gridColorDark: "var(--chakra-colors-green-1000)",
   tickLength: 10,
-  htmlLabel: { fontFamily: "var(--font-base)" },
 
   // htmlLabel: { fontFamily: "var(--font-base)" },
   // // labels

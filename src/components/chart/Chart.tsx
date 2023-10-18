@@ -24,8 +24,8 @@ const accessors = {
 };
 
 export const Chart = ({
-  height = 250,
-  width = 500
+  height = 200,
+  width = 400
 }: {
   height?: number;
   width?: number;
