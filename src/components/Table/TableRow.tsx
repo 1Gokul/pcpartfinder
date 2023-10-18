@@ -10,7 +10,6 @@ import {
 import {
   ArrowsInLineVertical,
   ArrowsOutLineVertical,
-  ArrowUpRight
 } from "@phosphor-icons/react";
 
 import { TableRowDetails } from "./TableRowDetails";
