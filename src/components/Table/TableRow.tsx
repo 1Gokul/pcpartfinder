@@ -30,9 +30,9 @@ export const TableRow = ({
         templateColumns="repeat(12, 1fr)"
         columnGap={2}
         alignItems="center"
-        sx={{ "& > div": { py: 5 } }}
+        sx={{ "& > div": { py: 4 } }}
       >
-        <GridItem pl={6} colSpan={7} display="flex" gap={1} alignItems="center">
+        <GridItem pl={6} colSpan={7} position="relative">
           <Link
             target="_blank"
             href={result.url}
@@ -46,10 +46,16 @@ export const TableRow = ({
             whiteSpace={isOpen ? "initial" : "nowrap"}
             overflow={isOpen ? "initial" : "hidden"}
             textOverflow="ellipsis"
+            _after={{
+              display: 'inline-block',
+              content: "'🡕'",
+              fontSize: "1.25em",
+              marginLeft: 1,
+              fontWeight: 500
+            }}
           >
             {result.name}
           </Link>
-          <ArrowUpRight size={20} />
         </GridItem>
         <GridItem colSpan={2} textAlign="center">
           {result.store}

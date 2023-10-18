@@ -11,13 +11,6 @@ import React from "react";
 import { chartTheme } from "../../styles/chart";
 import { PriceRecord } from "../../types/itemDetail";
 
-const data1 = [
-  { date: "2022-10-29", price: 45370 },
-  { date: "2022-11-26", price: 40690 },
-  { date: "2023-01-23", price: 38225 },
-  { date: "2023-03-18", price: 37240 }
-] satisfies PriceRecord[];
-
 const accessors = {
   xAccessor: (d: PriceRecord) => new Date(`${d.date}T00:00:00`),
   yAccessor: (d: PriceRecord) => d.price
@@ -25,10 +18,12 @@ const accessors = {
 
 export const Chart = ({
   height = 200,
-  width = 400
+  width = 400,
+  data
 }: {
   height?: number;
   width?: number;
+  data: Record<string, PriceRecord[]>;
 }) => (
   <div
     style={{
@@ -66,15 +61,22 @@ export const Chart = ({
         orientation="left"
         numTicks={4}
         hideAxisLine
-        hideTicks 
+        hideTicks
         tickFormat={(t: number) =>
           Intl.NumberFormat("en", { notation: "compact" }).format(t)
         }
       />
       <AnimatedGrid columns={false} offset={100} numTicks={4} />
-
-      <AnimatedGlyphSeries dataKey="Line 1" data={data1} {...accessors} />
-      <AnimatedLineSeries dataKey="Line 1" data={data1} {...accessors} />
+      {Object.entries(data).map(([label, chartData]) => (
+        <>
+          <AnimatedGlyphSeries
+            dataKey={label}
+            data={chartData}
+            {...accessors}
+          />
+          <AnimatedLineSeries dataKey={label} data={chartData} {...accessors} />
+        </>
+      ))}
 
       <Tooltip
         snapTooltipToDatumX
