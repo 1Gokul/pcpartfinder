@@ -14,7 +14,7 @@ export const SearchResults = () => {
   const router = useRouter();
   const searchQuery = useNextQueryParam("query");
 
-  const pageFromQuery = parseInt(useNextQueryParam("page")) || 1;
+  const pageFromQuery = parseInt(useNextQueryParam("page") ?? "1");
   const sortFromQuery = (useNextQueryParam("sort") || "rel") as SortType;
   const rowsFromQuery = (useNextQueryParam("nRows") || 10) as NRowsType;
 
@@ -46,64 +46,61 @@ export const SearchResults = () => {
   const isQueryValid = !!searchQuery && params.page >= 1;
 
   const { data, isSuccess, isFetching } = useGetSearchResults(
-    searchQuery,
+    searchQuery ?? "",
     params,
     isQueryValid
   );
 
+  if (!searchQuery) {
+    return null;
+  }
+
+  if (isFetching) {
+    return (
+      <Fragment key={router.asPath}>
+        <Text fontSize="2xl" align="center" marginTop={5}>
+          Looking at our database...
+        </Text>
+        <Progress colorScheme="green" marginTop={4} size="xs" isIndeterminate />
+      </Fragment>
+    );
+  }
+
   return (
     <Flex key={router.asPath} direction="column">
-      {isFetching ? (
+      {isSuccess && data?.n_results ? (
         <Fragment key={router.asPath}>
-          <Text fontSize="2xl" align="center" marginTop={5}>
-            Looking at our database...
+          <Text fontSize="md" color="green.1200" fontWeight="500">
+            {(params.page - 1) * params.nRows}-
+            {Math.min(params.page * params.nRows, data.n_results)} of{" "}
+            {data.n_results} results
           </Text>
-          <Progress
-            colorScheme="green"
-            marginTop={4}
-            size="xs"
-            isIndeterminate
-          />
-        </Fragment>
-      ) : searchQuery ? (
-        isSuccess && data?.n_results ? (
-          <Fragment key={router.asPath}>
-            <Text fontSize="md" color="green.1200" fontWeight="500">
-              {(params.page - 1) * params.nRows}-
-              {Math.min(params.page * params.nRows, data.n_results)} of{" "}
-              {data.n_results} results
-            </Text>
-            <Flex
-              justifyContent="space-between"
-              alignItems="center"
-              marginY={5}
-            >
-              <Pagination
+          <Flex justifyContent="space-between" alignItems="center" marginY={5}>
+            <Pagination
+              nRows={params.nRows}
+              totalResults={data.n_results}
+              currentPage={params.page}
+              handleParamChange={handleParamChange}
+            />
+            <Flex gap={6}>
+              <RowsPerPage
+                n_results={data.n_results}
                 nRows={params.nRows}
-                totalResults={data.n_results}
-                currentPage={params.page}
                 handleParamChange={handleParamChange}
               />
-              <Flex gap={6}>
-                <RowsPerPage
-                  n_results={data.n_results}
-                  nRows={params.nRows}
-                  handleParamChange={handleParamChange}
-                />
-                <SortMenu
-                  sort={params.sort}
-                  handleParamChange={handleParamChange}
-                />
-              </Flex>
+              <SortMenu
+                sort={params.sort}
+                handleParamChange={handleParamChange}
+              />
             </Flex>
-            <Table items={data.content} />
-          </Fragment>
-        ) : (
-          <Text fontSize="md" color="gray.400" fontWeight="600">
-            Sorry, no results were found. Try another search string.
-          </Text>
-        )
-      ) : null}
+          </Flex>
+          <Table items={data.content} />
+        </Fragment>
+      ) : (
+        <Text fontSize="md" color="gray.400" fontWeight="600">
+          Sorry, no results were found. Try another search string.
+        </Text>
+      )}
     </Flex>
   );
 };

@@ -85,18 +85,24 @@ export const Chart = ({
         showSeriesGlyphs
         renderTooltip={({ tooltipData, colorScale }) => (
           <div>
-            <div style={{ color: colorScale(tooltipData.nearestDatum.key) }}>
-              {tooltipData.nearestDatum.key}
+            <div
+              style={{
+                color: colorScale
+                  ? colorScale(tooltipData?.nearestDatum?.key ?? "unknown")
+                  : "green"
+              }}
+            >
+              {tooltipData?.nearestDatum?.key}
             </div>
             {accessors
-              .xAccessor(tooltipData.nearestDatum.datum as PriceRecord)
+              .xAccessor(tooltipData?.nearestDatum?.datum as PriceRecord)
               .toLocaleString("en-in", {
                 year: "2-digit",
                 month: "short",
                 day: "2-digit"
               })}
             , ₹
-            {accessors.yAccessor(tooltipData.nearestDatum.datum as PriceRecord)}
+            {accessors.yAccessor(tooltipData?.nearestDatum?.datum as PriceRecord)}
           </div>
         )}
       />

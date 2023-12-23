@@ -2732,7 +2732,7 @@
     d3-shape "^1.2.0"
     prop-types "^15.6.2"
 
-"@visx/grid@3.3.0", "@visx/grid@^3.3.0":
+"@visx/grid@3.3.0":
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/@visx/grid/-/grid-3.3.0.tgz#52464c8c524e32a75d2a43d99adf8fce91a173ad"
   integrity sha512-wHzxevZfNreU21CHA2/CFLwJeBsetwXQJLxYmc2DotTFHn07n3XJtGCjMVdrmUKfoa/N8cPcFBehuWjnWWpXBg==

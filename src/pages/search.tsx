@@ -28,8 +28,7 @@ const Home = () => {
             stores.
           </Heading>
           <ProductSearchForm />
-        </Flex>
-
+        </Flex> 
         <SearchResults key={router.asPath} />
       </Container>
     </Layout>

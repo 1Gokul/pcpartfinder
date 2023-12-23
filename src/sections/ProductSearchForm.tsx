@@ -7,7 +7,7 @@ import { useNextQueryParam } from "../utils/hooks/useNextQueryParam";
 
 export const ProductSearchForm = () => {
   const searchQuery = useNextQueryParam("query");
-  const [inputQuery, setInputQuery] = useState<string>(searchQuery);
+  const [inputQuery, setInputQuery] = useState<string>(searchQuery ?? "");
 
   const router = useRouter();
 

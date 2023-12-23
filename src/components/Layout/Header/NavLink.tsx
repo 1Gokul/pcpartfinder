@@ -5,12 +5,10 @@ export const NavLink = ({
   children,
   url,
   styles,
-  ...otherProps
 }: {
+  url: string;
   // Theme styles for the link
   styles: SystemStyleObject;
-  // extra styles (if any)
-  [otherProps: string]: unknown;
   children: React.ReactNode;
 }) => {
   return (
@@ -19,7 +17,6 @@ export const NavLink = ({
         sx={styles}
         textTransform="capitalize"
         alignItems="center"
-        {...otherProps}
       >
         {children}
       </Flex>

@@ -17,5 +17,5 @@ export const useGetSearchResults = (
         { query: searchQuery, ...params },
         { signal }
       ),
-    { enabled }
+    { enabled: enabled && !!searchQuery }
   );

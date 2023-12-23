@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import {
   ArrowsInLineVertical,
-  ArrowsOutLineVertical,
+  ArrowsOutLineVertical
 } from "@phosphor-icons/react";
 
 import { TableRowDetails } from "./TableRowDetails";
@@ -46,7 +46,7 @@ export const TableRow = ({
             overflow={isOpen ? "initial" : "hidden"}
             textOverflow="ellipsis"
             _after={{
-              display: 'inline-block',
+              display: "inline-block",
               content: "'🡕'",
               fontSize: "1.25em",
               marginLeft: 1,
@@ -77,7 +77,7 @@ export const TableRow = ({
           Details
         </GridItem>
       </Grid>
-      <TableRowDetails isOpen={isOpen} />
+      <TableRowDetails id={result.id} isOpen={isOpen} />
     </Box>
   );
 };
