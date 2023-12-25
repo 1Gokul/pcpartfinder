@@ -6,7 +6,7 @@ import {
   Tooltip,
   AnimatedGlyphSeries
 } from "@visx/xychart";
-import React, { useMemo } from "react";
+import React from "react";
 
 import {
   MaxPriceChartBuffer,
@@ -14,6 +14,7 @@ import {
 } from "../../constants/searchResult";
 import { chartTheme } from "../../styles/chart";
 import { PriceHistoryPoint } from "../../types/itemDetail";
+import { getPriceLimits } from "../../utils/common/price";
 
 const accessors = {
   xAccessor: (point: PriceHistoryPoint) => new Date(`${point.date}T00:00:00`),
@@ -38,22 +39,7 @@ export const PriceHistoryChart = ({
       name: never;
     }
 )) => {
-  const { max, min } = useMemo(() => {
-    let priceArray = [];
-
-    if (Array.isArray(data)) {
-      priceArray = data.map((item) => item.price);
-    } else {
-      priceArray = Object.values(data)
-        .flat()
-        .map((item) => item.price);
-    }
-
-    return {
-      max: Math.max(...priceArray) + MaxPriceChartBuffer,
-      min: Math.min(...priceArray) + MinPriceChartBuffer
-    };
-  }, [data]);
+  const { max, min } = getPriceLimits(data);
 
   return (
     <div
@@ -70,7 +56,11 @@ export const PriceHistoryChart = ({
         height={height}
         width={width}
         xScale={{ type: "time" }}
-        yScale={{ type: "linear", domain: [min, max], zero: false }}
+        yScale={{
+          type: "linear",
+          domain: [min + MinPriceChartBuffer, max + MaxPriceChartBuffer],
+          zero: false
+        }}
         theme={chartTheme}
         margin={{ top: 10, right: 20, bottom: 40, left: 45 }}
       >
