@@ -77,7 +77,7 @@ export const TableRow = ({
           Details
         </GridItem>
       </Grid>
-      <TableRowDetails id={result.id} isOpen={isOpen} />
+      <TableRowDetails id={result.id} isOpen={isOpen} name={result.name} />
     </Box>
   );
 };
