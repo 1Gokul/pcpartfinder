@@ -12,8 +12,6 @@ import { getFormattedDate, getPriceLimits } from "../../utils/common/price";
 import { useItemDetailQuery } from "../../utils/hooks/queries/useItemDetailQuery";
 import { PriceHistoryChart } from "../Charts/PriceHistoryChart";
 
-
-
 const SkeletonLine = () => (
   <SkeletonText
     startColor="green.400"
@@ -22,6 +20,7 @@ const SkeletonLine = () => (
     skeletonHeight="2"
   />
 );
+
 export const TableRowDetails = ({
   isOpen,
   id,
@@ -82,24 +81,32 @@ export const TableRowDetails = ({
                 color={
                   data.priceHistoryChartData.length > 1
                     ? "gray.800"
-                    : "gray.500"
+                    : "red.700"
                 }
                 mb={2}
               >
                 {data.priceHistoryChartData.length > 1
                   ? data.priceHistoryChartData.length
-                  : "No"}{" "}
+                  : "No previous"}{" "}
                 price records found
               </Text>
-
-              <Text mb={4}>
-                Last found on{" "}
-                {getFormattedDate(
-                  data.priceHistoryChartData[
-                    data.priceHistoryChartData.length - 1
-                  ].date
-                )}
-              </Text>
+              <Flex mb={4} alignItems="center" gap={1}>
+                <Text>Last found on </Text>
+                <Text decoration="underline" textUnderlineOffset="0.25rem">
+                  {getFormattedDate(
+                    data.priceHistoryChartData[
+                      data.priceHistoryChartData.length - 1
+                    ].date
+                  )}
+                </Text>
+                <Text>
+                  (₹{
+                    data.priceHistoryChartData[
+                      data.priceHistoryChartData.length - 1
+                    ].price
+                  })
+                </Text>
+              </Flex>
               <SimpleGrid
                 columns={3}
                 columnGap={2}
