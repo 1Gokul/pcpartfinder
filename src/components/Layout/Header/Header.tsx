@@ -1,7 +1,6 @@
 import { Link } from "@chakra-ui/next-js";
-import { Flex, IconButton } from "@chakra-ui/react";
+import { Flex, IconButton, useDisclosure } from "@chakra-ui/react";
 import { List, X } from "@phosphor-icons/react";
-import { useState } from "react";
 
 import { DesktopNavMenu } from "./DesktopNavMenu";
 import { MobileNavMenu } from "./MobileNavMenu";
@@ -9,11 +8,11 @@ import Logo from "../../../../public/images/logo.svg";
 
 export const Header = () => {
   // For opening and closing the hamburger menu
-  const [expanded, setExpanded] = useState<boolean>(false);
+  const { isOpen, onToggle } = useDisclosure();
 
   const toggleExpanded = () => {
-    document.body.style.overflow = !expanded ? "hidden" : "visible";
-    setExpanded(!expanded);
+    document.body.style.overflow = !isOpen ? "hidden" : "visible";
+    onToggle();
   };
 
   return (
@@ -45,12 +44,12 @@ export const Header = () => {
           display={{ base: "flex", md: "none" }}
           variant="ghost"
           fontSize="40px"
-          icon={expanded ? <X /> : <List />}
+          icon={isOpen ? <X /> : <List />}
           onClick={toggleExpanded}
         />
       </Flex>
 
-      <MobileNavMenu expanded={expanded} />
+      <MobileNavMenu expanded={isOpen} />
     </>
   );
 };

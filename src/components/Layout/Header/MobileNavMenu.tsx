@@ -1,11 +1,6 @@
-import { SystemStyleObject, useStyleConfig, Flex } from "@chakra-ui/react";
-
-import { NavLink } from "./NavLink";
-import { navLinks } from "../../../constants/navLinks";
+import { Flex } from "@chakra-ui/react";
 
 export const MobileNavMenu = ({ expanded }: { expanded: boolean }) => {
-  const styles: SystemStyleObject = useStyleConfig("MobileNavlink");
-
   return (
     <Flex
       direction="column"
@@ -14,11 +9,11 @@ export const MobileNavMenu = ({ expanded }: { expanded: boolean }) => {
       borderBottom="1px"
       borderColor="gray.200"
     >
-      {navLinks.map((navLink) => (
+      {/* {navLinks.map((navLink) => (
         <NavLink key={navLink.text} url={navLink.url} styles={styles}>
           {navLink.text}
         </NavLink>
-      ))}
+      ))} */}
     </Flex>
   );
 };

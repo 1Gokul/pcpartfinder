@@ -86,7 +86,6 @@ export const theme = extendTheme({
         fontSize: "xl",
         fontWeight: "500",
         justifyContent: "center",
-        textTransform: "capitalize",
         alignItems: "center",
         width: "100px",
         cursor: "pointer",
