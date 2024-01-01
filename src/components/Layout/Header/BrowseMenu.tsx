@@ -6,7 +6,7 @@ import { BrowseMenuItems } from "../../../constants/browseMenuItems";
 const BrowseMenuItem = ({ name, url }: Record<"name" | "url", string>) => (
   <Button
     as={Link}
-    href={`browse/${url}`}
+    href={`/browse/${url}`}
     alignItems="center"
     p={3}
     fontWeight={500}
@@ -27,8 +27,8 @@ const BrowseMenuItem = ({ name, url }: Record<"name" | "url", string>) => (
 export const BrowseMenu = () => {
   return (
     <SimpleGrid columns={2}>
-      {BrowseMenuItems.map((menuItem) => (
-        <BrowseMenuItem {...menuItem} key={menuItem.name} />
+      {Object.entries(BrowseMenuItems).map(([url, name]) => (
+        <BrowseMenuItem key={name} name={name} url={url} />
       ))}
     </SimpleGrid>
   );
