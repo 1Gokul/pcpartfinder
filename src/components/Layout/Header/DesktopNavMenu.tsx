@@ -7,13 +7,11 @@ import {
   useDisclosure,
   Menu,
   MenuButton,
-  MenuList,
-  Icon
-} from "@chakra-ui/react";
+  MenuList} from "@chakra-ui/react";
+import { CaretDown } from "@phosphor-icons/react";
 
 import { BrowseMenu } from "./BrowseMenu";
 import { NavLink } from "./NavLink";
-import { CaretDown } from "@phosphor-icons/react";
 
 export const DesktopNavMenu = () => {
   const styles: SystemStyleObject = useStyleConfig("DesktopNavlink");
@@ -22,7 +20,7 @@ export const DesktopNavMenu = () => {
 
   return (
     <Flex display={{ base: "none", md: "flex" }} height="100%">
-      <Menu isOpen={isOpen}>
+      <Menu isOpen={isOpen} gutter={4}>
         <MenuButton
           bgColor="transparent"
           sx={{ ...styles, position: "relative" }}

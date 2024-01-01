@@ -8,7 +8,7 @@ const BrowseMenuItem = ({ name, url }: Record<"name" | "url", string>) => (
     as={Link}
     href={`/browse/${url}`}
     alignItems="center"
-    p={3}
+    p={5}
     fontWeight={500}
     color="gray.800"
     bg="green.50"

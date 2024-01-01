@@ -20,6 +20,7 @@ const baseStyle = {
     color: "gray.800",
     bg: "green.50",
     _hover: {
+      outline: "none",
       bg: "green.400"
     },
     _focus: {

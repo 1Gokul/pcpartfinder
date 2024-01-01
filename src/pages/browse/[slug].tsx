@@ -9,7 +9,9 @@ import { BrowseMenuItems } from "../../constants/browseMenuItems";
 const Products = () => {
   const router = useRouter();
 
-  const [validCategory, setValidCategory] = useState(false);
+  const [category, setCategory] = useState<keyof typeof BrowseMenuItems | null>(
+    null
+  );
 
   useEffect(() => {
     if (
@@ -21,7 +23,7 @@ const Products = () => {
     ) {
       void router.push("/search");
     } else {
-      setValidCategory(true);
+      setCategory(router.query.slug as keyof typeof BrowseMenuItems);
     }
   }, [router]);
 
@@ -29,9 +31,7 @@ const Products = () => {
     <Layout title="Browse" page="/products">
       <Container>
         <Heading size="2xl">
-          {validCategory
-            ? BrowseMenuItems[router.query.slug as keyof typeof BrowseMenuItems]
-            : "Loading..."}
+          {category ? BrowseMenuItems[category] : "Loading..."}
         </Heading>
       </Container>
     </Layout>
