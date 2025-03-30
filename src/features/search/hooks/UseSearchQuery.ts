@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { SearchParams, SearchResultObject } from "../../../types/searchResult";
-import { client } from "../../common/client";
+import { client } from "../../../utils/common/client";
+import { SearchParams, SearchResultObject } from "../types/searchResult";
 
 // Search for products in search page
 export const useGetSearchResults = (

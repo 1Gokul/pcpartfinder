@@ -4,7 +4,7 @@ import { List, X } from "@phosphor-icons/react";
 
 import { DesktopNavMenu } from "./DesktopNavMenu";
 import { MobileNavMenu } from "./MobileNavMenu";
-import Logo from "../../../../public/images/logo.svg";
+import Logo from "../../../public/images/logo.svg";
 
 export const Header = () => {
   // For opening and closing the hamburger menu

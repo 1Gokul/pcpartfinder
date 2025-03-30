@@ -12,8 +12,8 @@ import {
   ArrowsOutLineVertical
 } from "@phosphor-icons/react";
 
-import { TableRowDetails } from "./TableRowDetails";
-import { SearchResultItem } from "../../types/searchResult";
+import { SearchResultItem } from "../../../../types/searchResult";
+import { TableRowDetails } from "../TableRowDetails";
 
 export const TableRow = ({
   result,

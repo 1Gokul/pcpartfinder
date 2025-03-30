@@ -1,13 +1,13 @@
 import { Box, Text } from "@chakra-ui/react";
 
 import { TableRow } from "./TableRow";
-import { SearchResultItem } from "../../types/searchResult";
+import { SearchResultItem } from "../types/searchResult";
 
-export type TableProps = {
+export type SearchResultTableProps = {
   items: SearchResultItem[];
 };
 
-export const Table = ({ items }: TableProps) => {
+export const SearchResultTable = ({ items }: SearchResultTableProps) => {
   return (
     <Box
       overflowX="auto"

@@ -8,13 +8,13 @@ import {
 } from "@visx/xychart";
 import React from "react";
 
+import { chartTheme } from "../../../../../../styles/chart";
 import {
   MaxPriceChartBuffer,
   MinPriceChartBuffer
-} from "../../constants/searchResult";
-import { chartTheme } from "../../styles/chart";
-import { PriceHistoryPoint } from "../../types/itemDetail";
-import { getPriceLimits } from "../../utils/common/price";
+} from "../../../../constants/searchResult";
+import { PriceHistoryPoint } from "../../../../types/itemDetail";
+import { getPriceLimits } from "../../../utils/price";
 
 const accessors = {
   xAccessor: (point: PriceHistoryPoint) => new Date(`${point.date}T00:00:00`),

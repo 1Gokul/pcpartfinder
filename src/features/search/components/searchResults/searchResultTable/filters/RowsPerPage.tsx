@@ -9,8 +9,8 @@ import {
 } from "@chakra-ui/react";
 import { CaretDown } from "@phosphor-icons/react";
 
-import { NRowsOptions } from "../constants/searchResult";
-import { NRowsType, SearchParams } from "../types/searchResult";
+import { NRowsOptions } from "../../../../constants/searchResult";
+import { NRowsType, SearchParams } from "../../../../types/searchResult";
 
 export const RowsPerPage = ({
   n_results,

@@ -1,8 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { ItemDetail } from "../../../types/itemDetail";
-import { client } from "../../common/client";
-
+import { client } from "../../../utils/common/client";
+import { ItemDetail } from "../types/itemDetail";
 
 export const useItemDetailQuery = (id: string, enabled: boolean) =>
   useQuery(

@@ -2,13 +2,13 @@ import { Flex, Heading } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 
-import { Container } from "../components/Layout/Container";
-import { Layout } from "../components/Layout/Layout";
-import { ProductSearchForm } from "../sections/ProductSearchForm";
+import { Container } from "../components/Container";
+import { Layout } from "../components/Layout";
+import { ProductSearchForm } from "../features/search/components/ProductSearchForm";
 
 const SearchResults = dynamic(
   () =>
-    import("../sections/SearchResults").then(
+    import("../features/search/components/searchResults/SearchResults").then(
       (component) => component.SearchResults
     ),
   {
@@ -24,11 +24,10 @@ const Home = () => {
       <Container>
         <Flex direction="column" width="100%">
           <Heading size="2xl" fontWeight="800">
-            Find computer components available in major Indian
-            stores.
+            Find computer components available in major Indian stores.
           </Heading>
           <ProductSearchForm />
-        </Flex> 
+        </Flex>
         <SearchResults key={router.asPath} />
       </Container>
     </Layout>

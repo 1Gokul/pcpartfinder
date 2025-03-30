@@ -2,13 +2,13 @@ import { Flex, Progress, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { Fragment, useState } from "react";
 
-import { Pagination } from "../components/Pagniation";
-import { RowsPerPage } from "../components/RowsPerPage";
-import { SortMenu } from "../components/SortMenu";
-import { Table } from "../components/Table/Table";
-import { SortType, NRowsType, SearchParams } from "../types/searchResult";
-import { useGetSearchResults } from "../utils/hooks/queries/UseSearchQuery";
-import { useNextQueryParam } from "../utils/hooks/useNextQueryParam";
+import { Pagination } from "./searchResultTable/filters/Pagniation";
+import { RowsPerPage } from "./searchResultTable/filters/RowsPerPage";
+import { SortMenu } from "./searchResultTable/filters/SortMenu";
+import { SearchResultTable } from "./searchResultTable/SearchResultTable";
+import { useNextQueryParam } from "../../../../utils/hooks/useNextQueryParam";
+import { useGetSearchResults } from "../../hooks/UseSearchQuery";
+import { SortType, NRowsType, SearchParams } from "../../types/searchResult";
 
 export const SearchResults = () => {
   const router = useRouter();
@@ -94,7 +94,7 @@ export const SearchResults = () => {
               />
             </Flex>
           </Flex>
-          <Table items={data.content} />
+          <SearchResultTable items={data.content} />
         </Fragment>
       ) : (
         <Text fontSize="md" color="gray.400" fontWeight="600">

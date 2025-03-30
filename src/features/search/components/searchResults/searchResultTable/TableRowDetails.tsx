@@ -8,9 +8,9 @@ import {
   Text
 } from "@chakra-ui/react";
 
-import { getFormattedDate, getPriceLimits } from "../../utils/common/price";
-import { useItemDetailQuery } from "../../utils/hooks/queries/useItemDetailQuery";
-import { PriceHistoryChart } from "../Charts/PriceHistoryChart";
+import { getFormattedDate, getPriceLimits } from "../../utils/price";
+import { useItemDetailQuery } from "../../../hooks/useItemDetailQuery";
+import { PriceHistoryChart } from "./tableRow/PriceHistoryChart";
 
 const SkeletonLine = () => (
   <SkeletonText
@@ -79,9 +79,7 @@ export const TableRowDetails = ({
               <Text
                 fontWeight="bold"
                 color={
-                  data.priceHistoryChartData.length > 1
-                    ? "gray.800"
-                    : "red.700"
+                  data.priceHistoryChartData.length > 1 ? "gray.800" : "red.700"
                 }
                 mb={2}
               >
@@ -100,11 +98,13 @@ export const TableRowDetails = ({
                   )}
                 </Text>
                 <Text>
-                  (₹{
+                  (₹
+                  {
                     data.priceHistoryChartData[
                       data.priceHistoryChartData.length - 1
                     ].price
-                  })
+                  }
+                  )
                 </Text>
               </Flex>
               <SimpleGrid
