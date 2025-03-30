@@ -8,9 +8,9 @@ import {
   Text
 } from "@chakra-ui/react";
 
-import { getFormattedDate, getPriceLimits } from "../../utils/price";
-import { useItemDetailQuery } from "../../../hooks/useItemDetailQuery";
 import { PriceHistoryChart } from "./tableRow/PriceHistoryChart";
+import { useItemDetailQuery } from "../../../hooks/useItemDetailQuery";
+import { getFormattedDate, getPriceLimits } from "../../utils/price";
 
 const SkeletonLine = () => (
   <SkeletonText
