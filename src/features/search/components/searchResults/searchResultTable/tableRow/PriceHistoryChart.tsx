@@ -12,7 +12,7 @@ import { chartTheme } from "../../../../../../styles/chart";
 import {
   MaxPriceChartBuffer,
   MinPriceChartBuffer
-} from "../../../../constants/searchResult";
+} from "../../../../constants";
 import { PriceHistoryPoint } from "../../../../types/itemDetail";
 import { getPriceLimits } from "../../../utils/price";
 

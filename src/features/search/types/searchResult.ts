@@ -1,5 +1,3 @@
-import { NRowsOptions } from "../constants/searchResult";
-
 export type SearchResultItem = {
   name: string;
   category: string;
@@ -16,10 +14,7 @@ export type SearchResultObject = {
 
 export type SortType = "rel" | "asc" | "dsc";
 
-export type NRowsType = (typeof NRowsOptions)[number];
-
 export type SearchParams = {
   page: number;
   sort: SortType;
-  nRows: NRowsType;
 };

@@ -3,12 +3,12 @@ import { useRouter } from "next/router";
 import React, { Fragment, useState } from "react";
 
 import { Pagination } from "./searchResultTable/filters/Pagniation";
-import { RowsPerPage } from "./searchResultTable/filters/RowsPerPage";
 import { SortMenu } from "./searchResultTable/filters/SortMenu";
 import { SearchResultTable } from "./searchResultTable/SearchResultTable";
 import { useNextQueryParam } from "../../../../utils/hooks/useNextQueryParam";
+import { PageSize } from "../../constants";
 import { useGetSearchResults } from "../../hooks/UseSearchQuery";
-import { SortType, NRowsType, SearchParams } from "../../types/searchResult";
+import { SortType, SearchParams } from "../../types/searchResult";
 
 export const SearchResults = () => {
   const router = useRouter();
@@ -16,7 +16,6 @@ export const SearchResults = () => {
 
   const pageFromQuery = parseInt(useNextQueryParam("page") ?? "1");
   const sortFromQuery = (useNextQueryParam("sort") || "rel") as SortType;
-  const rowsFromQuery = (useNextQueryParam("nRows") || 10) as NRowsType;
 
   if (pageFromQuery < 1) {
     void router.push({
@@ -27,8 +26,7 @@ export const SearchResults = () => {
 
   const [params, setParams] = useState<SearchParams>({
     page: pageFromQuery,
-    sort: sortFromQuery,
-    nRows: rowsFromQuery
+    sort: sortFromQuery
   });
 
   const handleParamChange = (newParams: Partial<SearchParams>) => {
@@ -71,28 +69,20 @@ export const SearchResults = () => {
       {isSuccess && data?.n_results ? (
         <Fragment key={router.asPath}>
           <Text fontSize="md" color="green.1200" fontWeight="500">
-            {(params.page - 1) * params.nRows}-
-            {Math.min(params.page * params.nRows, data.n_results)} of{" "}
+            {(params.page - 1) * PageSize}-
+            {Math.min(params.page * PageSize, data.n_results)} of{" "}
             {data.n_results} results
           </Text>
           <Flex justifyContent="space-between" alignItems="center" marginY={5}>
             <Pagination
-              nRows={params.nRows}
               totalResults={data.n_results}
               currentPage={params.page}
               handleParamChange={handleParamChange}
             />
-            <Flex gap={6}>
-              <RowsPerPage
-                n_results={data.n_results}
-                nRows={params.nRows}
-                handleParamChange={handleParamChange}
-              />
-              <SortMenu
-                sort={params.sort}
-                handleParamChange={handleParamChange}
-              />
-            </Flex>
+            <SortMenu
+              sort={params.sort}
+              handleParamChange={handleParamChange}
+            />
           </Flex>
           <SearchResultTable items={data.content} />
         </Fragment>
