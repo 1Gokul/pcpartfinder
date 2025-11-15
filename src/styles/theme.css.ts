@@ -2,7 +2,10 @@ import {
   createGlobalTheme,
   globalFontFace,
   globalStyle,
+  layer,
 } from "@vanilla-extract/css";
+
+const reset = layer("reset");
 
 globalFontFace("Mona Sans Variable", {
   src: "url(@fontsource-variable/mona-sans/files/mona-sans-latin-wght-normal.woff2) format('woff2-variations')",
@@ -13,23 +16,21 @@ globalFontFace("Mona Sans Variable", {
   fontStyle: "normal",
 });
 
-export const vars = createGlobalTheme(":root", {
-  color: {
-    green: {
-      50: "#EEFCF3",
-      100: "#DCF9E6",
-      200: "#CBF6DA",
-      300: "#B9F3CE",
-      400: "#A8F0C2",
-      500: "#85EAAA",
-      600: "#73E79E",
-      700: "#1EAE53",
-      800: "#188C42",
-      900: "#126932",
-      1000: "#0C4621",
-      1100: "#093419",
-      1200: "#031108",
-    },
+export const { colors, font } = createGlobalTheme(":root", {
+  colors: {
+    green50: "#EEFCF3",
+    green100: "#DCF9E6",
+    green200: "#CBF6DA",
+    green300: "#B9F3CE",
+    green400: "#A8F0C2",
+    green500: "#85EAAA",
+    green600: "#73E79E",
+    green700: "#1EAE53",
+    green800: "#188C42",
+    green900: "#126932",
+    green1000: "#0C4621",
+    green1100: "#093419",
+    green1200: "#031108",
   },
   font: {
     base: "Mona Sans Variable, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
@@ -37,9 +38,33 @@ export const vars = createGlobalTheme(":root", {
 });
 
 globalStyle("body", {
-  fontFamily: vars.font.base,
-  backgroundColor: vars.color.green[100],
-  color: vars.color.green[1200]
+  fontFamily: font.base,
+  backgroundColor: colors.green200,
+  color: colors.green1200,
+  margin: 0,
+});
+
+export const breakpoints = {
+  mobile: "screen and (min-width: 640px)",
+  tablet: "screen and (min-width: 768px)",
+  desktop: "screen and (min-width: 1024px)",
+  wide: "screen and (min-width: 1280px)",
+};
+
+globalStyle("button", {
+  "@layer": {
+    [reset]: {
+      borderRadius: 0,
+      textAlign: "inherit",
+      background: "none",
+      boxShadow: "none",
+      padding: 0,
+      cursor: "pointer",
+      border: "none",
+      color: "inherit",
+      font: "inherit",
+    },
+  },
 });
 
 const customConfig = {
