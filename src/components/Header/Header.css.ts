@@ -54,17 +54,15 @@ export const desktopNavLinkStyle = style({
   textAlign: "center",
   width: "100px",
   cursor: "pointer",
-  transition: "0.2s ease-in-out background-color",
-  borderWidth: "0",
-  borderColor: "black",
+  transition: "background-color 0.1s linear",
+  borderColor: colors.green200,
   borderStyle: "solid",
-  selectors: {
-    "&:last-child:hover": {
-      borderRightWidth: "0",
-    },
+  borderWidth: "0 1px",
+  ":last-child": {
+    borderRight: "0",
   },
   ":hover": {
     backgroundColor: colors.green400,
-    borderWidth: "0 2px",
+    borderColor: colors.green1200,
   },
 });
