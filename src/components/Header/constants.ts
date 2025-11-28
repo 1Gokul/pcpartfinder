@@ -1,4 +1,4 @@
 export const navLinks = [
-  { title: "search", route: "/search" },
-  { title: "build", route: "/build" },
+  { title: "Search", route: "/search" },
+  { title: "Build", route: "/build" },
 ];

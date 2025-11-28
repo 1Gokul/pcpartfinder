@@ -49,15 +49,15 @@ export const desktopNavStyle = style({
 export const desktopNavLinkStyle = style({
   color: "gray.900",
   height: "100%",
-  fontSize: "xl",
+  fontSize: "x-large",
   fontWeight: "500",
   textAlign: "center",
-  width: "100px",
+  width: "7rem",
   cursor: "pointer",
   transition: "background-color 0.1s linear",
   borderColor: colors.green200,
   borderStyle: "solid",
-  borderWidth: "0 1px",
+  borderWidth: "0 2px",
   ":last-child": {
     borderRight: "0",
   },

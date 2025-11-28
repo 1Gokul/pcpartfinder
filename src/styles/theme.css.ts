@@ -42,6 +42,13 @@ globalStyle("body", {
   backgroundColor: colors.green200,
   color: colors.green1200,
   margin: 0,
+  fontKerning: "normal",
+});
+
+globalStyle("*", {
+  fontFamily: font.base,
+  color: colors.green1200,
+  fontKerning: "normal",
 });
 
 export const breakpoints = {
