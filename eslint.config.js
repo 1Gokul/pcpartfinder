@@ -15,8 +15,7 @@ export default defineConfig([
       reactRefresh.configs.vite,
       eslint.configs.recommended,
       tseslint.configs.strict,
-      tseslint.configs.stylistic,
-      eslintPluginUnicorn.configs.recommended,
+      eslintPluginUnicorn.configs.unopinionated,
     ],
     languageOptions: {
       ecmaVersion: 2020,
@@ -24,6 +23,7 @@ export default defineConfig([
     },
     rules: {
       "unicorn/better-regex": "warn",
+      "unicorn/prevent-abbreviations": "off",
       "unicorn/filename-case": [
         "error",
         {

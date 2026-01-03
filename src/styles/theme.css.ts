@@ -16,8 +16,8 @@ globalFontFace("Mona Sans Variable", {
   fontStyle: "normal",
 });
 
-export const { colors, font } = createGlobalTheme(":root", {
-  colors: {
+export const { colours, font } = createGlobalTheme(":root", {
+  colours: {
     green50: "#EEFCF3",
     green100: "#DCF9E6",
     green200: "#CBF6DA",
@@ -39,16 +39,17 @@ export const { colors, font } = createGlobalTheme(":root", {
 
 globalStyle("body", {
   fontFamily: font.base,
-  backgroundColor: colors.green200,
-  color: colors.green1200,
+  backgroundColor: colours.green200,
+  color: colours.green1200,
   margin: 0,
   fontKerning: "normal",
 });
 
 globalStyle("*", {
   fontFamily: font.base,
-  color: colors.green1200,
+  color: colours.green1200,
   fontKerning: "normal",
+  borderRadius: "0",
 });
 
 export const breakpoints = {

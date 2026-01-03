@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { breakpoints, colors } from "../../styles/theme.css";
+import { breakpoints, colours } from "../../styles/theme.css";
 
 export const formContainerStyle = style({
   padding: "0 2rem",
@@ -10,7 +10,7 @@ export const formHeading = style({
   fontSize: "2rem",
   lineHeight: "3rem",
   fontWeight: 800,
-  color: colors.green1100,
+  color: colours.green1100,
   "@media": {
     [breakpoints.tablet]: {
       fontSize: "3rem",
@@ -45,11 +45,11 @@ export const inputFieldStyle = style({
     color: "#718096",
   },
   ":hover": {
-    backgroundColor: colors.green100,
+    backgroundColor: colours.green100,
   },
   ":focus": {
     backgroundColor: "#F0FFF4",
-    borderColor: "#2F855A",
+    borderColor: colours.green400,
     boxShadow: "0 0 0 1px #2F855A",
     outline: "1px solid #2F855A",
   },
@@ -64,19 +64,15 @@ export const submitButtonStyle = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  backgroundColor: colors.green400,
+  backgroundColor: colours.green400,
+  ":hover": {
+    backgroundColor: colours.green500,
+    paddingRight: "1rem",
+  },
   padding: "0 2rem",
   fontSize: "1.25rem",
-  cursor: "pointer",
-  border: "none",
-  borderRadius: "0.375rem",
-  transition: "background-color,padding 0.2s ease-in-out",
-
-  "@media": {
-    [breakpoints.tablet]: {
-      marginTop: 0,
-    },
-  },
+  fontWeight: "600",
+  transition: "background-color 0.2s ease-in-out, padding 0.2s ease-in-out",
 });
 
 export const buttonIcon = style({

@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { breakpoints, colors } from "../../styles/theme.css";
+import { breakpoints, colours } from "../../styles/theme.css";
 
 export const headerContainerStyle = style({
   display: "flex",
@@ -14,8 +14,8 @@ export const headerContainerStyle = style({
   top: "0.25rem",
   zIndex: 9999,
   borderWidth: "0 0 1px 0",
-  backgroundColor: "green.200",
-  borderColor: "green.1200",
+  backgroundColor: colours.green200,
+  borderColor: colours.green1200,
   borderStyle: "solid",
 
   "@media": {
@@ -47,22 +47,22 @@ export const desktopNavStyle = style({
 });
 
 export const desktopNavLinkStyle = style({
-  color: "gray.900",
+  color: colours.green1000,
   height: "100%",
-  fontSize: "x-large",
+  fontSize: "large",
   fontWeight: "500",
   textAlign: "center",
   width: "7rem",
   cursor: "pointer",
   transition: "background-color 0.1s linear",
-  borderColor: colors.green200,
+  borderColor: colours.green200,
   borderStyle: "solid",
   borderWidth: "0 2px",
   ":last-child": {
     borderRight: "0",
   },
   ":hover": {
-    backgroundColor: colors.green400,
-    borderColor: colors.green1200,
+    backgroundColor: colours.green400,
+    borderColor: colours.green1200,
   },
 });

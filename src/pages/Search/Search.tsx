@@ -5,24 +5,28 @@ import {
   formStyle,
   inputFieldStyle,
   submitButtonStyle,
-} from "./Search/Search.css";
+} from "./Search.css";
 import { useState } from "react";
-import { ArrowRight, MoveRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { ResultsList } from "./components/ResultsList/ResultsList";
 
 export function Search() {
-  // eslint-disable-next-line unicorn/prevent-abbreviations
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(
+    searchParams.get("query") ?? ""
+  );
+
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSearchParams({ query: searchQuery });
+  };
   return (
     <div className={formContainerStyle}>
       <h1 className={formHeading}>
         Find computer components available in major Indian stores.
       </h1>
-      <form
-        onSubmit={() => setSearchParams({ query: searchQuery })}
-        className={formStyle}
-      >
+      <form onSubmit={onSubmit} className={formStyle}>
         <input
           type="text"
           value={searchQuery}
@@ -37,6 +41,8 @@ export function Search() {
           <ArrowRight strokeWidth={1.5} />
         </button>
       </form>
+
+      <ResultsList />
     </div>
   );
 }

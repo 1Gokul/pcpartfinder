@@ -1,4 +1,4 @@
-import { Search } from "../../screens/Search";
+import { Search } from "../../pages/Search/Search";
 import { Header } from "../Header/Header";
 import { LayoutContainerStyle } from "./Layout.css";
 
