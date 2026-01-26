@@ -29,7 +29,7 @@ export const formStyle = style({
   flexDirection: "column",
   "@media": {
     [breakpoints.tablet]: {
-      gridTemplateColumns: "5fr 1fr",
+      gridTemplateColumns: "6fr 1fr",
     },
   },
 });

@@ -16,7 +16,9 @@ export function Header() {
 
       <div className={desktopNavStyle}>
         {navLinks.map(({ title }) => (
-          <button className={desktopNavLinkStyle}>{title}</button>
+          <button key={`navlink-${title}`} className={desktopNavLinkStyle}>
+            {title}
+          </button>
         ))}
       </div>
     </div>

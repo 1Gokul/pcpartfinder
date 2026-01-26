@@ -8,8 +8,8 @@ export type SearchResultItem = {
 };
 
 export type SearchResultObject = {
-  n_results: number;
-  content: SearchResultItem[];
+  total: number;
+  results: SearchResultItem[];
 };
 
 export type SortType = "rel" | "asc" | "dsc";

@@ -7,7 +7,7 @@ const queryClient = new QueryClient({
     onError: () => toast.error("Something went wrong. Please try again."),
   }),
   defaultOptions: {
-    queries: { retry: 0, staleTime: 86_400_000 }, // Becomes stale after a day
+    queries: { retry: 0, staleTime: 86_400_000, refetchOnWindowFocus: false  }, // Becomes stale after a day
   },
 });
 

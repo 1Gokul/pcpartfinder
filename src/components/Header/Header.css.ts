@@ -5,7 +5,7 @@ export const headerContainerStyle = style({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  height: "12vh",
+  height: "5.625rem",
   marginLeft: "initial",
   marginRight: "initial",
   width: "100%",
@@ -20,9 +20,6 @@ export const headerContainerStyle = style({
 
   "@media": {
     [breakpoints.tablet]: {
-      marginLeft: "auto",
-      marginRight: "auto",
-      width: "75vw",
       position: "sticky",
       marginTop: "2rem",
       borderWidth: "2px",
@@ -47,7 +44,7 @@ export const desktopNavStyle = style({
 });
 
 export const desktopNavLinkStyle = style({
-  color: colours.green1000,
+  color: colours.green1200,
   height: "100%",
   fontSize: "large",
   fontWeight: "500",

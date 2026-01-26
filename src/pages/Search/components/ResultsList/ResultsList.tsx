@@ -2,8 +2,15 @@ import { useSearchParams } from "wouter";
 import { useGetSearchResults } from "../../hooks/useGetSearchResults";
 import type { SearchParams } from "../../types/searchResult";
 import { ResultItem } from "./ResultItem/ResultItem";
-import { resultListContainerStyles } from "./ResultsList.css";
+import {
+  resultListContainerStyles,
+  resultsItemSkeletonStyle,
+  resultsTextSkeletonStyle,
+} from "./ResultsList.css";
 import { Pagination } from "../Pagination/Pagination";
+import { paginationGridStyle } from "../Pagination/Pagination.css";
+import { skeletonStyle } from "../../../../styles/skeleton.css";
+import { getToNArray } from "../../../../utils/common";
 
 export function ResultsList() {
   const [searchParams] = useSearchParams();
@@ -18,17 +25,41 @@ export function ResultsList() {
     page,
   });
 
-
-  if (!query && !data && !isLoading) {
+  if (!query) {
     return null;
+  }
+
+  if (!data && isLoading) {
+    return (
+      <>
+        <div className={resultsTextSkeletonStyle} />
+
+        <div className={paginationGridStyle}>
+          {getToNArray(5).map((num) => (
+            <span
+              key={`skeleton-loader-pagination-${num}`}
+              className={skeletonStyle}
+            />
+          ))}
+        </div>
+        <>
+          {getToNArray(3).map((num) => (
+            <span
+              key={`skeleton-loader-result-${num}`}
+              className={resultsItemSkeletonStyle}
+            />
+          ))}
+        </>
+      </>
+    );
   }
 
   return (
     <>
-      <Pagination currentPage={page} totalResults={data?.n_results ?? 0} />
+      <Pagination currentPage={page} totalResults={data?.total ?? 0} />
       <div className={resultListContainerStyles}>
-        {data?.n_results ? (
-          data.content.map((item) => <ResultItem data={item} />)
+        {data?.total ? (
+          data.results.map((item) => <ResultItem key={item.id} data={item} />)
         ) : (
           <span>Sorry, no results were found. Try another search string,</span>
         )}
