@@ -33,7 +33,7 @@ export function Pagination({
   }
 
   return (
-    <>
+    <div>
       <div className={paginationLabelStyle}>
         {(currentPage - 1) * PageSize}-
         {Math.min(currentPage * PageSize, totalResults)} of {totalResults}{" "}
@@ -72,6 +72,6 @@ export function Pagination({
           </button>
         )}
       </div>
-    </>
+    </div>
   );
 }

@@ -1,18 +1,20 @@
 {
   "name": "pcpartfinder",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
     "preview": "vite preview"
   },
   "dependencies": {
     "@fontsource-variable/mona-sans": "^5.2.8",
     "@vanilla-extract/css": "^1.17.4",
-    "eslint-plugin-unicorn": "^61.0.2",
     "lucide-react": "^0.554.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
@@ -21,18 +23,15 @@
     "wouter": "^3.7.1"
   },
   "devDependencies": {
-    "@eslint/js": "^9.36.0",
     "@types/node": "^24.6.0",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
     "@vanilla-extract/vite-plugin": "^5.1.1",
     "@vitejs/plugin-react": "^5.0.4",
-    "eslint": "^9.36.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.22",
     "globals": "^16.4.0",
+    "oxfmt": "^0.36.0",
+    "oxlint": "^1.51.0",
     "typescript": "~5.9.3",
-    "typescript-eslint": "^8.45.0",
     "vite": "^7.1.7"
   }
 }

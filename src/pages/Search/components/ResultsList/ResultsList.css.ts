@@ -10,7 +10,7 @@ export const resultListContainerStyles = style({
 
 export const resultsTextSkeletonStyle = style([
   skeletonStyle,
-  { width: "25%", height: "1.25rem" },
+  { width: "25%", height: "1.25rem", marginTop: "1rem" },
 ]);
 
 export const resultsItemSkeletonStyle = style([

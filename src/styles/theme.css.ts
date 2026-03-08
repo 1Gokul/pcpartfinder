@@ -53,7 +53,7 @@ globalStyle("*", {
 });
 
 export const breakpoints = {
-  mobile: "screen and (min-width: 640px)",
+  mobile: "screen and (min-width: 360px)",
   tablet: "screen and (min-width: 768px)",
   desktop: "screen and (min-width: 1024px)",
   wide: "screen and (min-width: 1280px)",
