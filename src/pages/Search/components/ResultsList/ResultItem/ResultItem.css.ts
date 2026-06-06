@@ -1,15 +1,28 @@
-import { globalStyle, style } from "@vanilla-extract/css";
+import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
 import { breakpoints, colours } from "../../../../../styles/theme.css";
 
-export const ResultItemContainerStyle = style({
+const ResultItemContainerStyleBase = style({
   display: "grid",
   gridTemplateColumns: "1fr",
   alignItems: "center",
   justifyContent: "center",
+  transition: "filter 0.25s ease-in-out",
+  borderWidth: "0 2px",
+  borderStyle: "solid",
+  borderColor: colours.green1200,
   fontWeight: 500,
   selectors: {
+    "&:first-child": {
+      borderTopWidth: "2px",
+    },
+    "&:last-child": {
+      borderBottomWidth: "2px",
+    },
     "&:nth-child(even)": {
       backgroundColor: colours.green400,
+    },
+    "&:nth-child(odd)": {
+      backgroundColor: colours.green200,
     },
   },
   "@media": {
@@ -22,9 +35,58 @@ export const ResultItemContainerStyle = style({
   },
 });
 
+export const ResultItemContainerStyle = styleVariants({
+  base: [ResultItemContainerStyleBase],
+  disableDuringReplacementPrompt: [
+    ResultItemContainerStyleBase,
+    { pointerEvents: "none", filter: "brightness(70%)" },
+  ],
+  itemBeingReplaced: [
+    ResultItemContainerStyleBase,
+    {
+      color: "white",
+      selectors: {
+        "&:nth-child(even)": {
+          backgroundColor: colours.red,
+        },
+        "&:nth-child(odd)": {
+          backgroundColor: colours.red,
+        },
+      },
+    },
+  ],
+  alreadyInBuild: [
+    ResultItemContainerStyleBase,
+    {
+      borderColor: colours.gold,
+      margin: "0.5rem 0",
+      selectors: {
+        "&:first-child": {
+          borderTopWidth: 0,
+        },
+        "&:last-child": {
+          borderBottomWidth: 0,
+        },
+        "&:nth-child(even)": {
+          backgroundColor: colours.gold,
+        },
+        "&:nth-child(odd)": {
+          backgroundColor: colours.gold,
+        },
+      },
+    },
+  ],
+});
+
 export const ResultItemLinkStyle = style({
   textDecoration: "none",
   padding: "1rem 1rem 0.5rem",
+  color: colours.green1200,
+  selectors: {
+    [`${ResultItemContainerStyle["itemBeingReplaced"]} &`]: {
+      color: "white",
+    },
+  },
   ":hover": {
     textDecoration: "underline",
     textUnderlineOffset: "0.25rem",
@@ -66,7 +128,7 @@ export const resultItemPriceStyle = style({ fontWeight: 600 });
 export const resultItemAddToBuildButtonStyle = style({
   display: "flex",
   alignItems: "center",
-  gap: "0.1rem",
+  gap: "0.25rem",
   paddingRight: "1rem",
   justifyContent: "center",
   "@media": {
@@ -77,7 +139,41 @@ export const resultItemAddToBuildButtonStyle = style({
   },
   ":hover": {
     backgroundColor: colours.green600,
+    borderColor: colours.green1200,
+  },
+  selectors: {
+    [`${ResultItemContainerStyle["base"]}&:first-child`]: {
+      borderTopWidth: 0,
+    },
+    "&:last-child": {
+      borderBottomWidth: 0,
+    },
+    [`${ResultItemContainerStyle["itemBeingReplaced"]} &:hover`]: {
+      backgroundColor: colours.redHover,
+    },
+    [`${ResultItemContainerStyle["alreadyInBuild"]} &:hover`]: {
+      backgroundColor: colours.goldHover,
+    },
   },
   height: "100%",
-  transition: "background-color ease-in-out 0.1s",
+  transition: "background-color,border ease-in-out .25s",
+});
+
+const ResultItemReplacementTextBase = style({
+  fontWeight: 600,
+});
+export const ResultItemReplacementText = styleVariants({
+  incoming: [
+    ResultItemReplacementTextBase,
+    {
+      margin: "1rem 0 0.25rem",
+    },
+  ],
+  outgoing: [
+    ResultItemReplacementTextBase,
+    {
+      margin: "0.25rem 0 2rem",
+      color: colours.red,
+    },
+  ],
 });

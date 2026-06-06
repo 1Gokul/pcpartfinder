@@ -1,10 +1,7 @@
 import { style } from "@vanilla-extract/css";
-import { colours } from "../../../../styles/theme.css";
 import { skeletonStyle } from "../../../../styles/skeleton.css";
 
 export const resultListContainerStyles = style({
-  border: "2px solid",
-  borderColor: colours.green1200,
   marginBottom: "2rem",
 });
 

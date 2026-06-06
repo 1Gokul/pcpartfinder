@@ -1,8 +1,10 @@
+import type { Categories } from "../../../constants/categories";
+
 export type SearchResultItem = {
   name: string;
-  category: string;
+  category: (typeof Categories)[number];
   price: number;
-  url: string;
+  link: string;
   store: string;
   id: string;
 };

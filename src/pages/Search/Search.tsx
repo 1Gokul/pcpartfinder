@@ -17,8 +17,7 @@ export function Search() {
     searchParams.get("query") ?? ""
   );
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const onSubmit = () => {
     setSearchParams({ query: searchQuery });
   };
   return (

@@ -19,6 +19,7 @@ export function ResultsList() {
   const sort = searchParams.get("sort") as SearchParams["sort"];
   const page = Number(searchParams.get("page") ?? 1);
 
+
   const { data, isLoading } = useGetSearchResults({
     query: searchParams.get("query"),
     sort,
@@ -36,18 +37,12 @@ export function ResultsList() {
 
         <div className={paginationGridStyle}>
           {getToNArray(5).map((num) => (
-            <span
-              key={`skeleton-loader-pagination-${num}`}
-              className={skeletonStyle}
-            />
+            <span key={`skeleton-loader-pagination-${num}`} className={skeletonStyle} />
           ))}
         </div>
         <>
           {getToNArray(3).map((num) => (
-            <span
-              key={`skeleton-loader-result-${num}`}
-              className={resultsItemSkeletonStyle}
-            />
+            <span key={`skeleton-loader-result-${num}`} className={resultsItemSkeletonStyle} />
           ))}
         </>
       </>

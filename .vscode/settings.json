@@ -5,5 +5,11 @@
   "editor.formatOnSaveMode": "file",
   "github.copilot.enable": {
     "*": false
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   }
 }
