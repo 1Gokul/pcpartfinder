@@ -126,9 +126,16 @@ globalStyle(`${ResultItemDetailGridStyle} > *`, {
 export const resultItemPriceStyle = style({ fontWeight: 600 });
 
 export const resultItemAddToBuildButtonStyle = style({
+  appearance: "none",
+  background: "none",
+  boxSizing: "border-box",
   display: "flex",
   alignItems: "center",
   gap: "0.25rem",
+  borderStyle: "solid",
+  borderColor: "transparent",
+  borderWidth: "2px 0 2px 2px",
+  margin: 0,
   paddingRight: "1rem",
   justifyContent: "center",
   "@media": {
@@ -142,11 +149,20 @@ export const resultItemAddToBuildButtonStyle = style({
     borderColor: colours.green1200,
   },
   selectors: {
-    [`${ResultItemContainerStyle["base"]}&:first-child`]: {
+    [`${ResultItemContainerStyleBase}:first-child &`]: {
       borderTopWidth: 0,
     },
-    "&:last-child": {
+    [`${ResultItemContainerStyleBase}:last-child &`]: {
       borderBottomWidth: 0,
+    },
+    [`${ResultItemContainerStyle["alreadyInBuild"]} &`]: {
+      borderWidth: "2px",
+    },
+    [`${ResultItemContainerStyle["alreadyInBuild"]}:first-child &`]: {
+      borderTopWidth: "2px",
+    },
+    [`${ResultItemContainerStyle["alreadyInBuild"]}:last-child &`]: {
+      borderBottomWidth: "2px",
     },
     [`${ResultItemContainerStyle["itemBeingReplaced"]} &:hover`]: {
       backgroundColor: colours.redHover,
@@ -156,7 +172,7 @@ export const resultItemAddToBuildButtonStyle = style({
     },
   },
   height: "100%",
-  transition: "background-color,border ease-in-out .25s",
+  transition: "background-color,border ease-in-out .1s",
 });
 
 const ResultItemReplacementTextBase = style({

@@ -12,9 +12,10 @@ export type SearchResultItem = {
 export type SearchResultObject = {
   total: number;
   results: SearchResultItem[];
+  stores: string[];
 };
 
-export type SortType = "rel" | "asc" | "dsc";
+export type SortType = "asc" | "dsc";
 
 export type SearchParams = {
   query: string;

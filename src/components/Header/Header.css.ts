@@ -5,6 +5,7 @@ export const headerWrapperStyle = style({
   zIndex: 9999,
   position: "sticky",
   top: "0.25rem",
+  boxShadow: "0.25rem 0.25rem 0 rgb(0 0 0 / 12%)",
   marginTop: "2rem",
   "@media": {
     [breakpoints.desktop]: {},
@@ -17,7 +18,7 @@ export const headerContainerStyle = style({
   alignItems: "center",
   height: "5rem",
   width: "100%",
-  borderWidth: "2px",
+  borderWidth: "3px",
   backgroundColor: colours.green200,
   borderColor: colours.green1200,
   borderStyle: "solid",

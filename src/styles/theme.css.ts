@@ -26,8 +26,8 @@ export const { colours, font } = createGlobalTheme(":root", {
     green1000: "#0C4621",
     green1100: "#093419",
     green1200: "#031108",
-    red: "#B80006",
-    redHover: "#8F0005",
+    red: "#FF333A",
+    redHover: "#F50008",
     gold: "#F3D77C",
     goldHover: "#ECC032",
   },
@@ -42,12 +42,14 @@ globalStyle("body", {
   color: colours.green1200,
   margin: 0,
   fontKerning: "normal",
+  scrollbarGutter: "stable",
 });
 
 globalStyle("*", {
   fontFamily: font.base,
   fontKerning: "normal",
   borderRadius: "0",
+  scrollbarGutter: "stable",
 });
 
 globalStyle("a", {

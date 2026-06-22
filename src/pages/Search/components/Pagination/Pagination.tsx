@@ -1,17 +1,19 @@
 import { MoveLeft, MoveRight } from "lucide-react";
 import { PageSize } from "./constants";
-import {
-  paginationButtonStyle,
-  paginationGridStyle,
-  paginationLabelStyle,
-} from "./Pagination.css";
+import { paginationButtonStyle, paginationGridStyle, paginationLabelStyle } from "./Pagination.css";
 import { useSearchParams } from "wouter";
+import { useMemo } from "react";
 
 export function Pagination({
   totalResults,
   currentPage,
-}: Record<"totalResults" | "currentPage", number>) {
-  const [, setSearchParams] = useSearchParams();
+  stores,
+}: {
+  totalResults: number;
+  currentPage: number;
+  stores: string[];
+}) {
+  const [searchParams, setSearchParams] = useSearchParams();
   const totalPages = Math.ceil(totalResults / PageSize);
 
   let pages = [-2, -1, 0, 1, 2]
@@ -32,12 +34,13 @@ export function Pagination({
     });
   }
 
+  const storeValue = searchParams.get("store") ?? undefined;
+
   return (
     <div>
       <div className={paginationLabelStyle}>
-        {(currentPage - 1) * PageSize}-
-        {Math.min(currentPage * PageSize, totalResults)} of {totalResults}{" "}
-        results
+        {(currentPage - 1) * PageSize}-{Math.min(currentPage * PageSize, totalResults)} of{" "}
+        {totalResults} results
       </div>
 
       <div className={paginationGridStyle}>
@@ -54,9 +57,7 @@ export function Pagination({
           <button
             type="button"
             key={`pagination-page-${page}`}
-            className={
-              paginationButtonStyle[page === currentPage ? "active" : "default"]
-            }
+            className={paginationButtonStyle[page === currentPage ? "active" : "default"]}
             onClick={() => onPageButtonClick(page)}
           >
             {page}

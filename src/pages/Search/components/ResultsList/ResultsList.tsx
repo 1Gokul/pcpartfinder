@@ -30,7 +30,7 @@ export function ResultsList() {
     return null;
   }
 
-  if (!data && isLoading) {
+  if (!data || isLoading) {
     return (
       <>
         <div className={resultsTextSkeletonStyle} />
@@ -51,7 +51,7 @@ export function ResultsList() {
 
   return (
     <>
-      <Pagination currentPage={page} totalResults={data?.total ?? 0} />
+      <Pagination currentPage={page} totalResults={data?.total ?? 0} stores={data?.stores} />
       <div className={resultListContainerStyles}>
         {data?.total ? (
           data.results.map((item) => <ResultItem key={item.id} data={item} />)
