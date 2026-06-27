@@ -49,7 +49,7 @@ export const formStyle = style({
 export const inputFieldStyle = style({
   fontSize: "1.5rem",
   padding: "1rem 1.25rem",
-  border: "2px solid",
+  border: "3px solid",
   color: "inherit",
   transition: "all 0.2s",
   "::placeholder": {
@@ -76,14 +76,23 @@ export const submitButtonStyle = style({
   alignItems: "center",
   justifyContent: "space-between",
   backgroundColor: colours.green400,
+  border: "3px solid",
+  borderColor: colours.green1200,
   ":hover": {
     backgroundColor: colours.green500,
-    paddingRight: "1rem",
+  },
+  selectors: {
+    "svg &:hover": { transform: "translateX(42px)" },
   },
   padding: "1rem 1.25rem",
   fontSize: "1.25rem",
+  boxShadow: `0.4rem 0.4rem 0 ${colours.green1200}`,
   fontWeight: "600",
-  transition: "background-color 0.2s ease-in-out, padding 0.2s ease-in-out",
+  transition: "background-color 0.1s ease-in-out",
+  ":active": {
+    transform: "translate(4px, 4px)",
+    boxShadow: "none",
+  },
 
   "@media": {
     [breakpoints.desktop]: {

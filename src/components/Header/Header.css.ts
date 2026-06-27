@@ -5,7 +5,6 @@ export const headerWrapperStyle = style({
   zIndex: 9999,
   position: "sticky",
   top: "0.25rem",
-  boxShadow: "0.25rem 0.25rem 0 rgb(0 0 0 / 12%)",
   marginTop: "2rem",
   "@media": {
     [breakpoints.desktop]: {},
@@ -40,7 +39,6 @@ export const mobileMenuButtonStyle = style({
   cursor: "pointer",
   backgroundColor: "transparent",
   borderLeft: `2px solid ${colours.green1200}`,
-  transition: "background-color 0.1s linear",
 
   ":hover": {
     backgroundColor: colours.green400,
@@ -100,7 +98,6 @@ export const mobileNavLinkStyle = style({
   padding: "1rem",
   cursor: "pointer",
   transition: "background-color 0.1s linear",
-  borderTop: `2px solid ${colours.green1200}`,
 
   ":hover": {
     backgroundColor: colours.green400,
@@ -132,10 +129,10 @@ export const desktopNavLinkStyle = style({
   textAlign: "center",
   width: "7rem",
   cursor: "pointer",
-  transition: "background-color 0.1s linear",
+  transition: "background-color 0.1s ease-in-out",
   borderColor: colours.green200,
   borderStyle: "solid",
-  borderWidth: "0 2px",
+  borderWidth: "0 3px",
   ":last-child": {
     borderRight: "0",
   },

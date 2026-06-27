@@ -11,37 +11,13 @@ import { ArrowRight } from "lucide-react";
 import { ResultsList } from "./components/ResultsList/ResultsList";
 import { Select } from "../../components/Select/Select";
 
-const stores = {
-  "Clarion Computers": "Clarion_Computers",
-  "SMC International": "SMC_International",
-  "Elite Hubs": "Elite_Hubs",
-  "The IT Depot": "IT_Depot",
-};
-
 export function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [searchQuery, setSearchQuery] = useState(searchParams.get("query") ?? "");
-  const [newStoresList, setNewStoresList] = useState<string[]>([]);
 
   const onSubmit = () => {
     setSearchParams({ query: searchQuery });
-  };
-
-  const storesList = searchParams.getAll("store");
-
-  console.log("stores list", storesList);
-
-  const handleSetStoresList = (open: boolean) => {
-    if (!open && newStoresList.length) {
-      setSearchParams((prev) => {
-        prev.delete("store");
-        newStoresList.forEach((newStore) => prev.append("store", newStore));
-        return prev;
-      });
-
-      setNewStoresList([]);
-    }
   };
 
   return (
@@ -63,13 +39,6 @@ export function Search() {
         </button>
       </form>
 
-      <Select
-        multiple
-        value={newStoresList}
-        onOpenChange={handleSetStoresList}
-        onValueChange={setNewStoresList}
-        items={stores}
-      />
       <ResultsList />
     </div>
   );

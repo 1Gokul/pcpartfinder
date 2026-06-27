@@ -12,7 +12,6 @@ export const SelectLabelStyle = style({
   fontSize: "1rem",
   lineHeight: "1.25rem",
   fontWeight: 700,
-  cursor: "default",
   // "@media": {
   //   "(prefers-color-scheme: dark)": {
   //     color: "white",
@@ -31,18 +30,22 @@ export const SelectTriggerStyle = style({
   paddingRight: "0.5rem",
   margin: 0,
   outline: 0,
-  border: "2px solid",
+  border: "3px solid",
   borderColor: colours.green1200,
   backgroundColor: "white",
   fontFamily: "inherit",
   fontSize: "1rem",
   lineHeight: 1,
   whiteSpace: "nowrap",
-  fontWeight: 400,
+  fontWeight: 500,
   color: colours.green1200,
   WebkitUserSelect: "none",
   userSelect: "none",
-  minWidth: "10rem",
+  minWidth: "15rem",
+  ":disabled": {
+    filter: "brightness(70%)",
+    cursor: "not-allowed",
+  },
   selectors: {
     "&[data-popup-open]": {
       backgroundColor: colours.green100,
@@ -66,7 +69,7 @@ export const SelectTriggerStyle = style({
       // },
     },
     "&:focus-visible": {
-      outline: "2px solid",
+      outline: "3px solid",
       outlineColor: colours.green500,
       outlineOffset: "-1px",
       // "@media": {
@@ -101,7 +104,7 @@ export const SelectPositionerStyle = style({
 export const SelectPopupStyle = style({
   boxSizing: "border-box",
   outline: 0,
-  border: "1px solid oklch(14.5% 0 0deg)",
+  border: `3px solid ${colours.green1200}`,
   backgroundColor: "white",
   backgroundClip: "padding-box",
   color: colours.green1200,
@@ -174,6 +177,7 @@ export const SelectListStyle = style({
   boxSizing: "border-box",
   position: "relative",
   paddingBlock: "0.25rem",
+  paddingRight: 0,
   overflowY: "auto",
   maxHeight: "var(--available-height)",
   scrollPaddingBlock: "1.5rem",
@@ -209,6 +213,7 @@ export const SelectItemStyle = style({
 
 export const SelectItemIndicatorStyle = style({
   gridColumnStart: 1,
+  height: "1rem",
 });
 
 export const SelectItemTextStyle = style({

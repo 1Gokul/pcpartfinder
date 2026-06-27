@@ -1,16 +1,12 @@
-import { useQuery } from "react-query";
 import type { SearchParams, SearchResultObject } from "../types/searchResult";
 import { doFetch } from "../../../utils/doFetch";
 import type { Optional } from "../../../types/common";
+import { useQuery } from "@tanstack/react-query";
 
 // Search for products in search page
-export const useGetSearchResults = ({
-  page,
-  query,
-  sort,
-}: Optional<SearchParams>) =>
+export const useGetSearchResults = ({ page, query, sort, stores }: Optional<SearchParams>) =>
   useQuery({
-    queryKey: ["product-search", page, query, sort],
+    queryKey: ["product-search", page, query, sort, stores],
     queryFn: ({ signal }) =>
       doFetch<SearchResultObject>(
         "/search",
@@ -18,8 +14,9 @@ export const useGetSearchResults = ({
           ...(query && { query }),
           ...(sort && { sort }),
           ...(page && { page }),
+          ...(stores && { store: stores }),
         },
-        { signal }
+        { signal },
       ),
     enabled: !!query,
   });

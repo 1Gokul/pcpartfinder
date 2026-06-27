@@ -7,16 +7,17 @@ const ResultItemContainerStyleBase = style({
   alignItems: "center",
   justifyContent: "center",
   transition: "filter 0.25s ease-in-out",
-  borderWidth: "0 2px",
+  boxShadow: `0.5rem 0.5rem 0 ${colours.green1200}`,
+  borderWidth: "0 3px",
   borderStyle: "solid",
   borderColor: colours.green1200,
   fontWeight: 500,
   selectors: {
     "&:first-child": {
-      borderTopWidth: "2px",
+      borderTopWidth: "3px",
     },
     "&:last-child": {
-      borderBottomWidth: "2px",
+      borderBottomWidth: "3px",
     },
     "&:nth-child(even)": {
       backgroundColor: colours.green400,
@@ -26,7 +27,7 @@ const ResultItemContainerStyleBase = style({
     },
   },
   "@media": {
-    [breakpoints.tablet]: {
+    [breakpoints.desktop]: {
       gridTemplateColumns: "8fr 5fr",
     },
     [breakpoints.wide]: {
@@ -58,15 +59,7 @@ export const ResultItemContainerStyle = styleVariants({
   alreadyInBuild: [
     ResultItemContainerStyleBase,
     {
-      borderColor: colours.gold,
-      margin: "0.5rem 0",
       selectors: {
-        "&:first-child": {
-          borderTopWidth: 0,
-        },
-        "&:last-child": {
-          borderBottomWidth: 0,
-        },
         "&:nth-child(even)": {
           backgroundColor: colours.gold,
         },
@@ -92,7 +85,7 @@ export const ResultItemLinkStyle = style({
     textUnderlineOffset: "0.25rem",
   },
   "@media": {
-    [breakpoints.tablet]: {
+    [breakpoints.desktop]: {
       padding: "1.25rem",
     },
     [breakpoints.desktop]: {
@@ -106,12 +99,12 @@ export const ResultItemLinkStyle = style({
 
 export const ResultItemDetailGridStyle = style({
   display: "grid",
-  padding: "0.5rem 0 1rem",
+  padding: "0.5rem 0 0rem",
   gridTemplateColumns: "1fr 1fr 1fr",
   alignItems: "center",
   justifyContent: "center",
   "@media": {
-    [breakpoints.tablet]: {
+    [breakpoints.desktop]: {
       gridTemplateColumns: "2fr 1.5fr 1.5fr",
       padding: "0",
     },
@@ -134,12 +127,12 @@ export const resultItemAddToBuildButtonStyle = style({
   gap: "0.25rem",
   borderStyle: "solid",
   borderColor: "transparent",
-  borderWidth: "2px 0 2px 2px",
+  borderWidth: "3px 0 3px 3px",
   margin: 0,
-  paddingRight: "1rem",
+  padding: "0.75rem",
   justifyContent: "center",
   "@media": {
-    [breakpoints.tablet]: {
+    [breakpoints.desktop]: {
       paddingRight: "0.75rem",
       padding: "0",
     },
@@ -155,14 +148,11 @@ export const resultItemAddToBuildButtonStyle = style({
     [`${ResultItemContainerStyleBase}:last-child &`]: {
       borderBottomWidth: 0,
     },
-    [`${ResultItemContainerStyle["alreadyInBuild"]} &`]: {
-      borderWidth: "2px",
-    },
     [`${ResultItemContainerStyle["alreadyInBuild"]}:first-child &`]: {
-      borderTopWidth: "2px",
+      borderTopWidth: "3px",
     },
     [`${ResultItemContainerStyle["alreadyInBuild"]}:last-child &`]: {
-      borderBottomWidth: "2px",
+      borderBottomWidth: "3px",
     },
     [`${ResultItemContainerStyle["itemBeingReplaced"]} &:hover`]: {
       backgroundColor: colours.redHover,
@@ -172,7 +162,7 @@ export const resultItemAddToBuildButtonStyle = style({
     },
   },
   height: "100%",
-  transition: "background-color,border ease-in-out .1s",
+  transition: "background-color,border ease-in-out .05s",
 });
 
 const ResultItemReplacementTextBase = style({
@@ -182,13 +172,13 @@ export const ResultItemReplacementText = styleVariants({
   incoming: [
     ResultItemReplacementTextBase,
     {
-      margin: "1rem 0 0.25rem",
+      margin: "2rem 0 0.5rem",
     },
   ],
   outgoing: [
     ResultItemReplacementTextBase,
     {
-      margin: "0.25rem 0 2rem",
+      margin: "0.75rem 0 2rem",
       color: colours.red,
     },
   ],

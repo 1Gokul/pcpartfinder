@@ -3,14 +3,19 @@ import { useGetSearchResults } from "../../hooks/useGetSearchResults";
 import type { SearchParams } from "../../types/searchResult";
 import { ResultItem } from "./ResultItem/ResultItem";
 import {
+  resultFilterSkeletonStyle,
   resultListContainerStyles,
   resultsItemSkeletonStyle,
   resultsTextSkeletonStyle,
 } from "./ResultsList.css";
 import { Pagination } from "../Pagination/Pagination";
-import { paginationGridStyle } from "../Pagination/Pagination.css";
+import {
+  paginationAndFilterContainerStyle,
+  paginationGridStyle,
+} from "../Pagination/Pagination.css";
 import { skeletonStyle } from "../../../../styles/skeleton.css";
 import { getToNArray } from "../../../../utils/common";
+import { StoreFilterContainerStyle } from "../ResultFilter/ResultFilter.css";
 
 export function ResultsList() {
   const [searchParams] = useSearchParams();
@@ -18,12 +23,13 @@ export function ResultsList() {
   const query = searchParams.get("query");
   const sort = searchParams.get("sort") as SearchParams["sort"];
   const page = Number(searchParams.get("page") ?? 1);
-
+  const stores = searchParams.getAll("store") ?? [];
 
   const { data, isLoading } = useGetSearchResults({
     query: searchParams.get("query"),
     sort,
     page,
+    stores,
   });
 
   if (!query) {
@@ -34,14 +40,19 @@ export function ResultsList() {
     return (
       <>
         <div className={resultsTextSkeletonStyle} />
-
-        <div className={paginationGridStyle}>
-          {getToNArray(5).map((num) => (
-            <span key={`skeleton-loader-pagination-${num}`} className={skeletonStyle} />
-          ))}
+        <div className={paginationAndFilterContainerStyle}>
+          <div className={paginationGridStyle["default"]}>
+            {getToNArray(5).map((num) => (
+              <span key={`skeleton-loader-pagination-${num}`} className={skeletonStyle} />
+            ))}
+          </div>
+          <div className={StoreFilterContainerStyle}>
+            <div className={resultFilterSkeletonStyle} />
+            <div className={resultFilterSkeletonStyle} />
+          </div>
         </div>
         <>
-          {getToNArray(3).map((num) => (
+          {getToNArray(6).map((num) => (
             <span key={`skeleton-loader-result-${num}`} className={resultsItemSkeletonStyle} />
           ))}
         </>
@@ -51,13 +62,9 @@ export function ResultsList() {
 
   return (
     <>
-      <Pagination currentPage={page} totalResults={data?.total ?? 0} stores={data?.stores} />
+      <Pagination currentPage={page} totalResults={data?.total ?? 0} />
       <div className={resultListContainerStyles}>
-        {data?.total ? (
-          data.results.map((item) => <ResultItem key={item.id} data={item} />)
-        ) : (
-          <span>Sorry, no results were found. Try another search string,</span>
-        )}
+        {data?.total > 0 && data.results.map((item) => <ResultItem key={item.id} data={item} />)}
       </div>
     </>
   );

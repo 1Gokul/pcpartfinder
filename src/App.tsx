@@ -1,4 +1,4 @@
-import { QueryCache, QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryCache, QueryClientProvider } from "@tanstack/react-query";
 import { Layout } from "./components/Layout/Layout";
 import { toast, Toaster } from "sonner";
 
