@@ -142,7 +142,9 @@ export const desktopNavLinkStyle = style({
   },
   "@media": {
     [breakpoints.tablet]: {
-      display: "block",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
     },
   },
 });

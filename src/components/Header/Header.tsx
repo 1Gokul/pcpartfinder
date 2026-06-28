@@ -1,3 +1,4 @@
+import { Link } from "wouter";
 import { useState } from "react";
 import {
   desktopNavLinkStyle,
@@ -28,10 +29,10 @@ export function Header() {
         <img src={logo} className={headerLogoStyle} />
 
         <div className={desktopNavStyle}>
-          {navLinks.map(({ title }) => (
-            <button key={`navlink-${title}`} className={desktopNavLinkStyle}>
+          {navLinks.map(({ title, route }) => (
+            <Link key={`navlink-${title}`} href={route} className={desktopNavLinkStyle}>
               {title}
-            </button>
+            </Link>
           ))}
         </div>
 
@@ -49,17 +50,16 @@ export function Header() {
         </button>
       </div>
 
-      <nav
-        className={`${mobileNavContainerStyle} ${isMobileNavOpen ? mobileNavOpenStyle : ""}`}
-      >
-        {navLinks.map(({ title }) => (
-          <button
+      <nav className={`${mobileNavContainerStyle} ${isMobileNavOpen ? mobileNavOpenStyle : ""}`}>
+        {navLinks.map(({ title, route }) => (
+          <Link
             key={`mobile-navlink-${title}`}
+            href={route}
             className={mobileNavLinkStyle}
             onClick={() => setIsMobileNavOpen(false)}
           >
             {title}
-          </button>
+          </Link>
         ))}
       </nav>
     </div>

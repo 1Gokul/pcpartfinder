@@ -1,4 +1,5 @@
 import { useSearchParams } from "wouter";
+import { useQueryClient } from "@tanstack/react-query";
 import {
   formContainerStyle,
   formHeading,
@@ -6,18 +7,30 @@ import {
   inputFieldStyle,
   submitButtonStyle,
 } from "./Search.css";
-import { useState } from "react";
+import { useState, type SyntheticEvent } from "react";
 import { ArrowRight } from "lucide-react";
 import { ResultsList } from "./components/ResultsList/ResultsList";
-import { Select } from "../../components/Select/Select";
 
 export function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const queryClient = useQueryClient();
 
   const [searchQuery, setSearchQuery] = useState(searchParams.get("query") ?? "");
 
-  const onSubmit = () => {
-    setSearchParams({ query: searchQuery });
+  const onSubmit = (event: SyntheticEvent) => {
+    event.preventDefault();
+
+    const query = searchQuery.trim();
+    if (!query) {
+      return;
+    }
+
+    if (searchParams.get("query") === query) {
+      void queryClient.invalidateQueries({ queryKey: ["product-search"] });
+      return;
+    }
+
+    setSearchParams({ query });
   };
 
   return (
