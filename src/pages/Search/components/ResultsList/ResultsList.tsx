@@ -21,18 +21,20 @@ export function ResultsList() {
   const [searchParams] = useSearchParams();
 
   const query = searchParams.get("query");
+  const category = searchParams.get("category") as SearchParams["category"] | null;
   const sort = searchParams.get("sort") as SearchParams["sort"];
   const page = Number(searchParams.get("page") ?? 1);
   const stores = searchParams.getAll("store") ?? [];
 
   const { data, isLoading } = useGetSearchResults({
-    query: searchParams.get("query"),
+    query,
+    category,
     sort,
     page,
     stores,
   });
 
-  if (!query) {
+  if (!query && !category) {
     return null;
   }
 

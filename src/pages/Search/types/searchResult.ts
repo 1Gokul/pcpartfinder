@@ -18,6 +18,7 @@ export type SortType = "asc" | "dsc";
 
 export type SearchParams = {
   query: string;
+  category: (typeof Categories)[number];
   page: number;
   sort: SortType;
   stores: string[];

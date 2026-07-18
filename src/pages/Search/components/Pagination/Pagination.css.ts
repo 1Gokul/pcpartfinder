@@ -38,8 +38,8 @@ export const paginationGridStyle = styleVariants({
 const baseButtonStyle = style({
   textAlign: "center",
   cursor: "pointer",
-  backgroundColor: colours.green200,
-  transition: "background-color 0.25s ease-in-out",
+  backgroundColor: colours.green300,
+  transition: "transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease",
   boxShadow: `0.2rem 0.2rem 0 ${colours.green1200}`,
   border: "3px solid",
   borderColor: colours.green1100,
@@ -48,6 +48,8 @@ const baseButtonStyle = style({
     boxShadow: "none",
   },
   ":hover": {
+    transform: "translate(-2px, -2px)",
+    boxShadow: `0.25rem 0.25rem 0 ${colours.green1200}`,
     backgroundColor: colours.green500,
   },
 });
