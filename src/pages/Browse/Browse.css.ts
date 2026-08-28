@@ -1,20 +1,6 @@
 import { style } from "@vanilla-extract/css";
 import { breakpoints, colours } from "../../styles/theme.css";
 
-export const browseContainerStyle = style({
-  padding: "0 1rem 3rem",
-  marginTop: "2.5rem",
-  "@media": {
-    [breakpoints.tablet]: {
-      padding: "0 1.75rem 4rem",
-      marginTop: "3.5rem",
-    },
-    [breakpoints.desktop]: {
-      padding: "0 2rem 4rem",
-    },
-  },
-});
-
 export const browseHeadingStyle = style({
   fontSize: "2.25rem",
   lineHeight: "2.25rem",

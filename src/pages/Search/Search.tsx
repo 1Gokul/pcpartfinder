@@ -1,7 +1,6 @@
 import { useSearchParams } from "wouter";
 import { useQueryClient } from "@tanstack/react-query";
 import {
-  formContainerStyle,
   formHeading,
   formStyle,
   inputFieldStyle,
@@ -34,7 +33,7 @@ export function Search() {
   };
 
   return (
-    <div className={formContainerStyle}>
+    <>
       <h1 className={formHeading}>Find computer components available in major Indian stores.</h1>
       <form onSubmit={onSubmit} className={formStyle}>
         <input
@@ -53,6 +52,6 @@ export function Search() {
       </form>
 
       <ResultsList />
-    </div>
+    </>
   );
 }

@@ -1,20 +1,6 @@
 import { style } from "@vanilla-extract/css";
 import { breakpoints, colours } from "../../styles/theme.css";
 
-export const formContainerStyle = style({
-  padding: "0 1rem",
-  marginTop: "2.5rem",
-  "@media": {
-    [breakpoints.tablet]: {
-      padding: "0 1.75rem",
-      marginTop: "3.5rem",
-    },
-    [breakpoints.desktop]: {
-      padding: "0 2rem",
-    },
-  },
-});
-
 export const formHeading = style({
   fontSize: "2.25rem",
   lineHeight: "2.25rem",

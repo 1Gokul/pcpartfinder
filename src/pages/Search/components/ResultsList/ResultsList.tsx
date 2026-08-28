@@ -1,4 +1,4 @@
-import { useSearchParams } from "wouter";
+import { useLocation, useSearchParams } from "wouter";
 import { useGetSearchResults } from "../../hooks/useGetSearchResults";
 import type { SearchParams } from "../../types/searchResult";
 import { ResultItem } from "./ResultItem/ResultItem";
@@ -20,6 +20,8 @@ import { StoreFilterContainerStyle } from "../ResultFilter/ResultFilter.css";
 export function ResultsList() {
   const [searchParams] = useSearchParams();
 
+  const [location, navigate] = useLocation();
+
   const query = searchParams.get("query");
   const category = searchParams.get("category") as SearchParams["category"] | null;
   const sort = searchParams.get("sort") as SearchParams["sort"];
@@ -34,8 +36,14 @@ export function ResultsList() {
     stores,
   });
 
+  console.log("location", location);
+
   if (!query && !category) {
     return null;
+  }
+
+  if (location === "/search" && !!category) {
+    navigate("/search");
   }
 
   if (!data || isLoading) {

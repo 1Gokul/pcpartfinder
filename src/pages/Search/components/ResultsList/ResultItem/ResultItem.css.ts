@@ -38,6 +38,10 @@ const ResultItemContainerStyleBase = style({
 
 export const ResultItemContainerStyle = styleVariants({
   base: [ResultItemContainerStyleBase],
+  /**
+   * The items the one being replaced or the item being
+   * added to the build.
+   */
   disableDuringReplacementPrompt: [
     ResultItemContainerStyleBase,
     { pointerEvents: "none", filter: "brightness(70%)" },
@@ -88,7 +92,7 @@ export const ResultItemLinkStyle = style({
     [breakpoints.desktop]: {
       padding: "1.25rem",
     },
-    [breakpoints.desktop]: {
+    [breakpoints.wide]: {
       padding: "1.5rem",
       textOverflow: "ellipsis",
       whiteSpace: "nowrap",
@@ -99,7 +103,6 @@ export const ResultItemLinkStyle = style({
 
 export const ResultItemDetailGridStyle = style({
   display: "grid",
-  padding: "0.5rem 0 0rem",
   gridTemplateColumns: "1fr 1fr 1fr",
   alignItems: "center",
   justifyContent: "center",
@@ -122,6 +125,7 @@ export const resultItemAddToBuildButtonStyle = style({
   appearance: "none",
   background: "none",
   boxSizing: "border-box",
+  backgroundClip: "padding-box",
   display: "flex",
   alignItems: "center",
   gap: "0.25rem",
@@ -135,6 +139,11 @@ export const resultItemAddToBuildButtonStyle = style({
     [breakpoints.desktop]: {
       paddingRight: "0.75rem",
       padding: "0",
+      selectors: {
+        [`${ResultItemContainerStyleBase}:first-child &`]: {
+          borderTopWidth: 0,
+        },
+      },
     },
   },
   ":hover": {
@@ -142,17 +151,11 @@ export const resultItemAddToBuildButtonStyle = style({
     borderColor: colours.green1200,
   },
   selectors: {
-    [`${ResultItemContainerStyleBase}:first-child &`]: {
-      borderTopWidth: 0,
-    },
     [`${ResultItemContainerStyleBase}:last-child &`]: {
       borderBottomWidth: 0,
     },
-    [`${ResultItemContainerStyle["alreadyInBuild"]}:first-child &`]: {
-      borderTopWidth: "3px",
-    },
-    [`${ResultItemContainerStyle["alreadyInBuild"]}:last-child &`]: {
-      borderBottomWidth: "3px",
+    [`${ResultItemContainerStyle["itemBeingReplaced"]} &`]: {
+      borderBottom: 0,
     },
     [`${ResultItemContainerStyle["itemBeingReplaced"]} &:hover`]: {
       backgroundColor: colours.redHover,
@@ -168,6 +171,7 @@ export const resultItemAddToBuildButtonStyle = style({
 const ResultItemReplacementTextBase = style({
   fontWeight: 600,
 });
+
 export const ResultItemReplacementText = styleVariants({
   incoming: [
     ResultItemReplacementTextBase,

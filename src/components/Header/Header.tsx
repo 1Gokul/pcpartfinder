@@ -24,7 +24,7 @@ export function Header() {
   };
 
   return (
-    <div className={headerWrapperStyle}>
+    <header className={headerWrapperStyle}>
       <div className={headerContainerStyle}>
         <img src={logo} className={headerLogoStyle} />
 
@@ -62,6 +62,6 @@ export function Header() {
           </Link>
         ))}
       </nav>
-    </div>
+    </header>
   );
 }

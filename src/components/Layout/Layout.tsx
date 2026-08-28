@@ -3,20 +3,22 @@ import { Build } from "../../pages/Build/Build";
 import { Browse } from "../../pages/Browse/Browse";
 import { Search } from "../../pages/Search/Search";
 import { Header } from "../Header/Header";
-import { LayoutContainerStyle } from "./Layout.css";
+import { layoutBodyStyle, layoutContainerStyle } from "./Layout.css";
 
 export function Layout() {
   return (
-    <div className={LayoutContainerStyle}>
+    <div className={layoutContainerStyle}>
       <Header />
-      <Switch>
-        <Route path="/search" component={Search} />
-        <Route path="/browse" component={Browse} />
-        <Route path="/build" component={Build} />
-        <Route path="/">
-          <Redirect to="/search" />
-        </Route>
-      </Switch>
+      <main className={layoutBodyStyle}>
+        <Switch>
+          <Route path="/search" component={Search} />
+          <Route path="/browse" component={Browse} />
+          <Route path="/build" component={Build} />
+          <Route path="/">
+            <Redirect to="/search" />
+          </Route>
+        </Switch>
+      </main>
     </div>
   );
 }
