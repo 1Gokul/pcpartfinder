@@ -5,7 +5,6 @@ import {
   SelectItemIndicatorStyle,
   SelectItemStyle,
   SelectItemTextStyle,
-  SelectLabelStyle,
   SelectListStyle,
   SelectPopupStyle,
   SelectPositionerStyle,

@@ -51,7 +51,7 @@ export const categoryCardStyle = style({
 
 export const categoryNameStyle = style({
   fontSize: "1.4rem",
-  fontWeight: 750,
+  fontWeight: 800,
   letterSpacing: "0.02em",
 });
 

@@ -1,17 +1,9 @@
-import { createGlobalTheme, globalFontFace, globalStyle, layer } from "@vanilla-extract/css";
+import { createGlobalTheme, globalStyle, layer } from "@vanilla-extract/css";
+import "./fonts.css";
 
 const reset = layer("reset");
 
-globalFontFace("Mona Sans Variable", {
-  src: "url(@fontsource-variable/mona-sans/files/mona-sans-latin-wght-normal.woff2) format('woff2-variations')",
-  unicodeRange:
-    "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD",
-  fontWeight: "300 900",
-  fontDisplay: "swap",
-  fontStyle: "normal",
-});
-
-export const { colours, font } = createGlobalTheme(":root", {
+export const { colours, font: fonts } = createGlobalTheme(":root", {
   colours: {
     green50: "#EEFCF3",
     green100: "#DCF9E6",
@@ -32,12 +24,13 @@ export const { colours, font } = createGlobalTheme(":root", {
     goldHover: "#ECC032",
   },
   font: {
-    base: "Mona Sans Variable, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
+    base: "'Mona Sans Variable', -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
+    mono: "'Departure Mono', monospace",
   },
 });
 
 globalStyle("body", {
-  fontFamily: font.base,
+  fontFamily: fonts.base,
   backgroundColor: colours.green200,
   color: colours.green1200,
   margin: 0,
@@ -46,10 +39,14 @@ globalStyle("body", {
 });
 
 globalStyle("*", {
-  fontFamily: font.base,
+  fontFamily: fonts.base,
   fontKerning: "normal",
   borderRadius: "0",
   scrollbarGutter: "stable",
+  fontSynthesis: "none",
+  textRendering: "optimizeLegibility",
+  WebkitFontSmoothing: "antialiased",
+  MozOsxFontSmoothing: "grayscale",
 });
 
 globalStyle("a", {
@@ -71,10 +68,13 @@ globalStyle("button", {
       background: "none",
       boxShadow: "none",
       padding: 0,
-      cursor: "pointer",
       border: "none",
       color: "inherit",
       font: "inherit",
     },
   },
+});
+
+globalStyle("a", {
+  cursor: "pointer",
 });

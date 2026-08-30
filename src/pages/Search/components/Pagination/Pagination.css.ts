@@ -1,5 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { breakpoints, colours } from "../../../../styles/theme.css";
+import { breakpoints, colours, fonts } from "../../../../styles/theme.css";
 
 export const paginationLabelStyle = style({
   margin: "1rem 0",
@@ -37,12 +37,12 @@ export const paginationGridStyle = styleVariants({
 
 const baseButtonStyle = style({
   textAlign: "center",
-  cursor: "pointer",
   backgroundColor: colours.green300,
   transition: "transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease",
   boxShadow: `0.2rem 0.2rem 0 ${colours.green1200}`,
   border: "3px solid",
   borderColor: colours.green1100,
+  fontFamily: fonts.mono,
   ":active": {
     transform: "translate(2px, 2px)",
     boxShadow: "none",

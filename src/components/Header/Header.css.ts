@@ -36,7 +36,6 @@ export const mobileMenuButtonStyle = style({
   width: "3.5rem",
   height: "100%",
   padding: "0 1rem",
-  cursor: "pointer",
   backgroundColor: "transparent",
   borderLeft: `2px solid ${colours.green1200}`,
 
@@ -96,7 +95,6 @@ export const mobileNavLinkStyle = style({
   fontWeight: "500",
   textAlign: "center",
   padding: "1rem",
-  cursor: "pointer",
   transition: "background-color 0.1s linear",
 
   ":hover": {
@@ -128,7 +126,6 @@ export const desktopNavLinkStyle = style({
   fontWeight: "500",
   textAlign: "center",
   width: "7rem",
-  cursor: "pointer",
   transition: "background-color 0.1s ease-in-out",
   borderColor: colours.green200,
   borderStyle: "solid",

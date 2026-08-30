@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 import { paginationButtonStyle } from "../Pagination/Pagination.css";
-import { breakpoints } from "../../../../styles/theme.css";
+import { breakpoints, fonts } from "../../../../styles/theme.css";
 
 export const StoreFilterContainerStyle = style({
   display: "flex",
@@ -23,5 +23,6 @@ export const SortButtonStyle = style([
     gap: "0.5rem",
     fontWeight: 500,
     padding: "0.25rem 2rem",
+    fontFamily: fonts.base,
   },
 ]);

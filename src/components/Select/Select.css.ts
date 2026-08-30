@@ -110,7 +110,7 @@ export const SelectPopupStyle = style({
   color: colours.green1200,
   minWidth: "var(--anchor-width)",
   transformOrigin: "var(--transform-origin)",
-  boxShadow: "0.25rem 0.25rem 0 rgb(0 0 0 / 12%)",
+  boxShadow: `0.2rem 0.2rem 0 ${colours.green1200}`,
   transition: "transform 100ms ease-out, opacity 100ms ease-out",
   selectors: {
     "&[data-starting-style], &[data-ending-style]": {

@@ -1,5 +1,5 @@
 import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
-import { breakpoints, colours } from "../../../../../styles/theme.css";
+import { breakpoints, colours, fonts } from "../../../../../styles/theme.css";
 
 const ResultItemContainerStyleBase = style({
   display: "grid",
@@ -119,7 +119,10 @@ globalStyle(`${ResultItemDetailGridStyle} > *`, {
   textAlign: "center",
 });
 
-export const resultItemPriceStyle = style({ fontWeight: 600 });
+export const resultItemPriceStyle = style({
+  fontWeight: "600",
+  fontFamily: fonts.mono,
+});
 
 export const resultItemAddToBuildButtonStyle = style({
   appearance: "none",
