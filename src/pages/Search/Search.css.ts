@@ -1,6 +1,5 @@
 import { style } from "@vanilla-extract/css";
 import { breakpoints, colours } from "../../styles/theme.css";
-
 export const formHeading = style({
   fontSize: "2.25rem",
   lineHeight: "2.25rem",
@@ -57,35 +56,43 @@ export const inputFieldStyle = style({
   },
 });
 
-export const submitButtonStyle = style({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  backgroundColor: colours.green400,
-  border: "3px solid",
-  borderColor: colours.green1200,
-  ":hover": {
-    backgroundColor: colours.green500,
-  },
-  selectors: {
-    "svg &:hover": { transform: "translateX(42px)" },
-  },
-  padding: "1rem 1.25rem",
-  fontSize: "1.25rem",
-  boxShadow: `0.4rem 0.4rem 0 ${colours.green1200}`,
-  fontWeight: "600",
-  transition: "background-color 0.1s ease-in-out",
+export const buttonStyle = style({
+  textAlign: "center",
+  backgroundColor: colours.green300,
+  transition: "transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease",
+  boxShadow: `0.2rem 0.2rem 0 ${colours.green1200}`,
+  border: `3px solid ${colours.green1200}`,
   ":active": {
-    transform: "translate(4px, 4px)",
+    transform: "translate(2px, 2px)",
     boxShadow: "none",
   },
-
-  "@media": {
-    [breakpoints.desktop]: {
-      padding: "0rem 2rem",
-    },
+  ":hover": {
+    transform: "translate(-2px, -2px)",
+    boxShadow: `0.25rem 0.25rem 0 ${colours.green1200}`,
+    backgroundColor: colours.green500,
   },
 });
+
+export const submitButtonStyle = style([
+  buttonStyle,
+  {
+    display: "flex",
+    alignItems: "center",
+    gap: "0.5rem",
+    fontSize: "1.25rem",
+    boxShadow: `0.4rem 0.4rem 0 ${colours.green1200}`,
+    padding: "1rem 1.25rem",
+    fontWeight: 600,
+    ":hover": {
+      boxShadow: `0.5rem 0.5rem 0 ${colours.green1200}`,
+    },
+    "@media": {
+      [breakpoints.desktop]: {
+        padding: "0rem 2rem",
+      },
+    },
+  },
+]);
 
 export const buttonIcon = style({
   fontSize: "24px",

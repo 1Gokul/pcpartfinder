@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { breakpoints, colours } from "../../styles/theme.css";
+import { breakpoints, colours, fonts } from "../../styles/theme.css";
 
 export const browseHeadingStyle = style({
   fontSize: "2.25rem",

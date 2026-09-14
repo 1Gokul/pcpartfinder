@@ -40,8 +40,7 @@ const baseButtonStyle = style({
   backgroundColor: colours.green300,
   transition: "transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease",
   boxShadow: `0.2rem 0.2rem 0 ${colours.green1200}`,
-  border: "3px solid",
-  borderColor: colours.green1100,
+  border: `3px solid ${colours.green1200}`,
   fontFamily: fonts.mono,
   ":active": {
     transform: "translate(2px, 2px)",

@@ -136,7 +136,7 @@ export const resultItemAddToBuildButtonStyle = style({
   borderColor: "transparent",
   borderWidth: "3px 0 3px 3px",
   margin: 0,
-  padding: "0.75rem",
+  padding: "0.5rem",
   justifyContent: "center",
   "@media": {
     [breakpoints.desktop]: {

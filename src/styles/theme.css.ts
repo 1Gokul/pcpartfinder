@@ -25,13 +25,15 @@ export const { colours, font: fonts } = createGlobalTheme(":root", {
   },
   font: {
     base: "'Mona Sans Variable', -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
-    mono: "'Departure Mono', monospace",
+    mono: "'Martian Mono Variable', monospace",
   },
 });
 
 globalStyle("body", {
   fontFamily: fonts.base,
   backgroundColor: colours.green200,
+  backgroundImage: `linear-gradient(color-mix(in srgb, ${colours.green1200} 12.5%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, ${colours.green1200} 12.5%, transparent) 1px, transparent 1px)`,
+  backgroundSize: "32px 32px",
   color: colours.green1200,
   margin: 0,
   fontKerning: "normal",
@@ -39,7 +41,6 @@ globalStyle("body", {
 });
 
 globalStyle("*", {
-  fontFamily: fonts.base,
   fontKerning: "normal",
   borderRadius: "0",
   scrollbarGutter: "stable",
@@ -51,6 +52,11 @@ globalStyle("*", {
 
 globalStyle("a", {
   all: "unset",
+  cursor: "pointer",
+});
+
+globalStyle("p", {
+  margin: 0,
 });
 
 export const breakpoints = {
@@ -73,8 +79,4 @@ globalStyle("button", {
       font: "inherit",
     },
   },
-});
-
-globalStyle("a", {
-  cursor: "pointer",
 });
