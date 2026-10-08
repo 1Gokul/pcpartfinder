@@ -5,9 +5,11 @@ import {
   paginationButtonStyle,
   paginationGridStyle,
   paginationLabelStyle,
+  stickySentinelStyle,
 } from "./Pagination.css";
 import { useSearchParams } from "wouter";
-import { StoreFilter } from "../ResultFilter/ResultFilter";
+import { ResultFilter } from "../ResultFilter/ResultFilter";
+import { useState, useRef, useEffect } from "react";
 
 export function Pagination({
   totalResults,
@@ -37,8 +39,28 @@ export function Pagination({
     });
   }
 
+  const [isSticky, setIsSticky] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+
+    if (!sentinel) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsSticky(!entry.isIntersecting),
+      { rootMargin: "-4px 0px 0px 0px", threshold: 0 },
+    );
+
+    observer.observe(sentinel);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div>
+    <>
       <div className={paginationLabelStyle}>
         {totalResults > 0
           ? `${(currentPage - 1) * PageSize}-${Math.min(currentPage * PageSize, totalResults)} of
@@ -46,7 +68,9 @@ export function Pagination({
           : "Sorry, no results were found. Try another search string."}
       </div>
 
-      <div className={paginationAndFilterContainerStyle}>
+      <div className={stickySentinelStyle} ref={sentinelRef} aria-hidden="true" />
+
+      <div className={paginationAndFilterContainerStyle[isSticky ? "sticky" : "default"]}>
         <div className={paginationGridStyle[totalResults ? "default" : "invisible"]}>
           {currentPage <= 1 ? null : (
             <button
@@ -77,8 +101,8 @@ export function Pagination({
             </button>
           )}
         </div>
-        <StoreFilter totalResults={totalResults} />
+        <ResultFilter totalResults={totalResults} />
       </div>
-    </div>
+    </>
   );
 }

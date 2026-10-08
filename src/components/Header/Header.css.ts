@@ -2,10 +2,7 @@ import { style } from "@vanilla-extract/css";
 import { breakpoints, colours } from "../../styles/theme.css";
 
 export const headerWrapperStyle = style({
-  zIndex: 9999,
-  position: "sticky",
-  top: "0.25rem",
-  marginTop: "2rem",
+  marginBlock: "2rem",
   "@media": {
     [breakpoints.desktop]: {},
   },
@@ -104,7 +101,8 @@ export const mobileNavLinkStyle = style({
 
 export const headerLogoStyle = style({
   margin: "0 1.5rem",
-  width: "250px",
+  minWidth: "10rem",
+  width: "100%",
 
   "@media": {
     [breakpoints.desktop]: {

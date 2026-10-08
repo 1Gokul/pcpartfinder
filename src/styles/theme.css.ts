@@ -22,6 +22,7 @@ export const { colours, font: fonts } = createGlobalTheme(":root", {
     redHover: "#F50008",
     gold: "#F3D77C",
     goldHover: "#ECC032",
+    gray: "#6b7280",
   },
   font: {
     base: "'Mona Sans Variable', -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",

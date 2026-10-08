@@ -2,10 +2,10 @@ import { useSearchParams } from "wouter";
 import { Select } from "../../../../components/Select/Select";
 import { useEffect, useState } from "react";
 import { useGetActiveStores } from "../../hooks/useGetActiveStores";
-import { SortButtonStyle, StoreFilterContainerStyle } from "./ResultFilter.css";
+import { SortButtonStyle, resultFilterContainerStyle } from "./ResultFilter.css";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
-export function StoreFilter({ totalResults }: { totalResults: number }) {
+export function ResultFilter({ totalResults }: { totalResults: number }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [newStoresList, setNewStoresList] = useState<string[]>([]);
@@ -38,7 +38,7 @@ export function StoreFilter({ totalResults }: { totalResults: number }) {
     }
   };
   return (
-    <div className={StoreFilterContainerStyle}>
+    <div className={resultFilterContainerStyle}>
       <Select
         multiple
         value={newStoresList}

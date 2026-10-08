@@ -25,7 +25,6 @@ export const layoutContainerStyle = style({
 
 export const layoutBodyStyle = style({
   padding: "0 1rem 3rem",
-  marginTop: "2.5rem",
   "@media": {
     [breakpoints.tablet]: {
       padding: "0 1.75rem 4rem",

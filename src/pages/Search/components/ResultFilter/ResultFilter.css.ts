@@ -2,9 +2,11 @@ import { style } from "@vanilla-extract/css";
 import { paginationButtonStyle } from "../Pagination/Pagination.css";
 import { breakpoints, fonts } from "../../../../styles/theme.css";
 
-export const StoreFilterContainerStyle = style({
+export const resultFilterContainerStyle = style({
   display: "flex",
   alignItems: "center",
+  flexWrap: "wrap",
+  flexShrink: 0,
   justifyContent: "space-between",
   gap: "1rem",
   "@media": {

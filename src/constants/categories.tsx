@@ -11,7 +11,7 @@ export const Categories = [
   "COOLING",
   "STORAGE",
   "RAM",
-  "MOTHERBOARD",
+  "MOBO",
   "CASE",
 ] as const;
 
@@ -40,7 +40,7 @@ export const CategoryCopies: Record<(typeof Categories)[number], CategoryCopy> =
     title: "Memory",
     icon: MemoryStick,
   },
-  MOTHERBOARD: {
+  MOBO: {
     title: "Motherboard",
     icon: MotherboardIcon,
   },

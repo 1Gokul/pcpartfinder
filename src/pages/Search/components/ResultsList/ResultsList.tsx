@@ -15,7 +15,7 @@ import {
 } from "../Pagination/Pagination.css";
 import { skeletonStyle } from "../../../../styles/skeleton.css";
 import { getToNArray } from "../../../../utils/common";
-import { StoreFilterContainerStyle } from "../ResultFilter/ResultFilter.css";
+import { resultFilterContainerStyle } from "../ResultFilter/ResultFilter.css";
 
 export function ResultsList() {
   const [searchParams] = useSearchParams();
@@ -50,13 +50,13 @@ export function ResultsList() {
     return (
       <>
         <div className={resultsTextSkeletonStyle} />
-        <div className={paginationAndFilterContainerStyle}>
+        <div className={paginationAndFilterContainerStyle["default"]}>
           <div className={paginationGridStyle["default"]}>
             {getToNArray(5).map((num) => (
               <span key={`skeleton-loader-pagination-${num}`} className={skeletonStyle} />
             ))}
           </div>
-          <div className={StoreFilterContainerStyle}>
+          <div className={resultFilterContainerStyle}>
             <div className={resultFilterSkeletonStyle} />
             <div className={resultFilterSkeletonStyle} />
           </div>
