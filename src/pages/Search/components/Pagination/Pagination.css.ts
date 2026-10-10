@@ -25,7 +25,6 @@ export const paginationGridStyle = styleVariants({
 const baseButtonStyle = style({
   textAlign: "center",
   backgroundColor: colours.green300,
-  transition: "transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease",
   boxShadow: `0.2rem 0.2rem 0 ${colours.green1200}`,
   border: `3px solid ${colours.green1200}`,
   fontFamily: fonts.mono,
@@ -85,8 +84,7 @@ export const paginationAndFilterContainerStyle = styleVariants({
       backgroundColor: colours.green200,
       "@media": {
         [breakpoints.desktop]: {
-          gridTemplateColumns: "1fr fit-content(25rem)",
-          gap: "5rem",
+          borderBottom: `3px solid ${colours.green1200}`,
           paddingInline: "0.5rem",
         },
       },

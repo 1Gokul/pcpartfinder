@@ -51,7 +51,7 @@ export const hideOnMobileStyle = style({
   display: "none",
   "@media": {
     [breakpoints.tablet]: {
-      display: "initial",
+      display: "block",
     },
   },
 });
@@ -151,15 +151,6 @@ export const deleteButtonStyle = styleVariants({
   ],
 });
 
-export const buildLargePriceStyle = style([
-  hideOnMobileStyle,
-  {
-    fontFamily: fonts.mono,
-    fontSize: "2rem",
-    alignSelf: "end",
-  },
-]);
-
 export const buildSmallPriceStyle = style({
   display: "inline",
   fontFamily: fonts.mono,
@@ -222,6 +213,7 @@ export const dotsStyle = style([
 export const starSeparator = style([
   dotsStyle,
   {
+    display: "block",
     maxWidth: "80%",
     overflow: "hidden",
     fontSize: "2.25rem",
@@ -233,8 +225,33 @@ export const totalCostStyle = style([
   buildItemRowStyle["itemExists"],
   {
     fontFamily: fonts.mono,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: "0.5rem",
     fontSize: "1.125rem",
     paddingInlineStart: "3rem",
+    "@media": {
+      [breakpoints.tablet]: {
+        flexDirection: "row",
+      },
+    },
+  },
+]);
+
+export const buildLargePriceStyle = style([
+  hideOnMobileStyle,
+  {
+    fontFamily: fonts.mono,
+    fontSize: "2rem",
+    alignSelf: "end",
+    selectors: {
+      [`${totalCostStyle} &`]: {
+        alignSelf: "auto",
+        display: "initial",
+      },
+    },
   },
 ]);
 
@@ -248,7 +265,7 @@ export const compatibilityDisclaimerStyle = style({
   fontFamily: fonts.mono,
   textAlign: "center",
   lineHeight: 1.5,
-  marginBlock: "1.5rem",
+  marginBlock: "3rem",
   textWrap: "pretty",
   "@media": {
     [breakpoints.tablet]: {

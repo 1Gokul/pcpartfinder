@@ -15,6 +15,17 @@ export const Categories = [
   "CASE",
 ] as const;
 
+export const maxQuantitiesPerCategory = {
+  GPU: 1,
+  CPU: 1,
+  PSU: 1,
+  COOLING: 1,
+  STORAGE: 2,
+  RAM: 2,
+  MOBO: 1,
+  CASE: 1,
+} satisfies Record<(typeof Categories)[number], number>;
+
 export const CategoryCopies: Record<(typeof Categories)[number], CategoryCopy> = {
   GPU: {
     title: "Graphics Card",

@@ -6,7 +6,6 @@ const ResultItemContainerStyleBase = style({
   gridTemplateColumns: "1fr",
   alignItems: "center",
   justifyContent: "center",
-  transition: "filter 0.25s ease-in-out",
   boxShadow: `0.5rem 0.5rem 0 ${colours.green1200}`,
   borderWidth: "0 3px",
   borderStyle: "solid",
@@ -103,11 +102,12 @@ export const ResultItemLinkStyle = style({
 
 export const ResultItemDetailGridStyle = style({
   display: "grid",
-  gridTemplateColumns: "1fr 1fr 1fr",
+  gridTemplateColumns: "1fr 1fr",
+  rowGap: "0.75rem",
   alignItems: "center",
   justifyContent: "center",
   "@media": {
-    [breakpoints.desktop]: {
+    [breakpoints.tablet]: {
       gridTemplateColumns: "2fr 1.5fr 1.5fr",
       padding: "0",
     },
@@ -117,6 +117,14 @@ export const ResultItemDetailGridStyle = style({
 
 globalStyle(`${ResultItemDetailGridStyle} > *`, {
   textAlign: "center",
+});
+globalStyle(`${ResultItemDetailGridStyle} > .result-store`, {
+  gridColumn: "1 / -1",
+  "@media": {
+    [breakpoints.tablet]: {
+      gridColumn: "auto",
+    },
+  },
 });
 
 export const resultItemPriceStyle = style({
@@ -168,7 +176,6 @@ export const resultItemAddToBuildButtonStyle = style({
     },
   },
   height: "100%",
-  transition: "background-color,border ease-in-out .05s",
 });
 
 const ResultItemReplacementTextBase = style({

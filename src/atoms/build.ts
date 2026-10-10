@@ -10,7 +10,7 @@ export const buildAtom = atomWithStorage<BuildAtomType>(
   {
     GPU: null,
     CPU: null,
-    MOTHERBOARD: null,
+    MOBO: null,
     RAM: null,
     STORAGE: null,
     PSU: null,

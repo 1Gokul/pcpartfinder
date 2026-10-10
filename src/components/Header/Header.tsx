@@ -3,8 +3,6 @@ import { useState } from "react";
 import {
   desktopNavLinkStyle,
   desktopNavStyle,
-  hamburgerIconStyle,
-  hamburgerLineStyle,
   headerContainerStyle,
   headerLogoStyle,
   headerWrapperStyle,
@@ -15,6 +13,7 @@ import {
 } from "./Header.css";
 import logo from "../../assets/logo.svg";
 import { navLinks } from "./constants";
+import { MenuIcon, XIcon } from "lucide-react";
 
 export function Header() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
@@ -42,11 +41,7 @@ export function Header() {
           aria-label="Toggle mobile menu"
           aria-expanded={isMobileNavOpen}
         >
-          <span className={hamburgerIconStyle}>
-            <span className={hamburgerLineStyle} />
-            <span className={hamburgerLineStyle} />
-            <span className={hamburgerLineStyle} />
-          </span>
+          {isMobileNavOpen ? <XIcon width="2rem" /> : <MenuIcon width="2rem" />}
         </button>
       </div>
 

@@ -16,6 +16,9 @@ import {
 import { skeletonStyle } from "../../../../styles/skeleton.css";
 import { getToNArray } from "../../../../utils/common";
 import { resultFilterContainerStyle } from "../ResultFilter/ResultFilter.css";
+import { useAtom } from "jotai";
+import { useEffect } from "react";
+import { newBuildItemIdAtom } from "../../../../atoms/build";
 
 export function ResultsList() {
   const [searchParams] = useSearchParams();
@@ -36,7 +39,13 @@ export function ResultsList() {
     stores,
   });
 
-  console.log("location", location);
+  const [incomingBuildItemId, setIncomingBuildItemId] = useAtom(newBuildItemIdAtom);
+
+  useEffect(() => {
+    if (incomingBuildItemId) {
+      setIncomingBuildItemId(null);
+    }
+  }, [location]);
 
   if (!query && !category) {
     return null;

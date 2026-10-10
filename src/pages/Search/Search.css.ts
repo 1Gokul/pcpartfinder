@@ -36,7 +36,6 @@ export const inputFieldStyle = style({
   padding: "1rem 1.25rem",
   border: "3px solid",
   color: "inherit",
-  transition: "all 0.2s",
   "::placeholder": {
     color: "#718096",
   },
@@ -59,7 +58,6 @@ export const inputFieldStyle = style({
 export const buttonStyle = style({
   textAlign: "center",
   backgroundColor: colours.green300,
-  transition: "transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease",
   boxShadow: `0.2rem 0.2rem 0 ${colours.green1200}`,
   border: `3px solid ${colours.green1200}`,
   ":active": {

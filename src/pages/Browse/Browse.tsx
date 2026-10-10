@@ -1,4 +1,4 @@
-import { Link, useSearchParams } from "wouter";
+import { Link, useLocation, useSearchParams } from "wouter";
 import { Categories, CategoryCopies } from "../../constants/categories";
 import {
   browseHeadingStyle,
@@ -13,9 +13,17 @@ const categoryIconSize = 32;
 
 export function Browse() {
   const [searchParams] = useSearchParams();
+  const [_, navigate] = useLocation();
+
+  const category = searchParams.get("category") as (typeof Categories)[number];
+  if (category && !Categories.some((cat) => cat === category)) {
+    navigate("/browse");
+  }
   return (
     <>
-      {searchParams.get("category") ? null : (
+      {category ? (
+        <h1 className={browseHeadingStyle}>{CategoryCopies[category].title}.</h1>
+      ) : (
         <>
           <h1 className={browseHeadingStyle}>Browse categories.</h1>
 

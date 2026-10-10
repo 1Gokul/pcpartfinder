@@ -3,7 +3,7 @@ import type { SearchResultItem } from "../../../types/searchResult";
 import {
   resultItemAddToBuildButtonStyle,
   ResultItemContainerStyle,
-  ResultItemDetailGridStyle as ResultItemDetailStyle,
+  ResultItemDetailGridStyle,
   ResultItemLinkStyle,
   resultItemPriceStyle,
   ResultItemReplacementText,
@@ -83,8 +83,8 @@ export function ResultItem({ data }: { data: SearchResultItem }) {
           {data.name}
         </a>
 
-        <div className={ResultItemDetailStyle}>
-          <span>{data.store}</span>
+        <div className={ResultItemDetailGridStyle}>
+          <span className="result-store">{data.store}</span>
 
           <span className={resultItemPriceStyle}>
             {data.price <= 0 ? "N/A" : `₹${data.price.toLocaleString("en-IN")}`}
@@ -107,8 +107,8 @@ export function ResultItem({ data }: { data: SearchResultItem }) {
             >
               {buildItemInCurrentCategory.name}
             </a>
-            <div className={ResultItemDetailStyle}>
-              <span>{buildItemInCurrentCategory.store}</span>
+            <div className={ResultItemDetailGridStyle}>
+              <span className="result-store">{buildItemInCurrentCategory.store}</span>
               <span className={resultItemPriceStyle}>
                 {buildItemInCurrentCategory.price <= 0
                   ? "N/A"

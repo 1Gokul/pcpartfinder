@@ -48,30 +48,20 @@ export const mobileMenuButtonStyle = style({
 });
 
 export const hamburgerIconStyle = style({
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-between",
   width: "1.5rem",
   height: "1.125rem",
-});
-
-export const hamburgerLineStyle = style({
-  width: "100%",
-  height: "2px",
-  backgroundColor: colours.green1200,
-  transition: "transform 0.2s ease, opacity 0.2s ease",
 });
 
 export const mobileNavContainerStyle = style({
   display: "flex",
   flexDirection: "column",
   overflow: "hidden",
+  width: "100%",
   maxHeight: "0",
   backgroundColor: colours.green200,
   borderColor: colours.green1200,
   borderStyle: "solid",
   borderWidth: "0 2px",
-  transition: "max-height 0.3s ease, border-width 0.1s ease",
 
   "@media": {
     [breakpoints.tablet]: {
@@ -92,7 +82,6 @@ export const mobileNavLinkStyle = style({
   fontWeight: "500",
   textAlign: "center",
   padding: "1rem",
-  transition: "background-color 0.1s linear",
 
   ":hover": {
     backgroundColor: colours.green400,
@@ -102,13 +91,7 @@ export const mobileNavLinkStyle = style({
 export const headerLogoStyle = style({
   margin: "0 1.5rem",
   minWidth: "10rem",
-  width: "100%",
-
-  "@media": {
-    [breakpoints.desktop]: {
-      width: "300px",
-    },
-  },
+  width: "20rem",
 });
 
 export const desktopNavStyle = style({
@@ -124,7 +107,6 @@ export const desktopNavLinkStyle = style({
   fontWeight: "500",
   textAlign: "center",
   width: "7rem",
-  transition: "background-color 0.1s ease-in-out",
   borderColor: colours.green200,
   borderStyle: "solid",
   borderWidth: "0 3px",

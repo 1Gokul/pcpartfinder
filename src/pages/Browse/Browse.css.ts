@@ -37,7 +37,6 @@ export const categoryCardStyle = style({
   backgroundColor: colours.green50,
   boxShadow: `0.45rem 0.45rem 0 ${colours.green1200}`,
   padding: "1.25rem",
-  transition: "transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease",
   ":hover": {
     transform: "translate(-2px, -2px)",
     boxShadow: `0.6rem 0.6rem 0 ${colours.green1200}`,
