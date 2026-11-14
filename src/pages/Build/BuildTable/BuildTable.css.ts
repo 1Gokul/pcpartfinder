@@ -1,4 +1,3 @@
-
 import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
 import { breakpoints, colours, fonts } from "../../../styles/theme.css";
 import { paginationButtonStyle } from "../../Search/components/Pagination/Pagination.css";
@@ -24,7 +23,20 @@ export const hideOnMobileStyle = style({
 });
 
 export const buildItemRowStyle = styleVariants({
-  empty: [buildItemRowStyleBase],
+  empty: [
+    buildItemRowStyleBase,
+    {
+      marginBlock: "1rem",
+      display: "flex",
+      alignItems: "center",
+      gap: "0.5rem",
+      ":hover": {
+        textDecoration: "underline",
+        textUnderlineOffset: "0.5rem",
+        color: colours.green800,
+      },
+    },
+  ],
   itemExists: [
     buildItemRowStyleBase,
     {
@@ -42,6 +54,7 @@ export const buildItemRowStyle = styleVariants({
 
 export const buildItemNameStyle = style({
   fontSize: "1.125rem",
+  lineHeight: 1.25,
   display: "flex",
   justifyContent: "space-between",
   gap: "1rem",
@@ -147,7 +160,7 @@ export const buildItemDetailsStyle = style({
   },
 });
 
-globalStyle(`${buildItemDetailsStyle} > .category`, {
+globalStyle(".category-label", {
   fontFamily: fonts.mono,
   fontWeight: 700,
 });
@@ -176,3 +189,5 @@ export const dotsStyle = style([
     textOverflow: "unset",
   },
 ]);
+
+export const buildIconStyle = style({ padding: 0, minWidth: 20, minHeight: 20, flexShrink: 0 })

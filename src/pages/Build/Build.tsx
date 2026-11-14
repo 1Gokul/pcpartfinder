@@ -13,7 +13,7 @@ import {
 import { ArrowUpRight } from "lucide-react";
 import { BuildTable } from "./BuildTable/BuildTable";
 
-const stars = " * ".repeat(200);
+const stars = " * ".repeat(100);
 
 export function Build() {
   const [build] = useAtom(buildAtom);
@@ -22,7 +22,7 @@ export function Build() {
     <>
       <section className={buildTableContainerStyle}>
         <div className={buildTableStyle}>
-          <h1 className={buildTableHeading}>{"<name's>"} build</h1>
+          <h1 className={buildTableHeading}>{"<name's>"} build.</h1>
 
           <p className={barcode}>basic-good-person</p>
           <BuildTable />
@@ -30,11 +30,12 @@ export function Build() {
           <div className={starSeparator}>{stars}</div>
 
           <section className={totalCostStyle}>
-            <span>Total:</span>
+            <span className="total-title">Total:</span>
 
             <span className={buildLargePriceStyle}>
               {"₹" +
                 Object.values(build)
+                  .flat()
                   .reduce((acc, curr) => acc + (curr?.price ?? 0), 0)
                   .toLocaleString("en-IN")}
             </span>

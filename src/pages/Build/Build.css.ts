@@ -1,7 +1,7 @@
 import { fontFace, globalStyle, style } from "@vanilla-extract/css";
 import { breakpoints, colours, fonts } from "../../styles/theme.css";
 import { formHeading } from "../Search/Search.css";
-import { buildItemRowStyle, dotsStyle, hideOnMobileStyle } from "./BuildTable/BuildTable.css";
+import { dotsStyle, hideOnMobileStyle } from "./BuildTable/BuildTable.css";
 
 const barcodeFont = fontFace({
   fontStyle: "normal",
@@ -45,27 +45,33 @@ export const starSeparator = style([
     overflow: "hidden",
     fontSize: "2.25rem",
     margin: "2rem auto 0.5rem",
+    color: colours.gray,
   },
 ]);
 
-export const totalCostStyle = style([
-  buildItemRowStyle["itemExists"],
-  {
-    fontFamily: fonts.mono,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "space-between",
-    gap: "0.5rem",
-    fontSize: "1.125rem",
-    paddingInlineStart: "3rem",
-    "@media": {
-      [breakpoints.tablet]: {
-        flexDirection: "row",
-      },
+export const totalCostStyle = style({
+  fontFamily: fonts.mono,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: "0.5rem",
+  fontSize: "1.125rem",
+  "@media": {
+    [breakpoints.tablet]: {
+      display: "grid",
+      gap: 0,
+      gridTemplateColumns: "9fr 3fr",
     },
   },
-]);
+});
+
+globalStyle(`${totalCostStyle} > .total-title`, {
+  "@media": {
+    [breakpoints.tablet]: {
+      paddingInlineStart: "5rem",
+    },
+  },
+});
 
 export const buildLargePriceStyle = style([
   hideOnMobileStyle,
@@ -106,4 +112,9 @@ globalStyle(`${compatibilityDisclaimerStyle} > a`, {
   alignItems: "center",
   textDecoration: "underline",
   textUnderlineOffset: "0.25em",
+});
+
+globalStyle(`${compatibilityDisclaimerStyle} > a:hover`, {
+  textUnderlineOffset: "0.5em",
+  color: colours.green800,
 });

@@ -4,6 +4,7 @@ import { MotherboardIcon } from "../assets/MotherboardIcon";
 
 type CategoryCopy = { title: string; icon: LucideIcon | typeof MotherboardIcon };
 
+
 export const Categories = [
   "GPU",
   "CPU",
@@ -15,7 +16,7 @@ export const Categories = [
   "CASE",
 ] as const;
 
-export const maxQuantitiesPerCategory = {
+export const categoryLimits = {
   GPU: 1,
   CPU: 1,
   PSU: 1,
@@ -28,19 +29,19 @@ export const maxQuantitiesPerCategory = {
 
 export const CategoryCopies: Record<(typeof Categories)[number], CategoryCopy> = {
   GPU: {
-    title: "Graphics Card",
+    title: "Graphic Cards",
     icon: Gpu,
   },
   CPU: {
-    title: "Processor",
+    title: "Processors",
     icon: Cpu,
   },
   PSU: {
-    title: "Power Supply",
+    title: "Power Supplies",
     icon: Plug,
   },
   COOLING: {
-    title: "Cooling",
+    title: "Fans",
     icon: Fan,
   },
   STORAGE: {
@@ -52,11 +53,11 @@ export const CategoryCopies: Record<(typeof Categories)[number], CategoryCopy> =
     icon: MemoryStick,
   },
   MOBO: {
-    title: "Motherboard",
+    title: "Motherboards",
     icon: MotherboardIcon,
   },
   CASE: {
-    title: "Case",
+    title: "Cases",
     icon: PcCase,
   },
 };

@@ -1,13 +1,16 @@
-import type { Categories } from "../../../constants/categories";
+import { Categories } from "../../../constants/categories";
+import * as v from "valibot";
 
-export type SearchResultItem = {
-  name: string;
-  category: (typeof Categories)[number];
-  price: number;
-  link: string;
-  store: string;
-  id: string;
-};
+export const SearchResultItemSchema = v.object({
+  name: v.string(),
+  category: v.picklist(Categories),
+  price: v.number(),
+  link: v.string(),
+  store: v.string(),
+  id: v.string(),
+});
+
+export type SearchResultItem = v.InferOutput<typeof SearchResultItemSchema>;
 
 export type SearchResultObject = {
   total: number;

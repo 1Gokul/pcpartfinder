@@ -24,6 +24,7 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "sonner": "^2.0.7",
+    "valibot": "^1.5.0",
     "wouter": "^3.7.1"
   },
   "devDependencies": {

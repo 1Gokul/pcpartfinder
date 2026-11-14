@@ -1,9 +1,5 @@
-import { Dot, XIcon, CheckIcon } from "lucide-react";
-import {
-  buildTableHeading,
-  barcode,
-  buildLargePriceStyle,
-} from "../Build.css";
+import { Dot, XIcon, CheckIcon, BetweenHorizontalStart, SquareMousePointer } from "lucide-react";
+import { buildTableHeading, barcode, buildLargePriceStyle } from "../Build.css";
 import {
   buildItemRowStyle,
   buildItemNameStyle,
@@ -13,81 +9,127 @@ import {
   buildSmallPriceStyle,
   deleteButtonContainerStyle,
   deleteButtonStyle,
+  buildIconStyle,
 } from "./BuildTable.css";
 import { useAtom } from "jotai";
 import { useState } from "react";
 import { buildAtom } from "../../../atoms/build";
-
+import type { SearchResultItem } from "../../Search/types/searchResult";
+import { Categories, CategoryCopies, categoryLimits } from "../../../constants/categories";
+import { Link } from "wouter";
 
 const dots = " . ".repeat(200);
-const iconSizeProps = { size: 20, style: { padding: 0 } };
 
 export function BuildTable() {
   const [build, setBuild] = useAtom(buildAtom);
 
-  const [buildCategoryToBeCleared, setBuildCategoryToBeCleared] = useState<string | null>(null);
+  const [buildItemToBeRemoved, setBuildItemToBeRemoved] = useState<{
+    category: SearchResultItem["category"];
+    index: number;
+  } | null>(null);
 
-  const handleDeleteClick = (category: string) => {
-    if (category === buildCategoryToBeCleared) {
-      setBuild({ ...build, [category]: null });
+  const handleDeleteClick = (category: SearchResultItem["category"], index: number = 0) => {
+    if (category === buildItemToBeRemoved?.category && index === buildItemToBeRemoved.index) {
+      setBuild({ ...build, [category]: build[category].filter((_, itemIdx) => itemIdx !== index) });
+      setBuildItemToBeRemoved(null);
     } else {
-      setBuildCategoryToBeCleared(category);
+      setBuildItemToBeRemoved({ category, index });
     }
   };
+
   return (
     <>
-      {Object.entries(build).map(([category, item]) => {
-        if (item) {
-          const price = item.price <= 0 ? "N/A" : `₹${item.price.toLocaleString("en-IN")}`;
-          return (
-            <div className={buildItemRowStyle["itemExists"]}>
-              <div>
-                <div className={buildItemNameStyle}>{item.name}</div>
+      {Categories.map((category) => {
+        const itemsInCategory = build[category];
 
-                <div className={buildItemDetailsStyle}>
-                  <span className="category">{category}</span>
+        const numberOfAdditionalItemsThatCanBeAdded =
+          categoryLimits[category] - itemsInCategory.length;
 
-                  <Dot className={hideOnMobileStyle} />
+        return (
+          <>
+            {/* List of items in this category */}
+            {itemsInCategory.length ? (
+              itemsInCategory.map((item, index) => {
+                const isItemGoingToBeRemoved =
+                  category === buildItemToBeRemoved?.category &&
+                  index === buildItemToBeRemoved.index;
 
-                  <span>{item.store}</span>
-                  <div className={dotsStyle}>{dots}</div>
+                const price = item.price <= 0 ? "N/A" : `₹${item.price.toLocaleString("en-IN")}`;
+                return (
+                  <>
+                    <div className={buildItemRowStyle["itemExists"]}>
+                      <div>
+                        <div className={buildItemNameStyle}>{item.name}</div>
 
-                  <div className={buildSmallPriceStyle}>{price}</div>
+                        <div className={buildItemDetailsStyle}>
+                          <span className="category-label">{item.category}</span>
 
-                  <div className={deleteButtonContainerStyle}>
-                    {category === buildCategoryToBeCleared && (
-                      <button
-                        type="button"
-                        className={deleteButtonStyle["cancel"]}
-                        onClick={() => setBuildCategoryToBeCleared(null)}
+                          <Dot className={hideOnMobileStyle} />
+
+                          <span>{item.store}</span>
+                          <div className={dotsStyle}>{dots}</div>
+
+                          <div className={buildSmallPriceStyle}>{price}</div>
+
+                          <div className={deleteButtonContainerStyle}>
+                            {isItemGoingToBeRemoved && (
+                              <button
+                                type="button"
+                                className={deleteButtonStyle["cancel"]}
+                                onClick={() => setBuildItemToBeRemoved(null)}
+                              >
+                                <XIcon className={buildIconStyle} />
+                              </button>
+                            )}
+                            <button
+                              type="button"
+                              className={
+                                deleteButtonStyle[isItemGoingToBeRemoved ? "confirm" : "delete"]
+                              }
+                              onClick={() => handleDeleteClick(category, index)}
+                            >
+                              {isItemGoingToBeRemoved ? (
+                                <CheckIcon className={buildIconStyle} />
+                              ) : (
+                                <XIcon className={buildIconStyle} />
+                              )}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className={buildLargePriceStyle}>{price}</div>
+                    </div>
+
+                    {numberOfAdditionalItemsThatCanBeAdded ? (
+                      <Link
+                        className={buildItemRowStyle["empty"]}
+                        to={`/browse?category=${category.toLowerCase()}`}
                       >
-                        <XIcon {...iconSizeProps} />
-                      </button>
-                    )}
-                    <button
-                      type="button"
-                      className={
-                        deleteButtonStyle[
-                          category === buildCategoryToBeCleared ? "confirm" : "delete"
-                        ]
-                      }
-                      onClick={() => handleDeleteClick(category)}
-                    >
-                      {category === buildCategoryToBeCleared ? (
-                        <CheckIcon {...iconSizeProps} />
-                      ) : (
-                        <XIcon {...iconSizeProps} />
-                      )}
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div className={buildLargePriceStyle}>{price}</div>
-            </div>
-          );
-        }
-        return <div className={buildItemRowStyle["empty"]}>Click to add</div>;
+                        <BetweenHorizontalStart className={buildIconStyle} />
+                        <span>
+                          You can also add additional{" "}
+                          <span className="category-label"> {CategoryCopies[category].title}.</span>
+                        </span>
+                      </Link>
+                    ) : null}
+                  </>
+                );
+              })
+            ) : (
+              <Link
+                className={buildItemRowStyle["empty"]}
+                to={`/browse?category=${category.toLowerCase()}`}
+              >
+                <SquareMousePointer className={buildIconStyle} />
+                <span>
+                  Click to browse{" "}
+                  <span className="category-label">{CategoryCopies[category].title}.</span>
+                </span>
+              </Link>
+            )}
+          </>
+        );
       })}
     </>
   );

@@ -15,7 +15,7 @@ export function Browse() {
   const [searchParams] = useSearchParams();
   const [_, navigate] = useLocation();
 
-  const category = searchParams.get("category") as (typeof Categories)[number];
+  const category = searchParams.get("category")?.toUpperCase() as (typeof Categories)[number];
   if (category && !Categories.some((cat) => cat === category)) {
     navigate("/browse");
   }

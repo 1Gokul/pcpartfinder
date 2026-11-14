@@ -10,24 +10,50 @@ import {
 } from "./ResultItem.css";
 import { useAtom } from "jotai";
 import { buildAtom, newBuildItemIdAtom } from "../../../../../atoms/build";
-import { Link } from "wouter";
+import { useLocation } from "wouter";
+import { categoryLimits } from "../../../../../constants/categories";
 
 export function ResultItem({ data }: { data: SearchResultItem }) {
   const [build, setBuild] = useAtom(buildAtom);
   const [incomingBuildItemId, setIncomingBuildItemId] = useAtom(newBuildItemIdAtom);
 
-  const buildItemInCurrentCategory = build[data.category];
+  const [_, navigate] = useLocation();
+
+  const itemsOfCurrentCategoryInBuild = build[data.category];
+
+  /**
+   * If the max number of items for this
+   * category have been reached, the first
+   * item of that category will be removed.
+   * (FIFO)
+   */
+  const buildItemToBeReplacedFirst =
+    itemsOfCurrentCategoryInBuild.length >= categoryLimits[data.category]
+      ? (itemsOfCurrentCategoryInBuild?.[0] ?? null)
+      : null;
 
   const handleAddToBuild = () => {
-    if (buildItemInCurrentCategory?.id) {
+    if (buildItemToBeReplacedFirst?.id) {
+      /**
+       * And the user confirms they want the existing
+       * item to be replaced.
+       */
       if (incomingBuildItemId === data.id) {
-        setBuild({ ...build, [data.category]: data });
+        // Replace the first item
+        setBuild({
+          ...build,
+          [data.category]: itemsOfCurrentCategoryInBuild.with(0, data),
+        });
+
         setIncomingBuildItemId(null);
       } else {
         setIncomingBuildItemId(data.id);
       }
     } else {
-      setBuild({ ...build, [data.category]: data });
+      setBuild({
+        ...build,
+        [data.category]: [...itemsOfCurrentCategoryInBuild, data],
+      });
     }
   };
 
@@ -35,7 +61,7 @@ export function ResultItem({ data }: { data: SearchResultItem }) {
     if (incomingBuildItemId && incomingBuildItemId !== data.id) {
       return "disableDuringReplacementPrompt";
     }
-    if (buildItemInCurrentCategory?.id === data.id) {
+    if (itemsOfCurrentCategoryInBuild.includes(data)) {
       return "alreadyInBuild";
     }
     return "base";
@@ -45,14 +71,24 @@ export function ResultItem({ data }: { data: SearchResultItem }) {
     /** If this item exists in the build, show them a button to
      * view the build instead
      */
-    if (buildItemInCurrentCategory?.id === data.id) {
+
+    const instancesOfCurrentItemInBuild = build[data.category].filter(
+      (buildItem) => buildItem.id === data.id,
+    ).length;
+    if (instancesOfCurrentItemInBuild) {
       return (
-        <Link to="/build" className={resultItemAddToBuildButtonStyle}>
-          <button type="button">
-            <Check size={16} />
-            Added
-          </button>
-        </Link>
+        <button
+          type="button"
+          onClick={() =>
+            instancesOfCurrentItemInBuild < categoryLimits[data.category]
+              ? handleAddToBuild()
+              : navigate("/build")
+          }
+        >
+          <Check size={16} />
+          Added
+          {instancesOfCurrentItemInBuild > 1 ? ` (${instancesOfCurrentItemInBuild})` : ""}
+        </button>
       );
     }
 
@@ -96,23 +132,23 @@ export function ResultItem({ data }: { data: SearchResultItem }) {
 
       {/* Red box that appears below when the user tries to overwrite
       an item that already exists in the build */}
-      {incomingBuildItemId === data.id && !!buildItemInCurrentCategory && (
+      {incomingBuildItemId === data.id && !!buildItemToBeReplacedFirst && (
         <>
           <div className={ResultItemContainerStyle["itemBeingReplaced"]}>
             <a
-              href={buildItemInCurrentCategory.link}
+              href={buildItemToBeReplacedFirst.link}
               target="_blank"
               rel="noopener"
               className={ResultItemLinkStyle}
             >
-              {buildItemInCurrentCategory.name}
+              {buildItemToBeReplacedFirst.name}
             </a>
             <div className={ResultItemDetailGridStyle}>
-              <span className="result-store">{buildItemInCurrentCategory.store}</span>
+              <span className="result-store">{buildItemToBeReplacedFirst.store}</span>
               <span className={resultItemPriceStyle}>
-                {buildItemInCurrentCategory.price <= 0
+                {buildItemToBeReplacedFirst.price <= 0
                   ? "N/A"
-                  : `₹${buildItemInCurrentCategory.price.toLocaleString("en-IN")}`}
+                  : `₹${buildItemToBeReplacedFirst.price.toLocaleString("en-IN")}`}
               </span>
 
               <button
