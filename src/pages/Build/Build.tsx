@@ -1,5 +1,6 @@
 import { useAtomValue } from "jotai";
-import { ClipboardCopy, Loader2, Send } from "lucide-react";
+import { ClipboardCheck, ClipboardCopy, Loader2, Send } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { useLocation } from "wouter";
 import { buildAtom, buildNameAtom } from "../../atoms/build";
@@ -13,6 +14,7 @@ import {
   spinnerStyle,
 } from "./Build.css";
 import { useCreateBuild } from "./hooks/useCreateBuild";
+import { createMarkdownTable } from "./utils/markdown";
 import { containsProfanity } from "../../utils/profanity";
 
 /**
@@ -22,19 +24,16 @@ import { containsProfanity } from "../../utils/profanity";
 const isBuildComplete = (build: BuildAtomType) =>
   Categories.every((category) => build[category].length > 0);
 
-/**
- * TODO: Build a markdown table out of the given build and copy it to the clipboard.
- * Intentionally a no-op for now.
- */
-function createMarkdownTable(_build: BuildAtomType): string {
-  return "";
-}
-
 export function Build() {
   const build = useAtomValue(buildAtom);
   const buildName = useAtomValue(buildNameAtom);
   const [, navigate] = useLocation();
   const createBuild = useCreateBuild();
+
+  const [copied, setCopied] = useState(false);
+  const copiedResetTimeout = useRef<number | undefined>(undefined);
+
+  useEffect(() => () => window.clearTimeout(copiedResetTimeout.current), []);
 
   const buildIsComplete = isBuildComplete(build);
   const hasName = buildName.trim().length > 0;
@@ -60,8 +59,17 @@ export function Build() {
     );
   };
 
-  const handleCopyAsMarkdown = () => {
-    void createMarkdownTable(build);
+  const handleCopyAsMarkdown = async () => {
+    const markdown = createMarkdownTable(build, buildName);
+
+    try {
+      await navigator.clipboard.writeText(markdown);
+      setCopied(true);
+      window.clearTimeout(copiedResetTimeout.current);
+      copiedResetTimeout.current = window.setTimeout(() => setCopied(false), 3000);
+    } catch {
+      toast.error("Could not copy the build to your clipboard.");
+    }
   };
 
   return (
@@ -85,9 +93,15 @@ export function Build() {
           )}
         </button>
 
-        <button type="button" className={copyMarkdownButtonStyle} onClick={handleCopyAsMarkdown}>
-          Copy as markdown
-          <ClipboardCopy size={20} strokeWidth={1.5} />
+        <button
+          type="button"
+          className={copyMarkdownButtonStyle}
+          onClick={() => void handleCopyAsMarkdown()}
+          aria-live="polite"
+        >
+          {copied ? "Copied!" : "Copy as markdown"}
+          {copied ? <ClipboardCheck size={20} strokeWidth={1.5} /> : <ClipboardCopy size={20} strokeWidth={1.5} />}
+          
         </button>
       </div>
     </>

@@ -30,8 +30,8 @@ const headerContainerStyleBase = style({
 export const headerContainerStyle = styleVariants({
   default: [headerContainerStyleBase],
   /**
-   * Used on the /search page when no search has been made yet-
-   * the logo is removed and the header hugs its content on the right.
+   * Used on the /search page when no search has been made yet.
+   * the logo is removed and the header is stuck to the right.
    */
   compact: [headerContainerStyleBase, { width: "fit-content", marginLeft: "auto" }],
 });
@@ -40,7 +40,8 @@ export const mobileMenuButtonStyle = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  minWidth: "5rem",
+  maxWidth: "4rem",
+  width: "100%",
   height: "100%",
   backgroundColor: "transparent",
   borderLeft: `2px solid ${colours.green1200}`,
