@@ -1,193 +1,120 @@
-import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
-import { breakpoints, colours, fonts } from "../../../styles/theme.css";
-import { paginationButtonStyle } from "../../Search/components/Pagination/Pagination.css";
+import { fontFace, globalStyle, style } from "@vanilla-extract/css";
+import { fonts, colours, breakpoints } from "../../../styles/theme.css";
+import { formHeading } from "../../Search/Search.css";
+import { dotsStyle, hideOnMobileStyle } from "./BuildList/BuildList.css";
 
-const buildItemRowStyleBase = style({
-  padding: "1rem",
-  fontSize: "1rem",
-
-  "@media": {
-    [breakpoints.tablet]: {
-      fontSize: "1.125rem",
-    },
-  },
+const barcodeFont = fontFace({
+  fontStyle: "normal",
+  fontDisplay: "swap",
+  fontWeight: 400,
+  src: "url(@fontsource/libre-barcode-128/files/libre-barcode-128-latin-400-normal.woff2) format(woff2),\n       url(@fontsource/libre-barcode-128/files/libre-barcode-128-latin-400-normal.woff) format('woff')",
+  unicodeRange:
+    "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD",
 });
 
-export const hideOnMobileStyle = style({
-  display: "none",
-  "@media": {
-    [breakpoints.tablet]: {
-      display: "block",
-    },
-  },
+export const buildTableContainerStyle = style({
+  WebkitFilter: "drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.2))",
 });
 
-export const buildItemRowStyle = styleVariants({
-  empty: [
-    buildItemRowStyleBase,
-    {
-      marginBlock: "1rem",
-      display: "flex",
-      alignItems: "center",
-      gap: "0.5rem",
-      ":hover": {
-        textDecoration: "underline",
-        textUnderlineOffset: "0.5rem",
-        color: colours.green800,
-      },
-    },
-  ],
-  itemExists: [
-    buildItemRowStyleBase,
-    {
-      position: "relative",
-      columnGap: "0.5rem",
-      "@media": {
-        [breakpoints.tablet]: {
-          display: "grid",
-          gridTemplateColumns: "9fr 3fr",
-        },
-      },
-    },
-  ],
-});
-
-export const buildItemNameStyle = style({
-  fontSize: "1.125rem",
-  lineHeight: 1.25,
-  display: "flex",
-  justifyContent: "space-between",
-  gap: "1rem",
-  marginBottom: "0.5rem",
-  "@media": {
-    [breakpoints.tablet]: {
-      fontSize: "1.25rem",
-      paddingRight: "2.5rem",
-    },
-  },
-});
-export const deleteButtonContainerStyle = style({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "end",
-  gap: "0.75rem",
-  marginTop: "0.5rem",
-  "@media": {
-    [breakpoints.tablet]: {
-      position: "absolute",
-      top: 0,
-      right: "0.5rem",
-    },
-  },
-});
-
-const deleteButtonStyleBase = style([
-  paginationButtonStyle["default"],
+export const buildTableHeading = style([
+  formHeading,
   {
-    backgroundColor: colours.green50,
-    color: colours.green1100,
-    display: "flex",
-    alignItems: "center",
-    padding: "0.25rem 0.5rem",
-    "::before": {
-      content: "Delete",
-    },
-    "@media": {
-      [breakpoints.tablet]: {
-        "::before": {
-          content: "",
-          padding: 0,
-        },
-      },
-    },
+    fontFamily: fonts.mono,
+    textAlign: "center",
   },
 ]);
-export const deleteButtonStyle = styleVariants({
-  delete: [deleteButtonStyleBase],
-  confirm: [
-    deleteButtonStyleBase,
-    {
-      backgroundColor: colours.red,
-      color: "white",
-      ":hover": {
-        backgroundColor: colours.redHover,
-      },
-      "::before": {
-        content: "Yes",
-      },
-    },
-  ],
-  cancel: [
-    deleteButtonStyleBase,
-    {
-      backgroundColor: colours.green400,
-      ":hover": {
-        backgroundColor: colours.green500,
-      },
-      "::before": {
-        content: "No",
-      },
-    },
-  ],
-});
 
-export const buildSmallPriceStyle = style({
-  display: "inline",
-  fontFamily: fonts.mono,
-  color: colours.green1100,
-  fontSize: "1.25rem",
-  "@media": {
-    [breakpoints.tablet]: {
-      display: "none",
-    },
+export const buildTableStyle = style({
+  backgroundColor: "white",
+  padding: "2.5rem 1rem 4rem",
+  fontWeight: "500",
+  vars: {
+    "--m":
+      "conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) bottom/80px 51% repeat-x, conic-gradient(from 135deg at top   ,#0000,#000 1deg 89deg,#0000 90deg) top   /80px 51% repeat-x",
   },
+
+  WebkitMask: "var(--m)",
+  mask: "var(--m)",
 });
 
-export const buildItemDetailsStyle = style({
+export const starSeparator = style([
+  dotsStyle,
+  {
+    display: "block",
+    maxWidth: "80%",
+    overflow: "hidden",
+    fontSize: "2.25rem",
+    margin: "2rem auto 0.5rem",
+    color: colours.gray,
+  },
+]);
+
+export const totalCostStyle = style({
+  fontFamily: fonts.mono,
   display: "flex",
   flexDirection: "column",
-  marginTop: "1rem",
+  alignItems: "center",
   gap: "0.5rem",
-  color: colours.gray,
+  fontSize: "1.125rem",
   "@media": {
     [breakpoints.tablet]: {
-      flexDirection: "row",
-      alignItems: "center",
-      textWrap: "nowrap",
-      overflow: "hidden",
-      justifyContent: "space-between",
+      display: "grid",
+      gap: 0,
+      gridTemplateColumns: "9fr 3fr",
     },
   },
 });
 
-globalStyle(".category-label", {
-  fontFamily: fonts.mono,
-  fontWeight: 700,
-});
-
-globalStyle(`${buildItemDetailsStyle} > *`, { flexShrink: 0 });
-
-globalStyle(`${buildItemRowStyle["itemExists"]} > div`, { minWidth: 0 });
-
-export const emptyBuildItemPlaceholderStyle = style({
-  padding: "1.5rem",
-  fontStyle: "italic",
+globalStyle(`${totalCostStyle} > .total-title`, {
   "@media": {
-    [breakpoints.desktop]: {
-      padding: "1.25rem",
-    },
-    [breakpoints.wide]: {
-      padding: "1.5rem",
+    [breakpoints.tablet]: {
+      paddingInlineStart: "5rem",
     },
   },
 });
 
-export const dotsStyle = style([
+export const buildLargePriceStyle = style([
   hideOnMobileStyle,
   {
-    whiteSpace: "nowrap",
-    textOverflow: "unset",
+    fontFamily: fonts.mono,
+    fontSize: "2rem",
+    alignSelf: "end",
+    selectors: {
+      [`${totalCostStyle} &`]: {
+        alignSelf: "auto",
+        display: "initial",
+      },
+    },
   },
 ]);
 
-export const buildIconStyle = style({ padding: 0, minWidth: 20, minHeight: 20, flexShrink: 0 })
+export const barcode = style({
+  fontFamily: barcodeFont,
+  fontSize: "5rem",
+  lineHeight: 0.75,
+});
+
+export const compatibilityDisclaimerStyle = style({
+  fontFamily: fonts.mono,
+  textAlign: "center",
+  lineHeight: 1.5,
+  marginBlock: "3rem",
+  textWrap: "pretty",
+  "@media": {
+    [breakpoints.tablet]: {
+      paddingInline: "3rem",
+    },
+  },
+});
+
+globalStyle(`${compatibilityDisclaimerStyle} > a`, {
+  display: "inline-flex",
+  alignItems: "center",
+  textDecoration: "underline",
+  textUnderlineOffset: "0.25em",
+});
+
+globalStyle(`${compatibilityDisclaimerStyle} > a:hover`, {
+  textUnderlineOffset: "0.5em",
+  color: colours.green800,
+});

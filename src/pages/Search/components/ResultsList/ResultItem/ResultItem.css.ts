@@ -85,6 +85,7 @@ export const ResultItemLinkStyle = style({
   },
   ":hover": {
     textDecoration: "underline",
+    color: colours.green900,
     textUnderlineOffset: "0.25rem",
   },
   "@media": {

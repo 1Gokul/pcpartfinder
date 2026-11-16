@@ -1,136 +1,59 @@
-import { Dot, XIcon, CheckIcon, BetweenHorizontalStart, SquareMousePointer } from "lucide-react";
-import { buildTableHeading, barcode, buildLargePriceStyle } from "../Build.css";
-import {
-  buildItemRowStyle,
-  buildItemNameStyle,
-  buildItemDetailsStyle,
-  hideOnMobileStyle,
-  dotsStyle,
-  buildSmallPriceStyle,
-  deleteButtonContainerStyle,
-  deleteButtonStyle,
-  buildIconStyle,
-} from "./BuildTable.css";
 import { useAtom } from "jotai";
-import { useState } from "react";
 import { buildAtom } from "../../../atoms/build";
-import type { SearchResultItem } from "../../Search/types/searchResult";
-import { Categories, CategoryCopies, categoryLimits } from "../../../constants/categories";
-import { Link } from "wouter";
+import {
+  buildTableStyle,
+  buildTableContainerStyle,
+  buildLargePriceStyle,
+  starSeparator,
+  totalCostStyle,
+  compatibilityDisclaimerStyle,
+  buildTableHeading,
+} from "./BuildTable.css";
+import { ArrowUpRight } from "lucide-react";
+import { BuildList } from "./BuildList/BuildList";
 
-const dots = " . ".repeat(200);
+const stars = " * ".repeat(100);
 
 export function BuildTable() {
-  const [build, setBuild] = useAtom(buildAtom);
-
-  const [buildItemToBeRemoved, setBuildItemToBeRemoved] = useState<{
-    category: SearchResultItem["category"];
-    index: number;
-  } | null>(null);
-
-  const handleDeleteClick = (category: SearchResultItem["category"], index: number = 0) => {
-    if (category === buildItemToBeRemoved?.category && index === buildItemToBeRemoved.index) {
-      setBuild({ ...build, [category]: build[category].filter((_, itemIdx) => itemIdx !== index) });
-      setBuildItemToBeRemoved(null);
-    } else {
-      setBuildItemToBeRemoved({ category, index });
-    }
-  };
+  const [build] = useAtom(buildAtom);
 
   return (
     <>
-      {Categories.map((category) => {
-        const itemsInCategory = build[category];
+      <section className={buildTableContainerStyle}>
+        <div className={buildTableStyle}>
+          <h1 className={buildTableHeading}>{"<name's>"} build.</h1>
 
-        const numberOfAdditionalItemsThatCanBeAdded =
-          categoryLimits[category] - itemsInCategory.length;
+          <BuildList />
 
-        return (
-          <>
-            {/* List of items in this category */}
-            {itemsInCategory.length ? (
-              itemsInCategory.map((item, index) => {
-                const isItemGoingToBeRemoved =
-                  category === buildItemToBeRemoved?.category &&
-                  index === buildItemToBeRemoved.index;
+          <div className={starSeparator}>{stars}</div>
 
-                const price = item.price <= 0 ? "N/A" : `₹${item.price.toLocaleString("en-IN")}`;
-                return (
-                  <>
-                    <div className={buildItemRowStyle["itemExists"]}>
-                      <div>
-                        <div className={buildItemNameStyle}>{item.name}</div>
+          <section className={totalCostStyle}>
+            <span className="total-title">Total:</span>
 
-                        <div className={buildItemDetailsStyle}>
-                          <span className="category-label">{item.category}</span>
-
-                          <Dot className={hideOnMobileStyle} />
-
-                          <span>{item.store}</span>
-                          <div className={dotsStyle}>{dots}</div>
-
-                          <div className={buildSmallPriceStyle}>{price}</div>
-
-                          <div className={deleteButtonContainerStyle}>
-                            {isItemGoingToBeRemoved && (
-                              <button
-                                type="button"
-                                className={deleteButtonStyle["cancel"]}
-                                onClick={() => setBuildItemToBeRemoved(null)}
-                              >
-                                <XIcon className={buildIconStyle} />
-                              </button>
-                            )}
-                            <button
-                              type="button"
-                              className={
-                                deleteButtonStyle[isItemGoingToBeRemoved ? "confirm" : "delete"]
-                              }
-                              onClick={() => handleDeleteClick(category, index)}
-                            >
-                              {isItemGoingToBeRemoved ? (
-                                <CheckIcon className={buildIconStyle} />
-                              ) : (
-                                <XIcon className={buildIconStyle} />
-                              )}
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className={buildLargePriceStyle}>{price}</div>
-                    </div>
-
-                    {numberOfAdditionalItemsThatCanBeAdded ? (
-                      <Link
-                        className={buildItemRowStyle["empty"]}
-                        to={`/browse?category=${category.toLowerCase()}`}
-                      >
-                        <BetweenHorizontalStart className={buildIconStyle} />
-                        <span>
-                          You can also add additional{" "}
-                          <span className="category-label"> {CategoryCopies[category].title}.</span>
-                        </span>
-                      </Link>
-                    ) : null}
-                  </>
-                );
-              })
-            ) : (
-              <Link
-                className={buildItemRowStyle["empty"]}
-                to={`/browse?category=${category.toLowerCase()}`}
-              >
-                <SquareMousePointer className={buildIconStyle} />
-                <span>
-                  Click to browse{" "}
-                  <span className="category-label">{CategoryCopies[category].title}.</span>
-                </span>
-              </Link>
-            )}
-          </>
-        );
-      })}
+            <span className={buildLargePriceStyle}>
+              {"₹" +
+                Object.values(build)
+                  .flat()
+                  .reduce((acc, curr) => acc + (curr?.price ?? 0), 0)
+                  .toLocaleString("en-IN")}
+            </span>
+          </section>
+          <p className={compatibilityDisclaimerStyle}>
+            Please read about compatibility of motherboards and CPUs before finalizing your build.
+            First check the type of CPU socket that the motherboard supports for eg. AMD Socket AM5
+            / Intel Socket 1851 and also check the "Supported CPUs" lists on the mobo manufacturers'
+            website.{" "}
+            <a
+              href="https://www.gigabyte.com/Motherboard/B550M-C/support#Support-Cpu-Support"
+              target="_blank"
+              rel="noreferrer"
+            >
+              An example
+              <ArrowUpRight size={20} strokeWidth={1} style={{ marginTop: "0.1rem" }} />
+            </a>
+          </p>
+        </div>
+      </section>
     </>
   );
 }

@@ -39,10 +39,10 @@ export function ResultItem({ data }: { data: SearchResultItem }) {
        * item to be replaced.
        */
       if (incomingBuildItemId === data.id) {
-        // Replace the first item
+        // Clear the array and add the new item.
         setBuild({
           ...build,
-          [data.category]: itemsOfCurrentCategoryInBuild.with(0, data),
+          [data.category]: [data],
         });
 
         setIncomingBuildItemId(null);
@@ -61,7 +61,7 @@ export function ResultItem({ data }: { data: SearchResultItem }) {
     if (incomingBuildItemId && incomingBuildItemId !== data.id) {
       return "disableDuringReplacementPrompt";
     }
-    if (itemsOfCurrentCategoryInBuild.includes(data)) {
+    if (itemsOfCurrentCategoryInBuild.some((item) => item.id === data.id)) {
       return "alreadyInBuild";
     }
     return "base";
@@ -79,6 +79,7 @@ export function ResultItem({ data }: { data: SearchResultItem }) {
       return (
         <button
           type="button"
+          className={resultItemAddToBuildButtonStyle}
           onClick={() =>
             instancesOfCurrentItemInBuild < categoryLimits[data.category]
               ? handleAddToBuild()
