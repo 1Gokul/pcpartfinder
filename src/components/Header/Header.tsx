@@ -20,7 +20,7 @@ export function Header() {
   const [searchParams] = useSearchParams();
 
   /**
-   * The header becomes small (logo removed) on the /search page
+   * The header becomes compact (logo removed, nav centered) on the /search page
    * if the user has not searched for anything yet
    */
   const isCompact = location === "/search" && !searchParams.get("query");

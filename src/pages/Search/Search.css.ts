@@ -6,7 +6,7 @@ export const logoStyle = style({
   width: "100%",
   maxWidth: "28rem",
   height: "auto",
-  margin: "5rem auto 2rem",
+  margin: "2rem auto 2rem",
   "@media": {
     [breakpoints.tablet]: {
       maxWidth: "36rem",

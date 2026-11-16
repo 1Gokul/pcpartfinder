@@ -31,9 +31,9 @@ export const headerContainerStyle = styleVariants({
   default: [headerContainerStyleBase],
   /**
    * Used on the /search page when no search has been made yet.
-   * the logo is removed and the header is stuck to the right.
+   * the logo is removed and the header is centered.
    */
-  compact: [headerContainerStyleBase, { width: "fit-content", marginLeft: "auto" }],
+  compact: [headerContainerStyleBase, { width: "fit-content", marginInline: "auto" }],
 });
 
 export const mobileMenuButtonStyle = style({
@@ -57,7 +57,7 @@ export const mobileMenuButtonStyle = style({
   },
   selectors: {
     [`${headerContainerStyle["compact"]} &`]: {
-      borderLeftColor: "transparent",
+      display: "none",
     },
   },
 });
@@ -75,6 +75,12 @@ const mobileNavContainerStyleBase = style({
 
   "@media": {
     [breakpoints.tablet]: {
+      display: "none",
+    },
+  },
+
+  selectors: {
+    [`${headerContainerStyle["compact"]} &`]: {
       display: "none",
     },
   },
@@ -143,6 +149,19 @@ export const desktopNavLinkStyle = style({
     },
   },
   selectors: {
+    [`${headerContainerStyle["compact"]} &`]: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: "auto",
+      padding: "0 1rem",
+      "@media": {
+        [breakpoints.tablet]: {
+          width: "7rem",
+          padding: 0,
+        },
+      },
+    },
     [`${headerContainerStyle["compact"]} &:first-child:hover`]: {
       borderLeftColor: "transparent",
     },

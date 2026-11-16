@@ -2,6 +2,9 @@ import { style } from "@vanilla-extract/css";
 import { breakpoints } from "../../styles/theme.css";
 
 export const layoutContainerStyle = style({
+  display: "flex",
+  flexDirection: "column",
+  minHeight: "100dvh",
   width: "100%",
   maxWidth: "100%",
   padding: "0 1rem",
@@ -24,6 +27,7 @@ export const layoutContainerStyle = style({
 });
 
 export const layoutBodyStyle = style({
+  flex: 1,
   padding: "0 1rem 3rem",
   "@media": {
     [breakpoints.tablet]: {
