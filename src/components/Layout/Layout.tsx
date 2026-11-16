@@ -3,6 +3,7 @@ import { Build } from "../../pages/Build/Build";
 import { BuildView } from "../../pages/Build/BuildView";
 import { Browse } from "../../pages/Browse/Browse";
 import { Search } from "../../pages/Search/Search";
+import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
 import { layoutBodyStyle, layoutContainerStyle } from "./Layout.css";
 
@@ -21,6 +22,7 @@ export function Layout() {
           </Route>
         </Switch>
       </main>
+      <Footer />
     </div>
   );
 }
