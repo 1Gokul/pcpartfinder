@@ -1,5 +1,6 @@
 import { Redirect, Route, Switch } from "wouter";
-import { BuildTable } from "../../pages/Build/BuildTable/BuildTable";
+import { Build } from "../../pages/Build/Build";
+import { BuildView } from "../../pages/Build/BuildView";
 import { Browse } from "../../pages/Browse/Browse";
 import { Search } from "../../pages/Search/Search";
 import { Header } from "../Header/Header";
@@ -13,7 +14,8 @@ export function Layout() {
         <Switch>
           <Route path="/search" component={Search} />
           <Route path="/browse" component={Browse} />
-          <Route path="/build" component={BuildTable} />
+          <Route path="/build" component={Build} />
+          <Route path="/build/:id" component={BuildView} />
           <Route path="/">
             <Redirect to="/search" />
           </Route>

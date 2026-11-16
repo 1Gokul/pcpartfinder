@@ -1,3 +1,5 @@
+type JsonBody = Record<string, unknown> | unknown[];
+
 export async function doFetch<T>(
   endpoint: string,
   params?: Record<string, string | number | string[]> | string[][],
@@ -7,7 +9,7 @@ export async function doFetch<T>(
     headers,
     ...otherConfigs
   }: {
-    body?: Record<string, string | string[]> | string[][];
+    body?: JsonBody;
     signal?: AbortSignal;
   } & Omit<RequestInit, "body"> = {},
 ): Promise<T> {
@@ -18,6 +20,7 @@ export async function doFetch<T>(
     {
       method: body ? "POST" : "GET",
       ...otherConfigs,
+      body: body === undefined ? undefined : JSON.stringify(body),
       headers: { "Content-Type": "application/json", ...headers },
       signal,
     },
@@ -26,7 +29,7 @@ export async function doFetch<T>(
       return (await response.json()) as Promise<T>;
     } else {
       const errorMessage = await response.text();
-      throw Promise.reject(new Error(errorMessage));
+      throw new Error(errorMessage);
     }
   });
 }

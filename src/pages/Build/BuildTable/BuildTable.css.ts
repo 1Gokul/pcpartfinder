@@ -1,6 +1,6 @@
-import { fontFace, globalStyle, style } from "@vanilla-extract/css";
+import { fontFace, globalStyle, style, styleVariants } from "@vanilla-extract/css";
 import { fonts, colours, breakpoints } from "../../../styles/theme.css";
-import { formHeading } from "../../Search/Search.css";
+import { formHeading, inputFieldStyle } from "../../Search/Search.css";
 import { dotsStyle, hideOnMobileStyle } from "./BuildList/BuildList.css";
 
 const barcodeFont = fontFace({
@@ -23,6 +23,48 @@ export const buildTableHeading = style([
     textAlign: "center",
   },
 ]);
+
+const buildNameInputBaseStyle = style([
+  inputFieldStyle,
+  {
+    display: "block",
+    width: "100%",
+    margin: "1.5rem auto",
+    paddingInline: "0rem",
+    textAlign: "center",
+    fontFamily: fonts.mono,
+    "@media": {
+      [breakpoints.tablet]: {
+        maxWidth: "32rem",
+        paddingInline: "1.25rem",
+      },
+    },
+    ":hover": {
+      backgroundColor: colours.green50,
+    },
+  },
+]);
+
+export const buildNameInputStyle = styleVariants({
+  default: [buildNameInputBaseStyle],
+  /** Shown while the entered name contains profanity. */
+  invalid: [
+    buildNameInputBaseStyle,
+    {
+      borderColor: colours.red,
+      backgroundColor: "#FFF0F0",
+      ":hover": {
+        backgroundColor: "#FFE4E4",
+      },
+      ":focus": {
+        backgroundColor: "#FFF0F0",
+        borderColor: colours.red,
+        boxShadow: `0 0 0 1px ${colours.red}`,
+        outline: `1px solid ${colours.red}`,
+      },
+    },
+  ],
+});
 
 export const buildTableStyle = style({
   backgroundColor: "white",

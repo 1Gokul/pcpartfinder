@@ -64,4 +64,6 @@ export const buildAtom = atomWithStorage<BuildAtomType>(
   },
 );
 
+export const buildNameAtom = atomWithStorage<string>("buildName", "");
+
 export const newBuildItemIdAtom = atom<string | null>(null);

@@ -1,5 +1,5 @@
 import { Dot, XIcon, CheckIcon, BetweenHorizontalStart, SquareMousePointer } from "lucide-react";
-import { buildTableHeading, barcode, buildLargePriceStyle } from "../BuildTable.css";
+import { buildLargePriceStyle } from "../BuildTable.css";
 import {
   buildItemRowStyle,
   buildItemNameStyle,

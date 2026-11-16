@@ -22,7 +22,7 @@ export const paginationGridStyle = styleVariants({
   invisible: [PaginationGridStyleBase, { visibility: "hidden" }],
 });
 
-const baseButtonStyle = style({
+const paginationButtonBaseStyle = style({
   textAlign: "center",
   backgroundColor: colours.green300,
   boxShadow: `0.2rem 0.2rem 0 ${colours.green1200}`,
@@ -40,10 +40,10 @@ const baseButtonStyle = style({
 });
 
 export const paginationButtonStyle = styleVariants({
-  default: [baseButtonStyle],
-  arrow: [baseButtonStyle, { display: "flex", alignItems: "center", justifyContent: "center" }],
+  default: [paginationButtonBaseStyle],
+  arrow: [paginationButtonBaseStyle, { display: "flex", alignItems: "center", justifyContent: "center" }],
   active: [
-    baseButtonStyle,
+    paginationButtonBaseStyle,
     {
       backgroundColor: colours.green500,
       fontWeight: 500,

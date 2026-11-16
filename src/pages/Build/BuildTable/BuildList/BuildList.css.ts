@@ -34,8 +34,9 @@ export const buildItemRowStyle = styleVariants({
       textUnderlineOffset: "0.5rem",
       maxWidth: "max-content",
       lineHeight: 2,
+      color: colours.green900,
       ":hover": {
-        color: colours.green800,
+        color: colours.green700,
         textUnderlineOffset: "0.75rem",
       },
     },

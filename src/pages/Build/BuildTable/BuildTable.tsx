@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { buildAtom } from "../../../atoms/build";
+import { buildAtom, buildNameAtom } from "../../../atoms/build";
 import {
   buildTableStyle,
   buildTableContainerStyle,
@@ -7,20 +7,37 @@ import {
   starSeparator,
   totalCostStyle,
   compatibilityDisclaimerStyle,
-  buildTableHeading,
+  buildNameInputStyle,
 } from "./BuildTable.css";
 import { ArrowUpRight } from "lucide-react";
 import { BuildList } from "./BuildList/BuildList";
+import { visuallyHidden } from "../../../styles/common.css";
+import { containsProfanity } from "../../../utils/profanity";
 
 const stars = " * ".repeat(100);
 
 export function BuildTable() {
   const [build] = useAtom(buildAtom);
+  const [buildName, setBuildName] = useAtom(buildNameAtom);
+  const buildNameContainsProfanity = containsProfanity(buildName);
 
   return (
     <section className={buildTableContainerStyle}>
       <div className={buildTableStyle}>
-        <h1 className={buildTableHeading}>{"<name's>"} build.</h1>
+        <label htmlFor="build-name" className={visuallyHidden}>
+          Build name
+        </label>
+        <input
+          type="text"
+          id="build-name"
+          name="build-name"
+          value={buildName}
+          onChange={(event) => setBuildName(event.target.value)}
+          placeholder="Name your build"
+          maxLength={15}
+          className={buildNameInputStyle[buildNameContainsProfanity ? "invalid" : "default"]}
+          aria-invalid={buildNameContainsProfanity}
+        />
 
         <BuildList />
 

@@ -10,7 +10,7 @@ export const logoStyle = style({
   "@media": {
     [breakpoints.tablet]: {
       maxWidth: "36rem",
-      marginBottom: "1rem",
+      marginBottom: 0,
     },
   },
 });
@@ -48,7 +48,7 @@ export const formStyle = style({
 
 export const inputFieldStyle = style({
   fontSize: "1.5rem",
-  fontFamily: 'inherit',
+  fontFamily: "inherit",
   padding: "1rem 1.25rem",
   border: "3px solid",
   color: "inherit",
