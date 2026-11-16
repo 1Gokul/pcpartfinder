@@ -1,4 +1,9 @@
-export function Build(){
+import { BuildTable } from "./BuildTable/BuildTable";
 
-    
+export function Build() {
+  return (
+    <>
+      <BuildTable />
+    </>
+  );
 }

@@ -1,4 +1,4 @@
-import { Link } from "wouter";
+import { Link, useLocation, useSearchParams } from "wouter";
 import { useState } from "react";
 import {
   desktopNavLinkStyle,
@@ -9,7 +9,6 @@ import {
   mobileMenuButtonStyle,
   mobileNavContainerStyle,
   mobileNavLinkStyle,
-  mobileNavOpenStyle,
 } from "./Header.css";
 import logo from "../../assets/logo.svg";
 import { navLinks } from "./constants";
@@ -17,6 +16,14 @@ import { MenuIcon, XIcon } from "lucide-react";
 
 export function Header() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const [location] = useLocation();
+  const [searchParams] = useSearchParams();
+
+  /**
+   * The header becomes small (logo removed) on the /search page
+   * if the user has not searched for anything yet
+   */
+  const isCompact = location === "/search" && !searchParams.get("query");
 
   const toggleMobileNav = () => {
     setIsMobileNavOpen((prev) => !prev);
@@ -24,8 +31,8 @@ export function Header() {
 
   return (
     <header className={headerWrapperStyle}>
-      <div className={headerContainerStyle}>
-        <img src={logo} className={headerLogoStyle} />
+      <div className={headerContainerStyle[isCompact ? "compact" : "default"]}>
+        {!isCompact && <img src={logo} className={headerLogoStyle} />}
 
         <div className={desktopNavStyle}>
           {navLinks.map(({ title, route }) => (
@@ -45,7 +52,7 @@ export function Header() {
         </button>
       </div>
 
-      <nav className={`${mobileNavContainerStyle} ${isMobileNavOpen ? mobileNavOpenStyle : ""}`}>
+      <nav className={mobileNavContainerStyle[isMobileNavOpen ? "open" : "default"]}>
         {navLinks.map(({ title, route }) => (
           <Link
             key={`mobile-navlink-${title}`}

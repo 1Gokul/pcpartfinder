@@ -123,7 +123,7 @@ export function BuildList() {
               >
                 <SquareMousePointer className={buildIconStyle} />
                 <span>
-                  Click to browse{" "}
+                  Click here to browse{" "}
                   <span className="category-label">{CategoryCopies[category].title}.</span>
                 </span>
               </Link>

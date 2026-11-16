@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 import { breakpoints, colours } from "../../styles/theme.css";
 
 export const headerWrapperStyle = style({
@@ -8,10 +8,11 @@ export const headerWrapperStyle = style({
   },
 });
 
-export const headerContainerStyle = style({
+const headerContainerStyleBase = style({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
+  boxSizing: "border-box",
   height: "5rem",
   width: "100%",
   borderWidth: "3px",
@@ -26,13 +27,21 @@ export const headerContainerStyle = style({
   },
 });
 
+export const headerContainerStyle = styleVariants({
+  default: [headerContainerStyleBase],
+  /**
+   * Used on the /search page when no search has been made yet-
+   * the logo is removed and the header hugs its content on the right.
+   */
+  compact: [headerContainerStyleBase, { width: "fit-content", marginLeft: "auto" }],
+});
+
 export const mobileMenuButtonStyle = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  width: "3.5rem",
+  minWidth: "5rem",
   height: "100%",
-  padding: "0 1rem",
   backgroundColor: "transparent",
   borderLeft: `2px solid ${colours.green1200}`,
 
@@ -45,14 +54,14 @@ export const mobileMenuButtonStyle = style({
       display: "none",
     },
   },
+  selectors: {
+    [`${headerContainerStyle["compact"]} &`]: {
+      borderLeftColor: "transparent",
+    },
+  },
 });
 
-export const hamburgerIconStyle = style({
-  width: "1.5rem",
-  height: "1.125rem",
-});
-
-export const mobileNavContainerStyle = style({
+const mobileNavContainerStyleBase = style({
   display: "flex",
   flexDirection: "column",
   overflow: "hidden",
@@ -70,9 +79,9 @@ export const mobileNavContainerStyle = style({
   },
 });
 
-export const mobileNavOpenStyle = style({
-  maxHeight: "20rem",
-  borderWidth: "0 2px 2px 2px",
+export const mobileNavContainerStyle = styleVariants({
+  default: [mobileNavContainerStyleBase],
+  open: [mobileNavContainerStyleBase, { maxHeight: "20rem", borderWidth: "0 2px 2px 2px" }],
 });
 
 export const mobileNavLinkStyle = style({
@@ -90,8 +99,16 @@ export const mobileNavLinkStyle = style({
 
 export const headerLogoStyle = style({
   margin: "0 1.5rem",
-  minWidth: "10rem",
-  width: "20rem",
+  width: "100%",
+  maxWidth: "12.5rem",
+  "@media": {
+    [breakpoints.tablet]: {
+      maxWidth: "15rem",
+    },
+    [breakpoints.desktop]: {
+      maxWidth: "20rem",
+    },
+  },
 });
 
 export const desktopNavStyle = style({
@@ -122,6 +139,11 @@ export const desktopNavLinkStyle = style({
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
+    },
+  },
+  selectors: {
+    [`${headerContainerStyle["compact"]} &:first-child:hover`]: {
+      borderLeftColor: "transparent",
     },
   },
 });

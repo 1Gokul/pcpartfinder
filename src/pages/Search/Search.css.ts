@@ -1,14 +1,29 @@
 import { style } from "@vanilla-extract/css";
 import { breakpoints, colours } from "../../styles/theme.css";
+
+export const logoStyle = style({
+  display: "block",
+  width: "100%",
+  maxWidth: "28rem",
+  height: "auto",
+  margin: "5rem auto 2rem",
+  "@media": {
+    [breakpoints.tablet]: {
+      maxWidth: "36rem",
+      marginBottom: "1rem",
+    },
+  },
+});
+
 export const formHeading = style({
-  fontSize: "2.25rem",
-  lineHeight: "2.25rem",
-  fontWeight: 800,
+  fontSize: "1.25rem",
+  lineHeight: 1.5,
+  fontWeight: 700,
+  textAlign: "center",
   color: colours.green1100,
   "@media": {
     [breakpoints.tablet]: {
-      fontSize: "3rem",
-      lineHeight: "3rem",
+      fontSize: "2rem",
     },
   },
 });
@@ -33,6 +48,7 @@ export const formStyle = style({
 
 export const inputFieldStyle = style({
   fontSize: "1.5rem",
+  fontFamily: 'inherit',
   padding: "1rem 1.25rem",
   border: "3px solid",
   color: "inherit",
@@ -57,7 +73,7 @@ export const inputFieldStyle = style({
 
 export const buttonStyle = style({
   textAlign: "center",
-  backgroundColor: colours.green300,
+  backgroundColor: colours.green400,
   boxShadow: `0.2rem 0.2rem 0 ${colours.green1200}`,
   border: `3px solid ${colours.green1200}`,
   ":active": {

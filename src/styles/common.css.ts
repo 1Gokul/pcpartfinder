@@ -1,0 +1,16 @@
+import { style } from "@vanilla-extract/css";
+
+/** 
+ * Done for accessibility; check the link below
+ * https://www.w3.org/WAI/tutorials/forms/labels/#hiding-label-text
+ */
+export const visuallyHidden = style({
+  border: "0",
+  clip: "rect(0 0 0 0)",
+  height: "1px",
+  margin: "-1px",
+  overflow: "hidden",
+  padding: "0",
+  position: "absolute",
+  width: "1px",
+});
