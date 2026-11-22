@@ -32,7 +32,6 @@ export const layoutBodyStyle = style({
   "@media": {
     [breakpoints.tablet]: {
       padding: "0 1.75rem 4rem",
-      marginTop: "3.5rem",
     },
     [breakpoints.desktop]: {
       padding: "0 2rem 4rem",

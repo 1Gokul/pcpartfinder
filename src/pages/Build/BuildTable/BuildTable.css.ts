@@ -1,5 +1,5 @@
 import { fontFace, globalStyle, style, styleVariants } from "@vanilla-extract/css";
-import { fonts, colours, breakpoints } from "../../../styles/theme.css";
+import { fonts, breakpoints, vars } from "../../../styles/theme.css";
 import { formHeading, inputFieldStyle } from "../../Search/Search.css";
 import { dotsStyle, hideOnMobileStyle } from "./BuildList/BuildList.css";
 
@@ -33,14 +33,12 @@ const buildNameInputBaseStyle = style([
     paddingInline: "0rem",
     textAlign: "center",
     fontFamily: fonts.mono,
+    backgroundColor: vars.colour.paper,
     "@media": {
       [breakpoints.tablet]: {
         maxWidth: "32rem",
         paddingInline: "1.25rem",
       },
-    },
-    ":hover": {
-      backgroundColor: colours.green50,
     },
   },
 ]);
@@ -51,23 +49,24 @@ export const buildNameInputStyle = styleVariants({
   invalid: [
     buildNameInputBaseStyle,
     {
-      borderColor: colours.red,
-      backgroundColor: "#FFF0F0",
+      borderColor: vars.colour.red,
+      backgroundColor: vars.colour.redBg,
       ":hover": {
-        backgroundColor: "#FFE4E4",
+        backgroundColor: vars.colour.redBgHover,
       },
       ":focus": {
-        backgroundColor: "#FFF0F0",
-        borderColor: colours.red,
-        boxShadow: `0 0 0 1px ${colours.red}`,
-        outline: `1px solid ${colours.red}`,
+        backgroundColor: vars.colour.redBg,
+        borderColor: vars.colour.red,
+        boxShadow: `0 0 0 1px ${vars.colour.red}`,
+        outline: `1px solid ${vars.colour.red}`,
       },
     },
   ],
 });
 
 export const buildTableStyle = style({
-  backgroundColor: "white",
+  backgroundColor: vars.colour.paper,
+  color: vars.colour.primary,
   padding: "2.5rem 1rem 4rem",
   fontWeight: "500",
   vars: {
@@ -87,7 +86,7 @@ export const starSeparator = style([
     overflow: "hidden",
     fontSize: "2.25rem",
     margin: "2rem auto 0.5rem",
-    color: colours.gray,
+    color: vars.colour.muted,
   },
 ]);
 
@@ -158,5 +157,5 @@ globalStyle(`${compatibilityDisclaimerStyle} > a`, {
 
 globalStyle(`${compatibilityDisclaimerStyle} > a:hover`, {
   textUnderlineOffset: "0.5em",
-  color: colours.green800,
+  color: vars.colour.accentTextHover,
 });

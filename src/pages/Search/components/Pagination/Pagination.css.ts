@@ -1,5 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { breakpoints, colours, fonts } from "../../../../styles/theme.css";
+import { breakpoints, fonts, vars } from "../../../../styles/theme.css";
 
 export const paginationLabelStyle = style({
   marginTop: "1rem",
@@ -24,28 +24,31 @@ export const paginationGridStyle = styleVariants({
 
 const paginationButtonBaseStyle = style({
   textAlign: "center",
-  backgroundColor: colours.green300,
-  boxShadow: `0.2rem 0.2rem 0 ${colours.green1200}`,
-  border: `3px solid ${colours.green1200}`,
+  boxShadow: `0.2rem 0.2rem 0 ${vars.colour.shadow}`,
+  border: `3px solid ${vars.colour.secondary}`,
   fontFamily: fonts.mono,
+  ":hover": {
+    transform: "translate(-2px, -2px)",
+    boxShadow: `0.25rem 0.25rem 0 ${vars.colour.shadow}`,
+    backgroundColor: vars.colour.accentHover,
+  },
   ":active": {
     transform: "translate(2px, 2px)",
     boxShadow: "none",
-  },
-  ":hover": {
-    transform: "translate(-2px, -2px)",
-    boxShadow: `0.25rem 0.25rem 0 ${colours.green1200}`,
-    backgroundColor: colours.green500,
+    backgroundColor: vars.colour.accentHover,
   },
 });
 
 export const paginationButtonStyle = styleVariants({
   default: [paginationButtonBaseStyle],
-  arrow: [paginationButtonBaseStyle, { display: "flex", alignItems: "center", justifyContent: "center" }],
+  arrow: [
+    paginationButtonBaseStyle,
+    { display: "flex", alignItems: "center", justifyContent: "center" },
+  ],
   active: [
     paginationButtonBaseStyle,
     {
-      backgroundColor: colours.green500,
+      backgroundColor: vars.colour.accent,
       fontWeight: 500,
     },
   ],
@@ -81,10 +84,10 @@ export const paginationAndFilterContainerStyle = styleVariants({
   sticky: [
     paginationAndFilterContainerStyleBase,
     {
-      backgroundColor: colours.green200,
+      backgroundColor: vars.colour.bg,
       "@media": {
         [breakpoints.desktop]: {
-          borderBottom: `3px solid ${colours.green1200}`,
+          borderBottom: `3px solid ${vars.colour.secondary}`,
           paddingInline: "0.5rem",
         },
       },

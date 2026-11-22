@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { colours } from "../../styles/theme.css";
+import { vars } from "../../styles/theme.css";
 
 export const DropdownFieldStyle = style({
   display: "flex",
@@ -12,11 +12,6 @@ export const SelectLabelStyle = style({
   fontSize: "1rem",
   lineHeight: "1.25rem",
   fontWeight: 700,
-  // "@media": {
-  //   "(prefers-color-scheme: dark)": {
-  //     color: "white",
-  //   },
-  // },
 });
 
 export const SelectTriggerStyle = style({
@@ -31,14 +26,14 @@ export const SelectTriggerStyle = style({
   margin: 0,
   outline: 0,
   border: "3px solid",
-  borderColor: colours.green1200,
-  backgroundColor: "white",
+  borderColor: vars.colour.secondary,
+  backgroundColor: vars.colour.inputBg,
   fontFamily: "inherit",
   fontSize: "1rem",
   lineHeight: 1,
   whiteSpace: "nowrap",
   fontWeight: 500,
-  color: colours.green1200,
+  color: vars.colour.primary,
   WebkitUserSelect: "none",
   userSelect: "none",
   minWidth: "15rem",
@@ -48,35 +43,19 @@ export const SelectTriggerStyle = style({
   },
   selectors: {
     "&[data-popup-open]": {
-      backgroundColor: colours.green100,
+      backgroundColor: vars.colour.accentHover,
     },
     "&:active:not([data-disabled])": {
-      backgroundColor: colours.green300,
-      // "@media": {
-      //   "(prefers-color-scheme: dark)": {
-      //     backgroundColor: "oklch(37.1% 0 0deg)",
-      //   },
-      // },
+      backgroundColor: vars.colour.accentHover,
     },
     "&[data-disabled]": {
-      color: "oklch(55.6% 0 0deg)",
-      borderColor: "oklch(55.6% 0 0deg)",
-      // "@media": {
-      //   "(prefers-color-scheme: dark)": {
-      //     color: "oklch(70.8% 0 0deg)",
-      //     borderColor: "oklch(70.8% 0 0deg)",
-      //   },
-      // },
+      color: vars.colour.secondary,
+      borderColor: vars.colour.secondary,
     },
     "&:focus-visible": {
       outline: "3px solid",
-      outlineColor: colours.green500,
+      outlineColor: vars.colour.accentHover,
       outlineOffset: "-1px",
-      // "@media": {
-      //   "(prefers-color-scheme: dark)": {
-      //     outlineColor: "white",
-      //   },
-      // },
     },
   },
 });
@@ -84,12 +63,7 @@ export const SelectTriggerStyle = style({
 export const SelectValueStyle = style({
   selectors: {
     "&[data-placeholder]": {
-      color: "oklch(55.6% 0 0deg)",
-      // "@media": {
-      //   "(prefers-color-scheme: dark)": {
-      //     color: "oklch(70.8% 0 0deg)",
-      //   },
-      // },
+      color: vars.colour.secondary,
     },
   },
 });
@@ -104,13 +78,13 @@ export const SelectPositionerStyle = style({
 export const SelectPopupStyle = style({
   boxSizing: "border-box",
   outline: 0,
-  border: `3px solid ${colours.green1200}`,
-  backgroundColor: "white",
+  border: `3px solid ${vars.colour.secondary}`,
+  backgroundColor: vars.colour.inputBg,
   backgroundClip: "padding-box",
-  color: colours.green1200,
+  color: vars.colour.primary,
   minWidth: "var(--anchor-width)",
   transformOrigin: "var(--transform-origin)",
-  boxShadow: `0.2rem 0.2rem 0 ${colours.green1200}`,
+  boxShadow: `0.2rem 0.2rem 0 ${vars.colour.shadow}`,
   selectors: {
     "&[data-starting-style], &[data-ending-style]": {
       opacity: 0,
@@ -122,19 +96,11 @@ export const SelectPopupStyle = style({
       minWidth: "calc(var(--anchor-width) + 1.75rem)",
     },
   },
-  // "@media": {
-  //   "(prefers-color-scheme: dark)": {
-  //     border: "1px solid white",
-  //     backgroundColor: "oklch(14.5% 0 0deg)",
-  //     color: "white",
-  //     boxShadow: "none",
-  //   },
-  // },
 });
 
 export const SelectScrollArrowStyle = style({
   width: "100%",
-  backgroundColor: "white",
+  backgroundColor: vars.colour.inputBg,
   zIndex: 1,
   textAlign: "center",
   cursor: "default",
@@ -164,11 +130,6 @@ export const SelectScrollArrowStyle = style({
       bottom: "-100%",
     },
   },
-  // "@media": {
-  //   "(prefers-color-scheme: dark)": {
-  //     backgroundColor: "oklch(14.5% 0 0deg)",
-  //   },
-  // },
 });
 
 export const SelectListStyle = style({
@@ -198,13 +159,7 @@ export const SelectItemStyle = style({
   userSelect: "none",
   selectors: {
     "&[data-highlighted]": {
-      backgroundColor: colours.green300,
-      // "@media": {
-      //   "(prefers-color-scheme: dark)": {
-      //     backgroundColor: "white",
-      //     color: "oklch(14.5% 0 0deg)",
-      //   },
-      // },
+      backgroundColor: vars.colour.accentHover,
     },
   },
 });

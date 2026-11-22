@@ -1,5 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { breakpoints, colours } from "../../styles/theme.css";
+import { breakpoints, vars } from "../../styles/theme.css";
 
 export const headerWrapperStyle = style({
   marginBlock: "2rem",
@@ -16,8 +16,7 @@ const headerContainerStyleBase = style({
   height: "5rem",
   width: "100%",
   borderWidth: "3px",
-  backgroundColor: colours.green200,
-  borderColor: colours.green1200,
+  borderColor: vars.colour.secondary,
   borderStyle: "solid",
 
   "@media": {
@@ -44,10 +43,13 @@ export const mobileMenuButtonStyle = style({
   width: "100%",
   height: "100%",
   backgroundColor: "transparent",
-  borderLeft: `2px solid ${colours.green1200}`,
+  borderLeft: `2px solid ${vars.colour.secondary}`,
 
   ":hover": {
-    backgroundColor: colours.green400,
+    backgroundColor: vars.colour.accentHover,
+  },
+  ":active": {
+    backgroundColor: vars.colour.accentHover,
   },
 
   "@media": {
@@ -68,8 +70,8 @@ const mobileNavContainerStyleBase = style({
   overflow: "hidden",
   width: "100%",
   maxHeight: "0",
-  backgroundColor: colours.green200,
-  borderColor: colours.green1200,
+  backgroundColor: vars.colour.bg,
+  borderColor: vars.colour.secondary,
   borderStyle: "solid",
   borderWidth: "0 2px",
 
@@ -93,15 +95,11 @@ export const mobileNavContainerStyle = styleVariants({
 
 export const mobileNavLinkStyle = style({
   display: "block",
-  color: colours.green1200,
+  color: vars.colour.primary,
   fontSize: "large",
   fontWeight: "500",
   textAlign: "center",
   padding: "1rem",
-
-  ":hover": {
-    backgroundColor: colours.green400,
-  },
 });
 
 export const headerLogoStyle = style({
@@ -125,21 +123,23 @@ export const desktopNavStyle = style({
 
 export const desktopNavLinkStyle = style({
   display: "none",
-  color: colours.green1200,
+  color: vars.colour.primary,
   height: "100%",
   fontSize: "large",
   fontWeight: "500",
   textAlign: "center",
   width: "7rem",
-  borderColor: colours.green200,
+  borderColor: vars.colour.secondary,
   borderStyle: "solid",
-  borderWidth: "0 3px",
+  borderWidth: "0 3px 0 0",
+  ":first-child": {
+    borderLeftWidth: "3px",
+  },
   ":last-child": {
     borderRight: "0",
   },
   ":hover": {
-    backgroundColor: colours.green400,
-    borderColor: colours.green1200,
+    backgroundColor: vars.colour.accentHover,
   },
   "@media": {
     [breakpoints.tablet]: {
@@ -162,8 +162,8 @@ export const desktopNavLinkStyle = style({
         },
       },
     },
-    [`${headerContainerStyle["compact"]} &:first-child:hover`]: {
-      borderLeftColor: "transparent",
+    [`${headerContainerStyle["compact"]} &:first-child`]: {
+      borderLeftWidth: 0,
     },
   },
 });

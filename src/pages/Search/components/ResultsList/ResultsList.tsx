@@ -13,7 +13,6 @@ import {
   paginationAndFilterContainerStyle,
   paginationGridStyle,
 } from "../Pagination/Pagination.css";
-import { skeletonStyle } from "../../../../styles/skeleton.css";
 import { getToNArray } from "../../../../utils/common";
 import { resultFilterContainerStyle } from "../ResultFilter/ResultFilter.css";
 import { useAtom } from "jotai";
@@ -62,7 +61,7 @@ export function ResultsList() {
         <div className={paginationAndFilterContainerStyle["default"]}>
           <div className={paginationGridStyle["default"]}>
             {getToNArray(5).map((num) => (
-              <span key={`skeleton-loader-pagination-${num}`} className={skeletonStyle} />
+              <span key={`skeleton-loader-pagination-${num}`} />
             ))}
           </div>
           <div className={resultFilterContainerStyle}>

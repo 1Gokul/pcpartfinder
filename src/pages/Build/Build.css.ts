@@ -1,5 +1,5 @@
 import { keyframes, style } from "@vanilla-extract/css";
-import { breakpoints, colours } from "../../styles/theme.css";
+import { breakpoints, vars } from "../../styles/theme.css";
 import { buttonStyle } from "../Search/Search.css";
 
 export const buildActionsStyle = style({
@@ -30,8 +30,8 @@ const buildActionButtonStyle = style([
       cursor: "not-allowed",
       opacity: 0.45,
       transform: "none",
-      backgroundColor: colours.green300,
-      boxShadow: `0.2rem 0.2rem 0 ${colours.green1200}`,
+      backgroundColor: vars.colour.accent,
+      boxShadow: `0.2rem 0.2rem 0 ${vars.colour.shadow}`,
     },
     "@media": {
       [breakpoints.tablet]: {
@@ -49,13 +49,13 @@ export const publishButtonStyle = style([buildActionButtonStyle]);
 export const copyMarkdownButtonStyle = style([
   buildActionButtonStyle,
   {
-    color: colours.green1200,
+    color: vars.colour.primary,
     ":disabled": {
       cursor: "not-allowed",
       opacity: 0.45,
       transform: "none",
       backgroundColor: "transparent",
-      boxShadow: `0.2rem 0.2rem 0 ${colours.green1200}`,
+      boxShadow: `0.2rem 0.2rem 0 ${vars.colour.shadow}`,
     },
   },
 ]);

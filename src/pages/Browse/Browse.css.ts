@@ -1,11 +1,11 @@
 import { style } from "@vanilla-extract/css";
-import { breakpoints, colours, fonts } from "../../styles/theme.css";
+import { breakpoints, vars } from "../../styles/theme.css";
 
 export const browseHeadingStyle = style({
   fontSize: "2.25rem",
   lineHeight: "2.25rem",
   fontWeight: 800,
-  color: colours.green1100,
+  color: vars.colour.primary,
   "@media": {
     [breakpoints.tablet]: {
       fontSize: "3rem",
@@ -33,18 +33,19 @@ export const categoryCardStyle = style({
   minHeight: "8rem",
   flexDirection: "column",
   justifyContent: "space-between",
-  border: `3px solid ${colours.green1200}`,
-  backgroundColor: colours.green50,
-  boxShadow: `0.45rem 0.45rem 0 ${colours.green1200}`,
+  border: `3px solid ${vars.colour.secondary}`,
+  backgroundColor: vars.colour.inputBg,
+  boxShadow: `0.45rem 0.45rem 0 ${vars.colour.shadow}`,
   padding: "1.25rem",
   ":hover": {
     transform: "translate(-2px, -2px)",
-    boxShadow: `0.6rem 0.6rem 0 ${colours.green1200}`,
-    backgroundColor: colours.green100,
+    boxShadow: `0.6rem 0.6rem 0 ${vars.colour.shadow}`,
+    backgroundColor: vars.colour.accentHover,
   },
   ":active": {
     transform: "translate(4px, 4px)",
     boxShadow: "none",
+    backgroundColor: vars.colour.accentHover,
   },
 });
 
@@ -56,7 +57,7 @@ export const categoryNameStyle = style({
 
 export const categoryMetaStyle = style({
   fontSize: "0.95rem",
-  color: colours.green900,
+  color: vars.colour.secondary,
   textTransform: "uppercase",
   letterSpacing: "0.06em",
 });

@@ -1,12 +1,12 @@
 import { style } from "@vanilla-extract/css";
-import { breakpoints, colours } from "../../styles/theme.css";
+import { breakpoints, vars } from "../../styles/theme.css";
 
 export const footerContainerStyle = style({
   display: "grid",
   gridTemplateColumns: "1fr",
   gap: "1.25rem",
   padding: "2rem 0",
-  placeItems:'center',
+  placeItems: "center",
   "@media": {
     [breakpoints.tablet]: {
       gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
@@ -15,13 +15,13 @@ export const footerContainerStyle = style({
 });
 
 export const footerLinkStyle = style({
-  color: colours.green1200,
+  color: vars.colour.primary,
   fontSize: "large",
   fontWeight: "500",
   textDecoration: "underline",
   textUnderlineOffset: "0.5rem",
   ":hover": {
-    color: colours.green800,
+    color: vars.colour.accentTextHover,
     textUnderlineOffset: "0.75rem",
   },
 });

@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { breakpoints, colours } from "../../styles/theme.css";
+import { breakpoints, vars } from "../../styles/theme.css";
 
 export const logoStyle = style({
   display: "block",
@@ -9,6 +9,7 @@ export const logoStyle = style({
   margin: "2rem auto 2rem",
   "@media": {
     [breakpoints.tablet]: {
+      marginTop: "3.5rem",
       maxWidth: "36rem",
       marginBottom: 0,
     },
@@ -20,7 +21,7 @@ export const formHeading = style({
   lineHeight: 1.5,
   fontWeight: 700,
   textAlign: "center",
-  color: colours.green1100,
+  color: vars.colour.primary,
   "@media": {
     [breakpoints.tablet]: {
       fontSize: "2rem",
@@ -51,18 +52,18 @@ export const inputFieldStyle = style({
   fontFamily: "inherit",
   padding: "1rem 1.25rem",
   border: "3px solid",
-  color: "inherit",
+  borderColor: vars.colour.secondary,
+  backgroundColor: vars.colour.inputBg,
+  color: vars.colour.primary,
   "::placeholder": {
-    color: "#718096",
+    color: vars.colour.muted,
   },
-  ":hover": {
-    backgroundColor: colours.green100,
-  },
+  ":hover": { borderColor: vars.colour.secondary },
   ":focus": {
-    backgroundColor: "#F0FFF4",
-    borderColor: colours.green400,
-    boxShadow: "0 0 0 1px #2F855A",
-    outline: "1px solid #2F855A",
+    backgroundColor: vars.colour.inputBg,
+    borderColor: vars.colour.secondary,
+    boxShadow: `0 0 0 1px ${vars.colour.accentHover}`,
+    outline: `1px solid ${vars.colour.accentHover}`,
   },
   "@media": {
     [breakpoints.tablet]: {
@@ -73,17 +74,18 @@ export const inputFieldStyle = style({
 
 export const buttonStyle = style({
   textAlign: "center",
-  backgroundColor: colours.green400,
-  boxShadow: `0.2rem 0.2rem 0 ${colours.green1200}`,
-  border: `3px solid ${colours.green1200}`,
+  backgroundColor: vars.colour.inputBg,
+  boxShadow: `0.2rem 0.2rem 0 ${vars.colour.shadow}`,
+  border: `3px solid ${vars.colour.secondary}`,
+  ":hover": {
+    transform: "translate(-2px, -2px)",
+    boxShadow: `0.25rem 0.25rem 0 ${vars.colour.shadow}`,
+    backgroundColor: vars.colour.accentHover,
+  },
   ":active": {
     transform: "translate(2px, 2px)",
     boxShadow: "none",
-  },
-  ":hover": {
-    transform: "translate(-2px, -2px)",
-    boxShadow: `0.25rem 0.25rem 0 ${colours.green1200}`,
-    backgroundColor: colours.green500,
+    backgroundColor: vars.colour.accentHover,
   },
 });
 
@@ -94,11 +96,11 @@ export const submitButtonStyle = style([
     alignItems: "center",
     gap: "0.5rem",
     fontSize: "1.25rem",
-    boxShadow: `0.4rem 0.4rem 0 ${colours.green1200}`,
+    boxShadow: `0.4rem 0.4rem 0 ${vars.colour.shadow}`,
     padding: "1rem 1.25rem",
     fontWeight: 600,
     ":hover": {
-      boxShadow: `0.5rem 0.5rem 0 ${colours.green1200}`,
+      boxShadow: `0.5rem 0.5rem 0 ${vars.colour.shadow}`,
     },
     "@media": {
       [breakpoints.desktop]: {

@@ -1,13 +1,4 @@
-import {
-  array,
-  entriesFromList,
-  nonNullable,
-  object,
-  optional,
-  picklist,
-  record,
-  type InferOutput,
-} from "valibot";
+import { array, entriesFromList, nonNullable, object, type InferOutput } from "valibot";
 import { SearchResultItemSchema } from "../pages/Search/types/searchResult";
 import { Categories } from "../constants/categories";
 

@@ -1,15 +1,15 @@
 import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
-import { breakpoints, colours, fonts } from "../../../../../styles/theme.css";
+import { breakpoints, fonts, vars } from "../../../../../styles/theme.css";
 
 const ResultItemContainerStyleBase = style({
   display: "grid",
   gridTemplateColumns: "1fr",
   alignItems: "center",
   justifyContent: "center",
-  boxShadow: `0.5rem 0.5rem 0 ${colours.green1200}`,
+  boxShadow: `0.5rem 0.5rem 0 ${vars.colour.shadow}`,
   borderWidth: "0 3px",
   borderStyle: "solid",
-  borderColor: colours.green1200,
+  borderColor: vars.colour.secondary,
   fontWeight: 500,
   selectors: {
     "&:first-child": {
@@ -19,10 +19,9 @@ const ResultItemContainerStyleBase = style({
       borderBottomWidth: "3px",
     },
     "&:nth-child(even)": {
-      backgroundColor: colours.green400,
+      backgroundColor: vars.colour.accent,
     },
     "&:nth-child(odd)": {
-      backgroundColor: colours.green200,
     },
   },
   "@media": {
@@ -48,13 +47,13 @@ export const ResultItemContainerStyle = styleVariants({
   itemBeingReplaced: [
     ResultItemContainerStyleBase,
     {
-      color: "white",
+      color: vars.colour.textOnRedBg,
       selectors: {
         "&:nth-child(even)": {
-          backgroundColor: colours.red,
+          backgroundColor: vars.colour.red,
         },
         "&:nth-child(odd)": {
-          backgroundColor: colours.red,
+          backgroundColor: vars.colour.red,
         },
       },
     },
@@ -64,10 +63,10 @@ export const ResultItemContainerStyle = styleVariants({
     {
       selectors: {
         "&:nth-child(even)": {
-          backgroundColor: colours.gold,
+          backgroundColor: vars.colour.gold,
         },
         "&:nth-child(odd)": {
-          backgroundColor: colours.gold,
+          backgroundColor: vars.colour.gold,
         },
       },
     },
@@ -77,15 +76,15 @@ export const ResultItemContainerStyle = styleVariants({
 export const ResultItemLinkStyle = style({
   textDecoration: "none",
   padding: "1rem 1rem 0.5rem",
-  color: colours.green1200,
+  color: vars.colour.primary,
   selectors: {
     [`${ResultItemContainerStyle["itemBeingReplaced"]} &`]: {
-      color: "white",
+      color: vars.colour.textOnRedBg,
     },
   },
   ":hover": {
     textDecoration: "underline",
-    color: colours.green900,
+    color: vars.colour.accentHover,
     textUnderlineOffset: "0.25rem",
   },
   "@media": {
@@ -159,8 +158,11 @@ export const resultItemAddToBuildButtonStyle = style({
     },
   },
   ":hover": {
-    backgroundColor: colours.green600,
-    borderColor: colours.green1200,
+    backgroundColor: vars.colour.accentHover,
+    borderColor: vars.colour.secondary,
+  },
+  ":active": {
+    backgroundColor: vars.colour.accentHover,
   },
   selectors: {
     [`${ResultItemContainerStyleBase}:last-child &`]: {
@@ -170,10 +172,10 @@ export const resultItemAddToBuildButtonStyle = style({
       borderBottom: 0,
     },
     [`${ResultItemContainerStyle["itemBeingReplaced"]} &:hover`]: {
-      backgroundColor: colours.redHover,
+      backgroundColor: vars.colour.redHover,
     },
     [`${ResultItemContainerStyle["alreadyInBuild"]} &:hover`]: {
-      backgroundColor: colours.goldHover,
+      backgroundColor: vars.colour.goldHover,
     },
   },
   height: "100%",
@@ -194,7 +196,7 @@ export const ResultItemReplacementText = styleVariants({
     ResultItemReplacementTextBase,
     {
       margin: "0.75rem 0 2rem",
-      color: colours.red,
+      color: vars.colour.red,
     },
   ],
 });

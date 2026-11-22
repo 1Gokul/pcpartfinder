@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { breakpoints, colours, fonts } from "../../styles/theme.css";
+import { breakpoints, fonts, vars } from "../../styles/theme.css";
 
 export const buildViewStatusStyle = style({
   fontFamily: fonts.mono,
@@ -31,7 +31,7 @@ export const buildViewItemStyle = style({
   justifyContent: "space-between",
   gap: "0.25rem 1rem",
   paddingBlock: "0.75rem",
-  borderTop: `3px solid ${colours.green1200}`,
+  borderTop: `3px solid ${vars.colour.secondary}`,
 });
 
 export const buildViewItemNameStyle = style({
@@ -40,7 +40,7 @@ export const buildViewItemNameStyle = style({
 });
 
 export const buildViewItemMetaStyle = style({
-  color: colours.gray,
+  color: vars.colour.muted,
   fontFamily: fonts.mono,
   fontSize: "0.875rem",
 });
@@ -51,7 +51,7 @@ export const buildViewPriceStyle = style({
 });
 
 export const buildViewEmptyStyle = style({
-  color: colours.gray,
+  color: vars.colour.muted,
   fontStyle: "italic",
 });
 
@@ -62,7 +62,7 @@ export const buildViewBackLinkStyle = style({
   textDecoration: "underline",
   textUnderlineOffset: "0.5rem",
   ":hover": {
-    color: colours.green800,
+    color: vars.colour.accentHover,
     textUnderlineOffset: "0.75rem",
   },
 });

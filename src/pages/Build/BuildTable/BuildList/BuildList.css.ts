@@ -1,5 +1,5 @@
 import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
-import { breakpoints, colours, fonts } from "../../../../styles/theme.css";
+import { breakpoints, fonts, vars } from "../../../../styles/theme.css";
 import { paginationButtonStyle } from "../../../Search/components/Pagination/Pagination.css";
 
 const buildItemRowStyleBase = style({
@@ -34,9 +34,9 @@ export const buildItemRowStyle = styleVariants({
       textUnderlineOffset: "0.5rem",
       maxWidth: "max-content",
       lineHeight: 2,
-      color: colours.green900,
+      color: vars.colour.secondary,
       ":hover": {
-        color: colours.green700,
+        color: vars.colour.accentHover,
         textUnderlineOffset: "0.75rem",
       },
     },
@@ -89,8 +89,8 @@ export const deleteButtonContainerStyle = style({
 const deleteButtonStyleBase = style([
   paginationButtonStyle["default"],
   {
-    backgroundColor: colours.green50,
-    color: colours.green1100,
+    backgroundColor: "transparent",
+    color: vars.colour.primary,
     display: "flex",
     alignItems: "center",
     padding: "0.25rem 0.5rem",
@@ -113,10 +113,10 @@ export const deleteButtonStyle = styleVariants({
   confirm: [
     deleteButtonStyleBase,
     {
-      backgroundColor: colours.red,
-      color: "white",
+      backgroundColor: vars.colour.red,
+      color: vars.colour.textOnRedBg,
       ":hover": {
-        backgroundColor: colours.redHover,
+        backgroundColor: vars.colour.redHover,
       },
       "::before": {
         content: "Yes",
@@ -126,9 +126,9 @@ export const deleteButtonStyle = styleVariants({
   cancel: [
     deleteButtonStyleBase,
     {
-      backgroundColor: colours.green400,
+      backgroundColor: vars.colour.accent,
       ":hover": {
-        backgroundColor: colours.green500,
+        backgroundColor: vars.colour.accentHover,
       },
       "::before": {
         content: "No",
@@ -140,7 +140,7 @@ export const deleteButtonStyle = styleVariants({
 export const buildSmallPriceStyle = style({
   display: "inline",
   fontFamily: fonts.mono,
-  color: colours.green1100,
+  color: vars.colour.primary,
   fontSize: "1.25rem",
   "@media": {
     [breakpoints.tablet]: {
@@ -154,7 +154,7 @@ export const buildItemDetailsStyle = style({
   flexDirection: "column",
   marginTop: "1rem",
   gap: "0.5rem",
-  color: colours.gray,
+  color: vars.colour.muted,
   "@media": {
     [breakpoints.tablet]: {
       flexDirection: "row",
